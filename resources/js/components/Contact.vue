@@ -23,7 +23,7 @@
                         </div>
                         <div class="flex flex-col md:flex-row justify-center lg:justify-start items-center mb-4">
                             <img src="/img/icons/whatsapp.svg" class="w-6 h-6 mb-2 md:mr-2 md:mb-0" alt="Whatsapp">
-                            <a class="text-sm uppercase" href="https://wa.me/+77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. Меня зовут " target="_blank">+7 (700) 090 6090</a>
+                            <a class="text-sm uppercase" href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. Меня зовут " target="_blank">+7 (700) 090 6090</a>
                         </div>
                         <div class="flex flex-col md:flex-row justify-center lg:justify-start items-center">
                             <img src="/img/icons/instagram.svg" class="w-6 h-6 mb-2 md:mr-2 md:mb-0" alt="Instagram">

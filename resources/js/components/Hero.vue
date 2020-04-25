@@ -7,7 +7,7 @@
             по городу Нур-Султан
         </h1>
         <div class="text-center">
-          <a v-scroll-to="'#programs'" class="inline-block px-5 py-3 rounded shadow-lg bg-brand-green hover:bg-brand-green-hover text-sm text-white uppercase tracking-wider font-semibold">
+          <a v-scroll-to="'#programs'" class="inline-block px-5 py-3 rounded shadow-lg bg-brand-green hover:bg-brand-green-hover text-sm text-white uppercase tracking-wider font-semibold cursor-pointer">
           смотреть программы</a>
         </div>
       </div>

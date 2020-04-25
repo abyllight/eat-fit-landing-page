@@ -21,7 +21,7 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <img src="/img/icons/bin.svg" class="w-4" @click.prevent="removeFromCart(item)">
+                                    <img src="/img/icons/bin.svg" class="w-4 cursor-pointer" @click.prevent="removeFromCart(item)">
                                 </div>
                             </div>
                             <div class="flex items-center justify-between mb-2">
