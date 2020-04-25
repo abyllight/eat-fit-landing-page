@@ -12,7 +12,7 @@
                     <h3 class="text-2xl leading-6 font-black text-gray-800 mb-4">
                         Корзина
                     </h3>
-                    <div class="overflow-y-auto scrolling-auto md:scrolling-auto mb-3 sc" :class="[$store.state.cart.length >= 4 ? 'h-64': '']">
+                    <div class="overflow-y-auto scrolling-auto md:scrolling-auto mb-3 sc">
                         <div v-for="item in $store.state.cart" :key="item.id" class="mt-2">
                             <div class="flex items-center justify-between mb-2">
                                 <div class="w-3/4">
@@ -94,6 +94,9 @@
 <style scoped>
     .oldPrice{
         text-decoration: line-through;
+    }
+    .sc{
+        max-height: 480px;
     }
     @media (min-width: 1024px) {
         .sc::-webkit-scrollbar-track
