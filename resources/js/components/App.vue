@@ -2,13 +2,27 @@
   <div>
         <navbar></navbar>
         <hero></hero>
-        <about></about>
-        <how-it-works></how-it-works>
-        <program></program>
-        <products-list></products-list>
-        <instagram></instagram>
-        <faq></faq>
-        <contact></contact>
+        <div id="about">
+            <about></about>
+        </div>
+        <div id="how-it-works">
+            <how-it-works></how-it-works>
+        </div>
+        <div id="programs">
+            <program></program>
+        </div>
+        <div id="products">
+            <products-list></products-list>
+        </div>
+        <div id="instagram">
+            <instagram></instagram>
+        </div>
+        <div id="faq">
+            <faq></faq>
+        </div>
+        <div id="contact">
+            <contact></contact>
+        </div>
         <footer-section></footer-section>
   </div>
 </template>
@@ -19,7 +33,6 @@ import Hero from './Hero'
 import About from './About'
 import HowItWorks from './HowItWorks'
 import Program from './Program'
-import ProgramCard from './ProgramCard'
 import ProductsList from './ProductsList'
 import Instagram from "./Instagram";
 import Faq from "./Faq";
@@ -34,7 +47,6 @@ export default {
         About,
         HowItWorks,
         Program,
-        ProgramCard,
         Instagram,
         Faq,
         Contact,

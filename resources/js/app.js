@@ -1,8 +1,13 @@
 window.Vue = require('vue');
 window.axios = require('axios');
 import Vuelidate from "vuelidate/src";
+import Vuex from 'vuex';
+import store from './store';
+import vueScrollto from 'vue-scrollto';
 
 Vue.use(Vuelidate);
+Vue.use(Vuex);
+Vue.use(vueScrollto);
 
 Vue.component('app', require('./components/App.vue').default);
 Vue.component('navbar', require('./components/Navbar.vue').default);
@@ -19,7 +24,10 @@ Vue.component('fail-modal', require('./components/FailModal.vue').default);
 Vue.component('instagram', require('./components/Instagram.vue').default);
 Vue.component('faq', require('./components/Faq.vue').default);
 Vue.component('contact', require('./components/Contact.vue').default);
+Vue.component('product-modal', require('./components/ProductModal.vue').default);
+Vue.component('cart', require('./components/Cart.vue').default);
 
 const app = new Vue({
     el: '#app',
+    store: new Vuex.Store(store)
 });

@@ -19,3 +19,5 @@ Route::get('/', function () {
 
 Route::post('/', 'OrderController@placeOrder');
 
+Route::post('/cart', 'OrderController@placeCartOrder');
+

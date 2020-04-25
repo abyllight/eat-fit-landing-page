@@ -114,6 +114,92 @@ class OrderController extends Controller
         }else{
             return response()->json(false);
         }
+    }
 
+    public function placeCartOrder(Request $request){
+        $total = array();
+        $products = '';
+
+        foreach ($request['cart'] as $item){
+            $total[] += (int) $item['total'];
+        }
+
+        $t = array_reduce($total, function ($carry, $item){
+            $carry += $item;
+            return $carry;
+        });
+
+        foreach ($request['cart'] as $item){
+            $products .= ' '. $item['title'].' - '.$item['q'].', ';
+        }
+
+        $link = 'https://eatandfitkz.amocrm.ru/private/api/auth.php?type=json';
+        $user = [
+            'USER_LOGIN' => 'eat.and.fit@mail.ru',
+            'USER_HASH' => '2308b500574f5ab12a03bc21759124f5082bb334'
+        ];
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+        curl_setopt($curl, CURLOPT_URL, $link);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($curl, CURLOPT_POSTFIELDS,http_build_query($user));
+        curl_setopt($curl,CURLOPT_HEADER,false);
+        curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__FILE__).'/cookie.txt');
+        curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__FILE__).'/cookie.txt');
+        curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
+        curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
+
+        $out = curl_exec($curl);
+
+        $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
+        curl_close($curl);
+
+        if($code == 200 || $code == 204){
+            $leads['add']=array(
+                array(
+                    'name' => $request['name'].' Бюджет- '.$t.'тг.',
+                    'custom_fields'=>array(
+                        array(
+                            'id'=>478771,
+                            'values'=>array(
+                                array(
+                                    'value'=>$request['phone'],
+                                ),
+                            ),
+                        ),
+                        array(
+                            'id'=>478763,
+                            'values'=>array(
+                                array(
+                                    'value' => $request['address'],
+                                ),
+                            ),
+                        ),
+                        array(
+                            'id'=>321277,
+                            'values'=>array(
+                                array(
+                                    'value' => $products,
+                                ),
+                            ),
+                        ),
+                        array(
+                            'id'=>320995,
+                            'values'=>array(
+                                array(
+                                    'id' => 766689,
+                                    'value' => 'Сайт',
+                                )
+                            ),
+                        ),
+                    ),
+                ));
+            return $this->amo_query($leads);
+        }else{
+            return response()->json(false);
+        }
     }
 }

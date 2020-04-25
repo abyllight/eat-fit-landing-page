@@ -12,42 +12,50 @@
             <img class="h-10" src="/img/logo.png" alt="EAT&FIT">
           </a>
       </div>
-        <a href="/" class="relative">
+        <button @click="isVisible = true" class="relative outline-none focus:outline-none">
             <img src="/img/icons/shopping-bag.svg" class="h-8 w-8">
-            <div class="w-4 h-4 rounded-full bg-red-600 absolute top-0 right-0 flex items-center justify-center">
-                <span class="text-xs font-semibold text-white">10</span>
+            <div class="w-5 h-5 rounded-full bg-red-600 absolute top-0 right-0 flex items-center justify-center">
+                <span class="text-xs font-semibold text-white">{{ $store.state.cartCount }}</span>
             </div>
-        </a>
-      <!--<div class="hidden lg:flex">
-        <a href="#" class="ml-4 rounded px-2 py-1 text-white font-medium rounded hover:bg-brand-green">Что это?</a>
-        <a href="#" class="ml-3 rounded px-2 py-1 text-white font-medium rounded hover:bg-brand-green">Как это работает?</a>
-        <a href="#" class="ml-3 rounded px-2 py-1 text-white font-medium rounded hover:bg-brand-green">Программы</a>
-        <a href="#" class="ml-3 rounded px-2 py-1 text-white font-medium rounded hover:bg-brand-green">Пример рациона</a>
-        <a href="#" class="ml-3 rounded px-2 py-1 text-white font-medium rounded hover:bg-brand-green">Отзывы</a>
-        <a href="#" class="ml-3 rounded px-2 py-1 text-white font-medium rounded hover:bg-brand-green">FAQ</a>
-        <a href="#" class="ml-3 rounded px-2 py-1 text-white font-medium rounded hover:bg-brand-green">Контакты</a>
-      </div>-->
+        </button>
 
     </div>
     <nav v-show="isOpen" class="px-4 md:px-6 lg:px-10 pt-4 pb-4 absolute z-20 bg-gray-900 w-3/4 md:w-1/3 h-screen">
-      <a href="#about" class="px-2 py-1 block text-white md:text-xl font-semibold rounded hover:bg-brand-green">Что это?</a>
-      <a href="#how-it-works" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green">Как это работает?</a>
-      <a href="#programs" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green">Программы</a>
-      <a href="#" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green">Пример рациона</a>
-      <a href="#" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green">Отзывы</a>
-      <a href="#" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green">FAQ</a>
-      <a href="#" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green">Контакты</a>
+      <a v-scroll-to="'#about'" class="px-2 py-1 block text-white md:text-xl font-semibold rounded hover:bg-brand-green cursor-pointer">Что это?</a>
+      <a v-scroll-to="'#how-it-works'" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green cursor-pointer">Как это работает?</a>
+      <a v-scroll-to="'#programs'" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green cursor-pointer">Программы</a>
+      <a v-scroll-to="'#products'" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green cursor-pointer">Eat&Chill</a>
+      <!--<a v-scroll-to="'#sample'" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green">Пример рациона</a>-->
+      <a v-scroll-to="'#instagram'" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green cursor-pointer">Отзывы</a>
+      <a v-scroll-to="'#faq'" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green cursor-pointer">FAQ</a>
+      <a v-scroll-to="'#contact'" class="mt-2 block px-2 py-1 text-white md:text-xl font-semibold rounded hover:bg-brand-green cursor-pointer">Контакты</a>
     </nav>
+      <cart :show="isVisible" @close="isVisible = false"
+            @showSuccess="showSuccess = true"
+            @showFail="showFail = true"></cart>
+      <success-modal :showSuccess="showSuccess" @close="showSuccess = false"></success-modal>
+      <fail-modal :showFail="showFail" @close="showFail = false"></fail-modal>
   </header>
 </template>
 <style>
 
 </style>
 <script>
+    import Cart from "./Cart";
+    import SuccessModal from "./SuccessModal";
+    import FailModal from "./FailModal";
 export default {
+    components: {
+        Cart,
+        SuccessModal,
+        FailModal
+    },
     data(){
         return{
             isOpen: false,
+            isVisible: false,
+            showSuccess: false,
+            showFail: false
         }
     },
     mounted(){
