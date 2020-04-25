@@ -41,45 +41,45 @@
                             </div>
                             <hr>
                         </div>
-                    </div>
-                    <div class="text-right mb-3">
-                        <p class="text-base font-semibold text-gray-800">Итого: <span class="font-black text-xl text-brand-green">{{ total }}тг.</span></p>
-                    </div>
-                    <div>
-                        <form @submit.prevent="formSubmit">
-                            <h4 class="text-lg lg:text-xl text-center leading-6 font-black text-gray-800 mb-4">
-                                Оформить заказ
-                            </h4>
-                            <div class="mb-3">
-                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                       type="text" placeholder="Имя" v-model.trim="$v.name.$model" :class="{ 'border-red-500': $v.name.$error }" />
-                                <p v-if="$v.name.$error" class="text-red-500 text-xs italic mt-1">Укажите имя</p>
-                            </div>
-                            <div class="mb-3">
-                                <masked-input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                              type="tel" placeholder="Телефон" v-model="phone" mask="\+\7 (111) 111-1111" @input="rawVal = arguments[1]" :class="{ 'border-red-500': !isPhoneValid }"/>
-                                <p v-if="!isPhoneValid" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
-                            </div>
-                            <div class="mb-4">
-                                <input class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"
-                                       placeholder="Адрес" v-model.trim="$v.address.$model" :class="{ 'border-red-500': $v.address.$error }">
-                                <p v-if="$v.address.$error" class="text-red-500 text-xs italic mt-1">Укажите адрес</p>
-                                <label class="block text-gray-500 font-bold flex mt-1">
-                                    <input class="mr-2 leading-tight w-25 h-25" type="checkbox" v-model="isChecked">
-                                    <span class="text-xs -mt-1">
+                        <div class="text-right mb-3">
+                            <p class="text-base font-semibold text-gray-800">Итого: <span class="font-black text-xl text-brand-green">{{ total }}тг.</span></p>
+                        </div>
+                        <div>
+                            <form @submit.prevent="formSubmit">
+                                <h4 class="text-lg lg:text-xl text-center leading-6 font-black text-gray-800 mb-4">
+                                    Оформить заказ
+                                </h4>
+                                <div class="mb-3">
+                                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                           type="text" placeholder="Имя" v-model.trim="$v.name.$model" :class="{ 'border-red-500': $v.name.$error }" />
+                                    <p v-if="$v.name.$error" class="text-red-500 text-xs italic mt-1">Укажите имя</p>
+                                </div>
+                                <div class="mb-3">
+                                    <masked-input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                  type="tel" placeholder="Телефон" v-model="phone" mask="\+\7 (111) 111-1111" @input="rawVal = arguments[1]" :class="{ 'border-red-500': !isPhoneValid }"/>
+                                    <p v-if="!isPhoneValid" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
+                                </div>
+                                <div class="mb-4">
+                                    <input class="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"
+                                           placeholder="Адрес" v-model.trim="$v.address.$model" :class="{ 'border-red-500': $v.address.$error }">
+                                    <p v-if="$v.address.$error" class="text-red-500 text-xs italic mt-1">Укажите адрес</p>
+                                    <label class="block text-gray-500 font-bold flex mt-1">
+                                        <input class="mr-2 leading-tight w-25 h-25" type="checkbox" v-model="isChecked">
+                                        <span class="text-xs -mt-1">
                                     Я даю согласие на обработку своих данных и их использование
                                 </span>
-                                </label>
-                            </div>
-                            <div class="flex items-center">
-                                <button class="mx-auto bg-brand-green text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline"
-                                        :disabled="!isChecked || this.name.length <= 1 || this.address.length <= 1 || !isValid"
-                                        :class="[ !isChecked || this.name.length <= 1 || this.address.length <= 1|| !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green-hover cursor-pointer opacity-100']"
-                                >
-                                    Отправить заказ
-                                </button>
-                            </div>
-                        </form>
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <button class="mx-auto bg-brand-green text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline"
+                                            :disabled="!isChecked || this.name.length <= 1 || this.address.length <= 1 || !isValid"
+                                            :class="[ !isChecked || this.name.length <= 1 || this.address.length <= 1|| !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green-hover cursor-pointer opacity-100']"
+                                    >
+                                        Отправить заказ
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
