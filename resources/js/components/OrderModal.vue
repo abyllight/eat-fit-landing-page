@@ -202,13 +202,10 @@ export default {
             }).
             then(function (response) {
                 self.$emit('close')
-                console.log(response.data)
                 if (response.data === true){
                     self.$emit('showSuccess')
-                    console.log('true')
                 }else{
                     self.$emit('showFail')
-                    console.log('false')
                 }
             }).
             catch(function(error){

@@ -20,8 +20,6 @@
 </style>
 <script>
 export default {
-    mounted(){
-        console.log('Hero mounted');
-    }
+    name: 'Hero'
 }
 </script>

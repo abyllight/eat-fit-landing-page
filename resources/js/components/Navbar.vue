@@ -68,9 +68,6 @@ export default {
             showSuccess: false,
             showFail: false
         }
-    },
-    mounted(){
-        console.log('Navbar mounted');
     }
 }
 </script>

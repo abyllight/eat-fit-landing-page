@@ -2,14 +2,20 @@
     <div v-show="show" class="h-screen w-full fixed top-0 left-0 z-30 bg-overlay flex items-center justify-center px-3 py-2">
         <div class="w-full sm:w-1/2 lg:max-w-md bg-white rounded overflow-hidden shadow-xl relative">
             <div class="bg-white px-3 pt-8 pb-4 md:px-6">
-                <h3 class="text-2xl leading-6 font-bold text-gray-800 mb-1">
+                <h3 class="text-2xl leading-6 font-bold text-gray-800 mb-2">
                     {{ data.title }}
                 </h3>
-                <p class="text-brand-green mb-3 text-lg font-semibold">{{ data.weight }} грамм</p>
+
+                <!--<p class="text-brand-green mb-3 text-lg font-semibold">{{ data.weight }} грамм</p>-->
                 <p class="text-gray-800 mb-5">
                     {{ data.composition }}
                 </p>
-                <p class="italic mb-5 font-medium">Набор на 2-3 порции</p>
+                <div class="flex items-center">
+                    <p class="italic mb-5 font-medium mr-4">1 набор</p>
+                    <p class="italic mb-5 font-medium mr-4">{{ data.weight }}г.</p>
+                    <p class="italic mb-5 font-medium">2 порции</p>
+                </div>
+
                <!-- <div class="mb-5">
                     <button v-for="set in sets"
                             :key="set.id"
@@ -71,9 +77,6 @@
                 this.activeSet = 0
                 this.$emit('close')
             }
-        },
-        mounted() {
-            console.log(this.activeSet);
         }
     }
 </script>
