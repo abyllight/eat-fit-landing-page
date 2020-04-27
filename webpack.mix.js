@@ -13,3 +13,6 @@ mix.sass('resources/sass/app.scss', 'public/css')
         folders: ['resources'],
         extensions: ['html', 'js', 'php', 'vue'],
     });
+if (mix.inProduction()) {
+    mix.version();
+}
