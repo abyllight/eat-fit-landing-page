@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="rounded px-3 py-2 w-full md:w-56 lg:w-64">
-                        <p class="font-semibold text-gray-900 leading-tight text-base md:text-lg mb-5">{{ product.title }}</p>
+                        <p class="font-semibold text-gray-900 leading-tight text-lg mb-5">{{ product.title }}</p>
                         <div class="flex items-center justify-between">
                             <p class="text-sm font-medium text-gray-700 leading-4">от <span class="text-xl font-black text-gray-800">1100 ₸</span> <br> за порцию</p>
                             <button @click="showModal(product.id)" class="px-3 py-2 mr-1 md:mr-2 text-white text-xs uppercase font-semibold bg-brand-green shadow hover:bg-brand-green-hover rounded focus:outline-none">
