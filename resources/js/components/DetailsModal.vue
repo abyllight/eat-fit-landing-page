@@ -1,6 +1,6 @@
 <template>
     <div v-show="isDetailsVisible" class="h-screen w-full fixed top-0 left-0 z-30 bg-overlay flex items-center justify-center px-3 py-2">
-        <div class="max-w-sm bg-white rounded overflow-hidden shadow-xl relative">
+        <div class="w-full md:max-w-md bg-white rounded overflow-hidden shadow-xl relative">
             <div class="bg-white px-3 py-6 sm:p-6">
                 <h3 class="text-center text-2xl md:text-3xl leading-6 font-black text-gray-800 mb-6">
                     Рацион "{{ data.title }}"

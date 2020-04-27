@@ -17,7 +17,7 @@
                 <div class="mt-5 w-full px-4 md:w-1/2 lg:w-1/3" v-for="program in programs[activeType].data" :key="program.id">
                     <div class="rounded-lg shadow-lg overflow-hidden">
                         <div class="flex bg-gray-200 relative">
-                            <img class="w-24 md:w-32 flex-shrink-0 object-cover object-center" :src="program.imageUrl">
+                            <img class="w-24 h-auto md:w-32 flex-shrink-0 object-cover object-center" :src="program.imageUrl">
                             <div class="pr-4 py-4 w-full relative">
                                 <div class="flex items-center justify-between -mb-3">
                                     <h3 class="text-3xl md:text-4xl font-black text-gray-800">{{ program.title }}</h3>

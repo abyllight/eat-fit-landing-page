@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function amo_query($array){
-        $subdomain = 'eatandfitkz';
+        $subdomain = env('AMO_SUBDOMAIN', '');
         $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/leads';
         $curl = curl_init();
 
@@ -35,10 +35,10 @@ class OrderController extends Controller
     }
 
     public function placeOrder(Request $request){
-        $link = 'https://eatandfitkz.amocrm.ru/private/api/auth.php?type=json';
+        $link = 'https://'. env('AMO_SUBDOMAIN', '') .'.amocrm.ru/private/api/auth.php?type=json';
         $user = [
-            'USER_LOGIN' => 'eat.and.fit@mail.ru',
-            'USER_HASH' => '2308b500574f5ab12a03bc21759124f5082bb334'
+            'USER_LOGIN' => env('AMO_LOGIN', ''),
+            'USER_HASH' => env('AMO_HASH', '')
         ];
 
         $curl = curl_init();
@@ -133,10 +133,10 @@ class OrderController extends Controller
             $products .= ' '. $item['title'].' - '.$item['q'].', ';
         }
 
-        $link = 'https://eatandfitkz.amocrm.ru/private/api/auth.php?type=json';
+        $link = 'https://'.env('AMO_SUBDOMAIN', '').'.amocrm.ru/private/api/auth.php?type=json';
         $user = [
-            'USER_LOGIN' => 'eat.and.fit@mail.ru',
-            'USER_HASH' => '2308b500574f5ab12a03bc21759124f5082bb334'
+            'USER_LOGIN' => env('AMO_LOGIN', ''),
+            'USER_HASH' => env('AMO_HASH', '')
         ];
 
         $curl = curl_init();
