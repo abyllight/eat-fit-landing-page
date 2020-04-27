@@ -3,7 +3,7 @@
         <div class="max-w-6xl mx-auto px-3">
             <h3 class="text-center font-bold text-3xl lg:text-4xl mb-8">Eat&Chill</h3>
             <div class="flex flex-wrap -mx-3">
-                <div class="mt-5 w-full px-4 md:w-1/3 lg:w-1/4 relative" v-for="product in products" :key="product.id">
+                <div class="mt-5 w-64 mx-auto md:mx-0 px-4 md:w-1/3 lg:w-1/4 relative" v-for="product in products" :key="product.id">
                     <div class="wrap">
                         <div class="front" :class="[product.isActive ? 'rotateF' : '']">
                             <img :src="product.imageFront" class="rounded shadow-xl object-cover object-center">
@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="rounded px-3 py-2 w-full md:w-56 lg:w-64">
-                        <p class="font-semibold text-gray-900 leading-tight text-lg mb-5">{{ product.title }}</p>
+                        <p class="font-semibold text-gray-900 leading-tight text-base md:text-lg mb-5">{{ product.title }}</p>
                         <div class="flex items-center justify-between">
                             <p class="text-sm font-medium text-gray-700 leading-4">от <span class="text-xl font-black text-gray-800">1100 ₸</span> <br> за порцию</p>
                             <button @click="showModal(product.id)" class="px-3 py-2 mr-1 md:mr-2 text-white text-xs uppercase font-semibold bg-brand-green shadow hover:bg-brand-green-hover rounded focus:outline-none">
@@ -22,7 +22,7 @@
                             </button>
                         </div>
                     </div>
-                    <div @click.prevent="product.isActive=!product.isActive" class="absolute z-20 top-0 px-3 py-2 rounded mt-3 ml-3 bg-gray-800 opacity-75 hover:bg-gray-600 cursor-pointer">
+                    <div @click.prevent="product.isActive=!product.isActive" class="absolute z-20 top-0 right-0 px-3 py-2 rounded mt-3 mr-8 bg-gray-800 opacity-75 hover:bg-gray-700 cursor-pointer">
                         <img src="/img/icons/return.svg" class="w-4 h-4">
                     </div>
                 </div>
