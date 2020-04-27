@@ -15,7 +15,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
     <app></app>
 </div>
 
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 <script type="text/javascript">
     (function(d, w, s) {
         var widgetHash = '6tzo9y6so28on1maf3b0', gcw = d.createElement(s); gcw.type = 'text/javascript'; gcw.async = true;
