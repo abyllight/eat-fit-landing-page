@@ -4,7 +4,7 @@
             <div class="max-w-xl mx-auto mb-10">
                 <h3 class="text-center font-bold text-3xl lg:text-4xl mb-3">Что это?</h3>
                 <p class="text-center font-light text-xl lg:text-2xl mb-8">
-                    <span class="text-brand-green font-medium">Eat&Fit™</span> — сервис доставки здорового питания.
+                    <span class="text-brand-green font-light">Eat&Fit™</span> — сервис доставки здорового питания.
                     Ежедневно команда профессионалов разрабатывает для
                     Вас рацион из 7-ми блюд из кухонь 26-ти стран мира,
                     упаковывает в одноразовые контейнеры, собирает в набор

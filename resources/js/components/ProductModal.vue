@@ -11,9 +11,9 @@
                     {{ data.composition }}
                 </p>
                 <div class="flex items-center">
-                    <p class="italic mb-5 font-medium mr-4">1 набор</p>
-                    <p class="italic mb-5 font-medium mr-4">{{ data.weight }}г.</p>
-                    <p class="italic mb-5 font-medium">2 порции</p>
+                    <p class="italic text-gray-800 mb-5 font-semibold mr-4">1 набор</p>
+                    <p class="italic text-gray-800 mb-5 font-semibold mr-4">{{ data.weight }}г.</p>
+                    <p class="italic text-gray-800 mb-5 font-semibold">2 порции</p>
                 </div>
 
                <!-- <div class="mb-5">
