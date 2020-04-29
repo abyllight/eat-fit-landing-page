@@ -17,7 +17,7 @@
             <div class="max-w-3xl mx-auto">
                 <div v-for="faq in themes[activeTheme].faqs" class="pb-2 pt-2">
                     <div class="w-full flex justify-between items-center border-b pb-4">
-                        <a @click="faq.isVisible = !faq.isVisible" class="font-medium text-gray-800 text-base md:text-lg hover:text-brand-green cursor-pointer leading-tight">{{ faq.question }}</a>
+                        <a @click="faq.isVisible = !faq.isVisible" class="font-semibold text-gray-800 text-base md:text-lg hover:text-brand-green cursor-pointer leading-tight">{{ faq.question }}</a>
                         <span class="font-semibold text-gray-800 text-lg">{{ faq.isVisible ? '-' : '+' }}</span>
                     </div>
                     <div v-show="faq.isVisible" class="py-3 border-b">
