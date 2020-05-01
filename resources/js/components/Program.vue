@@ -14,27 +14,27 @@
                 </button>
             </div>
             <div class="flex flex-wrap -mx-3">
-                <div class="mt-5 w-full px-4 md:w-1/2 lg:w-1/3" v-for="program in programs[activeType].data" :key="program.id">
-                    <div class="rounded-lg shadow-lg overflow-hidden">
-                        <div class="flex bg-gray-200 relative">
-                            <img class="w-24 h-auto md:w-32 flex-shrink-0 object-cover object-center" :src="program.imageUrl">
-                            <div class="pr-4 py-4 w-full relative">
-                                <div class="flex items-center justify-between -mb-3">
-                                    <h3 class="text-3xl md:text-4xl font-black text-gray-800">{{ program.title }}</h3>
-                                    <p class="text-gray-600 font-light text-xl">≈ {{ program.kcal }} ккал</p>
+                <div class="mt-5 w-88 mx-auto px-4 md:w-1/2 md:mx-0 lg:w-1/3" v-for="program in programs[activeType].data" :key="program.id">
+                    <div class="rounded-lg shadow md:shadow-lg overflow-hidden">
+                        <div class="flex relative bg-gray-100">
+                            <img class="w-24 h-auto md:w-32 md:h-auto flex-shrink-0 object-cover object-center" :src="program.imageUrl">
+                            <div class="w-full relative pr-3 pt-1 md:pt-3 md:pr-4">
+                                <div class="flex items-center justify-between mb-2  md:-mb-2">
+                                    <p class="text-3xl md:text-4xl font-black text-brand-green">{{ program.title }}</p>
+                                    <p class="text-gray-700 text-xl font-light italic">от <span class="font-semibold">{{ program.price }}₸</span></p>
                                 </div>
-                                <p class="text-gray-800 text-xl mb-3">от {{ program.price }} тг.</p>
-                                <p class="text-gray-700 font-semibold leading-tight mb-5">{{ program.shortDescription }}</p>
-                                <div class="flex items-center">
-                                    <button @click="showDetailsModal(program.id)" class="px-3 py-2 mr-1 md:mr-2 text-xs uppercase font-semibold hover:bg-gray-500 rounded focus:outline-none">
-                                        Подробнее
+                                <p class="mb-3 text-gray-600 font-light hidden md:block">≈ {{ program.kcal }} ккал</p>
+                                <p class="text-gray-700 font-semibold leading-4 text-base mb-3">{{ program.shortDescription }}</p>
+                                <div class="flex items-center absolute bottom-0 mb-3">
+                                    <button @click="showModal(program.id)" class="px-3 md:px-5 text-xs text-white uppercase font-semibold rounded shadow bg-brand-green hover:bg-brand-green-hover focus:outline-none">
+                                        Заказать
                                     </button>
-                                    <button @click="showModal(program.id)" class="px-3 md:px-5 py-2 rounded shadow bg-brand-green hover:bg-brand-green-hover focus:outline-none text-xs text-white uppercase font-semibold">
-                                        заказать
+                                    <button @click="showDetailsModal(program.id)" class="ml-2 px-3 text-xs text-gray-800 uppercase font-semibold hover:bg-gray-500 rounded focus:outline-none">
+                                        Подробнее
                                     </button>
                                 </div>
                             </div>
-                            <span v-show="program.isPopular" class="bg-red-600 px-2 py-1 uppercase text-xs font-semibold text-white absolute top-0 right-0 z-20">Лидер продаж</span>
+                            <!--<span v-show="program.isPopular" class="bg-red-600 px-2 py-1 uppercase text-xs font-semibold text-white absolute top-0 right-0 z-20">Лидер продаж</span>-->
                         </div>
                         <div v-show="program.instagram" class="bg-white px-2 sm:px-4 py-1 flex items-center">
                             <a :href="program.instagramLink" target="_blank">
@@ -47,10 +47,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-5 w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="mt-5 w-88 mx-auto px-4 md:mx-0 md:w-1/2 lg:w-1/3">
                     <div class="relative rounded-lg shadow-lg overflow-hidden px-4 py-3" style="background-image: url('/img/programs/personal.jpg'); background-size: cover;">
                         <div class="h-full w-full relative z-20 top-0 left-0 bottom-0 right-0">
-                            <h3 class="text-2xl font-black text-gray-100 leading-tight mb-3">Индивидуальное меню</h3>
+                            <h3 class="text-2xl font-bold text-gray-100 leading-tight mb-3">Индивидуальное меню</h3>
                             <p class="text-base text-white font-light leading-tight mb-5">
                                 Линейка персонального меню разрабатывается индивидуально
                                 по запросу клиента с учетом анамнеза и личных предпочтений
@@ -78,7 +78,12 @@
      <fail-modal :showFail="showFail" @close="closeModal"></fail-modal>
  </div>
 </template>
-
+<style>
+    button{
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+</style>
 <script>
     import OrderModal from "./OrderModal";
     import DetailsModal from "./DetailsModal";
