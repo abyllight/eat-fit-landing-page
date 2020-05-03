@@ -16,7 +16,7 @@
                     <div class="rounded px-3 py-2 w-full md:w-56 lg:w-64">
                         <p class="font-semibold text-gray-900 leading-tight text-lg mb-5">{{ product.title }}</p>
                         <div class="flex items-center justify-between">
-                            <p class="text-sm font-medium text-gray-700 leading-4">от <span class="text-xl font-black text-gray-800">1100 ₸</span> <br> за порцию</p>
+                            <p class="text-sm font-medium text-gray-700 leading-4">от <span class="text-xl font-black text-gray-800">{{ product.pricePerItem }}₸</span> <br> за порцию</p>
                             <button @click="showModal(product.id)" class="px-3 py-2 mr-1 md:mr-2 text-white text-xs uppercase font-semibold bg-brand-green shadow hover:bg-brand-green-hover rounded focus:outline-none">
                                 выбрать
                             </button>
@@ -78,36 +78,36 @@
                         title: 'Курица терияки с "цветным" рисом',
                         imageFront: '/img/products/a1.jpg',
                         imageBack: '/img/products/b1.jpg',
-                        weight: 800,
-                        composition: 'Рис, кукуруза, горошек, масло сливочное, молоко, куриное филе, перец болгарский, морковь, соус «Терияки», кунжут черный, соль, перец',
+                        weight: 900,
+                        composition: 'Рис, кукуруза, горошек, масло сливочное, филиное куре, перец, болгарский, морковь, соус «Терияки», кунжут черный, соль, перец',
                         price: 3000,
+                        pricePerItem: 1100,
                         q: 1,
                         total: 3000,
                         isActive: false
                     },
                     {
                         id: 1,
-                        title: 'Стейк по-милански с кус-кусом',
+                        title: 'Стейк по-милански',
                         imageFront: '/img/products/a7.jpg',
                         imageBack: '/img/products/b7.jpg',
-                        weight: 800,
-                        composition: 'Оссобуко, мука, соль морская, 5 перцев сельдерей, морковь, лук, демиглас, вино красное сухое, тимьян, розмарин, кус-кус, огурец, помидор, соль, перец',
-                        price: 3000,
+                        weight: 1000,
+                        composition: 'Оссобуко, розмарин, смесь перцев, мука, морковь, лук репчатый, чеснок, сельдерей, демигласс, красное сухое вино, ворчестер, тимьян, базилик, кус-кус, мексиканская смесь, соль морская',
+                        price: 4000,
+                        pricePerItem: 1600,
                         q: 1,
-                        total: 3000,
+                        total: 4000,
                         isActive: false
                     },
                     {
                         id: 2,
-                        title: 'Фарфалле с красной рыбой',
+                        title: 'Фарфале с красной рыбой в сливочном соусе',
                         imageFront: '/img/products/a3.jpg',
                         imageBack: '/img/products/b3.jpg',
-                        weight: 800,
-                        composition: 'Фарфале, кета, сливки,\n' +
-                            'кабачок, сыр «Джугас», \n' +
-                            'петроп и укрушка,\n' +
-                            'соль, перец',
+                        weight: 900,
+                        composition: 'Фарфале, кета, сливки, кабачок, сыр «Джугас», петроп и укрушка, соль, перец',
                         price: 3000,
+                        pricePerItem: 1100,
                         q: 1,
                         total: 3000,
                         isActive: false
@@ -118,13 +118,9 @@
                         imageFront: '/img/products/a4.jpg',
                         imageBack: '/img/products/b4.jpg',
                         weight: 800,
-                        composition: 'Спагетти неро, фарш\n' +
-                            'говяжий, лук, морковь,\n' +
-                            'стебель сельдерея, чеснок,\n' +
-                            'томаты пилати, сыр\n' +
-                            'пармезан, базилик, \n' +
-                            ' орегано, соль, перец',
+                        composition: 'Спагетти неро, фарш говяжий, лук, морковь, стебель сельдерея, чеснок, томаты пилати, сыр пармезан, базилик,  орегано, соль, перец ',
                         price: 3000,
+                        pricePerItem: 1100,
                         q: 1,
                         total: 3000,
                         isActive: false
@@ -134,30 +130,49 @@
                         title: 'Папарделле с Чикен Альфредо',
                         imageFront: '/img/products/a5.jpg',
                         imageBack: '/img/products/b5.jpg',
-                        weight: 800,
-                        composition: 'Филиное куре, гарам-\n' +
-                            'масала, микс 5 перцев,\n' +
-                            'оливковое масло, грибы \n' +
-                            'вешенки, сыр Креметте,\n' +
-                            'сыр Джугас, сливки, \n' +
-                            'масло сливочное, орех \n' +
-                            'мускатный, соль, перец',
+                        weight: 900,
+                        composition: 'Филиное куре, гарам-масала, микс 5 перцев, оливковое масло, грибы вешенки, сыр Креметте, сыр Джугас, сливки, масло сливочное, орех мускатный, соль, перец',
                         price: 3000,
+                        pricePerItem: 1100,
                         q: 1,
                         total: 3000,
                         isActive: false
                     },
                     {
                         id: 5,
-                        title: 'Том ям с морским коктейлем и ассорти гриб',
+                        title: 'Том ям с морским коктейлем',
                         imageFront: '/img/products/a6.jpg',
                         imageBack: '/img/products/b6.jpg',
-                        weight: 800,
-                        composition: 'Масло подсолнечное, бульон куриный, молоко кокосовое, каффир \n' +
-                            'лайма, лемонграсс, том-ям паста, шиитаке, шампиньоны,  \n' +
-                            'вешенки, помидоры черри, корень имбиря, креветки тигровые, \n' +
-                            'морской коктейль, морская соль, щепотка любви',
+                        weight: 600,
+                        composition: 'Масло подсолнечное, бульон куриный, молоко кокосовое, каффир лайма, лемонграсс, том-ям паста, шиитаке, шампиньоны, вешенки, помидоры черри, корень имбиря, креветки тигровые, морской коктейль, морская соль, щепотка любви',
                         price: 3000,
+                        pricePerItem: 1100,
+                        q: 1,
+                        total: 3000,
+                        isActive: false
+                    },
+                    {
+                        id: 6,
+                        title: 'Буйабес по-марсельски',
+                        imageFront: '/img/products/a9.jpg',
+                        imageBack: '/img/products/b9.jpg',
+                        weight: 800,
+                        composition: 'Креветка тигровая, кальмар, мидия в раковине, дорадо, форель, кета, лук порей, лук репчатый, лук марс, фенхель, картофель, стебель сельдерея, томаты пилати, белое сухое вино, чеснок, тимьян, соль морская, соус табаско',
+                        price: 4000,
+                        pricePerItem: 1600,
+                        q: 1,
+                        total: 4000,
+                        isActive: false
+                    },
+                    {
+                        id: 7,
+                        title: 'Фо бо',
+                        imageFront: '/img/products/a8.jpg',
+                        imageBack: '/img/products/b8.jpg',
+                        weight: 700,
+                        composition: 'Говядина, лапша рисовая, кумин, фенхель, гвоздика, кориандр, бадьян (анис), смесь перцев, ростки соевые, лук зеленый, кинза, базилик, мята, перец чили',
+                        price: 3000,
+                        pricePerItem: 1100,
                         q: 1,
                         total: 3000,
                         isActive: false

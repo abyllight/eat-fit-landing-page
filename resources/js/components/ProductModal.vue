@@ -5,30 +5,38 @@
                 <h3 class="text-2xl leading-6 font-bold text-gray-800 mb-2">
                     {{ data.title }}
                 </h3>
-
+                <div class="flex items-center mb-4">
+                    <p class="italic text-gray-700 font-semibold mr-4">1 набор</p>
+                    <p class="italic text-gray-700 font-semibold mr-4">{{ data.weight }}г.</p>
+                    <p class="italic text-gray-700 font-semibold">на 2 порции</p>
+                </div>
                 <!--<p class="text-brand-green mb-3 text-lg font-semibold">{{ data.weight }} грамм</p>-->
                 <p class="text-gray-800 mb-5">
                     {{ data.composition }}
                 </p>
-                <div class="flex items-center">
-                    <p class="italic text-gray-800 mb-5 font-semibold mr-4">1 набор</p>
-                    <p class="italic text-gray-800 mb-5 font-semibold mr-4">{{ data.weight }}г.</p>
-                    <p class="italic text-gray-800 mb-5 font-semibold">2 порции</p>
-                </div>
 
-               <!-- <div class="mb-5">
-                    <button v-for="set in sets"
-                            :key="set.id"
-                            @click.stop="activeSet = set.id"
-                            :class="[set.id === activeSet ? active : '']"
-                            class="px-2 py-2 rounded mr-2 bg-gray-600 hover:bg-gray-500 focus:outline-none text-xs text-white uppercase tracking-wider font-semibold"
-                    >
-                        {{ set.title }}
-                    </button>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div @click="decrement" class="w-8 h-8 flex items-center justify-center text-lg cursor-pointer mr-1 transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
+                                -
+                            </div>
+                            <span class="text-base font-semibold mr-1">{{ count }} {{ txt }}</span>
+                            <div @click="increment" class="w-8 h-8 flex items-center justify-center text-lg cursor-pointer transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
+                                +
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-semibold -mb-2" :class="[count > 1 ? 'text-gray-600 oldPrice text-sm' : 'text-brand-green']"> {{ count * data.price }}₸</p>
+
+                        </div>
+
+                    </div>
+                    <div class="mb-5 flex items-center justify-between">
+                        <p class="text-base font-semibold">{{ data.weight * count }}г. на {{ 2 * count}} порции</p>
+                        <p v-show="count > 1" class="font-bold text-brand-green text-xl"> {{ total }}₸</p>
+                    </div>
                 </div>
-                <p class="mb-5">Стоимость:
-                    <span class="font-semibold text-brand-green text-xl"> {{ data.price - this.activeSet*400 }}тг.</span>
-                </p>-->
 
                 <button class="w-full bg-brand-green text-white text-sm uppercase font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         @click="addToCart(data)"
@@ -38,7 +46,7 @@
                     <span>Добавить в корзину</span>
                 </button>
             </div>
-            <button @click="$emit('close')" type="button" class="absolute top-0 right-0 mr-4 mt-2 block text-gray-500 hover:text-gray-400 focus:text-blue-500 focus:outline-none">
+            <button @click="close" type="button" class="absolute top-0 right-0 mr-4 mt-2 block text-gray-500 hover:text-gray-400 focus:text-blue-500 focus:outline-none">
                 <svg class="h-8 w-8 fill-current" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
                 </svg>
@@ -53,6 +61,8 @@
         props: ['show', 'data'],
         data(){
             return{
+                count: 1,
+                totalPrice: 0,
                 activeSet: 0,
                 active: 'bg-brand-green hover:bg-brand-green-hover shadow-lg',
                 sets: [
@@ -73,9 +83,46 @@
         },
         methods:{
             addToCart(item){
+                item.q = this.count
+                item.total = this.totalPrice
                 this.$store.commit('addToCart', item);
                 this.activeSet = 0
+                this.close()
+            },
+            close(){
+                this.count = 1
                 this.$emit('close')
+            },
+            increment(){
+                this.count++
+            },
+            decrement(){
+                if (this.count > 1) this.count--
+            }
+        },
+        computed: {
+            txt(){
+                let n = this.count % 10;
+                if (n === 1 && this.count !== 11){
+                    return 'набор'
+                }else{
+                    if ((n === 2 || n === 3 || n === 4) && (this.count < 12 || this.count > 14)){
+                        return 'набора'
+                    }
+                    return 'наборов'
+                }
+            },
+            total(){
+                if (this.count === 1){
+                    this.totalPrice = this.data.price
+                    return this.data.price
+                }else if(this.count === 2){
+                    this.totalPrice = this.count * (this.data.price - 400)
+                    return this.count * (this.data.price - 400)
+                }else{
+                    this.totalPrice = this.count * (this.data.price - 800)
+                    return this.count * (this.data.price - 800)
+                }
             }
         }
     }

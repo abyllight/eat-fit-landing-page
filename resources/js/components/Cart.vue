@@ -25,14 +25,14 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-between mb-2">
-                                <div>
-                                    <button @click.prevent="decrement(item)" class="px-2 transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
+                                <div class="flex items-center">
+                                    <div @click="decrement(item)" class="w-8 h-8 flex items-center justify-center text-lg cursor-pointer mr-1 transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
                                         -
-                                    </button>
-                                    <span class="text-sm font-semibold">{{ item.q }}</span>
-                                    <button @click.prevent="increment(item)" class="px-2 transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
+                                    </div>
+                                    <span class="text-sm font-semibold mr-1">{{ item.q }}</span>
+                                    <div @click="increment(item)" class="w-8 h-8 flex items-center justify-center text-lg cursor-pointer transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
                                         +
-                                    </button>
+                                    </div>
                                 </div>
                                 <div class="flex items-center">
                                     <p class="font-semibold mr-2" :class="[item.q > 1 ? 'text-gray-600 oldPrice' : 'text-brand-green']"> {{ item.q * item.price }}тг.</p>
@@ -152,7 +152,7 @@
                 this.$store.commit('removeFromCart', item);
             },
             decrement(item){
-                if (item.q !== 0 ){
+                if (item.q > 1 ){
                     this.$store.commit('decrement', item);
                 }
             },

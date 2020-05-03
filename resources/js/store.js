@@ -12,7 +12,8 @@ let store = {
             let found = state.cart.find(product => product.id === item.id)
 
             if(found){
-
+                found.q = item.q
+                found.total = item.total
             }else {
                 state.cart.push(item)
                 state.cartCount++
