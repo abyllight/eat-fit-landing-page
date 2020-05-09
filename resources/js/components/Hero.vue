@@ -20,13 +20,13 @@
 </template>
 <style scoped>
     .small{
-        background: url('/img/bgbg.jpg') no-repeat center;
+        background: url('/img/bgbg4.jpg') no-repeat center;
         background-size: cover;
     }
 
     @media (min-width: 640px) {
         .small{
-            background: url('/img/tablet.jpg') no-repeat center;
+            background: url('/img/tablet2.jpg') no-repeat center;
             background-size: cover;
         }
     }
