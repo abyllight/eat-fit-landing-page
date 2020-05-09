@@ -16,11 +16,11 @@
             <div class="flex flex-wrap -mx-3">
                 <div class="mt-5 w-88 mx-auto px-4 md:w-1/2 md:mx-0 lg:w-1/3" v-for="program in programs[activeType].data" :key="program.id">
                     <div class="rounded-lg shadow md:shadow-lg overflow-hidden">
-                        <div class="flex relative bg-gray-100">
+                        <div class="flex relative bg-gray-200">
                             <img class="w-24 h-auto md:w-32 md:h-auto flex-shrink-0 object-cover object-center" :src="program.imageUrl">
                             <div class="w-full relative pr-3 pt-1 md:pt-3 md:pr-4">
                                 <div class="flex items-center justify-between mb-2  md:-mb-2">
-                                    <p class="text-3xl md:text-4xl font-black text-brand-green">{{ program.title }}</p>
+                                    <p class="text-3xl md:text-4xl font-black text-gray-800">{{ program.title }}</p>
                                     <p class="text-gray-700 text-xl font-light italic">от <span class="font-semibold">{{ program.price }}₸</span></p>
                                 </div>
                                 <p class="mb-3 text-gray-600 font-light hidden md:block">≈ {{ program.kcal }} ккал</p>
@@ -50,7 +50,7 @@
                 <div class="mt-5 w-88 mx-auto px-4 md:mx-0 md:w-1/2 lg:w-1/3">
                     <div class="relative rounded-lg shadow-lg overflow-hidden px-4 py-3" style="background-image: url('/img/programs/personal.jpg'); background-size: cover;">
                         <div class="h-full w-full relative z-20 top-0 left-0 bottom-0 right-0">
-                            <h3 class="text-2xl font-bold text-gray-100 leading-tight mb-3">Индивидуальное меню</h3>
+                            <h3 class="text-2xl font-semibold text-gray-100 leading-tight mb-3">Индивидуальное меню</h3>
                             <p class="text-base text-white font-light leading-tight mb-5">
                                 Линейка персонального меню разрабатывается индивидуально
                                 по запросу клиента с учетом анамнеза и личных предпочтений

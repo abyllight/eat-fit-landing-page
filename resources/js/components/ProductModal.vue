@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <button class="w-full bg-brand-green text-white text-sm uppercase font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
+                <button class="w-full bg-brand-green hover:bg-brand-green-hover text-white text-sm uppercase font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         @click="addToCart(data)"
                 >
 

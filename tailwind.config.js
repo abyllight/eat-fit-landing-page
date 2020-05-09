@@ -2,7 +2,7 @@ module.exports = {
     theme: {
         fontFamily: {
             body: ['Roboto', 'sans-serif'],
-            display: ['Roboto', 'sans-serif']
+            display: ['Roboto Condensed', 'sans-serif']
         },
         extend: {
             spacing: {
@@ -16,7 +16,7 @@ module.exports = {
                 'overlay': 'rgba(34, 34, 34, 0.85)'
             },
             opacity: {
-                '63': '.63'
+                '63': '0.4'
             }
         },
     },

@@ -7,7 +7,7 @@
                       :paginationActiveColor="'#74ab31'"
             >
                 <slide v-for="post in posts" :key="post.id" data-url="post.url" @slideclick="openLink(post.url)">
-                    <img :src="post.imageUrl" class="w-56 mx-auto shadow-lg rounded mb-3 cursor-pointer">
+                    <img :src="post.imageUrl" class="w-64 mx-auto shadow-lg rounded mb-3 cursor-pointer">
                 </slide>
             </carousel>
         </div>

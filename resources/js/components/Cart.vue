@@ -1,7 +1,7 @@
 <template>
     <div v-show="show" class="h-screen w-full fixed top-0 left-0 z-30 bg-overlay flex items-center justify-center px-3 py-2">
         <div class="w-full sm:w-1/2 lg:max-w-md bg-white rounded shadow-xl relative">
-            <div class="bg-white px-3 pt-8 pb-4 md:px-6">
+            <div class="bg-white px-3 pt-8 pb-4 md:px-6 rounded">
                 <div v-show="$store.state.cart.length === 0" class="w-full h-72 flex flex-col items-center justify-center ">
                     <img src="/img/icons/supermarket.svg" class="w-8 h-8 text-center mx-auto mb-2">
                     <p class="text-center text-xl font-light uppercase">
@@ -29,7 +29,7 @@
                                     <div @click="decrement(item)" class="w-8 h-8 flex items-center justify-center text-lg cursor-pointer mr-1 transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
                                         -
                                     </div>
-                                    <span class="text-sm font-semibold mr-1">{{ item.q }}</span>
+                                    <span class="text-sm text-gray-800 font-semibold mr-1">{{ item.q*2 }} порции</span>
                                     <div @click="increment(item)" class="w-8 h-8 flex items-center justify-center text-lg cursor-pointer transparent hover:bg-brand-green-hover text-brand-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
                                         +
                                     </div>
@@ -44,7 +44,7 @@
                         <div class="text-right mb-3">
                             <p class="text-base font-semibold text-gray-800">Итого: <span class="font-black text-xl text-brand-green">{{ total }}тг.</span></p>
                         </div>
-                        <div>
+                        <div class="px-1">
                             <form @submit.prevent="formSubmit">
                                 <h4 class="text-lg lg:text-xl text-center leading-6 font-black text-gray-800 mb-4">
                                     Оформить заказ
