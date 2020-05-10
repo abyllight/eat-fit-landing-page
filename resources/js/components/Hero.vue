@@ -1,39 +1,35 @@
 <template>
-  <div class="w-full h-screen small">
+  <div class="w-full h-screen small flex items-center justify-center">
 
-      <div class="container mx-auto h-screen px-3 py-24 flex flex-col items-center md:justify-center">
+      <div class="absolute z-10 px-3">
           <div>
-              <h1 class="font-light text-3xl md:text-5xl leading-tight uppercase mb-8 text-center">
+              <h1 class="font-light text-white text-3xl md:text-5xl leading-tight uppercase mb-8 text-center">
                   Доставка <br class="md:hidden"> 5-ти разового
-                  <br><span class="font-bold text-brand-green">здорового питания</span>
+                  <br><span class="font-bold text-brand-green-hover">здорового питания</span>
                   <br>по городу Нур-Султан
               </h1>
           </div>
 
-
-          <a class="px-5 py-3 rounded shadow-lg bg-brand-green hover:bg-brand-green-hover text-sm text-white uppercase tracking-wider font-semibold cursor-pointer"
-             v-scroll-to="'#programs'">
-              смотреть программы
-          </a>
+          <div class="text-center">
+              <a class="px-5 py-3 rounded shadow-lg bg-brand-green hover:bg-brand-green-hover text-sm text-white uppercase tracking-wider font-semibold cursor-pointer"
+                 v-scroll-to="'#programs'">
+                  смотреть программы
+              </a>
+          </div>
+      </div>
+      <div class="w-full h-screen absolute bg-black z-0 opacity-50">
       </div>
   </div>
 </template>
 <style scoped>
     .small{
-        background: url('/img/bgbg4.jpg') no-repeat center;
+        background: url('/img/smsm.jpg') no-repeat center;
         background-size: cover;
-    }
-
-    @media (min-width: 640px) {
-        .small{
-            background: url('/img/tablet2.jpg') no-repeat center;
-            background-size: cover;
-        }
     }
 
     @media (min-width: 1280px) {
         .small{
-            background: url('/img/large.jpg') no-repeat center;
+            background: url('/img/lglg.jpg') no-repeat center;
             background-size: cover;
         }
     }

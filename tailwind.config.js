@@ -16,7 +16,7 @@ module.exports = {
                 'overlay': 'rgba(34, 34, 34, 0.85)'
             },
             opacity: {
-                '63': '0.4'
+                '63': '0.69'
             }
         },
     },

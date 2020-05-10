@@ -3,17 +3,20 @@
         <div class="max-w-6xl mx-auto px-3">
             <h3 class="text-center font-bold text-3xl lg:text-4xl mb-8">Eat&Chill</h3>
             <div class="flex flex-no-wrap md:flex-wrap overflow-x-auto scrollClass -mx-3">
-                <div class="mb-10 px-4 w-full md:w-1/3 lg:w-1/4 relative" v-for="product in products" :key="product.id">
-                    <div class="wrap w-64">
+                <div class="px-3 py-8 w-full md:w-1/3 lg:w-1/4" v-for="product in products" :key="product.id">
+                    <div class="wrap w-64 mx-auto">
                         <div class="front" :class="[product.isActive ? 'rotateF' : '']">
                             <img :src="product.imageFront" class="rounded shadow-xl object-cover object-center">
                         </div>
                         <div class="back" :class="[product.isActive ? 'rotateB' : '']">
                             <img :src="product.imageBack" class="rounded shadow-xl object-cover object-center">
                         </div>
+                        <div @click.prevent="product.isActive=!product.isActive" class="absolute z-20 top-0 right-0 px-3 py-2 rounded mt-3 mr-8 bg-gray-800 opacity-75 hover:bg-gray-700 cursor-pointer">
+                            <img src="/img/icons/return.svg" class="w-4 h-4">
+                        </div>
                     </div>
 
-                    <div class="rounded px-3 py-2 w-full md:w-56 lg:w-64">
+                    <div class="px-3 py-2 h-32 w-full md:w-56 lg:w-64 flex flex-col justify-between">
                         <p class="font-semibold text-gray-900 leading-tight text-lg mb-5">{{ product.title }}</p>
                         <div class="flex items-center justify-between">
                             <p class="text-sm font-medium text-gray-700 leading-4">от <span class="text-xl font-black text-gray-800">{{ product.pricePerItem }}₸</span> <br> за порцию</p>
@@ -21,9 +24,6 @@
                                 выбрать
                             </button>
                         </div>
-                    </div>
-                    <div @click.prevent="product.isActive=!product.isActive" class="absolute z-20 top-0 right-0 px-3 py-2 rounded mt-3 mr-8 bg-gray-800 opacity-75 hover:bg-gray-700 cursor-pointer">
-                        <img src="/img/icons/return.svg" class="w-4 h-4">
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
 <style scoped>
     .wrap{
         position: relative;
-        perspective: 1000px;
+        perspective: 1500px;
     }
     .front {
         transition: 1s;
