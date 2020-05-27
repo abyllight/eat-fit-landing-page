@@ -21,3 +21,19 @@ Route::post('/', 'OrderController@placeOrder');
 
 Route::post('/cart', 'OrderController@placeCartOrder');
 
+Route::get('/login', 'LoginController@show')->name('login')->middleware('guest');
+
+Route::post('/login', 'LoginController@authenticate')->name('login.post');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', 'AdminController@index')->name('admin');
+
+    Route::get('/admin/create', 'AdminController@create')->name('create');
+    Route::post('/admin/create', 'AdminController@store')->name('create.post');
+
+    Route::get('/admin/{id}/edit', 'AdminController@edit')->name('edit');
+    Route::post('/admin/{id}/edit', 'AdminController@update')->name('update');
+
+    Route::post('/logout', 'LoginController@logout')->name('logout');
+});
+
