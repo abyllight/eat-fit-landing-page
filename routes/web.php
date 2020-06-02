@@ -21,6 +21,10 @@ Route::post('/', 'OrderController@placeOrder');
 
 Route::post('/cart', 'OrderController@placeCartOrder');
 
+Route::get('/products', function () {
+    return \App\Product::where('is_active',true)->get();
+});
+
 Route::get('/login', 'LoginController@show')->name('login')->middleware('guest');
 
 Route::post('/login', 'LoginController@authenticate')->name('login.post');

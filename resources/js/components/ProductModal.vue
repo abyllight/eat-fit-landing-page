@@ -10,7 +10,7 @@
                     <p class="italic text-gray-700 font-semibold mr-4">{{ data.weight }}г.</p>
                     <p class="italic text-gray-700 font-semibold">на 2 порции</p>
                 </div>
-                <!--<p class="text-brand-green mb-3 text-lg font-semibold">{{ data.weight }} грамм</p>-->
+
                 <p class="text-gray-800 mb-5">
                     {{ data.composition }}
                 </p>

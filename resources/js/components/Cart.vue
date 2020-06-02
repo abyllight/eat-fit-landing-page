@@ -46,6 +46,7 @@
                         </div>
                         <div class="px-1">
                             <form @submit.prevent="formSubmit">
+                                
                                 <h4 class="text-lg lg:text-xl text-center leading-6 font-black text-gray-800 mb-4">
                                     Оформить заказ
                                 </h4>
@@ -161,6 +162,7 @@
             },
             formSubmit(){
                 var self = this;
+
                 axios.post('/cart', {
                     name: this.name,
                     phone: this.phone,
@@ -168,13 +170,14 @@
                     cart: this.$store.state.cart
                 }).
                 then(function (response) {
-                    self.$emit('close')
-                    self.$store.commit('clearCart');
-                    if (response.data === true){
+                    /*self.$emit('close')
+                    self.$store.commit('clearCart');*/
+                    console.log(response.data)
+                    /*if (response.data === true){
                         self.$emit('showSuccess')
                     }else{
                         self.$emit('showFail')
-                    }
+                    }*/
 
                 }).
                 catch(function(error){
