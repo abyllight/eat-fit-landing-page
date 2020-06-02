@@ -82,7 +82,7 @@
             showModal(id){
                 this.showProductModal = true
                 this.chosenProduct = id - 1
-                console.log(this.productList[0])
+
             },
             rotateCard(id){
                 this.productList[id].is_active = !this.productList[id].is_active
