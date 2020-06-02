@@ -178,7 +178,8 @@
                     }else{
                         self.$emit('showFail')
                     }
-
+                    /*self.$emit('close')
+                    self.$emit('showSuccess')*/
                 }).
                 catch(function(error){
                     console.log(error);
