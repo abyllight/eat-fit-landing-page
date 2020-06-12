@@ -26,6 +26,7 @@ Vue.component('faq', require('./components/Faq.vue').default);
 Vue.component('contact', require('./components/Contact.vue').default);
 Vue.component('product-modal', require('./components/ProductModal.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
+Vue.component('detox', require('./components/Detox.vue').default);
 
 const app = new Vue({
     el: '#app',

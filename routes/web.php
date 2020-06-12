@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/detox', function () {
+    return view('detox');
+});
+
 Route::post('/', 'OrderController@placeOrder');
 
 Route::post('/cart', 'OrderController@placeCartOrder');

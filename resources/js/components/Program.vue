@@ -64,6 +64,23 @@
                     </div>
 
                 </div>
+                <div class="mt-5 w-88 mx-auto px-4 md:mx-0 md:w-1/2 lg:w-1/3">
+                    <div class="relative rounded-lg shadow-lg overflow-hidden px-4 py-3" style="background-image: url('/img/programs/detox-bg.jpg'); background-size: cover;">
+                        <div class="h-full w-full relative z-20 top-0 left-0 bottom-0 right-0">
+                            <h3 class="text-2xl font-semibold text-gray-100 leading-tight mb-3">Детокс</h3>
+                            <p class="text-base text-white font-light leading-tight mb-5">
+                                Линейка персонального меню разрабатывается индивидуально
+                                по запросу клиента с учетом анамнеза и личных предпочтений
+                            </p>
+                            <a href="/detox" class="px-3 py-2 mr-1 md:mr-2 text-xs uppercase font-semibold bg-white hover:bg-gray-300 rounded focus:outline-none">
+                                подробнее
+                            </a>
+                        </div>
+                        <div class="h-full w-full z-10 absolute top-0 left-0 bg-gray-900 opacity-63">
+                        </div>
+                    </div>
+
+                </div>
             </div>
       </div>
      <order-modal :isVisible = "isVisible"
