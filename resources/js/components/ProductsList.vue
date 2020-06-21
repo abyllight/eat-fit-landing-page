@@ -20,7 +20,7 @@
                         <p class="font-semibold text-gray-900 leading-tight text-lg mb-5">{{ product.title }}</p>
                         <div class="flex items-center justify-between">
                             <p class="text-sm font-medium text-gray-700 leading-4">от <span class="text-xl font-black text-gray-800">{{ product.price_per_item }}₸</span> <br> за порцию</p>
-                            <button @click="showModal(product.id)" class="px-3 py-2 mr-1 md:mr-2 text-white text-xs uppercase font-semibold bg-brand-green shadow hover:bg-brand-green-hover rounded focus:outline-none">
+                            <button @click="showModal(product)" class="px-3 py-2 mr-1 md:mr-2 text-white text-xs uppercase font-semibold bg-brand-green shadow hover:bg-brand-green-hover rounded focus:outline-none">
                                 выбрать
                             </button>
                         </div>
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <product-modal :show = "showProductModal" :data = "productList.length > 0 ? productList[chosenProduct] : ''"  @close="showProductModal = false"></product-modal>
+        <product-modal :show = "showProductModal" :data = "productList.length > 0 ? chosenProduct : ''"  @close="showProductModal = false"></product-modal>
     </div>
 </template>
 <style scoped>
@@ -71,7 +71,7 @@
         data(){
             return{
                 showProductModal: false,
-                chosenProduct: 0,
+                chosenProduct: [],
                 productList: []
             }
         },
@@ -79,10 +79,9 @@
             this.getProducts();
         },
         methods: {
-            showModal(id){
+            showModal(product){
                 this.showProductModal = true
-                this.chosenProduct = id - 1
-
+                this.chosenProduct = product
             },
             rotateCard(id){
                 this.productList[id].is_active = !this.productList[id].is_active
