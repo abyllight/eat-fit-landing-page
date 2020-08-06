@@ -1,17 +1,16 @@
 <template>
   <div class="w-full h-screen small flex items-center justify-center">
 
-      <div class="absolute z-10 px-3">
+      <div class="absolute z-10 top-0 px-3 py-32 h-full flex flex-col justify-between">
           <div>
-              <h1 class="font-light text-white text-3xl md:text-5xl leading-tight uppercase mb-8 text-center">
-                  Доставка <br class="md:hidden"> 5-ти разового
-                  <br><span class="font-bold text-brand-green-hover">здорового питания</span>
-                  <br>по городу Нур-Султан
+              <h1 class="font-thin text-white text-2xl md:text-4xl leading-tight uppercase mb-8 text-center">
+                  <span class="font-bold text-brand-green-hover">Здоровое питание</span>
+                  <br>с доставкой по городу<br> Астана
               </h1>
           </div>
 
           <div class="text-center">
-              <a class="px-5 py-3 rounded shadow-lg bg-brand-green hover:bg-brand-green-hover text-sm text-white uppercase tracking-wider font-semibold cursor-pointer"
+              <a class="px-6 py-4 rounded shadow-lg bg-brand-green hover:bg-brand-green-hover text-sm text-white uppercase tracking-wider font-semibold cursor-pointer"
                  v-scroll-to="'#programs'">
                   смотреть программы
               </a>

@@ -27,6 +27,9 @@ Vue.component('contact', require('./components/Contact.vue').default);
 Vue.component('product-modal', require('./components/ProductModal.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
 Vue.component('detox', require('./components/Detox.vue').default);
+Vue.component('detox-modal', require('./components/DetoxModal.vue').default);
+Vue.component('detox-details-modal', require('./components/DetoxDetailsModal.vue').default);
+Vue.component('detox-section', require('./components/DetoxSection.vue').default);
 
 const app = new Vue({
     el: '#app',

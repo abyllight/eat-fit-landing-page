@@ -17,7 +17,7 @@
                 <div class="mt-5 w-88 mx-auto px-4 md:w-1/2 md:mx-0 lg:w-1/3" v-for="program in programs[activeType].data" :key="program.id">
                     <div class="rounded-lg shadow md:shadow-lg overflow-hidden">
                         <div class="flex relative bg-gray-200">
-                            <img class="w-24 h-auto md:w-32 md:h-auto flex-shrink-0 object-cover object-center" :src="program.imageUrl">
+                            <img class="w-24 h-40 md:w-32 md:h-48 flex-shrink-0 object-cover object-center" :src="program.imageUrl">
                             <div class="w-full relative pr-3 pt-1 md:pt-3 md:pr-4">
                                 <div class="flex items-center justify-between mb-2  md:-mb-2">
                                     <p class="text-3xl md:text-4xl font-black text-gray-800">{{ program.title }}</p>
@@ -58,23 +58,6 @@
                             <button @click="showPersonalModal" class="px-3 py-2 mr-1 md:mr-2 text-xs uppercase font-semibold bg-white hover:bg-gray-300 rounded focus:outline-none">
                                 заказать
                             </button>
-                        </div>
-                        <div class="h-full w-full z-10 absolute top-0 left-0 bg-gray-900 opacity-63">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="mt-5 w-88 mx-auto px-4 md:mx-0 md:w-1/2 lg:w-1/3">
-                    <div class="relative rounded-lg shadow-lg overflow-hidden px-4 py-3" style="background-image: url('/img/programs/detox-bg.jpg'); background-size: cover;">
-                        <div class="h-full w-full relative z-20 top-0 left-0 bottom-0 right-0">
-                            <h3 class="text-2xl font-semibold text-gray-100 leading-tight mb-3">Детокс</h3>
-                            <p class="text-base text-white font-light leading-tight mb-5">
-                                Линейка персонального меню разрабатывается индивидуально
-                                по запросу клиента с учетом анамнеза и личных предпочтений
-                            </p>
-                            <a href="/detox" class="px-3 py-2 mr-1 md:mr-2 text-xs uppercase font-semibold bg-white hover:bg-gray-300 rounded focus:outline-none">
-                                подробнее
-                            </a>
                         </div>
                         <div class="h-full w-full z-10 absolute top-0 left-0 bg-gray-900 opacity-63">
                         </div>

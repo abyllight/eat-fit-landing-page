@@ -11,6 +11,9 @@
         <div id="programs">
             <program></program>
         </div>
+      <div id="detox">
+          <detox-section></detox-section>
+      </div>
         <div id="products">
             <products-list></products-list>
         </div>
@@ -33,6 +36,7 @@ import Hero from './Hero'
 import About from './About'
 import HowItWorks from './HowItWorks'
 import Program from './Program'
+import DetoxSection from "./DetoxSection";
 import ProductsList from './ProductsList'
 import Instagram from "./Instagram";
 import Faq from "./Faq";
@@ -47,6 +51,7 @@ export default {
         About,
         HowItWorks,
         Program,
+        DetoxSection,
         Instagram,
         Faq,
         Contact,

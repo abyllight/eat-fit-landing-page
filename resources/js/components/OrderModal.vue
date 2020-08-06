@@ -11,14 +11,14 @@
                         <p class="font-semibold text-lg lg:text-2xl text-gray-800">Цена за день:
                             <span :class="[(day === '1' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-green']">{{ data.iPrice }}тг</span>
                         </p>
-                        <span v-show="day === '1' || day > 9" class="ml-2 text-red-600 text-xl lg:text-3xl font-semibold">{{ discount }}тг</span>
+                        <span v-show="day === '1' || day > 9" class="ml-2 text-pink-800 text-xl lg:text-3xl font-semibold">{{ discount }}тг</span>
                     </div>
 
                     <div class="flex items-center justify-between">
                         <p class="font-semibold text-lg lg:text-2xl text-gray-800">Итого:
                             <span :class="[(day === '1' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-green']">{{ day * data.iPrice }}тг</span>
                         </p>
-                        <span v-show="day === '1' || day > 9" class="ml-2 text-red-600 text-xl lg:text-3xl font-semibold">{{ total }}тг</span>
+                        <span v-show="day === '1' || day > 9" class="ml-2 text-pink-800 text-xl lg:text-3xl font-semibold">{{ total }}тг</span>
                     </div>
 
                     <div class="mt-2">

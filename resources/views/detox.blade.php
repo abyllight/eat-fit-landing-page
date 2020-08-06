@@ -12,6 +12,7 @@
     <meta property="og:url" content="https://eatandfit.kz/" />
     <meta property="og:site_name" content="EAT&amp;FIT- Сервис по организации здорового питанс  доставкой на дом в Астане. Диетическое питание. Здоровое питание" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lato:wght@100&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 

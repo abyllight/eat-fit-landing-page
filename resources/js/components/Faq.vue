@@ -1,6 +1,6 @@
 <template>
     <div class="py-8">
-        <div class="max-w-6xl mx-auto px-3">
+        <div class="max-w-6xl mx-auto px-5">
             <h3 class="text-center font-bold text-3xl lg:text-4xl mb-6">FAQ</h3>
             <div class="max-w-lg mx-auto flex justify-center mb-8">
                 <div class="flex flex-no-wrap overflow-x-auto scrollClass">
@@ -18,7 +18,7 @@
                 <div v-for="faq in themes[activeTheme].faqs" class="pb-2 pt-2">
                     <div class="w-full flex justify-between items-center border-b pb-4">
                         <a @click="faq.isVisible = !faq.isVisible" class="font-medium text-gray-800 text-base md:text-lg hover:text-brand-green cursor-pointer leading-tight">{{ faq.question }}</a>
-                        <span class="font-semibold text-gray-800 text-lg">{{ faq.isVisible ? '-' : '+' }}</span>
+                        <span @click="faq.isVisible = !faq.isVisible" class="font-semibold text-gray-800 text-lg hover:text-brand-green cursor-pointer">{{ faq.isVisible ? '-' : '+' }}</span>
                     </div>
                     <div v-show="faq.isVisible" class="py-3 border-b">
                         <p class="font-light text-gray-800">{{ faq.answer }}</p>

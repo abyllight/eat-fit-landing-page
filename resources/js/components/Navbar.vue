@@ -1,6 +1,6 @@
 <template>
-  <header class="fixed w-full z-30 shadow" :class="[scrollPosition > 200 ? 'bg-gray-900' : 'bg-transparent']">
-    <div class="flex items-center justify-between py-1 lg:py-2 px-3 container mx-auto">
+  <header class="fixed w-full z-30 shadow top-0 bg-gray-900" :class="[scrollPosition > 200 ? 'bg-gray-900' : 'bg-transparent']">
+    <div class="flex items-center justify-between py-1 lg:py-2 px-5 container mx-auto">
         <button @click="isOpen = !isOpen" type="button" class="block text-brand-green hover:text-brand-green-hover focus:text-brand-green focus:outline-none lg:hidden">
             <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                 <path v-if="isOpen" fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
@@ -13,13 +13,13 @@
               </a>
           </div>
         <nav class="hidden lg:block">
-            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" v-scroll-to="'#about'">Что это?</a>
-            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" v-scroll-to="'#how-it-works'">Как это работает?</a>
-            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" v-scroll-to="'#programs'">Программы</a>
-            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" v-scroll-to="'#products'">Eat&Chill</a>
-            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" v-scroll-to="'#instagram'">Отзывы</a>
-            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" v-scroll-to="'#faq'">FAQ</a>
-            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" v-scroll-to="'#contact'">Контакты</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#about">Что это?</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#how-it-works">Как это работает?</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#programs">Программы</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#products">Eat&Chill</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#instagram">Отзывы</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#faq">FAQ</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#contact">Контакты</a>
         </nav>
 
         <button @click="isVisible = true" class="relative outline-none focus:outline-none">
@@ -36,13 +36,13 @@
                 <path v-if="isOpen" fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
             </svg>
         </button>
-      <a class="px-2 py-1 block text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" v-scroll-to="'#about'" @click.prevent="isOpen=false">Что это?</a>
-      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" v-scroll-to="'#how-it-works'" @click.prevent="isOpen=false">Как это работает?</a>
-      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" v-scroll-to="'#programs'" @click.prevent="isOpen=false">Программы</a>
-      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" v-scroll-to="'#products'" @click.prevent="isOpen=false">Eat&Chill</a>
-      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" v-scroll-to="'#instagram'" @click.prevent="isOpen=false">Отзывы</a>
-      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" v-scroll-to="'#faq'" @click.prevent="isOpen=false">FAQ</a>
-      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" v-scroll-to="'#contact'" @click.prevent="isOpen=false">Контакты</a>
+      <a class="px-2 py-1 block text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" @click="isOpen=false" href="/#about">Что это?</a>
+      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#how-it-works" @click="isOpen=false">Как это работает?</a>
+      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#programs" @click="isOpen=false">Программы</a>
+      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#products" @click="isOpen=false">Eat&Chill</a>
+      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#instagram" @click="isOpen=false">Отзывы</a>
+      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#faq" @click="isOpen=false">FAQ</a>
+      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#contact" @click="isOpen=false">Контакты</a>
     </nav>
 
       <cart :show="isVisible" @close="isVisible = false"
