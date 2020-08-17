@@ -30,6 +30,8 @@ Vue.component('detox', require('./components/Detox.vue').default);
 Vue.component('detox-modal', require('./components/DetoxModal.vue').default);
 Vue.component('detox-details-modal', require('./components/DetoxDetailsModal.vue').default);
 Vue.component('detox-section', require('./components/DetoxSection.vue').default);
+Vue.component('products-list', require('./components/ProductsList.vue').default);
+
 
 const app = new Vue({
     el: '#app',

@@ -11,12 +11,12 @@
         <div id="programs">
             <program></program>
         </div>
-      <div id="detox">
-          <detox-section></detox-section>
-      </div>
-        <div id="products">
-            <products-list></products-list>
+        <div id="detox">
+            <detox-section></detox-section>
         </div>
+        <!--<div id="products">
+            <products-list></products-list>
+        </div>-->
         <div id="instagram">
             <instagram></instagram>
         </div>
@@ -37,7 +37,6 @@ import About from './About'
 import HowItWorks from './HowItWorks'
 import Program from './Program'
 import DetoxSection from "./DetoxSection";
-import ProductsList from './ProductsList'
 import Instagram from "./Instagram";
 import Faq from "./Faq";
 import Contact from "./Contact";
@@ -45,7 +44,6 @@ import FooterSection from './FooterSection'
 export default {
     name: 'app',
     components: {
-        ProductsList,
         Navbar,
         Hero,
         About,

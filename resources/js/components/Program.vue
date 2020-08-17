@@ -2,7 +2,7 @@
  <div class="py-8">
       <div class="max-w-6xl mx-auto px-3">
           <h3 class="text-center font-bold text-3xl lg:text-4xl mb-3">Программы и цены</h3>
-          <p class="max-w-xl mx-auto text-center font-light text-xl lg:text-2xl mb-8">Стоимость рационов зависит от калорийности, количества дней и линейки меню</p>
+          <p class="max-w-xl mx-auto text-center font-light text-xl mb-8">Стоимость рационов зависит от калорийности, количества дней и линейки меню</p>
             <div class="max-w-sm mx-auto flex justify-center mb-10">
                 <button v-for="type in types"
                     :key="type.id"
@@ -21,7 +21,7 @@
                             <div class="w-full relative pr-3 pt-1 md:pt-3 md:pr-4">
                                 <div class="flex items-center justify-between mb-2  md:-mb-2">
                                     <p class="text-3xl md:text-4xl font-black text-gray-800">{{ program.title }}</p>
-                                    <p class="text-gray-700 text-xl font-light italic">от <span class="font-semibold">{{ program.price }}₸</span></p>
+                                    <p class="text-gray-700 text-xl font-light italic mt-2 md:mt-1">от <span class="font-semibold">{{ program.price }}₸</span></p>
                                 </div>
                                 <p class="mb-3 text-gray-600 font-light hidden md:block">≈ {{ program.kcal }} ккал</p>
                                 <p class="text-gray-700 font-semibold leading-4 text-base mb-3">{{ program.shortDescription }}</p>
@@ -34,15 +34,15 @@
                                     </button>
                                 </div>
                             </div>
-                            <!--<span v-show="program.isPopular" class="bg-red-600 px-2 py-1 uppercase text-xs font-semibold text-white absolute top-0 right-0 z-20">Лидер продаж</span>-->
+                            <span v-show="program.isPopular" class="bg-red-600 px-2 md:py-1 uppercase text-xs font-semibold text-white absolute top-0 right-0 z-20">Лидер продаж</span>
                         </div>
-                        <div v-show="program.instagram" class="bg-white px-2 sm:px-4 py-1 flex items-center">
-                            <a :href="program.instagramLink" target="_blank">
+                        <div v-show="program.bio" class="bg-white px-2 sm:px-4 py-2 flex items-center">
+                            <a v-if="program.instagram" :href="program.instagramLink" target="_blank">
                                 <img src="/img/icons/instagram.svg" class="hidden sm:block w-5 h-5 mr-2" :alt="program.instagram">
                             </a>
                             <div>
-                                <p class="text-xs leading-tight -mb-1 mt-1">{{ program.bio }}</p>
-                                <a :href="program.instagramLink" target="_blank" class="text-xs leading-tight text-gray-500">{{ program.instagram }}</a>
+                                <p :class="{ '-mb-1': program.instagram }" class="text-xs font-medium leading-tight mt-1">{{ program.bio }}</p>
+                                <a v-if="program.instagram" :href="program.instagramLink" target="_blank" class="text-xs leading-tight text-gray-500">{{ program.instagram }}</a>
                             </div>
                         </div>
                     </div>
@@ -261,7 +261,7 @@ export default {
                     data:[
                         {
                             id: 0,
-                            imageUrl: '/img/programs/men.png',
+                            imageUrl: '/img/programs/men_m.png',
                             title: 'M',
                             kcal: '1500',
                             price: 5500,
@@ -269,7 +269,7 @@ export default {
                             shortDescription: 'Комфортное снижение веса',
                             isPopular: true,
                             instagramLink: null,
-                            bio: null,
+                            bio: 'Берик - ведущий специалист в национальной компании',
                             instagram: null,
                             aims: [
                                 {
@@ -293,7 +293,7 @@ export default {
                         },
                         {
                             id: 1,
-                            imageUrl: '/img/programs/men.png',
+                            imageUrl: '/img/programs/men_l.png',
                             title: 'L',
                             kcal: '1900',
                             price: 6000,
@@ -301,7 +301,7 @@ export default {
                             shortDescription: 'Снижение веса/Поддержания формы',
                             isPopular: false,
                             instagramLink: null,
-                            bio: null,
+                            bio: 'Арман - предприниматель, регулярно играет в теннис',
                             instagram: null,
                             aims: [
                                 {
@@ -329,7 +329,7 @@ export default {
                         },
                         {
                             id: 2,
-                            imageUrl: '/img/programs/men.png',
+                            imageUrl: '/img/programs/men_xl.png',
                             title: 'XL',
                             kcal: '2500',
                             price: 6500,
@@ -337,7 +337,7 @@ export default {
                             shortDescription: 'Набор массы/Поддержание формы',
                             isPopular: false,
                             instagramLink: null,
-                            bio: null,
+                            bio: 'Александр - модель с фотостоков, тренируется в фитнес-клубе',
                             instagram: null,
                             aims: [
                                 {

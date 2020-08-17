@@ -1,5 +1,5 @@
 <template>
-    <div class="py-8">
+    <div class="py-24">
         <div class="max-w-6xl mx-auto px-3">
             <h3 class="text-center font-bold text-3xl lg:text-4xl mb-8">Eat&Chill</h3>
             <div class="flex flex-no-wrap md:flex-wrap overflow-x-auto scrollClass -mx-3">

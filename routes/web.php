@@ -21,6 +21,10 @@ Route::get('/detox', function () {
     return view('detox');
 });
 
+Route::get('/eat-chill', function () {
+    return view('eat-chill');
+});
+
 Route::post('/', 'OrderController@placeOrder');
 
 Route::post('/cart', 'OrderController@placeCartOrder');
