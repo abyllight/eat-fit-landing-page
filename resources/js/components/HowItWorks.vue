@@ -1,7 +1,7 @@
 <template>
   <div id="#how-it-works" class="py-8">
       <div class="max-w-6xl mx-auto px-3">
-          <h3 class="text-center font-bold text-3xl lg:text-4xl mb-10">Как это работает?</h3>
+          <h3 class="text-center font-bold text-3xl mb-10">Как это работает?</h3>
           <div class="flex flex-col items-center lg:flex-row lg:justify-around lg:items-start">
 
             <div class="max-w-sm text-center lg:text-left mb-10">

@@ -11,12 +11,12 @@
         <div id="programs">
             <program></program>
         </div>
+        <div id="sample">
+            <sample-menu></sample-menu>
+        </div>
         <div id="detox">
             <detox-section></detox-section>
         </div>
-        <!--<div id="products">
-            <products-list></products-list>
-        </div>-->
         <div id="instagram">
             <instagram></instagram>
         </div>
@@ -31,16 +31,17 @@
 </template>
 
 <script>
-import Navbar from './Navbar'
-import Hero from './Hero'
-import About from './About'
-import HowItWorks from './HowItWorks'
-import Program from './Program'
+import Navbar from './Navbar';
+import Hero from './Hero';
+import About from './About';
+import HowItWorks from './HowItWorks';
+import Program from './Program';
+import SampleMenu from "./SampleMenu";
 import DetoxSection from "./DetoxSection";
 import Instagram from "./Instagram";
 import Faq from "./Faq";
 import Contact from "./Contact";
-import FooterSection from './FooterSection'
+import FooterSection from './FooterSection';
 export default {
     name: 'app',
     components: {
@@ -49,6 +50,7 @@ export default {
         About,
         HowItWorks,
         Program,
+        SampleMenu,
         DetoxSection,
         Instagram,
         Faq,

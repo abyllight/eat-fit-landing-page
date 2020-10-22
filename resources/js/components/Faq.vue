@@ -1,7 +1,7 @@
 <template>
     <div class="py-8">
         <div class="max-w-6xl mx-auto px-5">
-            <h3 class="text-center font-bold text-3xl lg:text-4xl mb-6">FAQ</h3>
+            <h3 class="text-center font-bold text-3xl mb-6">FAQ</h3>
             <div class="max-w-lg mx-auto flex justify-center mb-8">
                 <div class="flex flex-no-wrap overflow-x-auto scrollClass">
                     <button v-for="theme in themes"

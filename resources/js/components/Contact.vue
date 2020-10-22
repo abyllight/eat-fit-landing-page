@@ -1,7 +1,7 @@
 <template>
     <div class="py-8">
         <div class="max-w-6xl mx-auto px-3">
-            <h3 class="text-center font-bold text-3xl lg:text-4xl mb-3">Контакты</h3>
+            <h3 class="text-center font-bold text-3xl mb-3">Контакты</h3>
             <div class="flex items-center justify-between py-4">
                 <div class="hidden lg:block w-1/2">
                     <img src="/img/team.jpg" class="rounded shadow-xl">

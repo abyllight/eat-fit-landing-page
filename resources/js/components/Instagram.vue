@@ -1,7 +1,7 @@
 <template>
     <div class="py-8">
         <div class="max-w-6xl mx-auto px-3">
-            <h3 class="text-center font-bold text-3xl lg:text-4xl mb-8">Отзывы</h3>
+            <h3 class="text-center font-bold text-3xl mb-8">Отзывы</h3>
             <carousel :perPageCustom="[[320, 1], [768, 3], [1024, 4]]" :centerMode="true"
                       :mouseDrag="true"
                       :paginationActiveColor="'#74ab31'"
