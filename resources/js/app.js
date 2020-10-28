@@ -32,6 +32,7 @@ Vue.component('detox-details-modal', require('./components/DetoxDetailsModal.vue
 Vue.component('detox-section', require('./components/DetoxSection.vue').default);
 Vue.component('products-list', require('./components/ProductsList.vue').default);
 Vue.component('sample-menu', require('./components/SampleMenu.vue').default);
+Vue.component('quiz', require('./components/Quiz.vue').default);
 
 
 const app = new Vue({

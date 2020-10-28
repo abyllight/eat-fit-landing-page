@@ -23,6 +23,9 @@
         <div id="faq">
             <faq></faq>
         </div>
+        <!--<div id="quiz">
+            <quiz></quiz>
+        </div>-->
         <div id="contact">
             <contact></contact>
         </div>
