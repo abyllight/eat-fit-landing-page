@@ -16,6 +16,7 @@
             <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#about">Что это?</a>
             <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#how-it-works">Как это работает?</a>
             <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#programs">Программы</a>
+            <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#sample">Пример меню</a>
             <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/detox">Детокс</a>
             <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/eat-chill">Eat&Chill</a>
             <a class="px-2 py-1 mr-2 rounded text-white hover:bg-brand-green hover:text-white cursor-pointer" href="/#instagram">Отзывы</a>
@@ -40,6 +41,7 @@
       <a class="px-2 py-1 block text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" @click="isOpen=false" href="/#about">Что это?</a>
       <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#how-it-works" @click="isOpen=false">Как это работает?</a>
       <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#programs" @click="isOpen=false">Программы</a>
+      <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#sample" @click="isOpen=false">Пример меню</a>
       <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/detox" @click="isOpen=false">Detox</a>
       <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/eat-chill" @click="isOpen=false">Eat&Chill</a>
       <a class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer" href="/#instagram" @click="isOpen=false">Отзывы</a>
