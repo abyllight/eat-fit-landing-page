@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="facebook-domain-verification" content="0w6opqsw7gzdew2eatef03yuwnk20a" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="apple-mobile-web-app-title" content="EAT&amp;FIT- Сервис по организации здорового питания с  доставкой на дом в Астане. Диетическое питание. Здоровое питание - EAT&amp;FIT &#8212; Рационы здоровой жизни, диетическое питание с доставкой в Астане">
     <title>EAT&amp;FIT- Сервис по организации здорового питания с  доставкой на дом в АстанДиетическое питание. Здоровое питание | EAT&amp;FIT - Рационы здоровой жизни, диетическпитание с доставкой в Астане</title>
@@ -72,9 +73,8 @@
         webvisor:true
     });
 </script>
-
-<!-- /Yandex.Metrika counter -->
 <noscript><div><img src="https://mc.yandex.ru/watch/56810422" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ5GBM2"

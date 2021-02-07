@@ -32,7 +32,7 @@
                 </div>
 
                 <div>
-                    <form @submit.prevent="formSubmit">
+                    <form @submit.prevent="formSubmit" onsubmit="ym(56810422,'reachGoal','generatedlead')">
                         <h4 v-show="!isPersonal" class="text-xl text-center leading-6 font-black text-gray-800 mb-4">
                             Оформить заказ
                         </h4>
@@ -202,6 +202,8 @@ export default {
             }).
             then(function (response) {
                 self.$emit('close')
+                console
+                .log(response)
                 if (response.data === true){
                     self.$emit('showSuccess')
                 }else{
