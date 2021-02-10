@@ -96,7 +96,7 @@ class OrderController extends Controller
 
                 if (!empty($array)) {
                     if (array_key_exists('utm_source', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432407,
                             'values'=>array(
                                 array(
@@ -107,7 +107,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_medium', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432409,
                             'values'=>array(
                                 array(
@@ -118,7 +118,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_term', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432411,
                             'values'=>array(
                                 array(
@@ -129,7 +129,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_campaign', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432415,
                             'values'=>array(
                                 array(
@@ -140,7 +140,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_content', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>434565,
                             'values'=>array(
                                 array(
@@ -178,7 +178,7 @@ class OrderController extends Controller
 
                 if (!empty($array)) {
                     if (array_key_exists('utm_source', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432407,
                             'values'=>array(
                                 array(
@@ -189,7 +189,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_medium', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432409,
                             'values'=>array(
                                 array(
@@ -200,7 +200,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_term', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432411,
                             'values'=>array(
                                 array(
@@ -211,7 +211,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_campaign', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432415,
                             'values'=>array(
                                 array(
@@ -222,7 +222,7 @@ class OrderController extends Controller
                     }
 
                     if (array_key_exists('utm_content', $array)) {
-                        $leads['custom_fields'][] = array(
+                        $leads['add'][0]['custom_fields'][] = array(
                             'id'=>434565,
                             'values'=>array(
                                 array(

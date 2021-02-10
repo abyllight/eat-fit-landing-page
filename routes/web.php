@@ -14,6 +14,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $leads['add']=array(
+        array(
+            'name'=>' Индивидуальное меню',
+            'custom_fields'=>array(
+                array(
+                    'id'=>478771,
+                    'values'=>array(
+                        array(
+                            'value'=>'phone',
+                        ),
+                    ),
+                ),
+                array(
+                    'id'=>320995,
+                    'values'=>array(
+                        array(
+                            'id'=>766689,
+                            'value'=>'Сайт',
+                        )
+                    ),
+                ),
+            ),
+        ));
+    dd($leads);
     return view('welcome');
 });
 
