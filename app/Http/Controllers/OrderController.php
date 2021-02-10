@@ -59,6 +59,15 @@ class OrderController extends Controller
         $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
         curl_close($curl);
 
+        $name_keys = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_term', 'utm_content'];
+
+        $query = $_SERVER['QUERY_STRING'];
+
+        if($query || $query !== '') {
+            $array = [];
+            parse_str($query, $array);
+        }
+
         if($code == 200 || $code == 204){
             if ($request['isPersonal'] === false){
                 $leads['add']=array(
