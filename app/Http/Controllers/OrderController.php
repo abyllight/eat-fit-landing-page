@@ -83,14 +83,6 @@ class OrderController extends Controller
                                 ),
                             ),
                             array(
-                                'id'=>432407,
-                                'values'=>array(
-                                    array(
-                                        'value'=>'test',
-                                    )
-                                ),
-                            ),
-                            array(
                                 'id'=>320995,
                                 'values'=>array(
                                     array(
@@ -101,6 +93,63 @@ class OrderController extends Controller
                             ),
                         ),
                     ));
+
+                if (!empty($array)) {
+                    if (array_key_exists('utm_source', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432407,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_source'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_medium', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432409,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_medium'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_term', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432411,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_term'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_campaign', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432415,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_campaign'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_content', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>434565,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_content'],
+                                )
+                            ),
+                        );
+                    }
+                }
                 return $this->amo_query($leads);
             }else{
                 $leads['add']=array(
@@ -126,6 +175,64 @@ class OrderController extends Controller
                             ),
                         ),
                     ));
+
+                if (!empty($array)) {
+                    if (array_key_exists('utm_source', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432407,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_source'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_medium', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432409,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_medium'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_term', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432411,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_term'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_campaign', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>432415,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_campaign'],
+                                )
+                            ),
+                        );
+                    }
+
+                    if (array_key_exists('utm_content', $array)) {
+                        $leads['custom_fields'][] = array(
+                            'id'=>434565,
+                            'values'=>array(
+                                array(
+                                    'value'=>$array['utm_content'],
+                                )
+                            ),
+                        );
+                    }
+                }
+
                 return $this->amo_query($leads);
             }
         }else{
