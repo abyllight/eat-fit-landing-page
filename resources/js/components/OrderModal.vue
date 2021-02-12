@@ -175,6 +175,7 @@ export default {
             name: '',
             phone: '',
             promo: '',
+            utm: [],
             isChecked: false,
             rawVal: ''
         }
@@ -190,16 +191,50 @@ export default {
             this.name = value
             this.$v.name.$touch()
         },
+        getParams(){
+            let name_keys = ['utm_source','utm_campaign','utm_medium','utm_term','utm_content'];
+            let url = decodeURI(document.location.search);
+            if(url.indexOf('?') < 0) return [];
+
+            url = url.split('?');
+            url = url[1];
+
+            let GET = {}, params = [], key = [];
+
+            if(url.indexOf('#')!==-1){
+                url = url.substr(0,url.indexOf('#'));
+            }
+
+            if(url.indexOf('&') > -1){ params = url.split('&');} else {params[0] = url; }
+
+            for (let r = 0; r < params.length; r++){
+                for (let z = 0; z < name_keys.length; z++){
+                    if(params[r].indexOf(name_keys[z] + '=') > -1){
+                        if(params[r].indexOf('=') > -1) {
+                            key = params[r].split('=');
+                            GET[key[0]]=key[1];
+                        }
+                    }
+                }
+            }
+
+            return (GET);
+        },
         formSubmit(){
-            var self = this;
-            axios.post('/', {
+            let self = this;
+
+            let params = this.getParams();
+            let data = {
                 name: this.name,
                 phone: this.phone,
                 promo: this.promo,
                 day: this.day,
                 title: this.data.title,
-                isPersonal: this.isPersonal
-            }).
+                isPersonal: this.isPersonal,
+                utm: params
+            };
+
+            axios.post('/', data).
             then(function (response) {
                 self.$emit('close')
                 console

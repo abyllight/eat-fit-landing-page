@@ -35,6 +35,7 @@ class OrderController extends Controller
     }
 
     public function placeOrder(Request $request){
+
         $link = 'https://'. env('AMO_SUBDOMAIN', '') .'.amocrm.ru/private/api/auth.php?type=json';
         $user = [
             'USER_LOGIN' => env('AMO_LOGIN', ''),
@@ -58,15 +59,6 @@ class OrderController extends Controller
 
         $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
         curl_close($curl);
-
-        $name_keys = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_term', 'utm_content'];
-
-        $key_array = [];
-        foreach ($name_keys as $key) {
-            if (array_key_exists($key, $_REQUEST)) {
-                $key_array[$key] = $_REQUEST[$key];
-            }
-        }
 
         if($code == 200 || $code == 204){
             if ($request['isPersonal'] === false){
@@ -94,58 +86,58 @@ class OrderController extends Controller
                         ),
                     ));
 
-                if (!empty($key_array)) {
-                    if (array_key_exists('utm_source', $key_array)) {
+                if (!empty($request['utm'])) {
+                    if (array_key_exists('utm_source', $request['utm'])) {
 
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432407,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_source'],
+                                    'value'=>$request['utm']['utm_source'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_medium', $key_array)) {
+                    if (array_key_exists('utm_medium', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432409,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_medium'],
+                                    'value'=>$request['utm']['utm_medium'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_term', $key_array)) {
+                    if (array_key_exists('utm_term', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432411,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_term'],
+                                    'value'=>$request['utm']['utm_term'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_campaign', $key_array)) {
+                    if (array_key_exists('utm_campaign', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432415,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_campaign'],
+                                    'value'=>$request['utm']['utm_campaign'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_content', $key_array)) {
+                    if (array_key_exists('utm_content', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>434565,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_content'],
+                                    'value'=>$request['utm']['utm_content'],
                                 )
                             ),
                         );
@@ -177,57 +169,57 @@ class OrderController extends Controller
                         ),
                     ));
 
-                if (!empty($key_array)) {
-                    if (array_key_exists('utm_source', $key_array)) {
+                if (!empty($request['utm'])) {
+                    if (array_key_exists('utm_source', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432407,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_source'],
+                                    'value'=>$request['utm']['utm_source'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_medium', $key_array)) {
+                    if (array_key_exists('utm_medium', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432409,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_medium'],
+                                    'value'=>$request['utm']['utm_medium'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_term', $key_array)) {
+                    if (array_key_exists('utm_term', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432411,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_term'],
+                                    'value'=>$request['utm']['utm_term'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_campaign', $key_array)) {
+                    if (array_key_exists('utm_campaign', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>432415,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_campaign'],
+                                    'value'=>$request['utm']['utm_campaign'],
                                 )
                             ),
                         );
                     }
 
-                    if (array_key_exists('utm_content', $key_array)) {
+                    if (array_key_exists('utm_content', $request['utm'])) {
                         $leads['add'][0]['custom_fields'][] = array(
                             'id'=>434565,
                             'values'=>array(
                                 array(
-                                    'value'=>$key_array['utm_content'],
+                                    'value'=>$request['utm']['utm_content'],
                                 )
                             ),
                         );
