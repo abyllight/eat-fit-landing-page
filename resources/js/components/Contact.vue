@@ -4,7 +4,7 @@
             <h3 class="text-center font-bold text-3xl mb-3">Контакты</h3>
             <div class="flex items-center justify-between py-4">
                 <div class="hidden lg:block w-1/2">
-                    <img src="/img/team.jpg" class="rounded shadow-xl">
+                    <img src="/img/team2.jpg" class="rounded shadow-xl">
                 </div>
                 <div class="text-center w-full lg:w-1/2 lg:ml-12 lg:text-left">
                     <p class="font-bold text-3xl mb-5">Забегайте в гости ;)</p>

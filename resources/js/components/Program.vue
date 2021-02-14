@@ -27,7 +27,7 @@
                                 <p class="text-gray-700 font-semibold leading-4 text-base mb-3">{{ program.shortDescription }}</p>
                                 <div class="flex items-center absolute bottom-0 mb-3">
                                     <button @click="showModal(program.id)" class="px-3 md:px-5 text-xs text-white uppercase font-semibold rounded shadow bg-brand-green hover:bg-brand-green-hover focus:outline-none">
-                                        Заказать
+                                        Стоимость
                                     </button>
                                     <button @click="showDetailsModal(program.id)" class="ml-2 px-3 text-xs text-gray-800 uppercase font-semibold hover:bg-gray-500 rounded focus:outline-none">
                                         Подробнее
@@ -56,7 +56,7 @@
                                 по запросу клиента с учетом анамнеза и личных предпочтений
                             </p>
                             <button @click="showPersonalModal" class="px-3 py-2 mr-1 md:mr-2 text-xs uppercase font-semibold bg-white hover:bg-gray-300 rounded focus:outline-none">
-                                заказать
+                                Стоимость
                             </button>
                         </div>
                         <div class="h-full w-full z-10 absolute top-0 left-0 bg-gray-900 opacity-63">
@@ -127,8 +127,8 @@ export default {
                             imageUrl: '/img/programs/xs.png',
                             title: 'XS',
                             kcal: '900',
-                            price: 5000,
-                            iPrice: 6000,
+                            price: 5500,
+                            iPrice: 6500,
                             shortDescription: 'Интенсивное снижение веса',
                             isPopular: false,
                             instagramLink: 'https://instagram.com/anarochka_juju/',
@@ -159,8 +159,8 @@ export default {
                             imageUrl: '/img/programs/s.png',
                             title: 'S',
                             kcal: '1200',
-                            price: 5000,
-                            iPrice: 6500,
+                            price: 5500,
+                            iPrice: 7000,
                             shortDescription: 'Комфортное снижение веса',
                             isPopular: true,
                             instagramLink: 'https://www.instagram.com/amina_khakim/',
@@ -191,8 +191,8 @@ export default {
                             imageUrl: '/img/programs/m.png',
                             title: 'M',
                             kcal: '1500',
-                            price: 5500,
-                            iPrice: 7000,
+                            price: 6000,
+                            iPrice: 7500,
                             shortDescription: 'Снижение веса/Поддержание формы',
                             isPopular: false,
                             instagramLink: 'https://www.instagram.com/savi_fit/',
@@ -227,8 +227,8 @@ export default {
                             imageUrl: '/img/programs/l.png',
                             title: 'L',
                             kcal: '1900',
-                            price: 6000,
-                            iPrice: 7500,
+                            price: 6500,
+                            iPrice: 8000,
                             shortDescription: 'Набор массы/Спортивный',
                             isPopular: false,
                             instagramLink: 'https://www.instagram.com/anna.trener/',
@@ -264,8 +264,8 @@ export default {
                             imageUrl: '/img/programs/men_m.png',
                             title: 'M',
                             kcal: '1500',
-                            price: 5500,
-                            iPrice:7000,
+                            price: 6000,
+                            iPrice:7500,
                             shortDescription: 'Комфортное снижение веса',
                             isPopular: true,
                             instagramLink: null,
@@ -296,8 +296,8 @@ export default {
                             imageUrl: '/img/programs/men_l.png',
                             title: 'L',
                             kcal: '1900',
-                            price: 6000,
-                            iPrice:7500,
+                            price: 6500,
+                            iPrice:8000,
                             shortDescription: 'Снижение веса/Поддержания формы',
                             isPopular: false,
                             instagramLink: null,
@@ -332,8 +332,8 @@ export default {
                             imageUrl: '/img/programs/men_xl.png',
                             title: 'XL',
                             kcal: '2500',
-                            price: 6500,
-                            iPrice:8000,
+                            price: 7000,
+                            iPrice:8500,
                             shortDescription: 'Набор массы/Поддержание формы',
                             isPopular: false,
                             instagramLink: null,

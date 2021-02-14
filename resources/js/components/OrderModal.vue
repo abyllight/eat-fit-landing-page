@@ -9,16 +9,19 @@
                 <div v-show="!isPersonal" class="mt-1 mb-4 text-center">
                     <div class="flex items-center justify-between">
                         <p class="font-semibold text-lg lg:text-2xl text-gray-800">Цена за день:
-                            <span :class="[(day === '1' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-green']">{{ data.iPrice }}тг</span>
                         </p>
-                        <span v-show="day === '1' || day > 9" class="ml-2 text-pink-800 text-xl lg:text-3xl font-semibold">{{ discount }}тг</span>
+                        <div>
+                            <span class="text-xl lg:text-2xl font-semibold" :class="[(day === '2' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-green']">{{ data.iPrice }}тг</span>
+                            <span v-show="day === '2' || day > 9" class="ml-2 text-pink-800 text-xl lg:text-2xl font-semibold">{{ discount }}тг</span>
+                        </div>
                     </div>
 
                     <div class="flex items-center justify-between">
-                        <p class="font-semibold text-lg lg:text-2xl text-gray-800">Итого:
-                            <span :class="[(day === '1' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-green']">{{ day * data.iPrice }}тг</span>
-                        </p>
-                        <span v-show="day === '1' || day > 9" class="ml-2 text-pink-800 text-xl lg:text-3xl font-semibold">{{ total }}тг</span>
+                        <p class="font-semibold text-lg lg:text-2xl text-gray-800">Итого:</p>
+                        <div>
+                            <span class="text-xl lg:text-2xl font-semibold" :class="[(day === '2' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-green']">{{ day * data.iPrice }}тг</span>
+                            <span v-show="day === '2' || day > 9" class="ml-2 text-pink-800 text-xl lg:text-2xl font-semibold">{{ total }}тг</span>
+                        </div>
                     </div>
 
                     <div class="mt-2">
@@ -33,12 +36,12 @@
 
                 <div>
                     <form @submit.prevent="formSubmit" onsubmit="ym(56810422,'reachGoal','generatedlead')">
-                        <h4 v-show="!isPersonal" class="text-xl text-center leading-6 font-black text-gray-800 mb-4">
-                            Оформить заказ
+                        <h4 class="text-xl text-center leading-6 font-black text-gray-800 mb-4">
+                            Данные для консультации
                         </h4>
-                        <h4 v-show="isPersonal" class="w-72 mx-auto text-center text-2xl leading-6 font-black text-gray-800 mb-6">
-                            Заказать разработку индивидуального меню
-                        </h4>
+<!--                        <h4 v-show="isPersonal" class="w-72 mx-auto text-center text-2xl leading-6 font-black text-gray-800 mb-6">
+                            Данные для консультации
+                        </h4>-->
                         <div class="mb-3">
                             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                    type="text" placeholder="Имя" v-model.trim="$v.name.$model" :class="{ 'border-red-500': $v.name.$error }" />
@@ -63,7 +66,7 @@
                                 :disabled="!isChecked || this.name.length <= 1 || !isValid"
                                 :class="[ !isChecked || this.name.length <= 1 || !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green-hover cursor-pointer opacity-100']"
                             >
-                                Отправить заказ
+                                Оставить заявку
                             </button>
                         </div>
                     </form>
@@ -256,10 +259,10 @@ export default {
     },
     computed: {
         total(){
-            if(this.day === '1'){
+            if(this.day === '2'){
                 this.discount = this.data.iPrice * 0.7
-                return this.data.iPrice * 0.7
-            }else if (this.day > 1 && this.day < 10){
+                return this.data.iPrice * 0.7 * this.day
+            }else if (this.day > 2 && this.day < 10){
                 this.discount = this.data.iPrice
                 return this.day * this.data.iPrice
             }else if(this.day >= 10 && this.day < 21){

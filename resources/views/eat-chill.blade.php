@@ -55,6 +55,16 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
+
+<script>
+    (function(w, d, s, h, id) {
+        w.roistatProjectId = id; w.roistatHost = h;
+        var p = d.location.protocol == "https:" ? "https://" : "http://";
+        var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
+        var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
+    })(window, document, 'script', 'cloud.roistat.com', '30d2ed73195218197354a5214b1e2373');
+</script>
+
 <script type="text/javascript">
     (function(d, w, s) {
         var widgetHash = '6tzo9y6so28on1maf3b0', gcw = d.createElement(s); gcw.type = 'text/javascript'; gcw.async = true;
@@ -84,13 +94,5 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<script>
-    (function(w, d, s, h, id) {
-        w.roistatProjectId = id; w.roistatHost = h;
-        var p = d.location.protocol == "https:" ? "https://" : "http://";
-        var u = /^.roistat_visit=[^;]+(.)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
-        var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
-    })(window, document, 'script', 'cloud.roistat.com', '30d2ed73195218197354a5214b1e2373');
-</script>
 </body>
 </html>
