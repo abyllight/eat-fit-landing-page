@@ -44,6 +44,7 @@
                    src="https://www.facebook.com/tr?id=852043881844376&ev=PageView&noscript=1"
         /></noscript>
     <!-- End Facebook Pixel Code -->
+    <meta name="mailru-domain" content="XLb4KEEntsFqbfyd" />
 </head>
 
 <body>
