@@ -196,7 +196,9 @@ export default {
         },
         getParams(){
             let name_keys = ['utm_source','utm_campaign','utm_medium','utm_term','utm_content'];
+
             let url = decodeURI(document.location.search);
+
             if(url.indexOf('?') < 0) return [];
 
             url = url.split('?');
@@ -223,10 +225,31 @@ export default {
 
             return (GET);
         },
+        getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return null;
+        },
         formSubmit(){
             let self = this;
 
             let params = this.getParams();
+            let ga = this.getCookie('_ga');
+
+            if (ga) {
+                ga = ga.substring(6, ga.length - 1);
+            }
+
             let data = {
                 name: this.name,
                 phone: this.phone,
@@ -234,7 +257,8 @@ export default {
                 day: this.day,
                 title: this.data.title,
                 isPersonal: this.isPersonal,
-                utm: params
+                utm: params,
+                ga: ga
             };
 
             axios.post('/', data).

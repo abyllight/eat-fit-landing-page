@@ -6,228 +6,247 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function amo_query($array){
-        $subdomain = env('AMO_SUBDOMAIN', '');
-        $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/leads';
+    /*
+     * id Статусы
+     *  142 => Успешно реализовано
+     *  16536847 => Пробная доставка
+     *  16566964 => В работе
+     *  27248140 => Доставлено
+     *
+     *
+     * */
+
+    public $errors = [
+        0   => 'Ошибка в данных',
+        101 => 'Общая ошибка авторизации. Не существующий аккаунт',
+        110 => 'Общая ошибка авторизации. Неправильный логин или пароль.',
+        111 => 'Общая ошибка авторизации. Превышен лимит попыток',
+        112 => 'Общая ошибка авторизации. Ограничение прав',
+        113 => 'Общая ошибка авторизации. Доступ к данному аккаунту запрещён с Вашего IP адреса',
+        202 => 'Добавление контактов: нет прав',
+        203 => 'Добавление контактов: системная ошибка при работе с дополнительными полями',
+        205 => 'Добавление контактов: контакт не создан',
+        212 => 'Обновление контактов: контакт не обновлён',
+        219 => 'Список контактов: ошибка поиска, повторите запрос позднее',
+        220 => 'Добавление/Обновление контактов: количество привязанных сделок слишком большое',
+        235 => 'Добавление задач: не указан тип элемента',
+        236 => 'Добавление задач: по данному ID элемента не найдены некоторые контакты',
+        237 => 'Добавление задач: по данному ID элемента не найдены некоторые сделки',
+        244 => 'Добавление сделок: нет прав.',
+        301 => 'Moved permanently',
+        330 => 'Добавление/Обновление сделок: количество привязанных контактов слишком большое',
+        400 => 'Bad request',
+        401 => 'Unauthorized',
+        403 => 'Forbidden',
+        404 => 'Not found',
+        500 => 'Internal server error',
+        502 => 'Bad gateway',
+        503 => 'Service unavailable',
+    ];
+
+    public function doCurl(string $link,  string $method = 'GET', array $data = []): array
+    {
         $curl = curl_init();
 
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
-        curl_setopt($curl, CURLOPT_URL, $link);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($array));
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
-        curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-
-        $out = curl_exec($curl);
-        $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
-        curl_close($curl);
-
-        if($code == 200 || $code == 204){
-            return response()->json(true);
-        }else{
-            return response()->json(false);
+        curl_setopt($curl,CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
+        curl_setopt($curl,CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl,CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
+        curl_setopt($curl,CURLOPT_URL, $link);
+        curl_setopt($curl,CURLOPT_CUSTOMREQUEST, $method);
+        if (!empty($data)) {
+            curl_setopt($curl,CURLOPT_POSTFIELDS, http_build_query($data));
         }
-    }
-
-    public function placeOrder(Request $request){
-
-        $link = 'https://'. env('AMO_SUBDOMAIN', '') .'.amocrm.ru/private/api/auth.php?type=json';
-        $user = [
-            'USER_LOGIN' => env('AMO_LOGIN', ''),
-            'USER_HASH' => env('AMO_HASH', '')
-        ];
-
-        $curl = curl_init();
-
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
-        curl_setopt($curl, CURLOPT_URL, $link);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($curl, CURLOPT_POSTFIELDS,http_build_query($user));
         curl_setopt($curl,CURLOPT_HEADER,false);
         curl_setopt($curl,CURLOPT_COOKIEFILE,dirname(__FILE__).'/cookie.txt');
         curl_setopt($curl,CURLOPT_COOKIEJAR,dirname(__FILE__).'/cookie.txt');
         curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,0);
         curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,0);
 
-        $out = curl_exec($curl);
+        $out  = curl_exec($curl);
+        $code = curl_getinfo($curl,CURLINFO_HTTP_CODE);
 
-        $code=curl_getinfo($curl,CURLINFO_HTTP_CODE);
         curl_close($curl);
 
-        if($code == 200 || $code == 204){
-            if ($request['isPersonal'] === false){
-                $leads['add']=array(
-                    array(
-                        'name'=>$request['name'].' '.$request['title'].' '.$request['day'].' '.$request['promo'],
-                        'custom_fields'=>array(
-                            array(
-                                'id'=>478771,
-                                'values'=>array(
-                                    array(
-                                        'value'=>$request['phone'],
-                                    ),
-                                ),
-                            ),
-                            array(
-                                'id'=>320995,
-                                'values'=>array(
-                                    array(
-                                        'id'=>766689,
-                                        'value'=>'Сайт',
-                                    )
-                                ),
-                            ),
-                        ),
-                    ));
+        return [
+            'code' => $code,
+            'data' => $out
+        ];
+    }
 
-                if (!empty($request['utm'])) {
-                    if (array_key_exists('utm_source', $request['utm'])) {
+    public function amo_auth(): array
+    {
+        $link = 'https://'. env('AMO_SUBDOMAIN', '') . '.amocrm.ru/private/api/auth.php?type=json';
 
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432407,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_source'],
-                                )
-                            ),
-                        );
-                    }
+        $user = [
+            'USER_LOGIN' => env('AMO_LOGIN', ''),
+            'USER_HASH'  => env('AMO_HASH', '')
+        ];
 
-                    if (array_key_exists('utm_medium', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432409,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_medium'],
-                                )
-                            ),
-                        );
-                    }
+        $out = $this->doCurl($link, 'POST', $user);
 
-                    if (array_key_exists('utm_term', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432411,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_term'],
-                                )
-                            ),
-                        );
-                    }
+        $code    = (int) $out['code'];
+        $data    = json_decode($out['data'], true);
+        $message = 'Авторизован!';
+        $status  = true;
 
-                    if (array_key_exists('utm_campaign', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432415,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_campaign'],
-                                )
-                            ),
-                        );
-                    }
+        if (!$data['response']['auth'])
+        {
+            $message = array_key_exists($code, $this->errors) ? $this->errors[$code] : 'Неизвестная ошибка! Код: ' . $code;
+            $status  = false;
+        }
 
-                    if (array_key_exists('utm_content', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>434565,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_content'],
-                                )
-                            ),
-                        );
-                    }
-                }
-                return $this->amo_query($leads);
-            }else{
-                $leads['add']=array(
-                    array(
-                        'name'=>$request['name'].' Индивидуальное меню',
-                        'custom_fields'=>array(
-                            array(
-                                'id'=>478771,
-                                'values'=>array(
-                                    array(
-                                        'value'=>$request['phone'],
-                                    ),
-                                ),
-                            ),
-                            array(
-                                'id'=>320995,
-                                'values'=>array(
-                                    array(
-                                        'id'=>766689,
-                                        'value'=>'Сайт',
-                                    )
-                                ),
-                            ),
-                        ),
-                    ));
+        return [
+            'code'    => $code,
+            'status'  => $status,
+            'message' => $message,
+            'data'    => $data
+        ];
+    }
 
-                if (!empty($request['utm'])) {
-                    if (array_key_exists('utm_source', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432407,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_source'],
-                                )
-                            ),
-                        );
-                    }
+    public function getUtm(Request $request, array $leads): array
+    {
+        $utm_tags = [
+            [
+                'tag_name' => 'utm_source',
+                'tag_id' => 432407
+            ],
+            [
+                'tag_name' => 'utm_medium',
+                'tag_id' => 432409
+            ],
+            [
+                'tag_name' => 'utm_term',
+                'tag_id' => 432411
+            ],
+            [
+                'tag_name' => 'utm_campaign',
+                'tag_id' => 432415
+            ],
+            [
+                'tag_name' => 'utm_content',
+                'tag_id' => 434565
+            ]
+        ];
 
-                    if (array_key_exists('utm_medium', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432409,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_medium'],
-                                )
-                            ),
-                        );
-                    }
+        if (!$request->has('utm')) {
+            return $leads;
+        }
 
-                    if (array_key_exists('utm_term', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432411,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_term'],
-                                )
-                            ),
-                        );
-                    }
+        $utm = $request['utm'];
 
-                    if (array_key_exists('utm_campaign', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>432415,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_campaign'],
-                                )
-                            ),
-                        );
-                    }
-
-                    if (array_key_exists('utm_content', $request['utm'])) {
-                        $leads['add'][0]['custom_fields'][] = array(
-                            'id'=>434565,
-                            'values'=>array(
-                                array(
-                                    'value'=>$request['utm']['utm_content'],
-                                )
-                            ),
-                        );
-                    }
-                }
-
-                return $this->amo_query($leads);
+        foreach ($utm_tags as $tag) {
+            if (array_key_exists($tag['tag_name'], $utm)) {
+                $leads['add'][0]['custom_fields'][] = array(
+                    'id' => $tag['tag_id'],
+                    'values' => array(
+                        array(
+                            'value' => $utm[$tag['tag_name']],
+                        )
+                    ),
+                );
             }
+        }
+
+        return $leads;
+    }
+
+    public function placeOrder(Request $request){
+
+        $auth = $this->amo_auth();
+
+        if (!$auth['status']) {
+            return response()->json(false);
+        }
+
+        $subdomain = env('AMO_SUBDOMAIN', '');
+
+        $name = $request['name'];
+
+        if ($request['isPersonal']) {
+            $name = $name . ' Индивидуальное меню';
+        }else {
+            $name = $name . ' ' . $request['title'] . ' ' . $request['day'] . ' ' . $request['promo'];
+        }
+
+        $leads['add'] = [
+            [
+                'name' => $name,
+                'status_id' => 28039639, //Тег присвоен
+                'pipeline_id' => 1783882, //Первичные продажи
+                'tags' => 'Заявка с сайта',
+                'custom_fields' => [
+                    [
+                        'id' => 478771, //Телефон
+                        'values' => [
+                            [
+                                'value' => $request['phone']
+                            ],
+                        ],
+                    ],
+                    [
+                        'id' => 320995, //Источник
+                        'values' => [
+                            [
+                                'id' => 766689,
+                                'value' => 'Сайт',
+                            ]
+                        ],
+                    ],
+                    [
+                        'id' => 868945, //cid
+                        'values' => [
+                            [
+                                'value' => $request['ga'],
+                            ]
+                        ],
+                    ],
+                ]
+            ]
+        ];
+
+        $leads = $this->getUtm($request, $leads);
+
+
+        $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/leads';
+
+        $order = $this->doCurl($link, 'POST', $leads);
+
+        $embedded = json_decode($order['data'], true);
+
+        if (array_key_exists('_embedded', $embedded)) {
+            $lead_id = $embedded['_embedded']['items'][0]['id'];
+
+            $add_contact['add'] = [
+                [
+                    'name' => $request['name'],
+                    'leads_id' => [
+                        $lead_id
+                    ],
+                    'custom_fields' => [
+                        [
+                            'id' => 306229,
+                            'name' => $request['name'],
+                            'type_id' => 8,
+                            'code' => 'PHONE',
+                            'values' => [
+                                [
+                                    'value' => $request['phone'],
+                                    'enum' => '635201'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ];
+
+            $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/contacts';
+            $this->doCurl($link, 'POST', $add_contact);
+        }
+
+        $code = (int) $order['code'];
+
+        if($code == 200 || $code == 204){
+            return response()->json(true);
         }else{
             return response()->json(false);
         }
