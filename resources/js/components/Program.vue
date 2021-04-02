@@ -279,15 +279,15 @@ export default {
                             ],
                             extra: null,
                             protein: {
-                                weight: '85-95',
+                                weight: '90-100',
                                 percentage: 33
                             },
                             fat: {
-                                weight: '40-50',
+                                weight: '50-60',
                                 percentage: 37
                             },
                             carbohydrate: {
-                                weight: '75-85',
+                                weight: '140-180',
                                 percentage: 30
                             }
                         },
@@ -315,15 +315,15 @@ export default {
                             ],
                             extra: null,
                             protein: {
-                                weight: '140-150',
+                                weight: '110-120',
                                 percentage: 30
                             },
                             fat: {
-                                weight: '65-75',
+                                weight: '75-85',
                                 percentage: 33
                             },
                             carbohydrate: {
-                                weight: '170-180',
+                                weight: '180-200',
                                 percentage: 37
                             }
                         },

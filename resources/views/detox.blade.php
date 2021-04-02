@@ -67,9 +67,9 @@
 
 <script type="text/javascript">
     (function(d, w, s) {
-        var widgetHash = '6tzo9y6so28on1maf3b0', gcw = d.createElement(s); gcw.type = 'text/javascript'; gcw.async = true;
-        gcw.src = '//widgets.binotel.com/getcall/widgets/'+ widgetHash +'.js';
-        var sn = d.getElementsByTagName(s)[0]; sn.parentNode.insertBefore(gcw, sn);
+        var widgetHash = 'w0rqbbf9jrhblm0kays4', ctw = d.createElement(s); ctw.type = 'text/javascript'; ctw.async = true;
+        ctw.src = '//widgets.binotel.com/calltracking/widgets/'+ widgetHash +'.js';
+        var sn = d.getElementsByTagName(s)[0]; sn.parentNode.insertBefore(ctw, sn);
     })(document, window, 'script');
 </script>
 
