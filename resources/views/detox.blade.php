@@ -13,10 +13,10 @@
     <meta property="og:url" content="https://eatandfit.kz/" />
     <meta property="og:site_name" content="EAT&amp;FIT- Сервис по организации здорового питанс  доставкой на дом в Астане. Диетическое питание. Здоровое питание" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lato:wght@100&display=swap" rel="stylesheet">
-
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Google Tag Manager -->
@@ -48,10 +48,18 @@
 </head>
 
 <body>
-<div id="app" class="font-body">
-    <navbar></navbar>
+<div id="detox" class="font-body">
+    <section id="navbar" class="fixed w-full z-30 shadow top-0 bg-brand-blue">
+        <navbar></navbar>
+    </section>
     <detox></detox>
-    <footer-section></footer-section>
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 w-full">
+        <div class="px-3 py-5 max-w-6xl mx-auto flex flex-col items-center justify-center">
+            <a href="/files/oferta.docx" class="text-white font-semibold mb-4 hover:text-brand-green cursor-pointer">Публичная оферта</a>
+            <p class="text-white text-xs font-semibold">© Все права защищены. EAT&FIT, 2015-2021</p>
+        </div>
+    </footer>
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>

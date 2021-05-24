@@ -28,6 +28,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@splidejs/vue-splide": "^0.3.5",
         "vue-carousel": "^0.18.0",
         "vue-masked-input": "^0.5.2",
         "vue-scrollto": "^2.18.1",

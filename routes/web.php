@@ -14,15 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    /*$subdomain = env('AMO_SUBDOMAIN', '');
-    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads/pipelines';
-
-    $amo = new \App\Http\Controllers\OrderController();
-
-    $pipelines = $amo->doCurl($link, 'GET');
-
-    dd($pipelines);*/
-    return view('welcome');
+    return view('landing');
+    //return view('welcome');
 });
 
 Route::get('/detox', function () {
@@ -57,3 +50,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', 'LoginController@logout')->name('logout');
 });
 
+/*$subdomain = env('AMO_SUBDOMAIN', '');
+    $link = 'https://' . $subdomain . '.amocrm.ru/api/v4/leads/pipelines';
+
+    $amo = new \App\Http\Controllers\OrderController();
+
+    $pipelines = $amo->doCurl($link, 'GET');
+
+    dd($pipelines);*/
