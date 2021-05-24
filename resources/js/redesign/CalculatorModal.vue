@@ -147,6 +147,14 @@ export default {
     methods: {
         closeModal(){
             this.isVisible = false
+            this.age = 0
+            this.activeType = 0
+            this.activeAim = 0
+            this.height = 0
+            this.weight = 0
+            this.activity = 0
+            this.aim = 0
+            this.$emit('close')
         },
         recalculate(){
             this.isVisible = false

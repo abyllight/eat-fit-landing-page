@@ -114,6 +114,7 @@
     import OrderModal from "./OrderModal";
     import DetailsModal from "./DetailsModal";
     import SuccessModal from "./SuccessModal";
+    import CalculatorModal from "./CalculatorModal";
     import FailModal from "./FailModal";
     import progs from '../data';
 export default {
@@ -122,7 +123,8 @@ export default {
         OrderModal,
         DetailsModal,
         SuccessModal,
-        FailModal
+        FailModal,
+        CalculatorModal
     },
     data(){
         return{
@@ -170,6 +172,7 @@ export default {
             this.showSuccess = false
             this.showFail = false
             this.isPersonal = false
+            this.isCalcVisible = false
             this.data = []
         },
         showCalculator(){

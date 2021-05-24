@@ -261,9 +261,7 @@ export default {
 
             axios.post('/', data).
             then(function (response) {
-                self.$emit('close')
-                console
-                .log(response)
+
                 if (response.data === true){
                     self.$emit('showSuccess')
                 }else{

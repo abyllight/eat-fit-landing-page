@@ -151,7 +151,7 @@ class OrderController extends Controller
     }
 
     public function placeOrder(Request $request){
-
+        return response()->json(true);
         $auth = $this->amo_auth();
 
         if (!$auth['status']) {
