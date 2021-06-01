@@ -41,7 +41,7 @@
         </div>
     <nav
         v-show="isOpen"
-        class="absolute top-0 left-0 bg-brand-blue w-3/4 md:w-1/3 h-screen px-5 py-1"
+        class="absolute top-0 left-0 z-10 bg-brand-blue w-3/4 md:w-1/3 h-screen px-5 py-1"
     >
         <button @click="isOpen = !isOpen" type="button" class="block text-brand-green hover:text-brand-green-hover focus:text-brand-green focus:outline-none lg:hidden">
             <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
@@ -56,6 +56,9 @@
             {{ item.name }}
         </a>
     </nav>
+        <div v-show="isOpen" @click="isOpen=false" class="w-full h-screen bg-black z-0 opacity-50 absolute top-0 bottom-0">
+
+        </div>
     </div>
 </template>
 <style>

@@ -46,6 +46,11 @@
     <!-- End Facebook Pixel Code -->
     <meta name="mailru-domain" content="XLb4KEEntsFqbfyd" />
 </head>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 <body class="font-body">
     <section id="navbar" class="fixed w-full z-30 shadow top-0 bg-brand-blue">
         <navbar></navbar>
@@ -59,38 +64,45 @@
                     Станьте стройным и продуктивным <br>c 5-разовым
                     <br class="md:hidden"><span class="text-brand-green">здоровым питанием</span>
                 </h1>
-                <p class="text-white text-sm md:text-base font-medium mb-4 md:w-2/3 lg:w-1/3">
+                <p class="text-white text-sm md:text-base font-medium mb-10 md:w-2/3 lg:w-1/3">
                     Мы закупим отборные продукты, составим сбалансированное меню, приготовим и доставим к Вашему столу
                 </p>
 
                 <div
-                    style="border: .4px solid #FFDE7C;"
-                    class="w-full md:w-2/5 border-brand-yellow rounded-2xl flex items-center cursor-pointer shadow-lg text-center text-xs font-semibold uppercase">
-                    <a href="#trial" class="w-1/2 rounded-xl py-2 outline-none bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
+                    class="flex items-center text-xs font-semibold uppercase">
+                    <a href="#trial"
+                       class="px-10 rounded-xl py-3 outline-none bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
                         Попробовать
                     </a>
-                    <a href="#trial" class="w-1/2 text-white">
+                    <p class="ml-4 text-white">
                         со скидкой 30%
-                    </a>
-                </div>
-            </div>
-            <div class="mb-1 flex lg:absolute bottom-0 mb-4">
-                <div class="flex flex-col md:flex-row md:items-end w-48 md:w-56 mr-8 md:mr-10">
-                    <img src="/img/icons/chef-hat.svg" alt="Методы приготовления" class="mr-3 mb-2 md:mb-0 w-12 h-auto">
-                    <p class="text-white text-xs md:mb-1">
-                        Передовые методы приготовления
                     </p>
                 </div>
-                <div class="flex flex-col md:flex-row md:items-end w-48 md:w-56">
-                    <img src="/img/icons/world.png" alt="24 стран" class="mr-3 mb-2 md:mb-0 w-12 h-auto md:w-12 ">
+            </div>
+            <div class="mb-1 flex lg:absolute bottom-0 mb-8">
+                <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start w-56">
+                    <img src="/img/icons/time.png" alt="Методы приготовления" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
                     <p class="text-white text-xs md:mb-1">
-                        Кухни 24 стран <br> и народов мира
+                        Сэкономим <br> ваше время
+                    </p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start w-56">
+                    <img src="/img/icons/tech.png" alt="24 стран" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
+                    <p class="text-white text-xs md:mb-1">
+                        Приведем <br> в форму
+                    </p>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start">
+                    <img src="/img/icons/health.png" alt="24 стран" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
+                    <p class="text-white text-xs md:mb-1">
+                        Улучшим <br> здоровье
                     </p>
                 </div>
             </div>
         </div>
 
-        <div class="md:hidden w-full h-full absolute top-0 bg-black z-0 opacity-25">
+        <div class="w-full h-full absolute top-0 bg-black z-0 opacity-25">
         </div>
     </section>
 
@@ -110,7 +122,7 @@
                 </div>
                 <div class="flex-col items-center md:w-72">
                     <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">8000</span>
+                        <span class="text-brand-green font-medium text-5xl mr-3">8000+</span>
                         <p class="font-semibold leading-tight text-lg">довольных <br> клиентов</p>
                     </div>
                     <p class="text-sm">Столько людей мы накормили за все время работы</p>
@@ -126,7 +138,7 @@
                 </div>
                 <div class="flex-col items-center md:w-72">
                     <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">300+</span>
+                        <span class="text-brand-green font-medium text-5xl mr-3">250+</span>
                         <p class="font-semibold leading-tight text-lg">ежедневных <br> доставок</p>
                     </div>
                     <p class="text-sm">Более 20 пунктуальных курьеров ежедневно доставляют здоровое питание</p>
@@ -145,7 +157,7 @@
             <div class="flex flex-col lg:flex-row lg:items-center container">
                 <div class="flex flex-col md:flex-row md:items-center mb-8 md:w-3/4 md:mx-auto">
                     <img src="/img/chef.jpg"
-                         class="w-full md:w-48 xl:w-56 h-48 xl:h-56 rounded-xl object-cover object-center mb-3"
+                         class="w-full md:w-48 xl:w-56 h-56 rounded-xl object-cover object-top mb-3"
                          alt="Шеф-повар EAT&FIT">
                     <div class="flex flex-col md:px-8">
                         <h4 class="font-medium text-lg mb-3">Создано <br> профессионалами</h4>
@@ -155,7 +167,7 @@
                 </div>
                 <div class="flex flex-col md:flex-row md:items-center mb-8 md:w-3/4 md:mx-auto">
                     <img src="/img/night.jpg"
-                         class="w-full md:w-48 xl:w-56 h-48 xl:h-56 rounded-xl object-cover object-center mb-3"
+                         class="w-full md:w-48 xl:w-56 h-56 rounded-xl object-cover object-center mb-3"
                          alt="Полезная еда">
                     <div class="flex flex-col md:px-8">
                         <h4 class="font-medium text-lg mb-3">Ночное <br> производство</h4>
@@ -169,7 +181,7 @@
             <div class="flex flex-col lg:flex-row lg:items-center container">
                 <div class="flex flex-col md:flex-row md:items-center mb-8 md:w-3/4 md:mx-auto">
                     <img src="/img/cook.jpg"
-                         class="w-full md:w-48 xl:w-56 h-48 xl:h-56 rounded-xl object-cover object-center mb-3"
+                         class="w-full md:w-48 xl:w-56 h-56 rounded-xl object-cover object-center mb-3"
                          alt="Sous-vide, cook&chill">
                     <div class="flex flex-col md:px-8">
                         <h4 class="font-medium text-lg mb-3">Передовые методы приготовления</h4>
@@ -179,7 +191,7 @@
                 </div>
                 <div class="flex flex-col md:flex-row md:items-center mb-8 md:w-3/4 md:mx-auto">
                     <img src="/img/cert.jpg"
-                         class="w-full md:w-48 xl:w-56 h-48 xl:h-56 object-cover object-center rounded-xl mb-3"
+                         class="w-full md:w-48 xl:w-56 h-56 object-cover object-center rounded-xl mb-3"
                          alt="Торговая марка EAT&FIT">
                     <div class="flex flex-col md:px-8">
                         <h4 class="font-medium text-lg mb-3">Сертифицированное производство</h4>
@@ -249,7 +261,7 @@
                                 Отборные продукты питания
                             </h4>
                             <p class="text-sm">
-                                Крупы, макароны, премиальных брендов, индивидуальной расфасовки
+                                Мясо-молочная продукция, крупы, макароны и другая бакалея премиальных брендов
                             </p>
                         </div>
                     </div>
@@ -259,7 +271,7 @@
             <div class="w-full text-center">
                 <a href="#trial"
                     class="border-brand-yellow rounded-3xl cursor-pointer shadow-lg
-                    text-center text-xs font-semibold uppercase py-2 tracking-wider focus:outline-none px-16 md:px-20
+                    text-center text-xs font-semibold uppercase py-3 tracking-wider focus:outline-none px-16 md:px-20
                     bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
                     Оставить заявку
                 </a>

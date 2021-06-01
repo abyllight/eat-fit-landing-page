@@ -10,16 +10,16 @@
                     <div class="flex items-center justify-between">
                         <p class="font-semibold">Цена за день:</p>
                         <div>
-                            <span class="text-lg font-semibold" :class="[(day === '2' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
-                            <span v-show="day === '2' || day > 9" class="ml-2 text-pink-800 text-lg font-semibold">{{ discount }}тг</span>
+                            <span class="text-lg font-semibold" :class="[(day === '2' || day > 11) ? 'text-gray-600 oldPrice' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
+                            <span v-show="day === '2' || day > 11" class="ml-2 text-pink-800 text-lg font-semibold">{{ discount }}тг</span>
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between">
                         <p class="font-semibold">Итого:</p>
                         <div>
-                            <span class="text-lg font-semibold" :class="[(day === '2' || day > 9) ? 'text-gray-600 oldPrice' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
-                            <span v-show="day === '2' || day > 9" class="ml-2 text-pink-800 text-lg font-semibold">{{ total }}тг</span>
+                            <span class="text-lg font-semibold" :class="[(day === '2' || day > 11) ? 'text-gray-600 oldPrice' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
+                            <span v-show="day === '2' || day > 11" class="ml-2 text-pink-800 text-lg font-semibold">{{ total }}тг</span>
                         </div>
                     </div>
 
@@ -29,7 +29,7 @@
                             <span class="text-brand-dark-green font-semibold">{{ day }} {{ dayTxt }}</span>
                         </div>
 
-                        <input type="range" v-model="day" min="1" max="32">
+                        <input type="range" v-model="day" min="1" max="36">
                     </div>
                 </div>
 
@@ -171,7 +171,7 @@ export default {
     },
     data: function () {
         return{
-            day: 21,
+            day: 24,
             discount: 0,
             name: '',
             phone: '',
@@ -273,7 +273,7 @@ export default {
             });
         },
         closeModal(){
-            this.day = 21
+            this.day = 24
             this.$emit('close')
         }
     },
@@ -282,15 +282,18 @@ export default {
             if(this.day === '2'){
                 this.discount = this.data.iPrice * 0.7
                 return this.data.iPrice * 0.7 * this.day
-            }else if (this.day > 2 && this.day < 10){
+            }else if (this.day > 2 && this.day < 12){
                 this.discount = this.data.iPrice
                 return this.day * this.data.iPrice
-            }else if(this.day >= 10 && this.day < 21){
+            }else if(this.day >= 12 && this.day < 24){
                 this.discount = this.data.iPrice - 500
                 return this.day * (this.data.iPrice - 500)
-            }else if(this.day > 20 && this.day <= 30){
+            }else if(this.day >= 24 && this.day < 36){
                 this.discount = this.data.iPrice - 1000
                 return this.day * (this.data.iPrice - 1000)
+            }else if(this.day >= 36){
+                this.discount = this.data.iPrice - 1500
+                return this.day * (this.data.iPrice - 1500)
             }else{
                 if(this.data.title === 'XS'){
                     this.discount = this.data.iPrice - 1000
