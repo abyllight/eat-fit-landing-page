@@ -2,6 +2,7 @@
     <div class="py-1 lg:py-2 max-w-6xl mx-auto px-5 mx-auto">
         <div class="flex items-center justify-between">
             <button
+                aria-label="hamburger"
                 @click="isOpen = !isOpen"
                 type="button"
                 class="block text-brand-green lg:hidden"

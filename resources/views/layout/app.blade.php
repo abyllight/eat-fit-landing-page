@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang=ru>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="facebook-domain-verification" content="0w6opqsw7gzdew2eatef03yuwnk20a" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="apple-mobile-web-app-title" content="EAT&amp;FIT- Сервис по организации здорового питания с  доставкой на дом в Астане. Диетическое питание. Здоровое питание - EAT&amp;FIT &#8212; Рационы здоровой жизни, диетическое питание с доставкой в Астане">
-    <title>EAT&amp;FIT- Сервис по организации здорового питания с  доставкой на дом в АстанДиетическое питание. Здоровое питание | EAT&amp;FIT - Рационы здоровой жизни, диетическпитание с доставкой в Астане</title>
-    <meta name="description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питанс доставкой в Астане"/>
-    <meta property="og:title" content="EAT&amp;FIT- Сервис по организации здорового питаниядоставкой на дом в Астане. Диетическое питание. Здоровое питание - EAT&amp;FIT - Рациоздоровой жизни, диетическое питание с доставкой в Астане" />
-    <meta property="og:description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическпитание с доставкой в Астане" />
+    <meta name="description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане"/>
+    <meta property="og:title" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане. Диетическое питание. Здоровое питание - EAT&amp;FIT - Рациоздоровой жизни, диетическое питание с доставкой в Астане" />
+    <meta property="og:description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане" />
     <meta property="og:url" content="https://eatandfit.kz/" />
-    <meta property="og:site_name" content="EAT&amp;FIT- Сервис по организации здорового питанс  доставкой на дом в Астане. Диетическое питание. Здоровое питание" />
+    <meta property="og:site_name" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане. Диетическое питание. Здоровое питание" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане</title>
+
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<!--    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lato:wght@100&display=swap" rel="stylesheet">-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Google Tag Manager -->
@@ -46,13 +46,32 @@
     <!-- End Facebook Pixel Code -->
     <meta name="mailru-domain" content="XLb4KEEntsFqbfyd" />
 </head>
-
-<body>
-<div id="app" class="font-body">
-    <app></app>
-</div>
-
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+<body class="font-body">
+    <section id="navbar" class="fixed w-full z-30 shadow top-0 bg-brand-blue">
+    <navbar></navbar>
+</section>
+    @yield('content')
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 w-full">
+        <div class="px-3 py-5 max-w-6xl mx-auto flex flex-col items-center justify-center">
+            <a href="/files/oferta.docx" class="text-white font-semibold mb-4 hover:text-brand-green cursor-pointer">Публичная оферта</a>
+            <p class="text-white text-xs font-semibold">© Все права защищены. EAT&FIT, 2015-2021</p>
+        </div>
+    </footer>
 <script src="{{ mix('js/app.js') }}"></script>
+<script>
+    new Vue({
+        el: '#navbar'
+    });
+
+    @section('js')
+    @show
+</script>
 
 <script>
     (function(w, d, s, h, id) {
@@ -89,9 +108,10 @@
 <!-- /Yandex.Metrika counter -->
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ5GBM2"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ5GBM2" height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+</noscript>
 <!-- End Google Tag Manager (noscript) -->
-
 </body>
 </html>

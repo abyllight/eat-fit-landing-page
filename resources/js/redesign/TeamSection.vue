@@ -8,7 +8,7 @@
                   <div v-for="image in images"
                        :key="image.id"
                        class="w-72 m-3 relative cursor-pointer">
-                      <img :src="image.src" class="object-cover object-center rounded-xl">
+                      <img :src="image.src" alt="Команда Eat&Fit" class="object-cover object-center rounded-xl">
                       <div class="opacity-100 xl:opacity-0 xl:hover:opacity-100">
                           <div class="w-full h-full absolute bg-black opacity-25 xl:opacity-50 top-0 rounded-xl">
                           </div>

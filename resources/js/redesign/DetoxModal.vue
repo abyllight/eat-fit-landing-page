@@ -2,7 +2,7 @@
     <div v-show="show" class="h-screen w-full fixed top-0 left-0 z-30 bg-overlay flex items-center justify-center px-3 py-2">
         <div class="w-full sm:w-1/2 lg:max-w-sm bg-white rounded overflow-hidden shadow-xl relative">
             <div class="bg-white px-3 pt-8 pb-4 md:px-6">
-                <h3 class="text-xl leading-6 font-semibold text-gray-800 mb-4">
+                <h3 class="text-xl leading-6 font-black mb-4">
                     {{ data.title }}
                 </h3>
 
@@ -17,9 +17,9 @@
                                 +
                             </div>
                         </div>
-                        <div>
-                            <p class="font-bold -mb-2" :class="[count > 2 ? 'text-gray-600 oldPrice text-sm' : 'text-brand-dark-green text-lg']"> {{ count * data.price }}₸</p>
-                            <p v-show="count > 2" class="font-bold text-brand-dark-green text-xl"> {{ total }}₸</p>
+                        <div class="font-semibold">
+                            <p class="-mb-2" :class="[count > 2 ? 'text-gray-600 oldPrice text-sm' : 'text-brand-dark-green text-lg']"> {{ count * data.price }}₸</p>
+                            <p v-show="count > 2" class=" text-brand-dark-green text-xl"> {{ total }}₸</p>
                         </div>
 
                     </div>
@@ -27,7 +27,7 @@
                 <div class="px-1 mt-5">
                     <form @submit.prevent="formSubmit">
 
-                        <h4 class="text-lg lg:text-xl text-center leading-6 font-black text-gray-800 mb-4">
+                        <h4 class="text-center leading-6 font-semibold mb-4">
                             Оформить заказ
                         </h4>
                         <div class="mb-3">
@@ -127,7 +127,7 @@
                 if (this.count > 1) this.count--
             },
             formSubmit(){
-                var self = this;
+                const self = this;
 
                 axios.post('/', {
                     name: this.name,
@@ -140,7 +140,6 @@
                 }).
                 then(function (response) {
                     self.$emit('close')
-                    console.log(response)
                     if (response.data === true){
                         self.$emit('showSuccess')
                     }else{
@@ -174,19 +173,13 @@
                 let reg = /\d+/g;
                 let result = [];
                 result = this.rawVal.match(reg);
-                if (this.rawVal.length === 0 || (result && result[0].length === 10)){
-                    return true
-                }
-                return false
+                return this.rawVal.length === 0 || (result && result[0].length === 10);
             },
             isValid(){
                 let reg = /\d+/g;
                 let result = [];
                 result = this.rawVal.match(reg);
-                if (result && result[0].length === 10){
-                    return true
-                }
-                return false
+                return result && result[0].length === 10;
             }
         }
     }

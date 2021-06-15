@@ -1,8 +1,5 @@
 module.exports = {
     theme: {
-        fontFamily: {
-            body: ['Montserrat', 'sans-serif']
-        },
         fontSize: {
             'tiny': '.70rem',
             'xs': '.75rem',
@@ -18,6 +15,9 @@ module.exports = {
             '7xl': '5rem',
         },
         extend: {
+            fontFamily: {
+                body: ['Montserrat', 'sans-serif']
+            },
             backgroundImage: theme => ({
                 'hero-sm': "url('/img/hero-sm.jpg')",
                 'hero-lg': "url('/img/hero-lg.jpg')",
