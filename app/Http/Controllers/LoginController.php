@@ -46,6 +46,6 @@ class LoginController extends Controller
        $user->password = Hash::make($request->pwd);
        $user->save();
 
-       return redirect('/admin/pwd')->with(['message' => 'Пароль сменен', 'alert' => 'alert-success']);
+       return redirect('/pwd')->with(['message' => 'Пароль сменен', 'alert' => 'alert-success']);
     }
 }
