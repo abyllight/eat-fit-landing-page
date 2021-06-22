@@ -16,15 +16,15 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image_front_url');
-            $table->string('image_back_url');
-            $table->integer('weight');
+            $table->string('image');
+            $table->integer('weight')->nullable();
+            $table->integer('fat')->nullable();
+            $table->integer('protein')->nullable();
+            $table->integer('carbohydrate')->nullable();
+            $table->integer('kcal')->nullable();
             $table->longText('composition');
             $table->integer('price');
-            $table->integer('price_per_item');
-            $table->integer('qty');
-            $table->integer('total');
-            $table->string('is_active');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

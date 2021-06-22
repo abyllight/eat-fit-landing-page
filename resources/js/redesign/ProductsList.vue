@@ -1,68 +1,59 @@
 <template>
     <div class="py-24">
-        <div class="max-w-6xl mx-auto px-3">
-            <h3 class="text-center font-bold text-3xl lg:text-4xl mb-8">Eat&Chill</h3>
-            <div class="flex flex-no-wrap md:flex-wrap overflow-x-auto scrollClass -mx-3">
-                <div v-if="productList.length>0" class="px-3 py-8 w-full md:w-1/3 lg:w-1/4" v-for="product in productList" :key="product.id">
-                    <div class="wrap w-64 mx-auto">
-                        <div class="front" :class="[product.is_active ? 'rotateF' : '']">
-                            <img :src="'/storage/'+product.image_back_url" class="rounded shadow-xl object-cover object-center">
-                        </div>
-                        <div class="back" :class="[product.is_active ? 'rotateB' : '']">
-                            <img :src="'/storage/'+product.image_front_url" class="rounded shadow-xl object-cover object-center">
-                        </div>
-                        <div @click.prevent="product.is_active=!product.is_active" class="absolute z-20 top-0 right-0 px-3 py-2 rounded mt-3 mr-8 bg-gray-800 opacity-75 hover:bg-gray-700 cursor-pointer">
-                            <img src="/img/icons/return.svg" class="w-4 h-4">
+        <div class="max-w-3xl mx-auto px-2">
+            <h1 class="text-xl lg:text-2xl text-center font-semibold mb-8">EatFitGo</h1>
+            <div class="flex flex-wrap justify-start mx-auto">
+                <div
+                    v-for="product in products"
+                    :key="product.id"
+                    class="w-1/3 relative p-2 md:p-3 lg:p-4"
+                >
+                    <div class="mb-2">
+                        <img
+                            :src="'/storage/' + product.image"
+                            class="rounded-lg mx-auto shadow object-cover object-center cursor-pointer transform transition duration-100 hover:scale-105"
+                            @click="showModal(product)">
+                    </div>
+                    <p class="leading-tight text-xs md:text-base font-semibold line-clamp-2 mb-2">{{ product.title }}</p>
+
+                    <div class="flex justify-between">
+                        <p class="leading-tight text-xs md:text-base">{{ product.price }}₸</p>
+                        <div
+                            v-if="!isInCart(product.id)"
+                            @click="showModal(product)"
+                            class="rounded-full h-7 w-7 -mt-2 md:h-auto md:w-auto md:text-tiny font-semibold uppercase md:px-4 md:py-2 cursor-pointer bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
+                            <p class="hidden md:block">Выбрать</p>
+                            <img src="/img/icons/add.svg" width="20" class="md:hidden">
                         </div>
                     </div>
+                    <div
+                        v-show="isInCart(product.id)"
+                        class="flex items-center justify-between w-20 md:w-24 mt-2">
+                        <div
+                            @click="decrement(product.id)"
+                            class="cursor-pointer rounded h-5 w-5 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
+                            <img src="/img/icons/remove.svg">
+                        </div>
 
-                    <div class="px-3 py-2 h-32 w-full md:w-56 lg:w-64 flex flex-col justify-between">
-                        <p class="font-semibold text-gray-900 leading-tight text-lg mb-5">{{ product.title }}</p>
-                        <div class="flex items-center justify-between">
-                            <p class="text-sm font-medium text-gray-700 leading-4">от <span class="text-xl font-black text-gray-800">{{ product.price_per_item }}₸</span> <br> за порцию</p>
-                            <button @click="showModal(product)" class="px-3 py-2 mr-1 md:mr-2 text-white text-xs uppercase font-semibold bg-brand-green shadow hover:bg-brand-green-hover rounded focus:outline-none">
-                                выбрать
-                            </button>
+                        <span class="font-semibold text-sm md:text-lg">
+                                {{ $store.getters.getItemCount(product.id) }}
+                            </span>
+
+                        <div
+                            @click="increment(product.id)"
+                            class="cursor-pointer rounded h-5 w-5 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
+                            <img src="/img/icons/add.svg">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <product-modal :show = "showProductModal" :data = "productList.length > 0 ? chosenProduct : ''"  @close="showProductModal = false"></product-modal>
+        <product-modal :show = "showProductModal" :data = "products.length > 0 ? chosenProduct : []"  @close="showProductModal = false"></product-modal>
     </div>
 </template>
-<style scoped>
-    .wrap{
-        position: relative;
-        perspective: 1500px;
-    }
-    .front {
-        transition: 1s;
-        backface-visibility: hidden;
-    }
-    .back{
-        position: absolute;
-        top: 0;
-        transition: 1s;
-        backface-visibility: hidden;
-        transform: rotateY(180deg);
-    }
-    .rotateF{
-        transform: rotateY(180deg);
-    }
-    .rotateB{
-        transform: rotateY(360deg);
-    }
-     .scrollClass{
-         -webkit-overflow-scrolling: touch; /* [3] */
-         -ms-overflow-style: -ms-autohiding-scrollbar;
-     }
-    .scrollClass::-webkit-scrollbar{
-        display: none;
-    }
-</style>
 <script>
     import ProductModal from "./ProductModal";
+    import {mapState} from "vuex";
     export default {
         name: "ProductsList",
         components: {
@@ -72,25 +63,36 @@
             return{
                 showProductModal: false,
                 chosenProduct: [],
-                productList: []
+                products: []
             }
         },
-        beforeMount() {
+        mounted() {
             this.getProducts();
         },
+        computed: {
+            ...mapState(['cart']),
+            count() {
+                return this.$store.getters.getItemCount(this.data.id)
+            }
+        },
         methods: {
+            isInCart(id){
+                return this.$store.getters.hasItem(id)
+            },
             showModal(product){
                 this.showProductModal = true
                 this.chosenProduct = product
             },
-            rotateCard(id){
-                this.productList[id].is_active = !this.productList[id].is_active
+            increment(id){
+                this.$store.dispatch('increment', id);
+            },
+            decrement(id){
+                this.$store.dispatch('decrement', id);
             },
             getProducts(){
-
                 axios.get('/products')
                     .then((response) => {
-                        this.productList = response.data
+                        this.products = response.data
                     });
             }
         }

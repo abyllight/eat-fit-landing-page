@@ -1,4 +1,10 @@
+const colors = require('tailwindcss/colors')
 module.exports = {
+    purge: [
+        './resources/views/**/*.blade.php',
+        './resources/js/**/*.js',
+        './resources/js/**/*.vue'
+    ],
     theme: {
         fontSize: {
             'tiny': '.70rem',
@@ -57,7 +63,8 @@ module.exports = {
                 'brand-non-active': '#C4C4C4',
                 'gr-yellow-start': '#FFDE7C',
                 'gr-yellow-end': '#FFC51A',
-                'overlay': 'rgba(34, 34, 34, 0.85)'
+                'overlay': 'rgba(34, 34, 34, 0.85)',
+                lime: colors.lime
             },
             opacity: {
                 '63': '0.69'
@@ -67,5 +74,5 @@ module.exports = {
     variants: {
         backgroundColor: ['responsive', 'hover', 'focus', 'active']
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/line-clamp")],
 }

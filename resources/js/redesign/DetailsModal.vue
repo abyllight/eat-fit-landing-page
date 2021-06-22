@@ -15,17 +15,17 @@
                     <div class="lg:mr-10">
                         <p class="font-semibold -mb-1">Белки</p>
                         <p class="text-gray-700 font-semibold text-sm">({{ data.protein ? data.protein.weight : '' }}г)</p>
-                        <span class="font-bold text-brand-dark-green text-3xl">{{ data.protein ? data.protein.percentage : '' }}%</span>
+                        <span class="text-brand-dark-green text-3xl">{{ data.protein ? data.protein.percentage : '' }}%</span>
                     </div>
                     <div class="lg:mr-10">
                         <p class="font-semibold -mb-1">Жиры</p>
                         <p class="text-gray-700 font-semibold text-sm">({{ data.fat ? data.fat.weight : '' }}г)</p>
-                        <span class="font-bold text-brand-dark-green text-3xl">{{ data.fat ? data.fat.percentage : '' }}%</span>
+                        <span class="text-brand-dark-green text-3xl">{{ data.fat ? data.fat.percentage : '' }}%</span>
                     </div>
                     <div>
                         <p class="font-semibold -mb-1">Углеводы</p>
                         <p class="text-gray-700 font-semibold text-sm">({{ data.carbohydrate ? data.carbohydrate.weight : '' }}г)</p>
-                        <span class="font-bold text-brand-dark-green text-3xl">{{ data.carbohydrate ? data.carbohydrate.percentage : '' }}%</span>
+                        <span class="text-brand-dark-green text-3xl">{{ data.carbohydrate ? data.carbohydrate.percentage : '' }}%</span>
                     </div>
                 </div>
             </div>

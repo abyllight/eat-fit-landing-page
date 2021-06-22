@@ -15,7 +15,7 @@
                       содержащейся в них.
                   </p>
 
-                  <a href="/detox" class="px-4 py-2 rounded bg-gray-600 hover:bg-gray-500 focus:outline-none text-xs text-white uppercase tracking-wider font-semibold">
+                  <a href="/detox" class="px-4 py-2 rounded bg-yellow-300 hover:bg-yellow-400 focus:outline-none text-xs text-white uppercase tracking-wider font-semibold">
                       подробнее
                   </a>
               </div>

@@ -8,13 +8,17 @@
 
                 <div>
                     <div class="flex items-center justify-between">
-                        <div class="flex items-center text-lg">
-                            <div @click="decrement" class="w-8 h-8 flex items-center justify-center cursor-pointer mr-1 transparent hover:bg-brand-green text-brand-dark-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
-                                -
+                        <div class="flex items-center justify-between w-40">
+                            <div class="cursor-pointer rounded-full h-7 w-7 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center"
+                                 @click="decrement">
+                                <img src="/img/icons/remove.svg" width="20">
                             </div>
-                            <span class="font-semibold text-sm mx-1">{{ count }} {{ txt }}</span>
-                            <div @click="increment" class="w-8 h-8 flex items-center justify-center cursor-pointer transparent hover:bg-brand-green text-brand-dark-green font-semibold hover:text-white border-2 border-brand-green hover:border-transparent rounded">
-                                +
+
+                            <span class="text-lg font-semibold">{{ count }} {{ txt }}</span>
+
+                            <div class="cursor-pointer rounded-full h-7 w-7 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center"
+                                 @click="increment">
+                                <img src="/img/icons/add.svg" width="20">
                             </div>
                         </div>
                         <div class="font-semibold">

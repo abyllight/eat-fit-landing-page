@@ -51,11 +51,13 @@
         scroll-behavior: smooth;
     }
 </style>
-<body class="font-body">
+<body class="font-body flex flex-col min-h-screen">
     <section id="navbar" class="fixed w-full z-30 shadow top-0 bg-brand-blue">
-    <navbar></navbar>
-</section>
-    @yield('content')
+        <navbar></navbar>
+    </section>
+    <main class="flex-grow">
+        @yield('content')
+    </main>
     <!-- Footer -->
     <footer id="footer" class="bg-gray-900 w-full">
         <div class="px-3 py-5 max-w-6xl mx-auto flex flex-col items-center justify-center">
@@ -65,10 +67,6 @@
     </footer>
 <script src="{{ mix('js/app.js') }}"></script>
 <script>
-    new Vue({
-        el: '#navbar'
-    });
-
     @section('js')
     @show
 </script>

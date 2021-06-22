@@ -1,11 +1,11 @@
 <template>
-    <div class="py-1 lg:py-2 max-w-6xl mx-auto px-5 mx-auto">
+    <div class="py-2 max-w-6xl mx-auto px-5">
         <div class="flex items-center justify-between">
             <button
                 aria-label="hamburger"
                 @click="isOpen = !isOpen"
                 type="button"
-                class="block text-brand-green lg:hidden"
+                class="block text-brand-green lg:hidden w-10"
             >
                 <svg class="h-8 w-8 fill-current" viewBox="0 0 24 24">
                     <path v-if="isOpen" fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
@@ -13,18 +13,20 @@
                 </svg>
             </button>
 
-            <a href="/#hero">
-                <img class="h-10" src="/img/logo.png" alt="Logo">
-            </a>
-
-            <nav class="hidden lg:block">
-                <a v-for="item in menu"
-                   :key="item.id"
-                   class="px-2 py-1 mr-2 text-white text-sm rounded hover:text-brand-green cursor-pointer"
-                   :href="'/#' + item.link">
-                    {{ item.name }}
+            <div class="flex items-center">
+                <a href="/#hero">
+                    <img class="h-10 w-10 lg:mr-5" src="/img/logo.png" alt="Logo">
                 </a>
-            </nav>
+
+                <nav class="hidden lg:block">
+                    <a v-for="item in menu"
+                       :key="item.id"
+                       class="px-2 py-1 mr-2 text-white text-sm rounded hover:text-brand-green cursor-pointer"
+                       :href="'/#' + item.link">
+                        {{ item.name }}
+                    </a>
+                </nav>
+            </div>
 
             <div class="flex items-center">
                 <a
@@ -37,6 +39,14 @@
                     href="tel:+77000906090"
                     class="text-white text-lg font-medium hidden ml-4 lg:block">
                     +7 (700) 090 60 90
+                </a>
+                <a href="/checkout" class="hidden lg:block ml-4">
+                    <div class="relative w-10">
+                        <img src="/img/icons/bag_white.svg" alt="cart" class="w-8">
+                        <div class="rounded-full bg-yellow-300 w-5 h-5 absolute -top-1.5 right-1 flex justify-center items-center text-xs font-semibold">
+                            {{ this.$store.state.totalCount }}
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>
@@ -62,11 +72,7 @@
         </div>
     </div>
 </template>
-<style>
-
-</style>
 <script>
-
 export default {
     data(){
         return{
@@ -107,7 +113,6 @@ export default {
                     name: 'Контакты',
                     link: 'contacts'
                 }
-
             ]
         }
     }

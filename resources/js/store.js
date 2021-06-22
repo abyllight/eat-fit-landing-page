@@ -1,68 +1,90 @@
 let cart = window.localStorage.getItem('cart');
-let cartCount = window.localStorage.getItem('cartCount');
+let totalCount = window.localStorage.getItem('totalCount');
 
 let store = {
     state: {
         cart: cart ? JSON.parse(cart) : [],
-        cartCount: cartCount ? parseInt(cartCount) : 0,
+        totalCount: totalCount ?? 0,
         total: 0
     },
-    mutations: {
-        addToCart(state, item){
-            let found = state.cart.find(product => product.id === item.id)
-
-            if(found){
-                found.q = item.q
-                found.total = item.total
-            }else {
-                state.cart.push(item)
-                state.cartCount++
-            }
-            this.commit('saveCart');
+    getters: {
+        getTotalCount: state => {
+            return state.cart.reduce((sum, item) => sum + item.q, 0)
         },
-        removeFromCart(state, item) {
-            let index = state.cart.indexOf(item);
+        getItemTotal: state => id => {
+            let found = state.cart.find(product => product.id === id)
+            return found ? found.total : 0
+        },
+        getItemCount: state => id => {
+            let found = state.cart.find(product => product.id === id)
+            return found ? found.q : 1
+        },
+        hasItem: state => id => {
+            return state.cart.some(product => product.id === id)
+        }
+    },
+    mutations: {
+        PUSH(state, item){
+            state.cart.push(item)
+        },
+        INCREMENT_TOTAL_COUNT(state) {
+            state.totalCount = parseInt(state.totalCount) + 1
+        },
+        DECREMENT_TOTAL_COUNT(state) {
+            state.totalCount = parseInt(state.totalCount) - 1
+        },
+        REMOVE_FROM_CART(state, id) {
+            let index = state.cart.findIndex(item => item.id === id);
 
             if (index > -1) {
-                let product = state.cart[index];
-                state.cartCount -= 1;
-
                 state.cart.splice(index, 1);
-                this.commit('saveCart');
             }
         },
-        decrement(state, item){
-            let found = state.cart.find(product => product.id === item.id)
+        DECREMENT(state, id){
+            let found = state.cart.find(product => product.id === id)
             found.q -= 1
-            if (found.q === 1){
-                found.total = found.price
-            }else if (found.q === 2){
-                found.total = (found.price - 400) * found.q
-            }else {
-                found.total = found.total - (found.price - 800)
-            }
-            this.commit('saveCart');
+            found.total = found.q * found.price
         },
-        increment(state, item){
-            let found = state.cart.find(product => product.id === item.id)
+        INCREMENT(state, id){
+            let found = state.cart.find(product => product.id === id)
             found.q += 1
-            if (found.q === 1){
-                found.total = found.price
-            }else if (found.q === 2){
-                found.total = (found.price - 400) * found.q
-            }else {
-                found.total = (found.price - 800) * found.q
-            }
-            this.commit('saveCart');
+            found.total = found.q * found.price
         },
-        clearCart(state){
+        CLEAR_CART(state){
             state.cart = []
             state.cartCount = 0
             this.commit('saveCart');
         },
-        saveCart(state){
+        RESET_TOTAL_COUNT(state) {
+            state.totalCount = 0
+        },
+        SAVE_CART(state){
             window.localStorage.setItem('cart', JSON.stringify(state.cart));
-            window.localStorage.setItem('cartCount', state.cartCount);
+            window.localStorage.setItem('totalCount', state.totalCount);
+        }
+    },
+    actions: {
+        addToCart({state, commit}, item) {
+            commit('PUSH', item)
+            commit('INCREMENT_TOTAL_COUNT')
+            commit('SAVE_CART')
+        },
+        increment({state, commit}, id) {
+            commit('INCREMENT', id)
+            commit('INCREMENT_TOTAL_COUNT')
+            commit('SAVE_CART')
+        },
+        decrement({state, commit}, id) {
+            let count = this.getters.getItemCount(id)
+
+            if (count > 1) {
+                commit('DECREMENT', id)
+            }else {
+                commit('REMOVE_FROM_CART', id)
+            }
+
+            commit('DECREMENT_TOTAL_COUNT')
+            commit('SAVE_CART')
         }
     }
 };

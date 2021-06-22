@@ -21,14 +21,14 @@
 
             <div class="py-8 flex flex-col md:flex-row md:justify-around">
                 <div class="w-72 mx-auto py-8" v-for="detox in detoxList" :key="detox.id">
-                    <img :src="detox.imgUrl" class="rounded shadow-xl object-cover object-center mb-3">
+                    <img :src="detox.imgUrl" class="rounded shadow-xl object-cover object-center mb-3" alt="Детокс">
                     <p class="font-semibold leading-tight mb-4">{{ detox.title }}</p>
 
                     <div class="flex items-center text-xs">
                         <button @click="showModal(detox)" class="px-5 py-2 mr-2 font-semibold uppercase bg-brand-yellow shadow-lg hover:bg-brand-yellow-hover rounded focus:outline-none">
                             заказать
                         </button>
-                        <button @click="showDetailsModal(detox)" class="px-5 py-2 font-semibold uppercase bg-gray-400 hover:bg-gray-300 rounded focus:outline-none">
+                        <button @click="showDetailsModal(detox)" class="px-5 py-2 font-semibold uppercase bg-gray-300 hover:bg-gray-400 rounded focus:outline-none">
                             состав
                         </button>
                     </div>

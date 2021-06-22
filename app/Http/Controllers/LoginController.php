@@ -15,13 +15,18 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function authenticate(Request $request)
+    public function login(Request $request)
     {
-        $user = User::where('email',$request['email'])->first();
+        $request->validate([
+            'email' => ['required', 'email', 'exists:users'],
+            'password' => ['required']
+        ]);
 
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
-            return redirect('/admin');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            return redirect('/admin/products');
         }
+
+        return redirect()->back();
     }
 
     public function logout()

@@ -301,7 +301,7 @@
 
                     <a href="/detox"
                        class="px-5 py-2 text-xs uppercase font-semibold
-                       rounded shadow bg-brand-yellow hover:bg-brand-yellow-hover focus:outline-none">
+                       rounded shadow bg-yellow-300 hover:bg-yellow-400 focus:outline-none">
                         Подробнее
                     </a>
                 </div>
@@ -322,6 +322,11 @@
     <!-- Section Team -->
     <section id="team" class="py-16">
         <team></team>
+    </section>
+
+    <!--  Section Cart  -->
+    <section id="cart">
+        <cart></cart>
     </section>
 
     <!-- Section Contact -->
