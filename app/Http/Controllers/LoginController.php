@@ -41,11 +41,11 @@ class LoginController extends Controller
     }
 
     public function pwdUpdate(Request $request) {
-       $user = User::find(1);
+       $user = Auth::user();
 
        $user->password = Hash::make($request->pwd);
        $user->save();
 
-       return redirect('/pwd')->with(['message' => 'Пароль сменен', 'alert' => 'alert-success']);
+       return redirect('/admin/pwd')->with(['message' => 'Пароль сменен', 'alert' => 'alert-success']);
     }
 }
