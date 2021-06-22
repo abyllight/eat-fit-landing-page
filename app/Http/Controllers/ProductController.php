@@ -39,7 +39,7 @@ class ProductController extends Controller
         $product->kcal = $request['kcal'];
         $product->is_active = true;
 
-        $product->image = Storage::putFile('', $request->file('image'));
+        $product->image = Storage::putFile('public', $request->file('image'));
 
         $product->save();
 
@@ -74,7 +74,7 @@ class ProductController extends Controller
 
         if ($request->has('image')){
             Storage::delete($product->image);
-            $product->image = Storage::putFile('', $request->file('image'));
+            $product->image = Storage::putFile('public', $request->file('image'));
         }
 
         $product->save();
