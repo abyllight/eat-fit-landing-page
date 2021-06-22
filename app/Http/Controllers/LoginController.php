@@ -35,4 +35,17 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+    public function pwd() {
+        return view('product.pwd');
+    }
+
+    public function pwdUpdate(Request $request) {
+       $user = User::find(1);
+
+       $user->password = Hash::make($request->pwd);
+       $user->save();
+
+       return redirect('/admin/pwd')->with(['message' => 'Пароль сменен', 'alert' => 'alert-success']);
+    }
 }

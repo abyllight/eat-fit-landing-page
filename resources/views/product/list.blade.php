@@ -18,10 +18,18 @@
 <div id="app">
     <div class="w-full bg-gray-900 px-5 py-3 fixed-top flex items-center justify-between mb-5">
         <p class="text-white mr-3">{{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
-        <form method="post" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="px-3 py-1 bg-gray-300 rounded hover:bg-white">Выйти</button>
-        </form>
+        <div class="flex items-center">
+            <a
+                href="{{route('pwd')}}"
+                class="px-3 py-1 bg-gray-300 rounded hover:bg-white mr-4">
+                Сменить пароль
+            </a>
+            <form method="post" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="px-3 py-1 bg-gray-300 rounded hover:bg-white">Выйти</button>
+            </form>
+        </div>
+
     </div>
 
     <div class="container mx-auto px-3">

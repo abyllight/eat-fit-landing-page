@@ -44,7 +44,8 @@ Route::get('/products', function () {
 Route::get('/login', 'LoginController@show')->name('login')->middleware('guest');
 
 Route::post('/login', 'LoginController@login')->name('login.post');
-
+Route::get('/pwd', 'LoginController@pwd')->name('pwd');
+Route::post('/pwd', 'LoginController@pwdUpdate')->name('pwd.update');
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/products', 'ProductController@index')->name('products');
 
@@ -56,5 +57,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/product/{id}/deactivate', 'ProductController@deactivate')->name('product.deactivate');
     Route::post('/product/{id}/activate', 'ProductController@activate')->name('product.activate');
 
+    Route::get('/pwd', 'LoginController@pwd')->name('pwd');
+    Route::post('/pwd', 'LoginController@pwdUpdate')->name('pwd.update');
     Route::post('/logout', 'LoginController@logout')->name('logout');
 });
