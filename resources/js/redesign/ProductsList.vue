@@ -8,43 +8,48 @@
                     :key="product.id"
                     class="w-1/3 relative p-2 md:p-3 lg:p-4"
                 >
-                    <div class="mb-2">
+                    <div class="mb-3 relative">
                         <img
                             :src="'/storage/' + product.image"
-                            class="rounded-lg mx-auto shadow object-cover object-center cursor-pointer transform transition duration-100 hover:scale-105"
+                            class="rounded-lg mx-auto shadow-md object-cover object-center cursor-pointer transform transition duration-100 hover:scale-105"
                             @click="showModal(product)">
-                    </div>
-                    <p class="leading-tight text-xs md:text-base font-semibold line-clamp-2 mb-2">{{ product.title }}</p>
 
-                    <div class="flex justify-between">
-                        <p class="leading-tight text-xs md:text-base">{{ product.price }}₸</p>
                         <div
                             v-if="!isInCart(product.id)"
                             @click="showModal(product)"
-                            class="rounded-full h-7 w-7 -mt-2 md:h-auto md:w-auto md:text-tiny font-semibold uppercase md:px-4 md:py-2 cursor-pointer bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
-                            <p class="hidden md:block">Выбрать</p>
-                            <img src="/img/icons/add.svg" width="20" class="md:hidden">
+                            class="rounded-full h-7 w-7 md:h-10 md:w-10 absolute -right-3 -bottom-3 cursor-pointer bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
+                            <img src="/img/icons/add.svg" class="w-6 md:w-10">
                         </div>
                     </div>
-                    <div
-                        v-show="isInCart(product.id)"
-                        class="flex items-center justify-between w-20 md:w-24 mt-2">
-                        <div
-                            @click="decrement(product.id)"
-                            class="cursor-pointer rounded h-5 w-5 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
-                            <img src="/img/icons/remove.svg">
-                        </div>
 
-                        <span class="font-semibold text-sm md:text-lg">
+                    <p
+                        @click="showModal(product)"
+                        class="leading-tight text-center md:text-left cursor-pointer font-medium text-xs md:text-lg line-clamp-2 h-7 md:h-11 lg:h-12 mb-2">{{ product.title }}
+                    </p>
+
+                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                        <p class="leading-tight text-sm text-center md:text-left md:text-lg">{{ product.price }}₸</p>
+                        <div
+                            v-show="isInCart(product.id)"
+                            class="flex items-center justify-between w-20 md:w-24 mt-2 md:mt-0 mx-auto md:mx-0">
+                            <div
+                                @click="decrement(product.id)"
+                                class="cursor-pointer rounded h-6 w-6 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 outline-none flex justify-center items-center">
+                                <img src="/img/icons/remove.svg">
+                            </div>
+
+                            <span class="font-semibold text-sm md:text-lg">
                                 {{ $store.getters.getItemCount(product.id) }}
                             </span>
 
-                        <div
-                            @click="increment(product.id)"
-                            class="cursor-pointer rounded h-5 w-5 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
-                            <img src="/img/icons/add.svg">
+                            <div
+                                @click="increment(product.id)"
+                                class="cursor-pointer rounded h-6 w-6 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 outline-none flex justify-center items-center">
+                                <img src="/img/icons/add.svg">
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

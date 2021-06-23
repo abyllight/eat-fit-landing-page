@@ -2,10 +2,10 @@
     <div v-show="show" class="h-screen w-full fixed top-0 left-0 z-30 bg-overlay flex items-center justify-center px-3 py-2">
         <div class="w-full sm:w-1/2 lg:max-w-sm bg-white rounded overflow-hidden shadow-xl relative">
             <div class="bg-white px-3 py-6 sm:p-6">
-                <h3 class="text-lg leading-6 font-semibold mb-1">
+                <h3 class="text-xl leading-6 font-semibold mb-1">
                     {{ data.title }}
                 </h3>
-                <div class="text-sm text-gray-700 mb-4 flex">
+                <div class="text-sm text-gray-700 font-medium mb-4 flex">
                     <p class="mr-3">{{ data.weight }} г</p>
                     <p>{{ data.kcal }} ккал</p>
                 </div>
@@ -27,14 +27,14 @@
                     <div
                         v-else
                         class="flex items-center justify-between w-24 mr-5">
-                        <div class="cursor-pointer rounded-lg h-8 w-8 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center"
+                        <div class="cursor-pointer rounded-lg h-8 w-8 bg-yellow-300 hover:bg-yellow-400 outline-none flex justify-center items-center"
                              @click="decrement">
                             <img src="/img/icons/remove.svg" width="24">
                         </div>
 
                         <span class="text-xl font-semibold">{{ count }}</span>
 
-                        <div class="cursor-pointer rounded-lg h-8 w-8 bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center"
+                        <div class="cursor-pointer rounded-lg h-8 w-8 bg-yellow-300 hover:bg-yellow-400 outline-none flex justify-center items-center"
                              @click="increment">
                             <img src="/img/icons/add.svg" width="24">
                         </div>
@@ -43,7 +43,11 @@
                         <p class="text-xl"> {{ total > 0 ? total : data.price }}₸ </p>
                     </div>
                 </div>
-
+                <div
+                    @click="close"
+                    class="flex justify-center mt-8 cursor-pointer">
+                    Назад в меню
+                </div>
             </div>
             <button @click="close" type="button" class="absolute top-0 right-0 mr-4 mt-2 block text-gray-500 hover:text-gray-700 focus:text-blue-600 focus:outline-none">
                 <svg class="h-8 w-8 fill-current" viewBox="0 0 20 20">
