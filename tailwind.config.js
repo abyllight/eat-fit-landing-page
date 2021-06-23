@@ -64,7 +64,9 @@ module.exports = {
                 'gr-yellow-start': '#FFDE7C',
                 'gr-yellow-end': '#FFC51A',
                 'overlay': 'rgba(34, 34, 34, 0.85)',
-                lime: colors.lime
+                lime: colors.lime,
+                blue: colors.blue,
+                indigo: colors.indigo
             },
             opacity: {
                 '63': '0.69'

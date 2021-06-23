@@ -34,7 +34,7 @@
                             class="flex items-center justify-between w-20 md:w-24 mt-2 md:mt-0 mx-auto md:mx-0">
                             <div
                                 @click="decrement(product.id)"
-                                class="cursor-pointer rounded h-6 w-6 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 outline-none flex justify-center items-center">
+                                class="cursor-pointer rounded h-6 w-6 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 focus:outline-none flex justify-center items-center">
                                 <img src="/img/icons/remove.svg">
                             </div>
 
@@ -44,7 +44,7 @@
 
                             <div
                                 @click="increment(product.id)"
-                                class="cursor-pointer rounded h-6 w-6 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 outline-none flex justify-center items-center">
+                                class="cursor-pointer rounded h-6 w-6 md:h-7 md:w-7 bg-yellow-300 hover:bg-yellow-400 focus:outline-none flex justify-center items-center">
                                 <img src="/img/icons/add.svg">
                             </div>
                         </div>

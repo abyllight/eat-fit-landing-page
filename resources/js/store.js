@@ -8,8 +8,8 @@ let store = {
         total: 0
     },
     getters: {
-        getTotalCount: state => {
-            return state.cart.reduce((sum, item) => sum + item.q, 0)
+        getTotal: state => {
+            return state.cart.reduce((sum, item) => sum + (item.q * item.price), 0)
         },
         getItemTotal: state => id => {
             let found = state.cart.find(product => product.id === id)
