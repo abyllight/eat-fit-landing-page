@@ -40,9 +40,9 @@
                     class="text-white text-lg font-medium hidden ml-4 lg:block">
                     +7 (700) 090 60 90
                 </a>
-                <a href="/checkout" class="hidden lg:block ml-4">
+                <a href="/cart" class="hidden lg:block ml-4">
                     <div class="relative w-10">
-                        <img src="/img/icons/bag_white.svg" alt="cart" class="w-8">
+                        <img src="/img/icons/cart_white.svg" alt="cart" class="w-7">
                         <div class="rounded-full bg-yellow-300 w-5 h-5 absolute -top-1.5 right-1 flex justify-center items-center text-xs font-semibold">
                             {{ this.$store.state.totalCount }}
                         </div>

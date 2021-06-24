@@ -3,7 +3,7 @@
 @section('content')
     <section id="cart">
         <product-list></product-list>
-        <cart></cart>
+        <basket></basket>
     </section>
 @endsection
 

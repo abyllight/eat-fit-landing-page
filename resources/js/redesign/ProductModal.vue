@@ -45,19 +45,13 @@
                 </div>
                 <div
                     v-show="isInCart"
-                    class="mt-10 flex justify-end items-center">
+                    class="mt-10 flex justify-center items-center">
                     <button
-                        class="mr-2 hover:bg-gray-300 rounded text-xs uppercase font-semibold py-3 px-5 focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
+                        class="mr-2 bg-gray-200 hover:bg-gray-300 rounded text-xs uppercase font-semibold py-3 px-5 focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         @click="close"
                     >
-                        Назад
+                        Вернуться в меню
                     </button>
-                    <a
-                        href="/checkout"
-                        class="bg-yellow-300 hover:bg-yellow-400 text-xs uppercase font-semibold py-3 px-5 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
-                    >
-                        <span>В корзину</span>
-                    </a>
                 </div>
             </div>
             <button @click="close" type="button" class="absolute top-0 right-0 mr-4 mt-2 block text-gray-500 hover:text-gray-700 focus:text-blue-600 focus:outline-none">

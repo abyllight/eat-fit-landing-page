@@ -11,6 +11,9 @@ let store = {
         getTotal: state => {
             return state.cart.reduce((sum, item) => sum + (item.q * item.price), 0)
         },
+        getTotalCount: state => {
+            return state.cart.reduce((sum, item) => sum + item.q, 0)
+        },
         getItemTotal: state => id => {
             let found = state.cart.find(product => product.id === id)
             return found ? found.total : 0
@@ -30,8 +33,12 @@ let store = {
         INCREMENT_TOTAL_COUNT(state) {
             state.totalCount = parseInt(state.totalCount) + 1
         },
-        DECREMENT_TOTAL_COUNT(state) {
-            state.totalCount = parseInt(state.totalCount) - 1
+        DECREMENT_TOTAL_COUNT(state, n) {
+            if (n) {
+                state.totalCount = parseInt(state.totalCount) - n
+            }else {
+                state.totalCount = parseInt(state.totalCount) - 1
+            }
         },
         REMOVE_FROM_CART(state, id) {
             let index = state.cart.findIndex(item => item.id === id);
@@ -84,6 +91,11 @@ let store = {
             }
 
             commit('DECREMENT_TOTAL_COUNT')
+            commit('SAVE_CART')
+        },
+        removeFromCart({state, commit}, item) {
+            commit('REMOVE_FROM_CART', item.id)
+            commit('DECREMENT_TOTAL_COUNT', item.q)
             commit('SAVE_CART')
         }
     }

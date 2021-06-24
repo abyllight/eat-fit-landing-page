@@ -27,10 +27,14 @@ Route::get('/detox', function () {
 
 Route::post('/', 'OrderController@placeOrder');
 
-Route::post('/cart', 'OrderController@placeCartOrder');
+//Route::post('/cart', 'OrderController@placeCartOrder');
 
 Route::get('/page', function () {
     return view('page');
+});
+
+Route::get('/cart', function () {
+    return view('cart');
 });
 
 Route::get('/checkout', function () {

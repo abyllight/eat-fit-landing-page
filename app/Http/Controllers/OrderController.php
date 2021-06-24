@@ -206,7 +206,6 @@ class OrderController extends Controller
 
         $leads = $this->getUtm($request, $leads);
 
-
         $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/leads';
 
         $order = $this->doCurl($link, 'POST', $leads);

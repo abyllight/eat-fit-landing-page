@@ -326,7 +326,7 @@
 
     <!--  Section Cart  -->
     <section id="cart">
-        <cart></cart>
+        <basket></basket>
     </section>
 
     <!-- Section Contact -->

@@ -24,7 +24,8 @@
 
                     <p
                         @click="showModal(product)"
-                        class="leading-tight text-center md:text-left cursor-pointer font-medium text-xs md:text-lg line-clamp-2 h-7 md:h-11 lg:h-12 mb-2">{{ product.title }}
+                        class="leading-tight text-center md:text-left cursor-pointer font-medium text-sm md:text-lg line-clamp-2 h-9 md:h-11 lg:h-12 mb-2">
+                        {{ product.title }}
                     </p>
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between">
