@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductCart;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -335,6 +337,80 @@ class OrderController extends Controller
             return $this->amo_query($leads);
         }else{
             return response()->json(false);
+        }
+    }
+
+    public function eatFitGo(Request $request) {
+        $name = $request->name ?? '';
+        $address = $request->address ?? '';
+        $phone = $request->phone ?? '';
+        $cart = $request->cart ?? [];
+        $card_type = $request->payment;
+        $products = '';
+        $total = $request->total + 600;
+        $wholesale = $request->wholesale ?? 0;
+
+        if ($cart) {
+            foreach ($cart as $item) {
+                $q = $item['q'];
+                $products .= ' ' . $item['title'] . ' - ' . $q . ', ';
+
+                $pc = new ProductCart();
+                $pc->name = $name;
+                $pc->address = $address;
+                $pc->phone = $phone;
+                $pc->product_id = $item['id'];
+                $pc->quantity = $q;
+                $pc->total = $item['total'];
+                $pc->payment = $request->payment;
+                $pc->hasPaid = $card_type === 'card';
+
+                $pc->save();
+            }
+        }
+
+        try {
+            $amo = new \AmoCRM\Client(env('AMO_SUBDOMAIN'), env('AMO_LOGIN'), env('AMO_HASH'));
+
+            $lead = $amo->lead;
+            $lead['name'] = $name;
+            $lead['status_id'] = 40592377; //Заказ поступил
+            $lead['pipeline_id'] = 4359841; //EatFitGo
+            $lead['tags'] = 'Заявка с сайта';
+            $lead['price'] = $wholesale;
+
+
+            //Бюджет - сумма по оптовой стоимости
+            //Стоимсоть - сумма от клиента(роз + доставка) если 1 и 2  если стоимость = бюджет 456321
+            //Факт - с сайта оплата
+            //воронка итфитго + сайз и тайп ///заказ поступил
+            if ($card_type === 'card') {
+                $lead->addCustomField(321139, $total); //Фактический оплачено
+            }
+
+            $lead->addCustomField(456321, $card_type === 'cashless' ? $wholesale : $total); //Стоимость курса
+            $lead->addCustomField(478771, $phone); //Телефон для звонков
+            $lead->addCustomField(478763, $address); //Адрес
+            $lead->addCustomField(373971, $request->time); //Время доставки
+            $lead->addCustomField(321277, $products); //Комм. кухня
+            $lead->addCustomField(327953,  '929511'
+            ); //Size
+            $lead->addCustomField(321197,  '833911'
+            ); //Type
+            $id = $lead->apiAdd();
+
+            $contact = $amo->contact;
+            $contact['name'] = $name;
+            $contact->setLinkedLeadsId($id);
+            $contact->addCustomField(306229, [
+                [$phone, '635201']
+            ]);
+
+            $contact->apiAdd();
+
+            return response()->json('Success');
+        }catch (\AmoCRM\Exception $e) {
+            return response()->json($e->getMessage(), $e->getCode());
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="py-24">
-        <div class="max-w-3xl mx-auto px-2">
+        <div class="max-w-2xl mx-auto px-2">
             <h1 class="text-xl lg:text-2xl text-center font-semibold mb-8">EatFitGo</h1>
             <div class="flex flex-wrap justify-start mx-auto">
                 <div
@@ -14,22 +14,28 @@
                             class="rounded-lg mx-auto shadow-md object-cover object-center cursor-pointer transform transition duration-100 hover:scale-105"
                             @click="showModal(product)">
 
-                        <div
+<!--                        <div
                             v-if="!isInCart(product.id)"
                             @click="showModal(product)"
                             class="rounded-full h-7 w-7 md:h-10 md:w-10 absolute -right-3 -bottom-3 cursor-pointer bg-yellow-300 hover:bg-yellow-400 flex justify-center items-center">
                             <img src="/img/icons/add.svg" class="w-6 md:w-10">
-                        </div>
+                        </div>-->
                     </div>
 
                     <p
                         @click="showModal(product)"
-                        class="leading-tight text-center md:text-left cursor-pointer font-medium text-sm md:text-lg line-clamp-2 h-9 md:h-11 lg:h-12 mb-2">
+                        class="leading-tight text-center md:text-left cursor-pointer font-medium text-sm md:text-base line-clamp-2 h-9 md:h-11 lg:h-12 mb-2">
                         {{ product.title }}
                     </p>
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between">
-                        <p class="leading-tight text-sm text-center md:text-left md:text-lg">{{ product.price }}₸</p>
+                        <div
+                            @click="showModal(product)"
+                            class="leading-tight text-sm text-center md:text-left md:text-base"
+                            :class="[isInCart(product.id) ? 'bg-transparent' : 'bg-yellow-100 hover:bg-yellow-200 px-4 py-1 cursor-pointer']">
+                            {{ product.price }}₸
+                        </div>
+
                         <div
                             v-show="isInCart(product.id)"
                             class="flex items-center justify-between w-20 md:w-24 mt-2 md:mt-0 mx-auto md:mx-0">

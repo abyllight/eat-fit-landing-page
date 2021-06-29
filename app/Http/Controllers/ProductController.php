@@ -25,6 +25,7 @@ class ProductController extends Controller
             'image' => 'image|mimes:jpeg,jpg,png|required|max:10000',
             'composition' => 'required',
             'price' => 'required',
+            'wholesale' => 'required',
         ]);
 
         $product = new Product();
@@ -32,6 +33,7 @@ class ProductController extends Controller
         $product->title = $request['title'];
         $product->composition = $request['composition'];
         $product->price = $request['price'];
+        $product->wholesale = $request['wholesale'];
         $product->weight = $request['weight'];
         $product->fat = $request['fat'];
         $product->protein = $request['protein'];
@@ -61,11 +63,13 @@ class ProductController extends Controller
             'title' => 'required',
             'composition' => 'required',
             'price' => 'required',
+            'wholesale' => 'required',
         ]);
 
         $product->title = $request['title'];
         $product->composition = $request['composition'];
         $product->price = $request['price'];
+        $product->wholesale = $request['wholesale'];
         $product->weight = $request['weight'];
         $product->fat = $request['fat'];
         $product->protein = $request['protein'];

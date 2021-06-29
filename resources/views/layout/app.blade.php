@@ -45,6 +45,8 @@
         /></noscript>
     <!-- End Facebook Pixel Code -->
     <meta name="mailru-domain" content="XLb4KEEntsFqbfyd" />
+    @section('head')
+    @show
 </head>
 <style>
     html {

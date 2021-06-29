@@ -84,57 +84,29 @@
             </div>
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="wholesale">
+                        Оптовая цена
+                    </label>
+                </div>
+                <div class="md:w-2/3">
+                    <input name="wholesale" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('wholesale') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+                           id="wholesale" type="number" placeholder="3000" value="{{ old('wholesale') }}">
+                    @error('wholesale')
+                    <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/3">
                     <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="weight">
                         Вес
                     </label>
                 </div>
                 <div class="md:w-2/3">
                     <input name="weight" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('weight') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-                           id="weight" type="number" placeholder="800" value="{{ old('weight') }}">
+                           id="weight" type="number" step="0.01" placeholder="800" value="{{ old('weight') }}">
                     @error('weight')
                         <div class="text-red-500">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="fat">
-                        Жиры
-                    </label>
-                </div>
-                <div class="md:w-2/3">
-                    <input name="fat" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('fat') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-                           id="fat" type="number" placeholder="10" value="{{ old('fat') }}">
-                    @error('fat')
-                        <div class="text-red-500">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="protein">
-                        Белки
-                    </label>
-                </div>
-                <div class="md:w-2/3">
-                    <input name="protein" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('protein') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-                           id="protein" type="number" placeholder="10" value="{{ old('protein') }}">
-                    @error('protein')
-                        <div class="text-red-500">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="md:flex md:items-center mb-6">
-                <div class="md:w-1/3">
-                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="carbohydrate">
-                        Углеводы
-                    </label>
-                </div>
-                <div class="md:w-2/3">
-                    <input name="carbohydrate" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('carbohydrate') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-                           id="carbohydrate" type="number" placeholder="10" value="{{ old('carbohydrate') }}">
-                    @error('carbohydrate')
-                    <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -146,8 +118,51 @@
                 </div>
                 <div class="md:w-2/3">
                     <input name="kcal" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('kcal') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
-                           id="kcal" type="number" placeholder="10" value="{{ old('kcal') }}">
+                           id="kcal" type="number" placeholder="10" step="0.01" value="{{ old('kcal') }}">
                     @error('kcal')
+                    <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/3">
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="protein">
+                        Белки
+                    </label>
+                </div>
+                <div class="md:w-2/3">
+                    <input name="protein" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('protein') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+                           id="protein" type="number" placeholder="10" step="0.01" value="{{ old('protein') }}">
+                    @error('protein')
+                    <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/3">
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="fat">
+                        Жиры
+                    </label>
+                </div>
+                <div class="md:w-2/3">
+                    <input name="fat" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('fat') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+                           id="fat" type="number" placeholder="10" step="0.01" value="{{ old('fat') }}">
+                    @error('fat')
+                        <div class="text-red-500">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="md:flex md:items-center mb-6">
+                <div class="md:w-1/3">
+                    <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="carbohydrate">
+                        Углеводы
+                    </label>
+                </div>
+                <div class="md:w-2/3">
+                    <input name="carbohydrate" class="bg-gray-200 appearance-none border-2 border-gray-200 @error('carbohydrate') border-red-500 @enderror rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+                           id="carbohydrate" type="number" placeholder="10" step="0.01" value="{{ old('carbohydrate') }}">
+                    @error('carbohydrate')
                     <div class="text-red-500">{{ $message }}</div>
                     @enderror
                 </div>

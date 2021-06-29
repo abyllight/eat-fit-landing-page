@@ -5,9 +5,9 @@
                 <h3 class="text-xl leading-6 font-semibold mb-1">
                     {{ data.title }}
                 </h3>
-                <div class="text-sm text-gray-700 font-medium mb-4 flex">
-                    <p class="mr-3">{{ data.weight }} г</p>
-                    <p>{{ data.kcal }} ккал</p>
+                <div class="text-sm text-gray-900 mb-4 flex">
+                    <p class="mr-3">{{ data.weight }}г</p>
+                    <p>{{ data.kcal }}ккал</p>
                 </div>
 
                 <p class="mb-8">
@@ -91,6 +91,7 @@
                     image: this.data.image,
                     weight: this.data.weight,
                     price: this.data.price,
+                    wholesale: this.data.wholesale,
                     q: 1,
                     total: this.data.price
                 });

@@ -3,17 +3,19 @@
         <div
             v-if="cart.length === 0"
             class="text-center">
-            <h3 class="text-xl mb-4">Корзина пуста</h3>
-            <a class="cursor-pointer bg-yellow-300 hover:bg-yellow-400 rounded-xl px-3 py-2 text-sm"
-               href="/page">
-                Перейти в меню
+            <h3 class="text-2xl mb-4">Корзина пуста</h3>
+            <a
+                href="/page"
+                class="cursor-pointer bg-yellow-300 hover:bg-yellow-400 focus:outline-none rounded-full py-2.5 px-5 inline-flex flex items-center">
+                <img src="/img/icons/back.svg" alt="back">
+                <span>Меню</span>
             </a>
         </div>
         <div v-else class="flex flex-col md:flex-row md:justify-around md:items-start">
             <div class="md:w-1/2">
                 <a
                     href="/page"
-                    class="cursor-pointer bg-yellow-300 rounded-full py-2.5 px-5 inline-flex font-medium flex items-center mb-4">
+                    class="cursor-pointer bg-yellow-300 hover:bg-yellow-400 rounded-full py-2.5 px-5 inline-flex font-medium flex items-center mb-4">
                     <img src="/img/icons/back.svg" alt="back">
                     <span>Меню</span>
                 </a>
@@ -32,7 +34,7 @@
                             </button>
                         </div>
 
-                        <p class="text-sm mb-3"> {{ item.weight }}г </p>
+                        <p class="text-sm mb-3"> {{ item.price }}тг </p>
 
                         <div class="flex justify-between items-center">
                             <div
@@ -72,12 +74,19 @@
                         <p>{{ total + 600 }}₸</p>
                     </div>
 
-                    <a
-                        href="/checkout"
-                        class="w-full bg-yellow-300 hover:bg-yellow-400 text-xs uppercase font-semibold py-3 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
-                    >
-                        <span>Оформить заказ</span>
-                    </a>
+                    <div>
+                        <a
+                            :href="!isEleven ? link : '#'"
+                            :disabled="isEleven"
+                            :class="[ isEleven ? disabled : activeButton ]"
+                            class="w-full text-xs uppercase font-semibold py-3 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
+                        >
+                            <span>Оформить заказ</span>
+                        </a>
+                        <p v-if="isEleven" class="mt-2 text-sm italic font-medium text-red-500">
+                            Прием заказов осуществляется только до 22:00
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,12 +97,19 @@
     export default {
         name: "Cart",
         data(){
-            return{}
+            return{
+                disabled: 'cursor-not-allowed opacity-50 bg-gray-300',
+                activeButton: 'cursor-pointer opacity-100 bg-yellow-300 hover:bg-yellow-400',
+                link: '/checkout'
+            }
         },
         computed: {
             ...mapState(['cart']),
             total() {
                 return this.$store.getters.getTotal
+            },
+            isEleven() {
+                return new Date().getHours() >= 22
             }
         },
         methods: {

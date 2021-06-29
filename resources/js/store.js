@@ -5,11 +5,15 @@ let store = {
     state: {
         cart: cart ? JSON.parse(cart) : [],
         totalCount: totalCount ?? 0,
-        total: 0
+        total: 0,
+        wholesale: 0
     },
     getters: {
         getTotal: state => {
             return state.cart.reduce((sum, item) => sum + (item.q * item.price), 0)
+        },
+        getWholesale: state => {
+            return state.cart.reduce((sum, item) => sum + (item.q * item.wholesale), 0)
         },
         getTotalCount: state => {
             return state.cart.reduce((sum, item) => sum + item.q, 0)
@@ -59,8 +63,7 @@ let store = {
         },
         CLEAR_CART(state){
             state.cart = []
-            state.cartCount = 0
-            this.commit('saveCart');
+            state.totalCount = 0
         },
         RESET_TOTAL_COUNT(state) {
             state.totalCount = 0
@@ -96,6 +99,10 @@ let store = {
         removeFromCart({state, commit}, item) {
             commit('REMOVE_FROM_CART', item.id)
             commit('DECREMENT_TOTAL_COUNT', item.q)
+            commit('SAVE_CART')
+        },
+        clearCart({commit}) {
+            commit('CLEAR_CART')
             commit('SAVE_CART')
         }
     }

@@ -21,10 +21,6 @@ Route::get('/detox', function () {
     return view('detox');
 });
 
-/*Route::get('/products', function () {
-    return view('products');
-});*/
-
 Route::post('/', 'OrderController@placeOrder');
 
 //Route::post('/cart', 'OrderController@placeCartOrder');
@@ -40,6 +36,8 @@ Route::get('/cart', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 });
+
+Route::post('/checkout', 'OrderController@eatFitGo');
 
 Route::get('/products', function () {
     return response()->json(Product::where('is_active', true)->get());
