@@ -1,5 +1,6 @@
 <?php
 
+use AmoCRM\Client;
 use Illuminate\Support\Facades\Route;
 use App\Product;
 /*
@@ -34,6 +35,8 @@ Route::get('/cart', function () {
 });
 
 Route::get('/checkout', function () {
+    $amo = new Client(env('AMO_SUBDOMAIN'), env('AMO_LOGIN'), env('AMO_HASH'));
+    dd($amo->account->apiCurrent());
     return view('checkout');
 });
 

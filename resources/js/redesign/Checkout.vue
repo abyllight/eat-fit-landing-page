@@ -130,7 +130,7 @@
                         :disabled="isEleven"
                         :class="[ isEleven ? disabled : activeButton ]"
                     >
-                        Оплатить
+                        Заказать
                     </button>
                     <p v-if="isEleven" class="mt-2 text-sm italic font-medium">
                         Прием заказов осуществляется только до 22:00
@@ -218,23 +218,23 @@
                 intervals: [
                     {
                         id: 0,
-                        time: '07.00 - 08.00'
+                        time: '07.00-08.00'
                     },
                     {
                         id: 1,
-                        time: '08.00 - 09.00'
+                        time: '08.00-09.00'
                     },
                     {
                         id: 2,
-                        time: '09.00 - 10.00'
+                        time: '09.00-10.00'
                     }
                 ],
                 time: 100,
                 active: 'bg-yellow-300 shadow',
                 non_active: 'bg-gray-200 hover:bg-gray-300',
-                name: 'Abylay TEST',
-                phone: '+7 (111) 111-11-20',
-                address: 'Kenesary 4',
+                name: '',
+                phone: '',
+                address: '',
                 payment: 'card',
                 disabled: 'cursor-not-allowed opacity-50 bg-gray-300',
                 activeButton: 'cursor-pointer opacity-100 bg-yellow-300 hover:bg-yellow-400',

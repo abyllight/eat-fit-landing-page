@@ -81,7 +81,7 @@
                             :class="[ isEleven ? disabled : activeButton ]"
                             class="w-full text-xs uppercase font-semibold py-3 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         >
-                            <span>Оформить заказ</span>
+                            <span>Оформить заказ на завтра</span>
                         </a>
                         <p v-if="isEleven" class="mt-2 text-sm italic font-medium text-red-500">
                             Прием заказов осуществляется только до 22:00

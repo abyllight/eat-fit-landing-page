@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\ProductCart;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -353,9 +352,12 @@ class OrderController extends Controller
         if ($cart) {
             foreach ($cart as $item) {
                 $q = $item['q'];
-                $products .= ' ' . $item['title'] . ' - ' . $q . ', ';
+                $products .= ' ' . $item['title'] . ' - ' . $q;
+                if (end($cart) === $item) {
+                    $products .= ', ';
+                }
 
-                $pc = new ProductCart();
+                /*$pc = new ProductCart();
                 $pc->name = $name;
                 $pc->address = $address;
                 $pc->phone = $phone;
@@ -365,7 +367,7 @@ class OrderController extends Controller
                 $pc->payment = $request->payment;
                 $pc->hasPaid = $card_type === 'card';
 
-                $pc->save();
+                $pc->save();*/
             }
         }
 
@@ -379,13 +381,13 @@ class OrderController extends Controller
             $lead['tags'] = 'Заявка с сайта';
             $lead['price'] = $wholesale;
 
-
-            //Бюджет - сумма по оптовой стоимости
-            //Стоимсоть - сумма от клиента(роз + доставка) если 1 и 2  если стоимость = бюджет 456321
-            //Факт - с сайта оплата
-            //воронка итфитго + сайз и тайп ///заказ поступил
             if ($card_type === 'card') {
                 $lead->addCustomField(321139, $total); //Фактический оплачено
+                $lead->addCustomField(869811, '969831'); //Оплачено картой на сайте
+            }elseif ($card_type === 'kaspi_pay') {
+                $lead->addCustomField(869811, '968303'); //kaspi pay
+            }else{
+                $lead->addCustomField(869811, '968307'); //Расчетный счет
             }
 
             $lead->addCustomField(456321, $card_type === 'cashless' ? $wholesale : $total); //Стоимость курса
