@@ -5,14 +5,34 @@
                 <h3 class="text-xl leading-6 font-semibold mb-1">
                     {{ data.title }}
                 </h3>
-                <div class="text-sm text-gray-900 mb-4 flex">
+                <div class="text-sm text-gray-800 font-medium mb-4 flex">
                     <p class="mr-3">{{ data.weight }}г</p>
-                    <p>{{ data.kcal }}ккал</p>
+                    <p class="mr-3">{{ data.kcal }}ккал</p>
+                    <p class="mr-3">Б - {{ data.protein }}г</p>
+                    <p class="mr-3">Ж - {{ data.fat }}г</p>
+                    <p>У - {{ data.carbohydrate }}г</p>
                 </div>
 
-                <p class="mb-8">
+                <p class="mb-4">
                     {{ data.composition }}
                 </p>
+
+<!--                <div class="mb-8 flex">
+                    <div class="flex-col justify-center mr-8">
+                        <p class="-mb-1 text">{{ data.protein }}г</p>
+                        <span class="text-xs font-medium">Белки</span>
+                    </div>
+
+                    <div class="flex-col justify-center mr-8">
+                        <p class="-mb-1 text">{{ data.fat }}г</p>
+                        <span class="text-xs font-medium">Жиры</span>
+                    </div>
+
+                    <div class="flex-col justify-center">
+                        <p class="-mb-1 text">{{ data.carbohydrate }}г</p>
+                        <span class="text-xs font-medium">Углеводы</span>
+                    </div>
+                </div>-->
 
                 <div class="flex items-center justify-center">
                     <button
