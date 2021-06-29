@@ -60,5 +60,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('/pwd', 'LoginController@pwd')->name('pwd');
     Route::post('/pwd', 'LoginController@pwdUpdate')->name('pwd.update');
+
+    Route::get('/list', 'ListController@index')->name('list');
+    Route::post('/list', 'ListController@fetchOrders')->name('fetch');
+
     Route::post('/logout', 'LoginController@logout')->name('logout');
 });

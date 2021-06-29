@@ -334,6 +334,7 @@
                 catch(function(error){
                     self.showFail = true
                     console.log(error, 'erro from eatfitgo');
+                    self.isLoading = false
                 });
             },
         }
