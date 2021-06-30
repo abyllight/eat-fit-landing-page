@@ -2,30 +2,44 @@
     <div v-show="show" class="h-screen w-full fixed top-0 left-0 z-30 bg-overlay flex items-center justify-center px-3 py-2">
         <div class="w-full sm:w-1/2 lg:max-w-sm bg-white rounded overflow-hidden shadow-xl relative">
             <div class="bg-white px-3 py-6 sm:p-6">
-                <h3 class="text-xl leading-6 font-semibold mb-1">
+                <h3 class="text-xl leading-6 font-semibold mb-2">
                     {{ data.title }}
                 </h3>
-<!--                <VueSlickCarousel :dots="true">
+                <VueSlickCarousel v-bind="settings">
                     <div>
-
+                        <img :src="'/storage/' + data.image" class="w-56 rounded mx-auto object-cover object-center">
                     </div>
                     <div>
-                        <inner-image-zoom src="data.image" zoomSrc="data.image" />
+                        <div class="text-sm text-gray-800 mb-4 flex justify-between">
+                            <div>
+                                <p class="-mb-1">{{ data.weight }}</p>
+                                <p class="font-semibold">Вес</p>
+                            </div>
+                            <div>
+                                <p class="-mb-1">{{ data.kcal }}</p>
+                                <p class="font-semibold">Ккал</p>
+                            </div>
+                            <div>
+                                <p class="-mb-1">{{ data.protein }}</p>
+                                <p class="font-semibold">Белки</p>
+                            </div>
+                            <div>
+                                <p class="-mb-1">{{ data.fat }}</p>
+                                <p class="font-semibold">Жиры</p>
+                            </div>
+                            <div>
+                                <p class="-mb-1">{{ data.carbohydrate }}</p>
+                                <p class="font-semibold">Углеводы</p>
+                            </div>
+                        </div>
+
+                        <p class="mb-4">
+                            {{ data.composition }}
+                        </p>
                     </div>
 
-                </VueSlickCarousel>-->
-                <div class="text-sm text-gray-800 font-medium mb-4 flex">
-                    <p class="mr-3">{{ data.weight }}г</p>
-                    <p class="mr-3">{{ data.kcal }}ккал</p>
-                    <p class="mr-3">Б - {{ data.protein }}г</p>
-                    <p class="mr-3">Ж - {{ data.fat }}г</p>
-                    <p>У - {{ data.carbohydrate }}г</p>
-                </div>
-
-                <p class="mb-4">
-                    {{ data.composition }}
-                </p>
-                <div class="flex items-center justify-center mt-10">
+                </VueSlickCarousel>
+                <div class="flex items-center justify-center mt-12">
                     <button
                         v-if="!isInCart"
                         class="w-40 bg-yellow-300 mr-5 hover:bg-yellow-400 text-xs uppercase font-semibold p-3 rounded shadow focus:outline-none focus:shadow-outline flex items-center justify-center"
@@ -79,14 +93,21 @@
     import VueSlickCarousel from 'vue-slick-carousel'
     import 'vue-slick-carousel/dist/vue-slick-carousel.css'
     import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-    import InnerImageZoom from 'vue-inner-image-zoom';
-    import 'vue-inner-image-zoom/lib/vue-inner-image-zoom.css';
     export default {
         name: "ProductModal",
         props: ['show', 'data'],
         components: {
-            VueSlickCarousel,
-            'inner-image-zoom': InnerImageZoom
+            VueSlickCarousel
+        },
+        data() {
+          return {
+              settings: {
+                  "dots": true,
+                  "focusOnSelect": true,
+                  "slidesToShow": 1,
+                  "speed": 500
+              }
+          }
         },
         computed: {
             ...mapState(['cart']),
