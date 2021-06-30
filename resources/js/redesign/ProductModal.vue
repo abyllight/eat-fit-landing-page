@@ -5,6 +5,15 @@
                 <h3 class="text-xl leading-6 font-semibold mb-1">
                     {{ data.title }}
                 </h3>
+<!--                <VueSlickCarousel :dots="true">
+                    <div>
+
+                    </div>
+                    <div>
+                        <inner-image-zoom src="data.image" zoomSrc="data.image" />
+                    </div>
+
+                </VueSlickCarousel>-->
                 <div class="text-sm text-gray-800 font-medium mb-4 flex">
                     <p class="mr-3">{{ data.weight }}г</p>
                     <p class="mr-3">{{ data.kcal }}ккал</p>
@@ -16,25 +25,7 @@
                 <p class="mb-4">
                     {{ data.composition }}
                 </p>
-
-<!--                <div class="mb-8 flex">
-                    <div class="flex-col justify-center mr-8">
-                        <p class="-mb-1 text">{{ data.protein }}г</p>
-                        <span class="text-xs font-medium">Белки</span>
-                    </div>
-
-                    <div class="flex-col justify-center mr-8">
-                        <p class="-mb-1 text">{{ data.fat }}г</p>
-                        <span class="text-xs font-medium">Жиры</span>
-                    </div>
-
-                    <div class="flex-col justify-center">
-                        <p class="-mb-1 text">{{ data.carbohydrate }}г</p>
-                        <span class="text-xs font-medium">Углеводы</span>
-                    </div>
-                </div>-->
-
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center mt-10">
                     <button
                         v-if="!isInCart"
                         class="w-40 bg-yellow-300 mr-5 hover:bg-yellow-400 text-xs uppercase font-semibold p-3 rounded shadow focus:outline-none focus:shadow-outline flex items-center justify-center"
@@ -67,10 +58,10 @@
                     v-show="isInCart"
                     class="mt-10 flex justify-center items-center">
                     <button
-                        class="mr-2 bg-gray-200 hover:bg-gray-300 rounded text-xs uppercase font-semibold py-3 px-5 focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
+                        class="mr-2 bg-yellow-300 hover:bg-yellow-400 rounded text-xs uppercase font-semibold py-3 px-5 focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         @click="close"
                     >
-                        Вернуться в меню
+                        Добавить в корзину
                     </button>
                 </div>
             </div>
@@ -85,9 +76,18 @@
 
 <script>
     import {mapState} from "vuex";
+    import VueSlickCarousel from 'vue-slick-carousel'
+    import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+    import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+    import InnerImageZoom from 'vue-inner-image-zoom';
+    import 'vue-inner-image-zoom/lib/vue-inner-image-zoom.css';
     export default {
         name: "ProductModal",
         props: ['show', 'data'],
+        components: {
+            VueSlickCarousel,
+            'inner-image-zoom': InnerImageZoom
+        },
         computed: {
             ...mapState(['cart']),
             isInCart() {

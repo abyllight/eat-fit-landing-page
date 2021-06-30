@@ -1,10 +1,13 @@
 <template>
     <a href="/cart">
-        <div v-show="totalCount > 0"
-             class="lg:hidden fixed bottom-7 right-5 w-14 h-14 bg-yellow-300 rounded-full shadow-lg cursor-pointer z-30 flex justify-center items-center">
-            <img src="/img/icons/cart_black.svg" alt="cart">
-            <div class="rounded-full bg-black text-white w-5 h-5 absolute -top-1.5 right-0 border border-white flex justify-center items-center text-xs font-semibold">
-                {{ totalCount }}
+        <div v-show="totalCount > 0" class="lg:hidden px-4 fixed bottom-8 z-30 inset-x-0 mx-auto">
+            <div class="py-3 px-4 w-full bg-yellow-300 rounded shadow cursor-pointer flex justify-between items-center font-medium">
+                <div class="mr-4 flex items-center">
+                    <img src="/img/icons/cart_black.svg" alt="cart" width="18" class="mr-2">
+                    <p>Корзина: {{ totalCount }}шт</p>
+                </div>
+
+                <p class="">{{ total }}₸</p>
             </div>
         </div>
     </a>
@@ -20,6 +23,9 @@
         computed: {
             totalCount() {
                 return this.$store.state.totalCount
+            },
+            total() {
+                return this.$store.getters.getTotal
             }
         }
     }

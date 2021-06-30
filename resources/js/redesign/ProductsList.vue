@@ -31,7 +31,7 @@
                     <div class="flex flex-col md:flex-row md:items-center justify-between">
                         <div
                             @click="showModal(product)"
-                            class="leading-tight text-sm text-center md:text-left md:text-base"
+                            class="leading-tight text-sm text-center md:text-left md:text-base rounded"
                             :class="[isInCart(product.id) ? 'bg-transparent' : 'bg-yellow-100 hover:bg-yellow-200 px-4 py-1 cursor-pointer']">
                             {{ product.price }}₸
                         </div>

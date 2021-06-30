@@ -5,7 +5,7 @@
             class="text-center">
             <h3 class="text-2xl mb-4">Корзина пуста</h3>
             <a
-                href="/page"
+                href="/go"
                 class="cursor-pointer bg-yellow-300 hover:bg-yellow-400 focus:outline-none rounded-full py-2.5 px-5 inline-flex flex items-center">
                 <img src="/img/icons/back.svg" alt="back">
                 <span>Меню</span>
@@ -14,7 +14,7 @@
         <div v-else class="flex flex-col md:flex-row md:justify-around md:items-start">
             <div class="md:w-1/2">
                 <a
-                    href="/page"
+                    href="/go"
                     class="cursor-pointer bg-yellow-300 hover:bg-yellow-400 rounded-full py-2.5 px-5 inline-flex font-medium flex items-center mb-4">
                     <img src="/img/icons/back.svg" alt="back">
                     <span>Меню</span>

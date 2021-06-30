@@ -5,7 +5,7 @@
             class="text-center">
             <h3 class="text-xl mb-4">Корзина пуста</h3>
             <a
-                href="/page"
+                href="/go"
                 class="cursor-pointer bg-yellow-300 hover:bg-yellow-400 focus:outline-none rounded-full py-2.5 px-5 inline-flex flex items-center">
                 <img src="/img/icons/back.svg" alt="back">
                 <span>Меню</span>
@@ -29,7 +29,7 @@
                         <input
                             id="name"
                             type="text"
-                            placeholder="Амир"
+                            placeholder="Имя"
                             :disabled="isEleven"
                             v-model.trim="$v.name.$model"
                             :class="{ 'border-red-500': $v.name.$error }"
@@ -59,7 +59,7 @@
                             type="text"
                             v-model.trim="$v.address.$model"
                             :class="{ 'border-red-500': $v.address.$error }"
-                            placeholder="Например: Кенесары 4"
+                            placeholder="Например: Сыганак-10, кв17, п2, э4"
                             :disabled="isEleven"
                             class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md" />
                         <p v-if="$v.address.$error" class="text-red-500 text-xs mt-1">Укажите адрес</p>
@@ -76,7 +76,7 @@
                             :key="interval.id"
                             :disabled="isEleven"
                             @click.stop="time=interval.id"
-                            class="text-sm mr-3 mb-2 cursor-pointer focus:outline-none rounded-full py-2 px-3 inline"
+                            class="text-xs md:text-sm mr-2 mb-2 cursor-pointer focus:outline-none rounded-full py-2 px-3 inline"
                             :class="[interval.id === time ? active : non_active, isEleven ? disabled : activeButtonTime]">
                             {{ interval.time }}
                         </button>
@@ -97,29 +97,27 @@
                                 Оплата картой на сайте
                             </label>
                         </div>
-                        <div v-if="!isSix" class="space-y-4">
-                            <div class="flex items-center">
-                                <input
-                                    id="kaspi_pay"
-                                    v-model="payment"
-                                    value="kaspi_pay"
-                                    type="radio"
-                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label for="kaspi_pay" class="ml-3 block text-sm text-gray-700">
-                                    Удаленная оплата Kaspi Pay
-                                </label>
-                            </div>
-                            <div class="flex items-center">
-                                <input
-                                    id="cashless"
-                                    v-model="payment"
-                                    value="cashless"
-                                    type="radio"
-                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
-                                <label for="cashless" class="ml-3 block text-sm text-gray-700">
-                                    Безналичный расчет по договору
-                                </label>
-                            </div>
+                        <div class="flex items-center">
+                            <input
+                                id="kaspi_pay"
+                                v-model="payment"
+                                value="kaspi_pay"
+                                type="radio"
+                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                            <label for="kaspi_pay" class="ml-3 block text-sm text-gray-700">
+                                Удаленная оплата Kaspi Pay
+                            </label>
+                        </div>
+                        <div class="flex items-center">
+                            <input
+                                id="cashless"
+                                v-model="payment"
+                                value="cashless"
+                                type="radio"
+                                class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                            <label for="cashless" class="ml-3 block text-sm text-gray-700">
+                                Безналичный расчет по договору
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -287,7 +285,7 @@
                         { //options
                             publicId: 'pk_114ea6d38b2d3467a650ea5c71d76', //id из личного кабинета
                             description: 'Оплата товаров в eatandfit.kz', //назначение
-                            amount: 5, //сумма
+                            amount: this.total, //сумма
                             currency: 'KZT', //валюта
                             skin: "modern", //дизайн виджета (необязательно)
                             data: {
