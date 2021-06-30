@@ -11,23 +11,23 @@
                     </div>
                     <div>
                         <div class="text-sm text-gray-800 mb-4 flex justify-between">
-                            <div>
+                            <div v-if="data.weight">
                                 <p class="-mb-1">{{ data.weight }}</p>
                                 <p class="font-semibold">Вес</p>
                             </div>
-                            <div>
+                            <div v-if="data.kcal">
                                 <p class="-mb-1">{{ data.kcal }}</p>
                                 <p class="font-semibold">Ккал</p>
                             </div>
-                            <div>
+                            <div v-if="data.protein">
                                 <p class="-mb-1">{{ data.protein }}</p>
                                 <p class="font-semibold">Белки</p>
                             </div>
-                            <div>
+                            <div v-if="data.fat">
                                 <p class="-mb-1">{{ data.fat }}</p>
                                 <p class="font-semibold">Жиры</p>
                             </div>
-                            <div>
+                            <div v-if="data.carbohydrate">
                                 <p class="-mb-1">{{ data.carbohydrate }}</p>
                                 <p class="font-semibold">Углеводы</p>
                             </div>
