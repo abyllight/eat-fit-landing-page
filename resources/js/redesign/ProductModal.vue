@@ -69,10 +69,10 @@
                     </div>
                 </div>
                 <div
-                    v-show="isInCart"
-                    class="hidden lg:block mt-10 flex justify-center items-center">
+                    v-if="isInCart"
+                    class="lg:block mt-10 flex justify-center items-center">
                     <button
-                        class="mr-2 bg-yellow-300 hover:bg-yellow-400 rounded text-xs uppercase font-semibold py-3 px-5 focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
+                        class="bg-yellow-300 hover:bg-yellow-400 rounded text-xs uppercase font-semibold py-3 px-5 focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         @click="close"
                     >
                         Добавить в корзину
@@ -103,6 +103,8 @@
           return {
               settings: {
                   "dots": true,
+                  "edgeFriction": 0.35,
+                  "infinite": false,
                   "focusOnSelect": true,
                   "slidesToShow": 1,
                   "speed": 500
