@@ -22,7 +22,7 @@
                     <a v-for="item in menu"
                        :key="item.id"
                        class="px-2 py-1 mr-2 text-white text-sm rounded hover:text-brand-green cursor-pointer"
-                       :href="'/#' + item.link">
+                       :href="'/' + item.link">
                         {{ item.name }}
                     </a>
                 </nav>
@@ -62,7 +62,7 @@
         <a v-for="item in menu"
            :key="item.id"
            class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer"
-           :href="'/#' + item.link"
+           :href="'/' + item.link"
            @click="isOpen=false">
             {{ item.name }}
         </a>
@@ -81,17 +81,22 @@ export default {
                 {
                     id: 0,
                     name: 'О нас',
-                    link: 'about'
+                    link: '#about'
                 },
                 {
                     id: 1,
                     name: 'Программы',
-                    link: 'programs'
+                    link: '#programs'
                 },
                 {
                     id: 2,
                     name: 'Пример меню',
-                    link: 'sample'
+                    link: '#sample'
+                },
+                {
+                    id: 3,
+                    name: 'EatFitGo',
+                    link: 'go'
                 },
                 {
                     id: 3,
@@ -101,17 +106,17 @@ export default {
                 {
                     id: 4,
                     name: 'Отзывы',
-                    link: 'reviews'
+                    link: '#reviews'
                 },
                 {
                     id: 5,
                     name: 'FAQ',
-                    link: 'faq'
+                    link: '#faq'
                 },
                 {
                     id: 6,
                     name: 'Контакты',
-                    link: 'contacts'
+                    link: '#contacts'
                 }
             ]
         }
