@@ -25,7 +25,7 @@ Route::post('/', 'OrderController@placeOrder');
 
 //Route::post('/cart', 'OrderController@placeCartOrder');
 
-Route::get('/page', function () {
+Route::get('/go', function () {
     return view('page');
 });
 
