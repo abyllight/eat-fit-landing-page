@@ -22,6 +22,7 @@ class ProductController extends Controller
     public function store(Request $request){
         $request->validate([
             'title' => 'required',
+            'amo_id' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png|required|max:10000',
             'composition' => 'required',
             'price' => 'required',
@@ -31,6 +32,7 @@ class ProductController extends Controller
         $product = new Product();
 
         $product->title = $request['title'];
+        $product->amo_id = $request['amo_id'];
         $product->composition = $request['composition'];
         $product->price = $request['price'];
         $product->wholesale = $request['wholesale'];
@@ -61,12 +63,14 @@ class ProductController extends Controller
 
         $request->validate([
             'title' => 'required',
+            'amo_id' => 'required',
             'composition' => 'required',
             'price' => 'required',
             'wholesale' => 'required',
         ]);
 
         $product->title = $request['title'];
+        $product->amo_id = $request['amo_id'];
         $product->composition = $request['composition'];
         $product->price = $request['price'];
         $product->wholesale = $request['wholesale'];

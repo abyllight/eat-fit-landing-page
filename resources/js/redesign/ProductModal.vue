@@ -109,7 +109,13 @@
                   "focusOnSelect": true,
                   "slidesToShow": 1,
                   "speed": 500
-              }
+              },
+              products: [
+                  {
+                      id: 0,
+                      amo_id: '',
+                  }
+              ]
           }
         },
         computed: {
@@ -127,7 +133,6 @@
         methods:{
             close(){
                 this.$emit('close')
-                //console.log(this.$refs.slick)
             },
             addToCart(){
                 this.$store.dispatch('addToCart', {

@@ -285,7 +285,7 @@
                         { //options
                             publicId: 'pk_114ea6d38b2d3467a650ea5c71d76', //id из личного кабинета
                             description: 'Оплата товаров в eatandfit.kz', //назначение
-                            amount: this.total, //сумма
+                            amount: this.total + 600, //сумма
                             currency: 'KZT', //валюта
                             skin: "modern", //дизайн виджета (необязательно)
                             data: {

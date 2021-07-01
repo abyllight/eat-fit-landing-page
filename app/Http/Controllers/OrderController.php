@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\ProductCart;
 use Illuminate\Http\Request;
 
@@ -348,16 +349,25 @@ class OrderController extends Controller
         $products = '';
         $total = $request->total + 600;
         $wholesale = $request->wholesale ?? 0;
-
-        if ($cart) {
-            foreach ($cart as $item) {
-                $q = $item['q'];
-                $products .= $item['title'] . ' - ' . $q;
-                if (end($cart) !== $item) {
-                    $products .= ', '.PHP_EOL;
-                }
-            }
-        }
+        //872351 Мультизлаковая каша
+        //872353 Творожный маффин
+        //872355 Гранола с ягодой и орехом, йогурт
+        //872357 Омлет "Тамагояки"
+        //872359 Ролл пшеничный с курицей и яйцом
+        //872361 Ролл пшеничный с лососем и яйцом
+        //872363 Курица терияки и лапша удон
+        //872365 Фрикасе из курицы с гречей
+        //872367 Курица BBQ с картофелем
+        //872369 Боул с курицей
+        //872371 Поке с лососем
+        //872373 Боул с тофу
+        //872375 Чизкейк творожный диетический
+        //872377 Сырники с ягодным соусом
+        //872379 Испанский творожный пирог
+        //872381 Чай "Английский завтрак"
+        //872383 Чай "Венецианская ночь"
+        //872385 Чай "Имбирный"
+        //872387 Кофе "Турецкий"
 
         try {
             $amo = new \AmoCRM\Client(env('AMO_SUBDOMAIN'), env('AMO_LOGIN'), env('AMO_HASH'));
@@ -376,6 +386,22 @@ class OrderController extends Controller
                 $lead->addCustomField(869811, '968303'); //kaspi pay
             }else{
                 $lead->addCustomField(869811, '968307'); //Расчетный счет
+            }
+
+            if ($cart) {
+                foreach ($cart as $item) {
+                    $product = Product::find($item['id'])->first();
+
+                    if ($product) {
+                        $lead->addCustomField($item->amo_id, $item['q']); //Адрес
+                    }
+
+                    $q = $item['q'];
+                    $products .= $item['title'] . ' - ' . $q;
+                    if (end($cart) !== $item) {
+                        $products .= ', '.PHP_EOL;
+                    }
+                }
             }
 
             $lead->addCustomField(456321, $card_type === 'cashless' ? $wholesale : $total); //Стоимость курса
