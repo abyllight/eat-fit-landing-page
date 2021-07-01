@@ -99,22 +99,22 @@ export default {
                     link: 'go'
                 },
                 {
-                    id: 3,
+                    id: 4,
                     name: 'Детокс',
                     link: 'detox'
                 },
                 {
-                    id: 4,
+                    id: 5,
                     name: 'Отзывы',
                     link: '#reviews'
                 },
                 {
-                    id: 5,
+                    id: 6,
                     name: 'FAQ',
                     link: '#faq'
                 },
                 {
-                    id: 6,
+                    id: 7,
                     name: 'Контакты',
                     link: '#contacts'
                 }

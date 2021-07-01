@@ -5,7 +5,7 @@
                 <h3 class="text-xl leading-6 font-semibold mb-2">
                     {{ data.title }}
                 </h3>
-                <VueSlickCarousel v-bind="settings">
+                <VueSlickCarousel ref="slick" v-bind="settings">
                     <div>
                         <img :src="'/storage/' + data.image" class="w-56 rounded mx-auto object-cover object-center">
                     </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div
                     v-if="isInCart"
-                    class="lg:block mt-10 flex justify-center items-center">
+                    class="hidden lg:block mt-10 flex justify-center items-center">
                     <button
                         class="bg-yellow-300 hover:bg-yellow-400 rounded text-xs uppercase font-semibold py-3 px-5 focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         @click="close"
@@ -103,6 +103,7 @@
           return {
               settings: {
                   "dots": true,
+                  "initialSlide": 0,
                   "edgeFriction": 0.35,
                   "infinite": false,
                   "focusOnSelect": true,
@@ -126,6 +127,7 @@
         methods:{
             close(){
                 this.$emit('close')
+                //console.log(this.$refs.slick)
             },
             addToCart(){
                 this.$store.dispatch('addToCart', {
