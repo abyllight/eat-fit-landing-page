@@ -393,7 +393,7 @@ class OrderController extends Controller
                     $product = Product::find($item['id'])->first();
 
                     if ($product) {
-                        $lead->addCustomField($item->amo_id, $item['q']); //Адрес
+                        $lead->addCustomField($product->amo_id, $item['q']); //Адрес
                     }
 
                     $q = $item['q'];
