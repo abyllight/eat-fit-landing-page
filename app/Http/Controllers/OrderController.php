@@ -390,7 +390,7 @@ class OrderController extends Controller
 
             if ($cart) {
                 foreach ($cart as $item) {
-                    $product = Product::find($item['id'])->first();
+                    $product = Product::find($item['id']);
 
                     if ($product) {
                         $lead->addCustomField($product->amo_id, $item['q']); //Адрес
