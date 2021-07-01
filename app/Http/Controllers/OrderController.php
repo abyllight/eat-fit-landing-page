@@ -352,22 +352,10 @@ class OrderController extends Controller
         if ($cart) {
             foreach ($cart as $item) {
                 $q = $item['q'];
-                $products .= ' ' . $item['title'] . ' - ' . $q;
-                if (end($cart) === $item) {
-                    $products .= ', ';
+                $products .= $item['title'] . ' - ' . $q;
+                if (end($cart) !== $item) {
+                    $products .= ', '.PHP_EOL;
                 }
-
-                /*$pc = new ProductCart();
-                $pc->name = $name;
-                $pc->address = $address;
-                $pc->phone = $phone;
-                $pc->product_id = $item['id'];
-                $pc->quantity = $q;
-                $pc->total = $item['total'];
-                $pc->payment = $request->payment;
-                $pc->hasPaid = $card_type === 'card';
-
-                $pc->save();*/
             }
         }
 
