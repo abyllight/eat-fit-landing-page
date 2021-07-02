@@ -14,7 +14,7 @@
             </button>
 
             <div class="flex items-center">
-                <a href="/#hero">
+                <a href="#hero">
                     <img class="h-10 w-10 lg:mr-5" src="/img/logo.png" alt="Logo">
                 </a>
 
@@ -22,7 +22,7 @@
                     <a v-for="item in menu"
                        :key="item.id"
                        class="px-2 py-1 mr-2 text-white text-sm rounded hover:text-brand-green cursor-pointer"
-                       :href="'/' + item.link">
+                       :href="item.link">
                         {{ item.name }}
                     </a>
                 </nav>
@@ -62,7 +62,7 @@
         <a v-for="item in menu"
            :key="item.id"
            class="mt-2 block px-2 py-1 text-white md:text-xl rounded hover:bg-brand-green cursor-pointer"
-           :href="'/' + item.link"
+           :href="item.link"
            @click="isOpen=false">
             {{ item.name }}
         </a>
