@@ -14,7 +14,7 @@
             </button>
 
             <div class="flex items-center">
-                <a href="#hero">
+                <a href="/">
                     <img class="h-10 w-10 lg:mr-5" src="/img/logo.png" alt="Logo">
                 </a>
 
@@ -81,17 +81,17 @@ export default {
                 {
                     id: 0,
                     name: 'О нас',
-                    link: '#about'
+                    link: '/#about'
                 },
                 {
                     id: 1,
                     name: 'Программы',
-                    link: '#programs'
+                    link: '/#programs'
                 },
                 {
                     id: 2,
                     name: 'Пример меню',
-                    link: '#sample'
+                    link: '/#sample'
                 },
                 {
                     id: 3,
@@ -106,17 +106,17 @@ export default {
                 {
                     id: 5,
                     name: 'Отзывы',
-                    link: '#reviews'
+                    link: '/#reviews'
                 },
                 {
                     id: 6,
                     name: 'FAQ',
-                    link: '#faq'
+                    link: '/#faq'
                 },
                 {
                     id: 7,
                     name: 'Контакты',
-                    link: '#contacts'
+                    link: '/#contacts'
                 }
             ]
         }

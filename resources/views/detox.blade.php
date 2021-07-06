@@ -7,7 +7,7 @@
 
     <!--  Section Cart  -->
     <section id="cart">
-        <basket></basket>
+<!--        <basket></basket>-->
     </section>
 @endsection
 
