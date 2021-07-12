@@ -243,7 +243,7 @@
             }
         },
         computed: {
-            ...mapState(['cart']),
+            ...mapState(['cart', 'user']),
             total() {
                 return this.$store.getters.getTotal
             },
@@ -255,6 +255,14 @@
             },
             isEleven() {
                 return new Date().getHours() >= 22
+            }
+        },
+        mounted() {
+            const user = this.user;
+            if(user) {
+                this.name = user.name
+                this.phone = user.phone
+                this.address = user.address
             }
         },
         validations: {
@@ -277,6 +285,12 @@
                     if (this.time === 100) this.time = -1
                     return
                 }
+
+                this.$store.dispatch('saveUser', {
+                    name: this.name,
+                    phone: this.phone,
+                    address: this.address
+                });
 
                 if (this.payment === 'card') {
                     const widget = new cp.CloudPayments();
@@ -306,7 +320,7 @@
                         }
                     )
                 }else {
-                    this.amoRequest()
+                    //this.amoRequest()
                 }
             },
             amoRequest() {

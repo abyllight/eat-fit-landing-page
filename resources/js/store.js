@@ -1,9 +1,11 @@
 let cart = window.localStorage.getItem('cart');
 let totalCount = window.localStorage.getItem('totalCount');
+let user = window.localStorage.getItem('go_user');
 
 let store = {
     state: {
         cart: cart ? JSON.parse(cart) : [],
+        user: user ? JSON.parse(user) : {},
         totalCount: totalCount ?? 0,
         total: 0,
         wholesale: 0
@@ -71,6 +73,10 @@ let store = {
         SAVE_CART(state){
             window.localStorage.setItem('cart', JSON.stringify(state.cart));
             window.localStorage.setItem('totalCount', state.totalCount);
+        },
+        SAVE_USER(state, item) {
+            state.user = item
+            window.localStorage.setItem('go_user', JSON.stringify(state.user));
         }
     },
     actions: {
@@ -104,6 +110,9 @@ let store = {
         clearCart({commit}) {
             commit('CLEAR_CART')
             commit('SAVE_CART')
+        },
+        saveUser({commit}, item){
+            commit('SAVE_USER', item)
         }
     }
 };
