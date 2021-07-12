@@ -320,7 +320,7 @@
                         }
                     )
                 }else {
-                    //this.amoRequest()
+                    this.amoRequest()
                 }
             },
             amoRequest() {
