@@ -30,7 +30,7 @@
                             id="name"
                             type="text"
                             placeholder="Имя"
-                            :disabled="isEleven"
+                            :disabled="isEleven || isSunday"
                             v-model.trim="$v.name.$model"
                             :class="{ 'border-red-500': $v.name.$error }"
                             class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md" />
@@ -44,7 +44,7 @@
                             class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md"
                             type="tel"
                             placeholder="+7 (999) 999-99-99"
-                            :disabled="isEleven"
+                            :disabled="isEleven || isSunday"
                             v-model.trim="$v.phone.$model"
                             :class="{ 'border-red-500': $v.phone.$error }"
                             v-mask="'+7 (###) ###-##-##'"
@@ -60,7 +60,7 @@
                             v-model.trim="$v.address.$model"
                             :class="{ 'border-red-500': $v.address.$error }"
                             placeholder="Например: Сыганак-10, кв17, п2, э4"
-                            :disabled="isEleven"
+                            :disabled="isEleven || isSunday"
                             class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md" />
                         <p v-if="$v.address.$error" class="text-red-500 text-xs mt-1">Укажите адрес</p>
                     </div>
@@ -74,10 +74,10 @@
                         <button
                             v-for="interval in intervals"
                             :key="interval.id"
-                            :disabled="isEleven"
+                            :disabled="isEleven || isSunday"
                             @click.stop="time=interval.id"
                             class="text-xs md:text-sm mr-2 mb-2 cursor-pointer focus:outline-none rounded-full py-2 px-3 inline"
-                            :class="[interval.id === time ? active : non_active, isEleven ? disabled : activeButtonTime]">
+                            :class="[interval.id === time ? active : non_active, isEleven || isSunday ? disabled : activeButtonTime]">
                             {{ interval.time }}
                         </button>
                     </div>
@@ -125,8 +125,8 @@
                     <button
                         @click="checkout"
                         class="w-full md:w-auto mr-4 text-xs uppercase font-semibold px-8 py-3 rounded shadow focus:outline-none focus:shadow-outline text-center"
-                        :disabled="isEleven"
-                        :class="[ isEleven ? disabled : activeButton ]"
+                        :disabled="isEleven || isSunday"
+                        :class="[ isEleven || isSunday ? disabled : activeButton ]"
                     >
                         Заказать
                     </button>
@@ -160,6 +160,9 @@
                         <p class="font-semibold text-red-400"> x{{ item.q }} </p>
                     </div>
                 </div>
+            </div>
+            <div v-if="isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
+                К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
             </div>
         </div>
         <success-modal :showSuccess="showSuccess" @close="showSuccess=false"></success-modal>
@@ -255,6 +258,9 @@
             },
             isEleven() {
                 return new Date().getHours() >= 22
+            },
+            isSunday() {
+                return !(new Date().getDay() % 6)
             }
         },
         mounted() {

@@ -407,7 +407,9 @@ class OrderController extends Controller
             $lead->addCustomField(456321, $card_type === 'cashless' ? $wholesale : $total); //Стоимость курса
             $lead->addCustomField(478771, $phone); //Телефон для звонков
             $lead->addCustomField(478763, $address); //Адрес
+            $lead->addCustomField(478765, $address); //Адрес доп
             $lead->addCustomField(373971, $request->time); //Время доставки
+            $lead->addCustomField(478705, $request->time); //Время доставки доп
             $lead->addCustomField(321277, $products); //Комм. кухня
             $lead->addCustomField(327953,  '929511'
             ); //Size

@@ -1,5 +1,5 @@
 <template>
-    <div class="py-24 px-4 max-w-5xl mx-auto">
+    <div class="py-24 px-4 max-w-5xl mx-auto relative">
         <div
             v-if="cart.length === 0"
             class="text-center">
@@ -76,9 +76,9 @@
 
                     <div>
                         <a
-                            :href="!isEleven ? link : '#'"
-                            :disabled="isEleven"
-                            :class="[ isEleven ? disabled : activeButton ]"
+                            :href="isEleven || isSunday ? '#' : link"
+                            :disabled="isEleven || isSunday"
+                            :class="[ isEleven || isSunday ? disabled : activeButton ]"
                             class="w-full text-xs uppercase font-semibold py-3 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                         >
                             <span>Оформить заказ на завтра</span>
@@ -90,6 +90,9 @@
                 </div>
             </div>
         </div>
+        <div v-if="isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
+            К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
+        </div>
     </div>
 </template>
 <script>
@@ -100,7 +103,8 @@
             return{
                 disabled: 'cursor-not-allowed opacity-50 bg-gray-300',
                 activeButton: 'cursor-pointer opacity-100 bg-yellow-300 hover:bg-yellow-400',
-                link: '/checkout'
+                link: '/checkout',
+                sunday: true
             }
         },
         computed: {
@@ -110,6 +114,9 @@
             },
             isEleven() {
                 return new Date().getHours() >= 22
+            },
+            isSunday() {
+                return !(new Date().getDay() % 6)
             }
         },
         methods: {

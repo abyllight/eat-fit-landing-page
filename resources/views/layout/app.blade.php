@@ -54,7 +54,7 @@
     }
 </style>
 <body class="font-body flex flex-col min-h-screen">
-    <section id="navbar" class="fixed w-full z-30 shadow top-0 bg-brand-blue">
+    <section id="navbar" class="">
         <navbar></navbar>
     </section>
     <main class="flex-grow">
