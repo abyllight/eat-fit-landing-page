@@ -260,7 +260,7 @@
                 return new Date().getHours() >= 22
             },
             isSunday() {
-                return !(new Date().getDay() % 6)
+                return new Date().getDay() === 6
             }
         },
         mounted() {
