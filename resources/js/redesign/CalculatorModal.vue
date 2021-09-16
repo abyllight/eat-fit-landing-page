@@ -142,7 +142,7 @@
         <order-modal :isVisible = "isVisible"
                      :data = "data"
                      :isPersonal = "false"
-                     @close="closeModal"
+                     @close="isVisible=false"
                      @showSuccess="showSuccess = true"
                      @showFail="showFail = true">
         </order-modal>
