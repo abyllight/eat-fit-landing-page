@@ -54,7 +54,6 @@
                      @showSuccess="showSuccess = true"
                      @showFail="showFail = true">
         </order-modal>
-        <success-modal :showSuccess="showSuccess" @close="closeModal"></success-modal>
         <fail-modal :showFail="showFail" @close="closeModal"></fail-modal>
     </div>
 </template>
@@ -115,6 +114,9 @@ export default {
             this.showSuccess = false
             this.showFail = false
             this.$emit('close')
+        },
+        openOrder(){
+
         }
     }
 }

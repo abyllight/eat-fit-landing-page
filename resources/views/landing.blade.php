@@ -3,19 +3,21 @@
     <!-- Hero section -->
     <section id="hero" class="w-full bg-hero-lg bg-cover bg-center relative">
         <div class="max-w-6xl mx-auto px-4 relative z-20 flex flex-col justify-center">
-            <div class="pt-40 pb-32 lg:pb-40 xl:pb-56">
-                <h1 class="font-semibold text-3xl md:text-2xl lg:text-3xl text-white mb-8 leading-tight md:w-2/3">
-                    Станьте стройным и продуктивным <br>c 5-разовым
-                    <br class="md:hidden"><span class="text-brand-green">здоровым питанием</span>
-                </h1>
-                <p class="text-white text-sm md:text-base font-medium mb-10 md:w-2/3 lg:w-1/3">
-                    Мы закупим отборные продукты, составим сбалансированное меню, приготовим и доставим к Вашему столу
-                </p>
+            <div class="py-32 lg:pb-40 xl:pb-56">
+                <div class="md:w-1/2 text-white mb-12">
+                    <h1 class="font-bold text-3xl lg:text-4xl leading-tight mb-5">
+                        Станьте стройным и продуктивным c 5-разовым
+                        <span class="text-brand-green">здоровым питанием</span>
+                    </h1>
+                    <p class="text-base">
+                        Мы закупим отборные продукты, составим сбалансированное меню, приготовим и доставим к Вашему столу
+                    </p>
+                </div>
 
                 <div
                     class="flex items-center text-xs font-semibold uppercase">
                     <a href="#trial"
-                       class="px-10 rounded-xl py-3 outline-none bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
+                       class="px-10 py-3 md:py-4 rounded-lg shadow tracking-wider outline-none focus:outline-none bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
                         Попробовать
                     </a>
                     <p class="ml-4 text-white">
@@ -23,23 +25,23 @@
                     </p>
                 </div>
             </div>
-            <div class="mb-1 flex lg:absolute bottom-0 mb-8">
+            <div class="mb-1 flex lg:absolute bottom-0 mb-8 text-white text-xs">
                 <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start w-56">
                     <img src="/img/icons/time.png" alt="Методы приготовления" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
-                    <p class="text-white text-xs md:mb-1">
+                    <p class="md:mb-1">
                         Сэкономим <br> ваше время
                     </p>
                 </div>
                 <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start w-56">
                     <img src="/img/icons/tech.png" alt="24 стран" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
-                    <p class="text-white text-xs md:mb-1">
+                    <p class="md:mb-1">
                         Приведем <br> в форму
                     </p>
                 </div>
 
                 <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start">
                     <img src="/img/icons/health.png" alt="24 стран" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
-                    <p class="text-white text-xs md:mb-1">
+                    <p class="text-xs md:mb-1">
                         Улучшим <br> здоровье
                     </p>
                 </div>
@@ -214,8 +216,8 @@
 
             <div class="w-full text-center">
                 <a href="#trial"
-                    class="border-brand-yellow rounded-3xl cursor-pointer shadow-lg
-                    text-center text-xs font-semibold uppercase py-3 tracking-wider focus:outline-none px-16 md:px-20
+                    class="border-brand-yellow rounded-lg cursor-pointer shadow-lg
+                    text-center text-xs font-semibold uppercase py-3 md:py-4 tracking-wider focus:outline-none px-10
                     bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
                     Оставить заявку
                 </a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\ProductCart;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -340,7 +341,8 @@ class OrderController extends Controller
         }
     }
 
-    public function eatFitGo(Request $request) {
+    public function eatFitGo(Request $request): JsonResponse
+    {
         $name = $request->name ?? '';
         $address = $request->address ?? '';
         $phone = $request->phone ?? '';

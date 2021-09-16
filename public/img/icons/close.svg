@@ -1,5 +1,1 @@
-<?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px" class="hovered-paths"><g><ellipse style="fill:#FFFFFF" cx="256" cy="256" rx="256" ry="255.832" data-original="#E04F5F" class="" data-old_color="#E04F5F"/><g transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 77.26 32)">
-	<rect x="3.98" y="-427.615" style="fill:#E04F5F" width="55.992" height="285.672" data-original="#FFFFFF" class="active-path" data-old_color="#FFFFFF"/>
-	<rect x="-110.828" y="-312.815" style="fill:#E04F5F" width="285.672" height="55.992" data-original="#FFFFFF" class="active-path" data-old_color="#FFFFFF"/>
-</g></g> </svg>
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>

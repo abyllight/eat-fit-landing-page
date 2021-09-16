@@ -1,88 +1,168 @@
 <template>
-    <div v-show="isVisible" class="h-screen w-full fixed top-0 left-0 z-30 bg-overlay flex items-center justify-center px-3 py-2">
-        <div class="w-full sm:w-1/2 lg:max-w-sm bg-white rounded overflow-hidden shadow-xl relative">
-            <div class="bg-white px-3 py-6 sm:p-6">
-                <h3 v-show="!isPersonal" class="text-xl leading-6 font-black mb-4">
-                    Рацион "{{ data.title }}"
+    <div class="relative">
+        <transition
+            enter-active-class="ease-in duration-300"
+            enter-class="opacity-0"
+            leave-active-class="ease-out duration-100"
+        >
+            <div
+                v-if="isVisible"
+                class="h-screen w-full fixed inset-0 z-20 bg-gray-900 opacity-75 cursor-pointer"
+                @click="closeModal">
+            </div>
+        </transition>
+        <transition
+            enter-active-class="ease-in duration-300"
+            enter-class="opacity-0 transform translate-y-full md:translate-y-0 md:scale-100"
+            leave-active-class="ease-out duration-100"
+        >
+            <div v-if="isVisible"
+                class="fixed overflow-y-auto inset-0 top-16 lg:top-24 md:bottom-auto mx-auto z-30 bg-white rounded-t-lg md:rounded-b-lg md:max-w-md lg:max-w-3xl py-6"
+            >
+                <h3 class="text-2xl leading-6 font-black ml-6 mb-4">
+                    {{ !isPersonal ? `Рацион ${ data.title }` : 'Индивидуальное меню' }}
                 </h3>
 
-                <div v-show="!isPersonal" class="mb-4 text-center">
-                    <div class="flex items-center justify-between">
-                        <p class="font-semibold">Цена за день:</p>
+                <div class="flex flex-col lg:flex-row">
+                    <div class="w-full lg:w-1/2 px-6">
+                        <div v-if="!isPersonal">
+                            <div class="flex items-center justify-start py-1 mb-4">
+                                <div class="mr-4 bg-gray-200 px-5 py-2 rounded">
+                                    <p class="text-xs">{{ data.protein ? data.protein.weight : '' }}г</p>
+                                    <p class="font-medium text-sm text-lime-600 -mt-1">Белки</p>
+                                </div>
+                                <div class="mr-4 bg-gray-200 px-5 py-2 rounded">
+                                    <p class="text-xs">{{ data.fat ? data.fat.weight : '' }}г</p>
+                                    <p class="font-medium text-sm text-lime-600 -mt-1">Жиры</p>
+                                </div>
+                                <div class="bg-gray-200 px-5 py-2 rounded">
+                                    <p class="text-xs">{{ data.carbohydrate ? data.carbohydrate.weight : '' }}г</p>
+                                    <p class="font-medium text-sm text-lime-600 -mt-1">Углеводы</p>
+                                </div>
+                            </div>
+                            <p class="text-base font-medium mb-3">Этот рацион предназначен для:</p>
+                            <div>
+                                <p v-for="aim in data.aims" :key="aim.id" class="text-base leading-tight mb-2">- {{ aim.description }}</p>
+                                <p class="text-sm italic leading-tight text-red-500 mb-5">{{ data.extra }}</p>
+                            </div>
+                        </div>
+                        <div v-else class="mb-4">
+                            <p class="text-base">
+                                Разрабатывается индивидуально по запросу клиента с учётом анамнеза
+                                и предпочтений. В том числе: меню для будущих и кормящих мам, веганов,
+                                вегетарианцев и пескетарианцев, аутоимунные палео-диеты, кето-меню, диет-столы и пр.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-1/2 px-6">
+                        <div
+                            v-if="!isPersonal"
+                            class="mb-4 text-center font-medium text-base"
+                        >
+                            <div class="flex items-center justify-between">
+                                <p>Цена за день:</p>
+                                <div class="font-semibold text-lg">
+                                    <span :class="[(day === '2' || day > 11) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
+                                    <span v-show="day === '2' || day > 11" class="ml-2 text-pink-800">{{ discount }}тг</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <p>Итого:</p>
+                                <div class="font-semibold text-lg">
+                                    <span :class="[(day === '2' || day > 11) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
+                                    <span v-show="day === '2' || day > 11" class="ml-2 text-pink-800">{{ total }}тг</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-2">
+                                <div class="w-full flex justify-between items-center">
+                                    <p class="font-medium text-gray-800 text-sm">Количество дней:</p>
+                                    <span class="text-brand-dark-green font-semibold">{{ day }} {{ dayTxt }}</span>
+                                </div>
+
+                                <input type="range" v-model="day" min="1" max="36">
+                            </div>
+                        </div>
+
                         <div>
-                            <span class="text-lg font-semibold" :class="[(day === '2' || day > 11) ? 'text-gray-600 oldPrice' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
-                            <span v-show="day === '2' || day > 11" class="ml-2 text-pink-800 text-lg font-semibold">{{ discount }}тг</span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between">
-                        <p class="font-semibold">Итого:</p>
-                        <div>
-                            <span class="text-lg font-semibold" :class="[(day === '2' || day > 11) ? 'text-gray-600 oldPrice' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
-                            <span v-show="day === '2' || day > 11" class="ml-2 text-pink-800 text-lg font-semibold">{{ total }}тг</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-2">
-                        <div class="w-full flex justify-between items-center">
-                            <p class="font-semibold text-gray-800 text-sm">Количество дней:</p>
-                            <span class="text-brand-dark-green font-semibold">{{ day }} {{ dayTxt }}</span>
-                        </div>
-
-                        <input type="range" v-model="day" min="1" max="36">
-                    </div>
-                </div>
-
-                <div>
-                    <form @submit.prevent="formSubmit" onsubmit="ym(56810422,'reachGoal','generatedlead')">
-                        <h4 class="font-semibold mb-4">
-                            Данные для консультации
-                        </h4>
-                        <div class="mb-3">
-                            <input class="shadow appearance-none border rounded w-full text-sm py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline"
-                                   type="text" placeholder="Имя" v-model.trim="$v.name.$model" :class="{ 'border-red-500': $v.name.$error }" />
-                            <p v-if="$v.name.$error" class="text-red-500 text-xs italic mt-1">Укажите имя</p>
-                        </div>
-                        <div class="mb-3">
-                            <masked-input class="shadow appearance-none border rounded w-full text-sm py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline"
-                                   type="tel" placeholder="Телефон" v-model="phone" mask="\+\7 (111) 111-1111" @input="rawVal = arguments[1]" :class="{ 'border-red-500': !isPhoneValid }"/>
-                            <p v-if="!isPhoneValid" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
-                        </div>
-                        <div class="mb-4">
-<!--                            <input
-                                class="shadow appearance-none border rounded w-full text-sm mb-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text" placeholder="Промокод (если есть)" v-model="promo">-->
-                            <label class="block text-gray-500 font-semibold flex mt-1">
-                                <input class="mr-2 leading-tight w-25 h-25" type="checkbox" v-model="isChecked">
-                                <span class="text-tiny -mt-1">
+                            <form @submit.prevent="formSubmit" onsubmit="ym(56810422,'reachGoal','generatedlead')">
+                                <h4 class="text-base font-semibold mb-4">
+                                    Данные для консультации
+                                </h4>
+                                <div class="mb-3">
+                                    <input
+                                        class="focus:outline-none focus:ring focus:border-blue-300 block w-full shadow border border-gray-300 rounded-md text-base px-3 py-2.5"
+                                        type="text"
+                                        placeholder="Имя"
+                                        v-model.trim="$v.name.$model"
+                                        :class="{ 'border-red-500 focus:border-red-500': $v.name.$error }"/>
+                                    <p
+                                        v-if="$v.name.$error"
+                                        class="text-red-500 text-xs italic mt-1"
+                                    >
+                                        Укажите имя
+                                    </p>
+                                </div>
+                                <div class="mb-3">
+                                    <masked-input
+                                        class="focus:outline-none focus:ring focus:border-blue-300 block w-full shadow border border-gray-300 rounded-md text-base px-3 py-2.5"
+                                        type="tel"
+                                        placeholder="+7 (700) 000-0000"
+                                        v-model="phone"
+                                        mask="\+\7 (111) 111-1111"
+                                        @input="rawVal = arguments[1]"
+                                        :class="{ 'border-red-500 focus:border-red-500': !isPhoneValid }"/>
+                                    <p v-if="!isPhoneValid" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
+                                </div>
+                                <div class="mb-4">
+                                    <!--                            <input
+                                                                    class="shadow appearance-none border rounded w-full text-sm mb-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                    type="text" placeholder="Промокод (если есть)" v-model="promo">-->
+                                    <label class="block text-gray-500 font-semibold flex mt-1">
+                                        <input
+                                            v-model="isChecked"
+                                            class="mr-2 leading-tight w-5 h-5 cursor-pointer"
+                                            type="checkbox"
+                                        >
+                                        <span class="text-tiny -mt-1">
                                     Я даю согласие на обработку своих данных и их использование
                                 </span>
-                            </label>
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <button class="mx-auto bg-brand-dark-green font-bold py-2.5 px-4 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
+                                            :disabled="!isChecked || this.name.length <= 1 || !isValid"
+                                            :class="[ !isChecked || this.name.length <= 1 || !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green cursor-pointer opacity-100']"
+                                    >
+                                        Оставить заявку
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="flex items-center">
-                            <button class="mx-auto bg-brand-dark-green font-bold py-2 px-5 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
-                                :disabled="!isChecked || this.name.length <= 1 || !isValid"
-                                :class="[ !isChecked || this.name.length <= 1 || !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green cursor-pointer opacity-100']"
-                            >
-                                Оставить заявку
-                            </button>
-                        </div>
-                    </form>
+                        <button
+                            type="button"
+                            @click="closeModal"
+                            class="cursor-pointer focus:outline-none outline-none h-10 w-10 absolute top-0 right-0 mr-4 mt-3"
+                        >
+                            <svg viewBox="0 0 24 24"
+                                 class="fill-current text-gray-700 hover:text-gray-500">
+                                <path d="M0 0h24v24H0V0z" fill="none"/>
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <button @click="closeModal" type="button" class="absolute top-0 right-0 mr-4 mt-2 block text-gray-500 hover:text-gray-700 focus:text-blue-600 focus:outline-none">
-                <svg class="h-8 w-8 fill-current" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
-                </svg>
-            </button>
+        </transition>
+        <div v-if="isLoading" class="h-screen w-full bg-black opacity-75 fixed inset-0 z-50 flex flex-col items-center justify-center">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-white h-16 w-16 mb-4"></div>
+            <h2 class="text-center text-white text-xl font-semibold">Идет обработка заказа...</h2>
         </div>
     </div>
 </template>
-<style>
-    .oldPrice{
-        text-decoration: line-through;
-    }
+<style scoped>
     input[type=range] {
         -webkit-appearance: none;
         margin: 10px 0;
@@ -159,10 +239,34 @@
     input[type=range]:focus::-ms-fill-upper {
         background: #74ab31;
     }
+
+    .loader {
+        border-top-color: #FCD34D;
+        -webkit-animation: spinner 1.5s linear infinite;
+        animation: spinner 1.5s linear infinite;
+    }
+
+    @-webkit-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 <script>
-    import MaskedInput from 'vue-masked-input'
-    import { required, minLength } from 'vuelidate/lib/validators'
+import MaskedInput from 'vue-masked-input'
+import { required, minLength } from 'vuelidate/lib/validators'
 export default {
     name: 'orderModal',
     props: ['data', 'isVisible', 'isPersonal'],
@@ -178,7 +282,8 @@ export default {
             promo: '',
             utm: [],
             isChecked: false,
-            rawVal: ''
+            rawVal: '',
+            isLoading: false
         }
     },
     validations: {
@@ -239,6 +344,8 @@ export default {
             return null;
         },
         formSubmit(){
+            this.$emit('close')
+            this.isLoading = true
             let self = this;
 
             let params = this.getParams();
@@ -261,9 +368,10 @@ export default {
 
             axios.post('/', data).
             then(function (response) {
-
+                self.isLoading = false
+                self.closeModal()
                 if (response.data === true){
-                    self.$emit('showSuccess')
+                    window.location.href = '/thanks'
                 }else{
                     self.$emit('showFail')
                 }
@@ -274,6 +382,7 @@ export default {
         },
         closeModal(){
             this.day = 24
+            this.isChecked = false
             this.$emit('close')
         }
     },
@@ -324,14 +433,12 @@ export default {
             let result = [];
             result = this.rawVal.match(reg);
             return this.rawVal.length === 0 || (result && result[0].length === 10);
-
         },
         isValid(){
             let reg = /\d+/g;
             let result = [];
             result = this.rawVal.match(reg);
             return result && result[0].length === 10;
-
         }
     }
 }

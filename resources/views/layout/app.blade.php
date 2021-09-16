@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане"/>
-    <meta property="og:title" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане. Диетическое питание. Здоровое питание - EAT&amp;FIT - Рациоздоровой жизни, диетическое питание с доставкой в Астане" />
+    <meta property="og:title" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане. Диетическое питание. Здоровое питание - EAT&FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане" />
     <meta property="og:description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане" />
     <meta property="og:url" content="https://eatandfit.kz/" />
     <meta property="og:site_name" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане. Диетическое питание. Здоровое питание" />
@@ -54,7 +54,7 @@
     }
 </style>
 <body class="font-body flex flex-col min-h-screen">
-    <section id="navbar" class="">
+    <section id="navbar">
         <navbar></navbar>
     </section>
     <main class="flex-grow">

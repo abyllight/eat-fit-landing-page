@@ -7,7 +7,7 @@
                 <button v-for="type in types"
                     :key="type.id"
                     @click.stop="activeType=type.id"
-                    class="px-5 py-2 rounded focus:outline-none text-xs uppercase font-semibold"
+                    class="px-5 py-3 rounded focus:outline-none text-xs uppercase font-semibold"
                     :class="[type.id === activeType ? active : non_active, type.id === 0 ? 'mr-2 md:mr-3' : '']"
                     >
                     {{ type.title }}
@@ -17,36 +17,32 @@
                 <div
                     :key="program.id"
                     v-for="program in programs[activeType].data"
-                    class="mt-5 w-80 md:w-88 mx-auto xl:mx-2 bg-brand-blue-light rounded-lg shadow-lg relative"
+                    class="mt-8 w-80 md:w-88 mx-auto xl:mx-2 bg-brand-blue-light rounded-lg shadow-lg relative"
                 >
                     <div class="flex relative">
                         <img
                             :src="program.imageUrl"
                             :alt="program.title"
-                            class="w-24 h-40 md:w-32 md:h-48 flex-shrink-0 object-cover object-center -ml-2 lg:-ml-4">
-                        <div class="w-full py-2 pr-3">
-                            <div class="flex items-center justify-between text-gray-900 mb-1">
-                                <p class="text-3xl md:text-3xl font-black">{{ program.title }}</p>
-                                <p class="text-lg italic mt-1 lg:mt-4">от <span class="font-semibold">{{ program.price }}₸</span></p>
+                            class="w-28 flex-shrink-0 object-cover object-center"
+                        >
+                        <div class="w-full pt-2 pl-1 pr-5">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="text-3xl font-bold">{{ program.title }}</p>
+                                <p class="font-light text-sm text-gray-700 mt-1">{{ program.kcal }} ккал</p>
                             </div>
-                            <p class="mb-2 text-gray-800 font-light text-sm hidden sm:block">~ {{ program.kcal }} ккал</p>
-                            <p class="text-gray-800 font-semibold leading-tight tracking-tight mb-3">{{ program.shortDescription }}</p>
+                            <p class="font-medium leading-tight tracking-tight">{{ program.shortDescription }}</p>
 
                             <div class="flex items-center absolute bottom-0 mb-4">
                                 <button
                                     @click="showModal(program.id)"
-                                    class="px-3 md:px-4 rounded focus:outline-none text-tiny uppercase font-semibold bg-brand-yellow shadow hover:bg-brand-yellow-hover">
+                                    class="px-3 md:px-4.5 py-2 rounded outline-none focus:outline-none text-xs uppercase font-semibold bg-gray-700 text-white shadow hover:bg-gray-600">
                                     Стоимость
                                 </button>
-                                <button
-                                    @click="showDetailsModal(program.id)"
-                                    class="ml-2 px-3 md:px-4 text-tiny uppercase font-semibold hover:bg-gray-400 rounded focus:outline-none">
-                                    Подробнее
-                                </button>
+                                <p class="text-base ml-2 md:ml-3">от <span class="font-medium">{{ program.price }}₸</span></p>
                             </div>
                         </div>
                         <span v-show="program.isPopular"
-                              class="bg-red-600 px-2 lg:py-1 uppercase text-xs rounded-bl-lg rounded-tr-lg text-white absolute top-0 right-0 z-20">
+                              class="bg-red-600 px-2 lg:py-1 uppercase text-tiny rounded-bl-lg rounded-tr-lg text-white absolute top-0 right-0 z-20">
                             Топ продаж
                         </span>
                     </div>
@@ -55,25 +51,25 @@
                         {{ program.bio }}
                     </div>
                 </div>
-                <div class="mt-5 w-80 md:w-88 mx-auto xl:mx-2 bg-brand-blue-light rounded-lg shadow-lg">
-                    <div class="p-6">
+                <div class="mt-8 w-80 md:w-88 mx-auto xl:mx-2 bg-brand-blue-light rounded-lg shadow-lg">
+                    <div class="px-6 py-5">
                         <div>
-                            <h3 class="text-lg font-semibold mb-3">Индивидуальное меню</h3>
+                            <h3 class="text-lg font-semibold mb-2">Индивидуальное меню</h3>
                             <p class="mb-4 text-sm">
                                 Линейка персонального меню разрабатывается индивидуально по запросу клиента с учетом анамнеза и личных предпочтений
                             </p>
                             <button
                                 @click="showPersonalModal"
-                                class="px-3 md:px-4 text-tiny uppercase font-semibold rounded shadow bg-brand-yellow hover:bg-brand-yellow-active focus:outline-none">
+                                class="px-3 md:px-4.5 py-2 rounded outline-none focus:outline-none text-xs uppercase font-semibold bg-yellow-200 shadow hover:bg-yellow-100">
                                 Стоимость
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="mt-5 w-80 md:w-88 mx-auto xl:mx-2 bg-brand-blue-light rounded-lg shadow-lg">
-                    <div class="p-6">
+                <div class="mt-8 w-80 md:w-88 mx-auto xl:mx-2 bg-brand-blue-light rounded-lg shadow-lg">
+                    <div class="px-6 py-5">
                         <div>
-                            <h3 class="text-lg font-semibold leading-tight mb-3">Не знаете свою суточную <br> норму калорий и БЖУ?</h3>
+                            <h3 class="text-lg font-semibold leading-tight mb-2">Не знаете свою суточную <br> норму калорий и БЖУ?</h3>
                             <p class="mb-5 text-sm">
                                 Воспользуйтесь калькулятором, который поможет подобрать нужный рацион под ваши параметры и цели.
                             </p>
@@ -81,7 +77,7 @@
                                 <img src="/img/icons/calculator.png" width="48" class="mr-4" alt="Калькулятор">
                                 <button
                                     @click="showCalculator"
-                                    class="px-3 md:px-4 text-tiny uppercase font-semibold rounded shadow bg-brand-yellow hover:bg-brand-yellow-active focus:outline-none">
+                                    class="px-3 md:px-4.5 py-2 rounded outline-none focus:outline-none text-xs uppercase font-semibold bg-yellow-200 shadow hover:bg-yellow-100">
                                     Рассчитать
                                 </button>
                             </div>
@@ -98,32 +94,17 @@
                   @showSuccess="showSuccess = true"
                   @showFail="showFail = true">
      </order-modal>
-     <details-modal :isDetailsVisible = "isDetailsVisible" :data = "data" @close="closeModal"></details-modal>
-     <calculator :isCalcVisible = "isCalcVisible" @close="closeCalcModal"></calculator>
-     <success-modal :showSuccess="showSuccess" @close="closeModal"></success-modal>
-     <fail-modal :showFail="showFail" @close="closeModal"></fail-modal>
+     <calculator :isCalcVisible = "isCalcVisible" @close="isCalcVisible=false"></calculator>
  </div>
 </template>
-<style>
-    button{
-        padding-top: 0.4rem;
-        padding-bottom: 0.4rem;
-    }
-</style>
 <script>
-    import OrderModal from "./OrderModal";
-    import DetailsModal from "./DetailsModal";
-    import SuccessModal from "./SuccessModal";
-    import CalculatorModal from "./CalculatorModal";
-    import FailModal from "./FailModal";
-    import progs from '../data';
+import OrderModal from "./OrderModal";
+import CalculatorModal from "./CalculatorModal";
+import progs from '../data';
 export default {
     name: 'program',
     components: {
         OrderModal,
-        DetailsModal,
-        SuccessModal,
-        FailModal,
         CalculatorModal
     },
     data(){
@@ -147,7 +128,7 @@ export default {
             title: '',
             activeType: 0,
             active: 'bg-brand-yellow shadow-lg',
-            non_active: 'bg-brand-non-active hover:bg-gray-300',
+            non_active: 'bg-gray-300 hover:bg-gray-200',
             isDetailsVisible: false,
             isPersonal: false,
             programs: progs
@@ -155,8 +136,8 @@ export default {
     },
     methods: {
         showModal(id){
-            this.isVisible = true;
             this.data = this.programs[this.activeType].data[id];
+            this.isVisible = true;
         },
         showDetailsModal(id){
             this.isDetailsVisible = true;
@@ -177,9 +158,6 @@ export default {
         },
         showCalculator(){
             this.isCalcVisible = true;
-        },
-        closeCalcModal(){
-            this.isCalcVisible = false;
         },
         closeResultModal(){
             this.isResultVisible = false;
