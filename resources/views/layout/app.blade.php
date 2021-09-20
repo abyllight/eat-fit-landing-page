@@ -40,9 +40,9 @@
         fbq('init', '852043881844376');
         fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-                   src="https://www.facebook.com/tr?id=852043881844376&ev=PageView&noscript=1"
-        /></noscript>
+    <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=852043881844376&ev=PageView&noscript=1"/>
+    </noscript>
     <!-- End Facebook Pixel Code -->
     <meta name="mailru-domain" content="XLb4KEEntsFqbfyd" />
     @section('head')
@@ -72,15 +72,14 @@
     @section('js')
     @show
 </script>
-
-<script>
-    (function(w, d, s, h, id) {
-        w.roistatProjectId = id; w.roistatHost = h;
-        var p = d.location.protocol == "https:" ? "https://" : "http://";
-        var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
-        var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
-    })(window, document, 'script', 'cloud.roistat.com', '30d2ed73195218197354a5214b1e2373');
-</script>
+    <script>
+        (function(w, d, s, h, id) {
+            w.roistatProjectId = id; w.roistatHost = h;
+            var p = d.location.protocol == "https:" ? "https://" : "http://";
+            var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
+            var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
+        })(window, document, 'script', 'cloud.roistat.com', '30d2ed73195218197354a5214b1e2373');
+    </script>
 
 <script type="text/javascript">
     (function(d, w, s) {

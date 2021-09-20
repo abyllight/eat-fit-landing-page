@@ -270,7 +270,7 @@
     </section>
 
     <!-- Section trial -->
-    <section id="trial" class="py-20 w-full bg-trial-lg bg-cover bg-no-repeat bg-center">
+    <section id="trial" class="py-20 w-full bg-trial-sm lg:bg-trial-lg bg-cover bg-no-repeat bg-center">
         <trial></trial>
     </section>
 
