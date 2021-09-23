@@ -27,7 +27,7 @@
                             <input
                                 v-model="name"
                                 type="text"
-                                class="w-full rounded-2xl bg-white px-5 py-3 mb-5 text-sm focus:outline-none focus:shadow-outline"
+                                class="w-full rounded-2xl bg-white px-5 py-3 mb-4 text-sm focus:outline-none focus:shadow-outline"
                                 placeholder="Ваше имя"
                                 required
                             />
@@ -40,6 +40,15 @@
                                 :class="{ 'border-red-500': !isPhoneValid || !isValid }"
                                 placeholder="Ваш телефон"
                             />
+
+                            <input
+                                v-model="promo"
+                                type="text"
+                                class="w-full rounded-2xl bg-white px-5 py-3 mt-4 text-sm focus:outline-none focus:shadow-outline"
+                                placeholder="Промокод (если есть)"
+                                required
+                            />
+
                             <p v-if="!isPhoneValid || !isValid" class="text-red-500 text-xs italic mt-2">Заполните телефон</p>
                             <button
                                 type="submit"
@@ -60,30 +69,57 @@
                 </div>
             </div>
         </div>
-        <success-modal :showSuccess="showSuccess" @close="closeModal"></success-modal>
+        <div v-if="isLoading" class="h-screen w-full bg-black opacity-75 fixed inset-0 z-50 flex flex-col items-center justify-center">
+            <div class="loader ease-linear rounded-full border-4 border-t-4 border-white h-16 w-16 mb-4"></div>
+            <h2 class="text-center text-white text-xl font-semibold">Идет обработка заказа...</h2>
+        </div>
         <fail-modal :showFail="showFail" @close="closeModal"></fail-modal>
     </div>
 </template>
+<style scoped>
+.loader {
+    border-top-color: #FCD34D;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>
 <script>
     import MaskedInput from 'vue-masked-input'
-    import SuccessModal from "./SuccessModal";
     import FailModal from "./FailModal";
     export default {
         name: "Trial",
         components:{
             MaskedInput,
-            SuccessModal,
             FailModal
         },
         data(){
             return{
                 name: '',
                 phone: '',
+                promo: '',
                 rawVal: '',
                 isValid: true,
                 showSuccess: false,
                 showFail: false,
-                isClicked: false
+                isLoading: false
             }
         },
         methods: {
@@ -138,17 +174,17 @@
                 this.showFail = false
                 this.name = ''
                 this.phone = ''
+                this.promo = ''
                 this.isValid = true
                 this.rawVal = ''
-                this.isClicked = false
+                this.isLoading = false
             },
             formSubmit(){
                 if (this.rawVal.length === 0 || !this.isPhoneValid){
                     this.isValid = false
                     return;
                 }
-
-                if (this.isClicked) return;
+                this.isLoading = true
 
                 let self = this;
 
@@ -162,15 +198,16 @@
                 let data = {
                     name: this.name,
                     phone: this.phone,
+                    promo: this.promo,
                     utm: params,
                     ga: ga
                 };
 
                 axios.post('/', data).
                 then(function (response) {
-                    console.log(response)
+                    self.isLoading = false
                     if (response.data === true){
-                        self.showSuccess = true
+                        window.location.href = '/thanks'
                     }else{
                         self.showFail = true
                     }
@@ -178,8 +215,6 @@
                 catch(function(error){
                     console.log(error);
                 });
-
-                this.isClicked = true
             }
         },
         computed: {

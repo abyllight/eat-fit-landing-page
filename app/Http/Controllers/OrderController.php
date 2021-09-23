@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\ProductCart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -168,7 +167,7 @@ class OrderController extends Controller
         if ($request['isPersonal']) {
             $name = $name . ' Индивидуальное меню';
         }else {
-            $name = $name . ' ' . $request['title'] . ' ' . $request['day'] . ' ' . $request['promo'];
+            $name = $name . ', ' . $request['title'] . ' - ' . $request['day'] . ' ' . $request['promo'];
         }
 
         $leads['add'] = [

@@ -17,7 +17,7 @@
             leave-active-class="ease-out duration-100"
         >
             <div v-if="isVisible"
-                class="fixed overflow-y-auto inset-0 top-16 lg:top-24 md:bottom-auto mx-auto z-30 bg-white rounded-t-lg md:rounded-b-lg md:max-w-md lg:max-w-3xl py-6"
+                class="fixed overflow-y-auto inset-0 top-16 2xl:top-24 md:bottom-auto mx-auto z-30 bg-white rounded-t-lg md:rounded-b-lg md:max-w-md lg:max-w-3xl py-6"
             >
                 <h3 class="text-2xl leading-6 font-black ml-6 mb-4">
                     {{ !isPersonal ? `Рацион ${ data.title }` : 'Индивидуальное меню' }}
@@ -117,18 +117,21 @@
                                     <p v-if="!isPhoneValid" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
                                 </div>
                                 <div class="mb-4">
-                                    <!--                            <input
-                                                                    class="shadow appearance-none border rounded w-full text-sm mb-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                                    type="text" placeholder="Промокод (если есть)" v-model="promo">-->
-                                    <label class="block text-gray-500 font-semibold flex mt-1">
+                                    <input
+                                        v-model="promo"
+                                        class="focus:outline-none focus:ring focus:border-blue-300 block w-full shadow border border-gray-300 rounded-md text-base px-3 py-2.5"
+                                        type="text"
+                                        placeholder="Промокод (если есть)"
+                                    >
+                                    <label class="block text-gray-500 font-semibold flex mt-4">
                                         <input
                                             v-model="isChecked"
                                             class="mr-2 leading-tight w-5 h-5 cursor-pointer"
                                             type="checkbox"
                                         >
                                         <span class="text-tiny -mt-1">
-                                    Я даю согласие на обработку своих данных и их использование
-                                </span>
+                                            Я даю согласие на обработку своих данных и их использование
+                                        </span>
                                     </label>
                                 </div>
                                 <div class="flex items-center">
