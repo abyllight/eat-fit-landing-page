@@ -1,10 +1,19 @@
 let cart = window.localStorage.getItem('cart');
+let cutlery = window.localStorage.getItem('cutlery');
 let totalCount = window.localStorage.getItem('totalCount');
 let user = window.localStorage.getItem('go_user');
 
 let store = {
     state: {
         cart: cart ? JSON.parse(cart) : [],
+        cutlery: cutlery ? JSON.parse(cutlery) : {
+            id: 0,
+            title: 'Приборы',
+            image: '/products/tools.jpg',
+            price: 50,
+            q: 1,
+            total: 50
+        },
         user: user ? JSON.parse(user) : {},
         totalCount: totalCount ?? 0,
         total: 0,
@@ -63,6 +72,14 @@ let store = {
             found.q += 1
             found.total = found.q * found.price
         },
+        DECREMENT_CUTLERY(state){
+            state.cutlery.q -= 1
+            state.cutlery.total = state.cutlery.q * state.cutlery.price
+        },
+        INCREMENT_CUTLERY(state){
+            state.cutlery.q += 1
+            state.cutlery.total = state.cutlery.q * state.cutlery.price
+        },
         CLEAR_CART(state){
             state.cart = []
             state.totalCount = 0
@@ -73,6 +90,19 @@ let store = {
         SAVE_CART(state){
             window.localStorage.setItem('cart', JSON.stringify(state.cart));
             window.localStorage.setItem('totalCount', state.totalCount);
+        },
+        SAVE_CUTLERY(state){
+            window.localStorage.setItem('cutlery', JSON.stringify(state.cutlery));
+        },
+        CLEAR_CUTLERY(state){
+            state.cutlery = {
+                id: 0,
+                title: 'Приборы',
+                image: '/products/tools.jpg',
+                price: 50,
+                q: 1,
+                total: 50
+            }
         },
         SAVE_USER(state, item) {
             state.user = item
@@ -113,7 +143,22 @@ let store = {
         },
         saveUser({commit}, item){
             commit('SAVE_USER', item)
-        }
+        },
+        incCutlery({commit}) {
+            commit('INCREMENT_CUTLERY')
+            commit('SAVE_CUTLERY')
+        },
+        decCutlery({commit}) {
+            if (this.state.cutlery.q < 1) {
+                return
+            }
+            commit('DECREMENT_CUTLERY')
+            commit('SAVE_CUTLERY')
+        },
+        clearCutlery({commit}) {
+            commit('CLEAR_CUTLERY')
+            commit('SAVE_CUTLERY')
+        },
     }
 };
 
