@@ -363,7 +363,6 @@
                     self.$store.dispatch('clearCart');
                     self.$store.dispatch('clearCutlery');
                     self.loading = false
-                    console.log(response)
                     self.isLoading = false
                 }).
                 catch(function(error){
