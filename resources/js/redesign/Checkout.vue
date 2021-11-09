@@ -142,13 +142,21 @@
                         <p>Сумма заказа:</p>
                         <p>{{ total }}₸</p>
                     </div>
+                    <div class="w-full flex items-center justify-between mb-1.5 border-gray-300">
+                        <p>Приборы:</p>
+                        <p>{{cutlery.total}}₸</p>
+                    </div>
+                    <div class="w-full flex items-center justify-between mb-1.5 border-gray-300">
+                        <p>Промокод:</p>
+                        <p>0₸</p>
+                    </div>
                     <div class="w-full flex items-center justify-between pb-2 mb-2 border-gray-300 border-b-2">
                         <p>Доставка:</p>
                         <p>600₸</p>
                     </div>
                     <div class="w-full text-lg font-semibold flex items-center justify-between">
                         <p>Итого:</p>
-                        <p>{{ total + 600 }}₸</p>
+                        <p>{{ total + 600 + cutlery.total }}₸</p>
                     </div>
                 </div>
                 <div
@@ -158,6 +166,14 @@
                     <div class="pl-3 w-full">
                         <p class="text-base font-medium leading-tight">{{ item.title }}</p>
                         <p class="font-semibold text-red-400"> x{{ item.q }} </p>
+                    </div>
+                </div>
+                <div
+                    class="border-b-2 py-3 flex items-center">
+                    <img :src="'/storage/' + cutlery.image" class="rounded w-16">
+                    <div class="pl-3 w-full">
+                        <p class="text-base font-medium leading-tight">{{ cutlery.title }}</p>
+                        <p class="font-semibold text-red-400"> x{{ cutlery.q }} </p>
                     </div>
                 </div>
             </div>
@@ -246,7 +262,7 @@
             }
         },
         computed: {
-            ...mapState(['cart', 'user']),
+            ...mapState(['cart', 'user', 'cutlery']),
             total() {
                 return this.$store.getters.getTotal
             },
@@ -345,13 +361,14 @@
                 then(function (response) {
                     self.showSuccess = true
                     self.$store.dispatch('clearCart');
+                    self.$store.dispatch('clearCutlery');
                     self.loading = false
                     console.log(response)
                     self.isLoading = false
                 }).
                 catch(function(error){
                     self.showFail = true
-                    console.log(error, 'erro from eatfitgo');
+                    console.log(error, 'error from eatfitgo');
                     self.isLoading = false
                 });
             },
