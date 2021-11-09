@@ -294,23 +294,13 @@ export default {
             if(this.day === '2'){
                 this.discount = this.data.iPrice * 0.7
                 return this.data.iPrice * 0.7 * this.day
-            }else if (this.day > 2 && this.day < 11){
-                this.discount = this.data.iPrice
-                return this.day * this.data.iPrice
-            }else if(this.day >= 11 && this.day < 24){
+            }else if (this.day > 2 && this.day < 24){
                 this.discount = this.data.iPrice
                 return this.day * this.data.iPrice
             }else if(this.day >= 24 && this.day < 36){
                 this.discount = this.data.iPrice - 500
                 return this.day * (this.data.iPrice - 500)
-            }else if(this.day >= 36){
-                this.discount = this.data.iPrice - 1000
-                return this.day * (this.data.iPrice - 1000)
             }else{
-                if(this.data.title === 'XS'){
-                    this.discount = this.data.iPrice - 500
-                    return this.day * (this.data.iPrice - 500)
-                }
                 this.discount = this.data.iPrice - 1000
                 return this.day * (this.data.iPrice - 1000)
             }
