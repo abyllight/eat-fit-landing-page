@@ -332,7 +332,7 @@
     </section>
 
     <!-- Section Contact -->
-    <section id="contacts" class="py-16">
+    <section id="contacts" class="pb-16">
         <h1 class="text-xl lg:text-2xl text-center font-semibold mb-4 px-4">
             Наши контакты
         </h1>

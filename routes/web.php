@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Product;
 /*
@@ -13,38 +15,30 @@ use App\Product;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::view('/', 'landing');
 
-Route::get('/thanks', function () {
-    return view('thankyou');
-});
+Route::view('/thanks', 'thankyou');
 
-Route::get('/detox', function () {
-    return view('detox');
-});
+Route::view('/detox', 'detox');
 
 Route::post('/', 'OrderController@placeOrder');
 
 //Route::post('/cart', 'OrderController@placeCartOrder');
 
-Route::get('/go', function () {
-    return view('page');
-});
+Route::view('/go', 'page');
 
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::view('/cart', 'cart');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::view('/checkout', 'checkout');
 
-Route::post('/checkout', 'OrderController@eatFitGo');
+Route::post('/checkout', [OrderController::class, 'eatFitGo']);
 
 Route::get('/products', function () {
     return response()->json(Product::where('is_active', true)->get());
+});
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
 });
 
 Route::get('/login', 'LoginController@show')->name('login')->middleware('guest');
