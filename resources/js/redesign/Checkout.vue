@@ -362,8 +362,8 @@
                 }).
                 then(function (response) {
                     self.showSuccess = true
-                    //self.$store.dispatch('clearCart');
-                    //self.$store.dispatch('clearCutlery');
+                    self.$store.dispatch('clearCart');
+                    self.$store.dispatch('clearCutlery');
                     self.loading = false
                     self.isLoading = false
                 }).
