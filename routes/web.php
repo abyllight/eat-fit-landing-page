@@ -42,7 +42,7 @@ Route::get('/linkstorage', function () {
 });
 
 Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
+    Artisan::call('optimize:clear');
 });
 
 Route::get('/login', 'LoginController@show')->name('login')->middleware('guest');
