@@ -348,6 +348,7 @@
             amoRequest() {
                 this.isLoading = true;
                 let self = this;
+                let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 axios.post('/checkout', {
                     name: this.name,
                     phone: this.phone,
@@ -356,12 +357,13 @@
                     payment: this.payment,
                     cart: this.cart,
                     total: this.total,
-                    wholesale: this.wholesale
+                    wholesale: this.wholesale,
+                    _token: token
                 }).
                 then(function (response) {
                     self.showSuccess = true
-                    self.$store.dispatch('clearCart');
-                    self.$store.dispatch('clearCutlery');
+                    //self.$store.dispatch('clearCart');
+                    //self.$store.dispatch('clearCutlery');
                     self.loading = false
                     self.isLoading = false
                 }).
