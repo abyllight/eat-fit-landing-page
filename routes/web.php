@@ -41,6 +41,10 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
 
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+});
+
 Route::get('/login', 'LoginController@show')->name('login')->middleware('guest');
 
 Route::post('/login', 'LoginController@login')->name('login.post');
