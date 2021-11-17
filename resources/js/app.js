@@ -3,17 +3,6 @@ window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-window.axios.interceptors.response.use(
-    response => response.data,
-    error => {
-        if (error.response && 419 === error.response.status) {
-            window.location.reload()
-        }
-
-        return Promise.reject(error)
-    }
-)
-
 import Vuelidate from "vuelidate/src";
 import Vuex from 'vuex';
 import store from './store';
