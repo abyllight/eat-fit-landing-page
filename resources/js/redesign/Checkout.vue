@@ -152,11 +152,11 @@
                     </div>
                     <div class="w-full flex items-center justify-between pb-2 mb-2 border-gray-300 border-b-2">
                         <p>Доставка:</p>
-                        <p>600₸</p>
+                        <p>{{delivery}}₸</p>
                     </div>
                     <div class="w-full text-lg font-semibold flex items-center justify-between">
                         <p>Итого:</p>
-                        <p>{{ total + 600 + cutlery.total }}₸</p>
+                        <p>{{ total + delivery + cutlery.total }}₸</p>
                     </div>
                 </div>
                 <div
@@ -247,6 +247,7 @@
                     }
                 ],
                 time: 100,
+                delivery: 600,
                 active: 'bg-yellow-300 shadow',
                 non_active: 'bg-gray-200 hover:bg-gray-300',
                 name: '',
@@ -321,7 +322,7 @@
                         { //options
                             publicId: 'pk_114ea6d38b2d3467a650ea5c71d76', //id из личного кабинета
                             description: 'Оплата товаров в eatandfit.kz', //назначение
-                            amount: this.total + 600, //сумма
+                            amount: this.total + this.delivery + this.cutlery.total, //сумма
                             currency: 'KZT', //валюта
                             skin: "modern", //дизайн виджета (необязательно)
                             data: {
@@ -358,6 +359,8 @@
                     cart: this.cart,
                     total: this.total,
                     wholesale: this.wholesale,
+                    delivery: this.delivery,
+                    cutlery: this.cutlery,
                     _token: token
                 }).
                 then(function (response) {

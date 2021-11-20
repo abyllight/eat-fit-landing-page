@@ -347,9 +347,10 @@ class OrderController extends Controller
         $phone = $request->phone ?? '';
         $cart = $request->cart ?? [];
         $card_type = $request->payment;
-        $products = '';
-        $total = $request->total + 600;
+        $cutlery = $request->cutlery;
+        $total = $request->total + $request->delivery + $cutlery['total'];
         $wholesale = $request->wholesale ?? 0;
+        $products = 'Приборы - '. $cutlery['q'] . 'шт,'.PHP_EOL;
         //872351 Мультизлаковая каша
         //872353 Творожный маффин
         //872355 Гранола с ягодой и орехом, йогурт
