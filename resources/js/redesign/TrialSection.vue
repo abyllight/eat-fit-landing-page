@@ -46,7 +46,6 @@
                                 type="text"
                                 class="w-full rounded-2xl bg-white px-5 py-3 mt-4 text-sm focus:outline-none focus:shadow-outline"
                                 placeholder="Промокод (если есть)"
-                                required
                             />
 
                             <p v-if="!isPhoneValid || !isValid" class="text-red-500 text-xs italic mt-2">Заполните телефон</p>
