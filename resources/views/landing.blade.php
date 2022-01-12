@@ -243,7 +243,7 @@
                 <div class="flex flex-col text-center items-center mb-8 w-full">
                     <img src="/img/icons/step2.png" class="w-12 mx-auto mb-3" alt="Шаг 2">
                     <p class="text-sm">
-                        Созваниемся и подбираем <br> программу питания
+                        Созваниваемся и подбираем <br> программу питания
                     </p>
                 </div>
 
@@ -270,7 +270,7 @@
     </section>
 
     <!-- Section trial -->
-    <section id="trial" class="py-20 w-full bg-trial-sm lg:bg-trial-lg bg-cover bg-no-repeat bg-center">
+    <section id="trial" class="py-20 w-full bg-trial-lg bg-cover bg-no-repeat bg-center">
         <trial></trial>
     </section>
 
