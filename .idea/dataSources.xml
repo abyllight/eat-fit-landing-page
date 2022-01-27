@@ -11,5 +11,12 @@
         <property name="serverTimezone" value="Asia/Almaty" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="eat_fit_landing@localhost" uuid="7edf2b1f-5189-44f3-b9df-37f2169e05f2">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/eat_fit_landing</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

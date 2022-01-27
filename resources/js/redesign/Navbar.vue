@@ -17,7 +17,7 @@
                 </button>
 
                 <div class="flex items-center">
-                    <a href="#">
+                    <a href="/#">
                         <img class="h-10 w-10 lg:mr-5" src="/img/logo.png" alt="Logo">
                     </a>
 
