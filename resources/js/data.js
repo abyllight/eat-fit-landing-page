@@ -7,7 +7,7 @@ let programs = [
                 imageUrl: '/img/programs/xs.png',
                 title: 'XS',
                 kcal: '900',
-                price: 6000,
+                price: 5500,
                 iPrice: 6500,
                 shortDescription: 'Интенсивное снижение веса',
                 isPopular: false,
