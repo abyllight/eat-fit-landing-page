@@ -28,7 +28,7 @@
                         <div class="w-full pt-2 pl-1 pr-5">
                             <div class="flex items-center justify-between mb-2">
                                 <p class="text-3xl font-bold">{{ program.title }}</p>
-                                <p class="font-light text-sm text-gray-700 mt-1">{{ program.kcal }} ккал</p>
+                                <p class="font-light text-sm text-gray-700 mt-1">~{{ program.kcal }} ккал</p>
                             </div>
                             <p class="font-medium leading-tight tracking-tight">{{ program.shortDescription }}</p>
 
