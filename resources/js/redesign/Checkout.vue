@@ -140,7 +140,7 @@
                     <h4 class="font-medium text-lg mb-5">Ваш заказ</h4>
                     <div class="w-full flex items-center justify-between mb-1">
                         <p>Сумма заказа:</p>
-                        <p>{{ total }}₸</p>
+                        <p>{{ totalPrice }}₸</p>
                     </div>
                     <div class="w-full flex items-center justify-between mb-1.5 border-gray-300">
                         <p>Приборы:</p>
@@ -156,7 +156,7 @@
                     </div>
                     <div class="w-full text-lg font-semibold flex items-center justify-between">
                         <p>Итого:</p>
-                        <p>{{ total + delivery + cutlery.total }}₸</p>
+                        <p>{{ totalPrice + delivery + cutlery.total }}₸</p>
                     </div>
                 </div>
                 <div
@@ -247,7 +247,7 @@
                     }
                 ],
                 time: 100,
-                delivery: 600,
+                delivery_fee: 600,
                 active: 'bg-yellow-300 shadow',
                 non_active: 'bg-gray-200 hover:bg-gray-300',
                 name: '',
@@ -275,6 +275,12 @@
             },
             isSunday() {
                 return new Date().getDay() === 6
+            },
+            delivery() {
+                return this.payment === 'cashless' ? 0 : this.delivery_fee
+            },
+            totalPrice() {
+                return this.payment === 'cashless' ? this.wholesale : this.total
             }
         },
         mounted() {

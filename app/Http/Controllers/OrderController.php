@@ -399,7 +399,8 @@ class OrderController extends Controller
                     }
 
                     $q = $item['q'];
-                    $products .= $item['title'] . ' - ' . $q;
+                    $price = $card_type === 'cashless' ? $product->wholesale_price : $product->price;
+                    $products .= $item['title'] . ' - ' . $q . ' x ' . $price;
                     if (end($cart) !== $item) {
                         $products .= ', '.PHP_EOL;
                     }
