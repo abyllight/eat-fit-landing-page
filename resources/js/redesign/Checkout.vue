@@ -64,6 +64,17 @@
                             class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md" />
                         <p v-if="$v.address.$error" class="text-red-500 text-xs mt-1">Укажите адрес</p>
                     </div>
+
+<!--                    <div class="col-span-6 sm:col-span-5">
+                        <label for="promocode" class="block text-sm font-medium">Промокод</label>
+                        <input
+                            id="promocode"
+                            type="text"
+                            v-model="promocode"
+                            placeholder="Опционально"
+                            :disabled="isEleven || isSunday"
+                            class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md" />
+                    </div>-->
                 </div>
                 <div
                     class="mb-5 inline-block rounded"
@@ -253,6 +264,7 @@
                 name: '',
                 phone: '',
                 address: '',
+                promocode: '',
                 payment: 'card',
                 disabled: 'cursor-not-allowed opacity-50 bg-gray-300',
                 activeButton: 'cursor-pointer opacity-100 bg-yellow-300 hover:bg-yellow-400',

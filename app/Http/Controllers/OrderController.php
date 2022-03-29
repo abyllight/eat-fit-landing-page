@@ -350,7 +350,7 @@ class OrderController extends Controller
         $cutlery = $request->cutlery;
         $total = $request->total + $request->delivery + $cutlery['total'];
         $wholesale = $request->wholesale ?? 0;
-        $products = 'Приборы - '. $cutlery['q'] . 'шт,'.PHP_EOL;
+        $products = 'Приборы - '. $cutlery['q'] . ' x ' . $cutlery['price'] . ','.PHP_EOL;
         //872351 Мультизлаковая каша
         //872353 Творожный маффин
         //872355 Гранола с ягодой и орехом, йогурт
@@ -379,10 +379,10 @@ class OrderController extends Controller
             $lead['status_id'] = 40592377; //Заказ поступил
             $lead['pipeline_id'] = 4359841; //EatFitGo
             $lead['tags'] = 'Заявка с сайта';
-            $lead['price'] = $wholesale;
+            $lead['price'] = $wholesale + $cutlery['total'];
 
             if ($card_type === 'card') {
-                $lead->addCustomField(321139, $total); //Фактический оплачено
+                $lead->addCustomField(321139, $total + $cutlery['total']); //Фактический оплачено
                 $lead->addCustomField(869811, '969831'); //Оплачено картой на сайте
             }elseif ($card_type === 'kaspi_pay') {
                 $lead->addCustomField(869811, '968303'); //kaspi pay
