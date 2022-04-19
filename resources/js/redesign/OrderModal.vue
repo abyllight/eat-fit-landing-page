@@ -116,28 +116,41 @@
                                         :class="{ 'border-red-500 focus:border-red-500': !isPhoneValid }"/>
                                     <p v-if="!isPhoneValid" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-2.5 relative">
                                     <input
                                         v-model="promo"
                                         class="focus:outline-none focus:ring focus:border-blue-300 block w-full shadow border border-gray-300 rounded-md text-base px-3 py-2.5"
                                         type="text"
                                         placeholder="Промокод (если есть)"
-                                    >
-                                    <label class="block text-gray-500 font-semibold flex mt-4">
-                                        <input
-                                            v-model="isChecked"
-                                            class="mr-2 leading-tight w-5 h-5 cursor-pointer"
-                                            type="checkbox"
+                                    />
+                                    <div class="absolute inset-y-0 right-3 flex items-center">
+                                        <p
+                                            v-if="promo !== '' && !loading"
+                                            @click="checkPromo"
+                                            class="text-xs font-semibold uppercase text-gray-800 cursor-pointer"
+                                            :class="{'text-red-700':promoIsApplied}"
                                         >
-                                        <span class="text-tiny -mt-1">
+                                            {{promoIsApplied ? 'Убрать' : 'Применить'}}
+                                        </p>
+                                        <div v-if="loading" class="loader ease-linear rounded-full border-4 border-t-4 border-white h-6 w-6"></div>
+                                    </div>
+                                </div>
+                                <p class="text-sm" :class="{'text-red-600': !promoStatus}">{{ promoMsg }}</p>
+                                <label class="block text-gray-500 font-semibold flex mt-4">
+                                    <input
+                                        v-model="isChecked"
+                                        class="mr-2 leading-tight w-5 h-5 cursor-pointer"
+                                        type="checkbox"
+                                    >
+                                    <span class="text-tiny -mt-1">
                                             Я даю согласие на обработку своих данных и их использование
                                         </span>
-                                    </label>
-                                </div>
+                                </label>
                                 <div class="flex items-center">
-                                    <button class="mx-auto bg-brand-dark-green font-bold py-2.5 px-4 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
-                                            :disabled="!isChecked || this.name.length <= 1 || !isValid"
-                                            :class="[ !isChecked || this.name.length <= 1 || !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green cursor-pointer opacity-100']"
+                                    <button
+                                        class="mx-auto bg-brand-dark-green font-bold py-2.5 px-4 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
+                                        :disabled="!isChecked || this.name.length <= 1 || !isValid"
+                                        :class="[ !isChecked || this.name.length <= 1 || !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green cursor-pointer opacity-100']"
                                     >
                                         Оставить заявку
                                     </button>
@@ -286,7 +299,13 @@ export default {
             utm: [],
             isChecked: false,
             rawVal: '',
-            isLoading: false
+            isLoading: false,
+            loading: false,
+            promoIsApplied: false,
+            promoMsg: '',
+            promoStatus: false,
+            promoType: 0,
+            promoVal: null
         }
     },
     computed: {
@@ -392,6 +411,8 @@ export default {
             return null;
         },
         formSubmit(){
+            if (!this.isChecked || this.name.length <= 1 || !this.isValid) return
+
             this.$emit('close')
             this.isLoading = true
             let self = this;
@@ -407,9 +428,15 @@ export default {
                 name: this.name,
                 phone: this.phone,
                 promo: this.promo,
+                promoStatus: this.promoStatus,
+                promoMsg: this.promoMsg,
+                promoType: this.promoType,
+                promoVal: this.promoVal,
                 day: this.day,
                 title: this.data.title,
                 isPersonal: this.isPersonal,
+                total: this.total,
+                discount: this.discount,
                 utm: params,
                 ga: ga
             };
@@ -432,7 +459,63 @@ export default {
             this.day = 24
             this.isChecked = false
             this.$emit('close')
+        },
+        checkPromo() {
+            if (this.promo === '') return
+
+            this.loading = true
+
+            if (this.promoIsApplied) {
+                this.promoIsApplied = false
+                this.promo = ''
+                this.promoMsg = ''
+                this.promoStatus = false
+                this.promoType = 0
+                this.promoVal = null
+                this.loading = false
+                return
+            }
+
+            axios.get('https://back.eatandfit.kz/api/promocode/' + this.promo)
+                .then(response => {
+                    this.loading = false
+
+                    this.promoIsApplied = response.data.status
+
+                    this.promoStatus = response.data.status
+                    this.promoMsg = response.data.msg
+                    this.promoType = response.data.type
+                    this.promoVal = response.data.val
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
         }
     }
 }
 </script>
+<style scoped>
+.loader {
+    border-top-color: #34D399;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+</style>

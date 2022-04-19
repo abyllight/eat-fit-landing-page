@@ -198,12 +198,14 @@
                     name: this.name,
                     phone: this.phone,
                     promo: this.promo,
+                    isTrial: true,
                     utm: params,
                     ga: ga
                 };
 
                 axios.post('/', data).
                 then(function (response) {
+                    console.log(response)
                     self.isLoading = false
                     if (response.data === true){
                         window.location.href = '/thanks'

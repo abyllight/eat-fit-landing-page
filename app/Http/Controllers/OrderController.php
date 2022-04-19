@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -107,6 +108,10 @@ class OrderController extends Controller
 
     public function getUtm(Request $request, array $leads): array
     {
+        if (!$request->has('utm')) {
+            return $leads;
+        }
+
         $utm_tags = [
             [
                 'tag_name' => 'utm_source',
@@ -130,10 +135,6 @@ class OrderController extends Controller
             ]
         ];
 
-        if (!$request->has('utm')) {
-            return $leads;
-        }
-
         $utm = $request['utm'];
 
         foreach ($utm_tags as $tag) {
@@ -152,7 +153,8 @@ class OrderController extends Controller
         return $leads;
     }
 
-    public function placeOrder(Request $request){
+    public function placeOrder(Request $request): JsonResponse
+    {
 
         $auth = $this->amo_auth();
 
@@ -162,17 +164,10 @@ class OrderController extends Controller
 
         $subdomain = env('AMO_SUBDOMAIN', '');
 
-        $name = $request['name'];
-
-        if ($request['isPersonal']) {
-            $name = $name . ' Индивидуальное меню';
-        }else {
-            $name = $name . ', ' . $request['title'] . ' - ' . $request['day'] . ' ' . $request['promo'];
-        }
-
         $leads['add'] = [
             [
-                'name' => $name,
+                'price' => 0,
+                'name' => '',
                 'status_id' => 28039639, //Тег присвоен
                 'pipeline_id' => 1783882, //Первичные продажи
                 'tags' => 'Заявка с сайта',
@@ -205,6 +200,111 @@ class OrderController extends Controller
                 ]
             ]
         ];
+
+        $name = $request['name'];
+        if ($request['isPersonal']) {
+            $name = $name . ' Индивидуальное меню';
+        } else if ($request['isTrial']) {
+            $name = $name . ' Пробный день';
+        } else {
+            $size = [
+                'id' => 327953, //Size
+            ];
+            switch ($request->title) {
+                case 'XS': //XS
+                    $size['values'][0]['value'] = '678741';
+                    break;
+                case 'S': //S
+                    $size['values'][0]['value'] = '678743';
+                    break;
+                case 'M': //M
+                    $size['values'][0]['value'] = '678745';
+                    break;
+                case 'L': //L
+                    $size['values'][0]['value'] = '678747';
+                    break;
+                case 'XL': //XL
+                    $size['values'][0]['value'] = '678749';
+                    break;
+            }
+
+            $leads['add'][0]['custom_fields'][] = $size;
+
+            $type = [
+                'id' => 321197, //Type
+                'values' => [
+                    [
+                        'value' => '678649'
+                    ]
+                ]
+            ];
+
+            $leads['add'][0]['custom_fields'][] = $type;
+
+            $day = [
+                'id' => 321235, //course
+                'values' => [
+                    [
+                        'value' => $request->day
+                    ]
+                ]
+            ];
+
+            $leads['add'][0]['custom_fields'][] = $day;
+
+            $course_price = [
+                'id' => 456321, //стоимость курса,
+                'values' => [
+                    [
+                        'value' => $request->total
+                    ]
+                ]
+            ];
+
+            $leads['add'][0]['custom_fields'][] = $course_price;
+        }
+
+        if ($request->has('promoStatus') && $request->promoStatus === true) {
+
+            if (($request->promoType === 0 || $request->promoType === 1) && $request->has('total')
+                && !$request->has('isTrial') && !$request->isPersonal) {
+
+                $skidka = null;
+
+                if ($request->promoType === 0) {
+                    $skidka = $request->total * $request->promoVal / 100;
+                }
+
+                if ($request->promoType === 1) {
+                    $skidka = $request->promoVal;
+                }
+
+                if ($skidka) {
+                    $leads['add'][0]['custom_fields'][] = [
+                        'id' => 479179, //сумма скидки,
+                        'values' => [
+                            [
+                                'value' => $skidka
+                            ]
+                        ]
+                    ];
+                }
+            }
+
+            $leads['add'][0]['custom_fields'][] = [
+                'id' => 321259, //комм менеджер,
+                'values' => [
+                    [
+                        'value' => $request->promoMsg
+                    ]
+                ]
+            ];
+        }
+
+        if (!$request->isPersonal && !$request->has('isTrial')) {
+            $leads['add'][0]['price'] = $request->discount;
+        }
+        $leads['add'][0]['name'] = $name;
 
         $leads = $this->getUtm($request, $leads);
 
