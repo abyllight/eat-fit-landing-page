@@ -170,7 +170,7 @@ class OrderController extends Controller
                 'name' => '',
                 'status_id' => 28039639, //Тег присвоен
                 'pipeline_id' => 1783882, //Первичные продажи
-                'tags' => 'Заявка с сайта',
+                'tags' => ['Заявка с сайта'],
                 'custom_fields' => [
                     [
                         'id' => 478771, //Телефон
@@ -299,11 +299,14 @@ class OrderController extends Controller
                     ]
                 ]
             ];
+
+            $leads['add'][0]['tags'][] = $request->promo;
         }
 
         if (!$request->isPersonal && !$request->has('isTrial')) {
             $leads['add'][0]['price'] = $request->discount;
         }
+
         $leads['add'][0]['name'] = $name;
 
         $leads = $this->getUtm($request, $leads);

@@ -41,14 +41,30 @@
                                 placeholder="Ваш телефон"
                             />
 
-                            <input
-                                v-model="promo"
-                                type="text"
-                                class="w-full rounded-2xl bg-white px-5 py-3 mt-4 text-sm focus:outline-none focus:shadow-outline"
-                                placeholder="Промокод (если есть)"
-                            />
-
                             <p v-if="!isPhoneValid || !isValid" class="text-red-500 text-xs italic mt-2">Заполните телефон</p>
+
+                            <div class="mb-3 mt-4 relative">
+                                <input
+                                    v-model="promo"
+                                    class="w-full rounded-2xl bg-white px-5 py-3 text-sm focus:outline-none focus:shadow-outline"
+                                    type="text"
+                                    placeholder="Промокод (если есть)"
+                                />
+                                <div class="absolute inset-y-0 right-3 flex items-center">
+                                    <p
+                                        v-if="promo !== '' && !loading"
+                                        @click="checkPromo"
+                                        class="text-xs font-semibold uppercase text-gray-800 cursor-pointer"
+                                        :class="{'text-red-700':promoIsApplied}"
+                                    >
+                                        {{promoIsApplied ? 'Убрать' : 'Применить'}}
+                                    </p>
+                                    <div v-if="loading" class="loader ease-linear rounded-full border-4 border-t-4 border-white h-6 w-6"></div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm font-medium bg-gray-200" :class="[!promoStatus ? 'text-red-600': 'text-lime-600', promoMsg ? 'p-3' : 'p-0']">{{promoMsg}}</p>
+
                             <button
                                 type="submit"
                                 class="border-brand-yellow rounded-2xl cursor-pointer shadow-lg
@@ -118,7 +134,13 @@
                 isValid: true,
                 showSuccess: false,
                 showFail: false,
-                isLoading: false
+                isLoading: false,
+                loading: false,
+                promoIsApplied: false,
+                promoMsg: '',
+                promoStatus: false,
+                promoType: 0,
+                promoVal: null
             }
         },
         methods: {
@@ -198,6 +220,10 @@
                     name: this.name,
                     phone: this.phone,
                     promo: this.promo,
+                    promoStatus: this.promoStatus,
+                    promoMsg: this.promoMsg,
+                    promoType: this.promoType,
+                    promoVal: this.promoVal,
                     isTrial: true,
                     utm: params,
                     ga: ga
@@ -216,6 +242,37 @@
                 catch(function(error){
                     console.log(error);
                 });
+            },
+            checkPromo() {
+                if (this.promo === '') return
+
+                this.loading = true
+
+                if (this.promoIsApplied) {
+                    this.promoIsApplied = false
+                    this.promo = ''
+                    this.promoMsg = ''
+                    this.promoStatus = false
+                    this.promoType = 0
+                    this.promoVal = null
+                    this.loading = false
+                    return
+                }
+
+                axios.get('https://back.eatandfit.kz/api/promocode/' + this.promo)
+                    .then(response => {
+                        this.loading = false
+
+                        this.promoIsApplied = response.data.status
+
+                        this.promoStatus = response.data.status
+                        this.promoMsg = response.data.msg
+                        this.promoType = response.data.type
+                        this.promoVal = response.data.val
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
             }
         },
         computed: {

@@ -135,7 +135,7 @@
                                         <div v-if="loading" class="loader ease-linear rounded-full border-4 border-t-4 border-white h-6 w-6"></div>
                                     </div>
                                 </div>
-                                <p class="text-sm" :class="{'text-red-600': !promoStatus}">{{ promoMsg }}</p>
+                                <p class="text-sm font-medium text-lime-700 bg-gray-200" :class="{'text-red-600': !promoStatus, 'p-3': promoMsg}">{{promoMsg}}</p>
                                 <label class="block text-gray-500 font-semibold flex mt-4">
                                     <input
                                         v-model="isChecked"
