@@ -63,16 +63,16 @@
                             <div class="flex items-center justify-between">
                                 <p>Цена за день:</p>
                                 <div class="font-semibold text-lg">
-                                    <span :class="[(day === '2' || day > 24) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
-                                    <span v-show="day === '2' || day > 24" class="ml-2 text-pink-800">{{ discount }}тг</span>
+                                    <span :class="[(day === '2' || day >= 24) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
+                                    <span v-show="day === '2' || day >= 24" class="ml-2 text-pink-800">{{ discount }}тг</span>
                                 </div>
                             </div>
 
                             <div class="flex items-center justify-between">
                                 <p>Итого:</p>
                                 <div class="font-semibold text-lg">
-                                    <span :class="[(day === '2' || day > 24) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
-                                    <span v-show="day === '2' || day > 24" class="ml-2 text-pink-800">{{ total }}тг</span>
+                                    <span :class="[(day === '2' || day >= 24) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
+                                    <span v-show="day === '2' || day >= 24" class="ml-2 text-pink-800">{{ total }}тг</span>
                                 </div>
                             </div>
 
@@ -313,10 +313,10 @@ export default {
             if(this.day === '2'){
                 this.discount = this.data.iPrice * 0.7
                 return this.data.iPrice * 0.7 * this.day
-            }else if (this.day > 2 && this.day < 25){
+            }else if (this.day > 2 && this.day < 24){
                 this.discount = this.data.iPrice
                 return this.day * this.data.iPrice
-            }else if(this.day >= 25 && this.day < 36){
+            }else if(this.day >= 24 && this.day < 36){
                 this.discount = this.data.iPrice - 500
                 return this.day * (this.data.iPrice - 500)
             }else{
