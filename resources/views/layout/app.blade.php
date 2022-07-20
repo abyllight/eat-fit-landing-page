@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане"/>
-    <meta property="og:title" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане. Диетическое питание. Здоровое питание - EAT&FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане" />
-    <meta property="og:description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Астане" />
+    <meta name="description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Алмате и Астане"/>
+    <meta property="og:title" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Алмате и Астане. Диетическое питание. Здоровое питание - EAT&FIT - Рационы здоровой жизни, диетическое питание с доставкой в Алмате и Астане" />
+    <meta property="og:description" content="EAT&amp;FIT - Рационы здоровой жизни, диетическое питание с доставкой в Алмате и Астане" />
     <meta property="og:url" content="https://eatandfit.kz/" />
-    <meta property="og:site_name" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане. Диетическое питание. Здоровое питание" />
+    <meta property="og:site_name" content="EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Алмате и Астане. Диетическое питание. Здоровое питание" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>EAT&amp;FIT- Сервис по организации здорового питания с доставкой на дом в Астане</title>
@@ -23,8 +23,7 @@
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-KJ5GBM2');
-    </script>
+        })(window,document,'script','dataLayer','GTM-M32JD4X');</script>
     <!-- End Google Tag Manager -->
 
     <!-- Facebook Pixel Code -->
@@ -102,10 +101,8 @@
     <!-- /Yandex.Metrika counter -->
 
     <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ5GBM2" height="0" width="0" style="display:none;visibility:hidden">
-        </iframe>
-    </noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M32JD4X"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 </body>
 </html>
