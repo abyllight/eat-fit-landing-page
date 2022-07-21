@@ -7,7 +7,7 @@
         >
             <div
                 v-if="isVisible"
-                class="h-screen w-full fixed inset-0 z-20 bg-gray-900 opacity-75 cursor-pointer"
+                class="h-screen w-full fixed inset-0 z-40 bg-gray-900 bg-opacity-80 cursor-pointer"
                 @click="closeModal">
             </div>
         </transition>
@@ -17,7 +17,7 @@
             leave-active-class="ease-out duration-100"
         >
             <div v-if="isVisible"
-                class="fixed overflow-y-auto h-2/3 inset-0 top-16 2xl:top-24 md:bottom-auto mx-auto z-30 bg-white rounded-t-lg md:rounded-b-lg md:max-w-md lg:max-w-3xl py-6"
+                class="fixed overflow-y-auto inset-0 top-16 lg:top-12 lg:h-auto md:bottom-auto mx-auto z-50 bg-white rounded-t-lg md:rounded-b-lg md:max-w-md lg:max-w-3xl py-6"
             >
                 <h3 class="text-2xl leading-6 font-black ml-6 mb-4">
                     {{ !isPersonal ? `Рацион ${ data.title }` : 'Индивидуальное меню' }}
