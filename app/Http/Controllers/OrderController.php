@@ -264,6 +264,17 @@ class OrderController extends Controller
             $leads['add'][0]['custom_fields'][] = $course_price;
         }
 
+        $city = [
+            'id' => 881669, //City
+            'values' => [
+                [
+                    'value' => $request->city_id === 1 ? '977019' : '977021'
+                ]
+            ]
+        ];
+
+        $leads['add'][0]['custom_fields'][] = $city;
+
         if ($request->has('promoStatus') && $request->promoStatus === true) {
 
             if (($request->promoType === 0 || $request->promoType === 1) && $request->has('total')
@@ -446,6 +457,7 @@ class OrderController extends Controller
     public function eatFitGo(Request $request): JsonResponse
     {
         $name = $request->name ?? '';
+        $city_id = $request->city_id ?? 1;
         $address = $request->address ?? '';
         $phone = $request->phone ?? '';
         $cart = $request->cart ?? [];
@@ -517,10 +529,10 @@ class OrderController extends Controller
             $lead->addCustomField(373971, $request->time); //Время доставки
             $lead->addCustomField(478705, $request->time); //Время доставки доп
             $lead->addCustomField(321277, $products); //Комм. кухня
-            $lead->addCustomField(327953,  '929511'
-            ); //Size
-            $lead->addCustomField(321197,  '833911'
-            ); //Type
+            $lead->addCustomField(327953,  '929511'); //Size
+            $lead->addCustomField(321197,  '833911'); //Type
+            $lead->addCustomField(881669, $city_id === 1 ? '977019' : '977021'); //City
+
             $id = $lead->apiAdd();
 
             $contact = $amo->contact;

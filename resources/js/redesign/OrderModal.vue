@@ -17,7 +17,7 @@
             leave-active-class="ease-out duration-100"
         >
             <div v-if="isVisible"
-                class="fixed overflow-y-auto inset-0 top-16 lg:top-12 lg:h-auto md:bottom-auto mx-auto z-50 bg-white rounded-t-lg md:rounded-b-lg md:max-w-md lg:max-w-3xl py-6"
+                class="fixed overflow-y-auto inset-0 top-12 lg:top-6 lg:h-auto md:bottom-auto mx-auto z-50 bg-white rounded-t-lg md:rounded-b-lg md:max-w-md lg:max-w-3xl py-6"
             >
                 <h3 class="text-2xl leading-6 font-black ml-6 mb-4">
                     {{ !isPersonal ? `Рацион ${ data.title }` : 'Индивидуальное меню' }}
@@ -91,6 +91,20 @@
                                 <h4 class="text-base font-semibold mb-4">
                                     Данные для консультации
                                 </h4>
+                                <div class="mb-3">
+                                    <select
+                                        v-model="city_id"
+                                        class="focus:outline-none focus:ring focus:border-blue-300 block w-full shadow border border-gray-300 rounded-md text-base px-3 py-2.5"
+                                    >
+                                        <option
+                                            v-for="c in cities"
+                                            :key="c.id"
+                                            :value="c.id"
+                                        >
+                                            {{c.name}}
+                                        </option>
+                                    </select>
+                                </div>
                                 <div class="mb-3">
                                     <input
                                         class="focus:outline-none focus:ring focus:border-blue-300 block w-full shadow border border-gray-300 rounded-md text-base px-3 py-2.5"
@@ -296,6 +310,18 @@ export default {
             name: '',
             phone: '',
             promo: '',
+            touched: false,
+            cities: [
+                {
+                    id: 1,
+                    name: 'Астана'
+                },
+                {
+                    id: 2,
+                    name: 'Алматы'
+                }
+            ],
+            city_id: 1,
             utm: [],
             isChecked: false,
             rawVal: '',
@@ -410,7 +436,7 @@ export default {
             }
             return null;
         },
-        formSubmit(){
+        formSubmit() {
             if (!this.isChecked || this.name.length <= 1 || !this.isValid) return
 
             this.$emit('close')
@@ -426,6 +452,7 @@ export default {
 
             let data = {
                 name: this.name,
+                city_id: this.city_id,
                 phone: this.phone,
                 promo: this.promo,
                 promoStatus: this.promoStatus,

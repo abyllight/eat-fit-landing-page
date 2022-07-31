@@ -24,6 +24,18 @@
 
                     <form @submit.prevent="formSubmit">
                         <div>
+                            <select
+                                v-model="city_id"
+                                class="w-full rounded-2xl bg-white px-5 py-3 mb-4 text-sm focus:outline-none focus:shadow-outline"
+                            >
+                                <option
+                                    v-for="c in cities"
+                                    :key="c.id"
+                                    :value="c.id"
+                                >
+                                    {{c.name}}
+                                </option>
+                            </select>
                             <input
                                 v-model="name"
                                 type="text"
@@ -140,7 +152,18 @@
                 promoMsg: '',
                 promoStatus: false,
                 promoType: 0,
-                promoVal: null
+                promoVal: null,
+                cities: [
+                    {
+                        id: 1,
+                        name: 'Астана'
+                    },
+                    {
+                        id: 2,
+                        name: 'Алматы'
+                    }
+                ],
+                city_id: 1
             }
         },
         methods: {
@@ -218,6 +241,7 @@
 
                 let data = {
                     name: this.name,
+                    city_id: this.city_id,
                     phone: this.phone,
                     promo: this.promo,
                     promoStatus: this.promoStatus,

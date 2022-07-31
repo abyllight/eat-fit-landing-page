@@ -12,7 +12,7 @@
             </a>
         </div>
         <div
-            v-else
+
             class="flex flex-col md:flex-row"
         >
             <div class="w-full lg:w-2/3 mb-8">
@@ -52,7 +52,25 @@
                         <p v-if="$v.phone.$error" class="text-red-500 text-xs mt-1">Заполните телефон</p>
                     </div>
 
-                    <div class="col-span-6 sm:col-span-5">
+                    <div class="col-span-6 sm:col-span-2">
+                        <label for="address" class="block text-sm font-medium">Город</label>
+                        <select
+                            id="address"
+                            v-model="city_id"
+                            :disabled="isEleven || isSunday"
+                            class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md"
+                        >
+                            <option
+                                v-for="c in cities"
+                                :key="c.id"
+                                :value="c.id"
+                            >
+                                {{c.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-6 sm:col-span-3">
                         <label for="address" class="block text-sm font-medium">Адрес</label>
                         <input
                             id="address"
@@ -272,6 +290,17 @@
                 showSuccess: false,
                 showFail: false,
                 isLoading: false,
+                cities: [
+                    {
+                        id: 1,
+                        name: 'Астана'
+                    },
+                    {
+                        id: 2,
+                        name: 'Алматы'
+                    }
+                ],
+                city_id: 1
             }
         },
         computed: {
@@ -367,6 +396,7 @@
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 axios.post('/checkout', {
                     name: this.name,
+                    city_id: this.city_id,
                     phone: this.phone,
                     address: this.address,
                     time: this.intervals[this.time].time,
