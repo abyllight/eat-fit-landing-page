@@ -486,6 +486,13 @@ class OrderController extends Controller
         //872385 Чай "Имбирный"
         //872387 Кофе "Турецкий"
 
+        //882665 Скрэмбл с сосисками
+        //882667 Мясо по-Тайски
+        //882669 3. Бефстроганов
+        //882671 1. Хэшбраун с яйцом
+        //882673 2. Клаб сэндвич с курицей
+
+
         try {
             $amo = new \AmoCRM\Client(env('AMO_SUBDOMAIN'), env('AMO_LOGIN'), env('AMO_HASH'));
 
