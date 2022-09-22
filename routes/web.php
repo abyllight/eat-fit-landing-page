@@ -34,7 +34,7 @@ Route::view('/checkout', 'checkout');
 Route::post('/checkout', [OrderController::class, 'eatFitGo']);
 
 Route::get('/products', function () {
-    return response()->json(Product::where('is_active', true)->get());
+    return response()->json(Product::where('is_active', true)->orderBy('category_id')->get());
 });
 
 Route::get('/linkstorage', function () {
