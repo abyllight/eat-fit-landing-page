@@ -26,7 +26,7 @@
         })(window,document,'script','dataLayer','GTM-NC55Q45');</script>
     <!-- End Google Tag Manager -->
 
-    <!-- Facebook Pixel Code -->
+    <!-- Meta Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -39,10 +39,11 @@
         fbq('init', '852043881844376');
         fbq('track', 'PageView');
     </script>
-    <noscript>
-        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=852043881844376&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
+    <noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=852043881844376&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- End Meta Pixel Code -->
+
     <meta name="mailru-domain" content="XLb4KEEntsFqbfyd" />
     @section('head')
     @show
