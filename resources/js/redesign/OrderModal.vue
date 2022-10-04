@@ -477,6 +477,7 @@ export default {
                 }else{
                     self.$emit('showFail')
                 }
+                fbq('track', 'PageView');
             }).
             catch(function(error){
                 console.log(error);
