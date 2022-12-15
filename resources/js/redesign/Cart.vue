@@ -201,7 +201,7 @@
                 return new Date().getHours() >= 20 || new Date().getHours() < 10
             },
             isSunday() {
-                return new Date().getDay() === /*5 ||*/ 6
+                return new Date().getDay() === 5 || 6
             }
         },
         created() {
