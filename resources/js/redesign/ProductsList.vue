@@ -88,7 +88,7 @@
                 return this.$store.getters.getItemCount(this.data.id)
             },
             isSunday() {
-                return new Date().getDay() === 5 || 6
+                return new Date().getDay() === 6
             }
         },
         methods: {
