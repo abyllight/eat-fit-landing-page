@@ -2,7 +2,7 @@
     <div class="py-24">
         <div class="max-w-2xl mx-auto px-2 relative">
             <h1 class="text-xl lg:text-2xl text-center font-semibold mb-1">EatFitGo</h1>
-            <p class="text-center mb-8">Полезные блюда с доставкой по г. Астана</p>
+            <p class="text-center mb-8">Полезные блюда с доставкой по Астане и Алмате</p>
             <div class="flex flex-wrap justify-start mx-auto">
                 <div
                     v-for="product in products"
