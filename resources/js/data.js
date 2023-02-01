@@ -22,7 +22,7 @@ let programs = [
                 ],
                 extra: 'Настоятельно рекомендуем проконсультироваться с нашим специалистом перед заказом!',
                 protein: {
-                    weight: '65-75',
+                    weight: '50-60',
                     percentage: 33
                 },
                 fat: {
@@ -30,7 +30,7 @@ let programs = [
                     percentage: 43
                 },
                 carbohydrate: {
-                    weight: '70-80',
+                    weight: '80-90',
                     percentage: 24
                 }
             },
@@ -54,7 +54,7 @@ let programs = [
                 ],
                 extra: null,
                 protein: {
-                    weight: '80-85',
+                    weight: '65-75',
                     percentage: 33
                 },
                 fat: {
@@ -62,7 +62,7 @@ let programs = [
                     percentage: 43
                 },
                 carbohydrate: {
-                    weight: '100-110',
+                    weight: '105-115',
                     percentage: 24
                 }
             },
@@ -90,7 +90,7 @@ let programs = [
                 ],
                 extra: null,
                 protein: {
-                    weight: '90-100',
+                    weight: '80-90',
                     percentage: 33
                 },
                 fat: {
@@ -98,7 +98,7 @@ let programs = [
                     percentage: 37
                 },
                 carbohydrate: {
-                    weight: '140-180',
+                    weight: '150-160',
                     percentage: 30
                 }
             },
@@ -122,7 +122,7 @@ let programs = [
                 ],
                 extra: null,
                 protein: {
-                    weight: '110-120',
+                    weight: '100-110',
                     percentage: 30
                 },
                 fat: {
@@ -159,7 +159,7 @@ let programs = [
                 ],
                 extra: null,
                 protein: {
-                    weight: '90-100',
+                    weight: '80-90',
                     percentage: 33
                 },
                 fat: {
@@ -167,7 +167,7 @@ let programs = [
                     percentage: 37
                 },
                 carbohydrate: {
-                    weight: '140-180',
+                    weight: '150-160',
                     percentage: 30
                 }
             },
@@ -195,7 +195,7 @@ let programs = [
                 ],
                 extra: null,
                 protein: {
-                    weight: '110-120',
+                    weight: '100-110',
                     percentage: 30
                 },
                 fat: {
@@ -231,15 +231,15 @@ let programs = [
                 ],
                 extra: null,
                 protein: {
-                    weight: '150-180',
+                    weight: '120-140',
                     percentage: 30
                 },
                 fat: {
-                    weight: '95-105',
+                    weight: '90-100',
                     percentage: 30
                 },
                 carbohydrate: {
-                    weight: '240-260',
+                    weight: '220-240',
                     percentage: 40
                 }
             }
