@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="font-semibold">
-                            <p class="-mb-2" :class="[count > 2 ? 'text-gray-600 oldPrice text-sm' : 'text-brand-dark-green text-lg']"> {{ count * data.price }}₸</p>
+                            <p class="-mb-2" :class="[count > 2 ? 'text-gray-600 line-through text-sm' : 'text-brand-dark-green text-lg']"> {{ count * data.price }}₸</p>
                             <p v-show="count > 2" class=" text-brand-dark-green text-xl"> {{ total }}₸</p>
                         </div>
 

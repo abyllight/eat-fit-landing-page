@@ -71,7 +71,7 @@
                         id: 0,
                         title: 'Понедельник / четверг',
                         imgUrl: '/img/detox/1a.jpg',
-                        price: 6000,
+                        price: 7000,
                         items: [
                             {
                                 id: 0,
@@ -109,7 +109,7 @@
                         id: 1,
                         title: 'Вторник / пятница',
                         imgUrl: '/img/detox/2a.jpg',
-                        price: 6000,
+                        price: 7000,
                         items: [
                             {
                                 id: 0,
@@ -147,7 +147,7 @@
                         id: 2,
                         title: 'Среда / суббота',
                         imgUrl: '/img/detox/3a.jpg',
-                        price: 6000,
+                        price: 7000,
                         items: [
                             {
                                 id: 0,
