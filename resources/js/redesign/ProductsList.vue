@@ -14,7 +14,7 @@
                             :src="'/storage/' + product.image"
                             class="rounded-lg mx-auto shadow-md object-cover object-center cursor-pointer transform transition duration-100 hover:scale-105"
                             @click="showModal(product)">
-                        <div v-if="isSunday" class="absolute top-0 rounded-lg opacity-50 w-full h-full bg-gray-200 z-10">
+                        <div v-if="isSunday || cantBuy" class="absolute top-0 rounded-lg opacity-50 w-full h-full bg-gray-200 z-10">
                         </div>
                     </div>
 
@@ -28,12 +28,12 @@
                         <div
                             @click="showModal(product)"
                             class="leading-tight text-sm text-center md:text-left md:text-base rounded px-4 py-1"
-                            :class="[isInCart(product.id) && !isSunday ? 'bg-transparent' : isSunday ? 'bg-gray-100 cursor-not-allowed' : 'bg-yellow-100 hover:bg-yellow-200 cursor-pointer']">
+                            :class="[isInCart(product.id) && !isSunday && !cantBuy  ? 'bg-transparent' : isSunday || cantBuy ? 'bg-gray-100 cursor-not-allowed' : 'bg-yellow-100 hover:bg-yellow-200 cursor-pointer']">
                             {{ product.price }}₸
                         </div>
 
                         <div
-                            v-show="isInCart(product.id) && !isSunday"
+                            v-show="isInCart(product.id) && !isSunday && !cantBuy"
                             class="flex items-center justify-between w-20 md:w-24 mt-2 md:mt-0 mx-auto md:mx-0">
                             <div
                                 @click="decrement(product.id)"
@@ -57,6 +57,10 @@
             </div>
             <div v-if="isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
                 К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
+            </div>
+
+            <div v-if="cantBuy && !isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
+                Прием заказов осуществляется только c 10:00 до 18:00
             </div>
         </div>
 
@@ -89,6 +93,9 @@
             },
             isSunday() {
                 return new Date().getDay() === 6
+            },
+            cantBuy() {
+                return new Date().getHours() >= 18 || new Date().getHours() < 10
             }
         },
         methods: {

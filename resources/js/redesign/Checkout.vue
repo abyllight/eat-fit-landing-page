@@ -160,7 +160,7 @@
                         Заказать
                     </button>
                     <p v-if="isEleven" class="mt-2 text-sm italic font-medium">
-                        Прием заказов осуществляется только c 10:00 до 20:00
+                        Прием заказов осуществляется только c 10:00 до 18:00
                     </p>
                 </div>
             </div>
@@ -312,7 +312,7 @@
                 return this.$store.getters.getWholesale
             },
             isEleven() {
-                return new Date().getHours() >= 20 || new Date().getHours() < 10
+                return new Date().getHours() >= 18 || new Date().getHours() < 10
             },
             isSunday() {
                 return new Date().getDay() === 6
