@@ -198,7 +198,7 @@
                 return this.$store.getters.getTotal
             },
             isEleven() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return new Date().getHours() >= 20 || new Date().getHours() < 10
             },
             isSunday() {
                 return new Date().getDay() === 6

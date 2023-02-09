@@ -95,7 +95,7 @@
                 return new Date().getDay() === 6
             },
             cantBuy() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return new Date().getHours() >= 20 || new Date().getHours() < 10
             }
         },
         methods: {
