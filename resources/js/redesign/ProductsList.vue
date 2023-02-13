@@ -2,7 +2,20 @@
     <div class="py-24">
         <div class="max-w-2xl mx-auto px-2 relative">
             <h1 class="text-xl lg:text-2xl text-center font-semibold mb-1">EatFitGo</h1>
-            <p class="text-center mb-8">Полезные блюда с доставкой по Астане и Алмате</p>
+            <p class="text-center mb-1">Полезные блюда с доставкой по Астане и Алмате</p>
+            <p class="text-xs text-center">(*Время работы по Астане с 10:00 до 18:00)</p>
+            <p class="text-xs text-center mb-4">(*Время работы по Алмате с 10:00 до 21:00)</p>
+
+            <div class="max-w-sm mx-auto flex justify-center mb-8">
+                <button v-for="type in types"
+                        :key="type.id"
+                        @click.stop="setCity(type.id)"
+                        class="px-5 py-3 rounded focus:outline-none text-xs uppercase font-semibold"
+                        :class="[type.id === city ? active : non_active, type.id === 1 ? 'mr-2 md:mr-3' : '']"
+                >
+                    {{ type.title }}
+                </button>
+            </div>
             <div class="flex flex-wrap justify-start mx-auto">
                 <div
                     v-for="product in products"
@@ -55,12 +68,16 @@
 
                 </div>
             </div>
-            <div v-if="isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
+            <div v-if="isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
                 К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
             </div>
 
-            <div v-if="cantBuy && !isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
-                Прием заказов осуществляется только c 10:00 до 18:00
+            <div v-if="city === 1 && cantBuyAstana && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
+                Прием заказов по Астане осуществляется только c 10:00 до 18:00
+            </div>
+
+            <div v-if="city === 2 && cantBuyAlmaty && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
+                Прием заказов по Алмате осуществляется только c 10:00 до 21:00
             </div>
         </div>
 
@@ -69,7 +86,7 @@
 </template>
 <script>
     import ProductModal from "./ProductModal";
-    import {mapState} from "vuex";
+    import {mapGetters, mapState} from "vuex";
     export default {
         name: "ProductsList",
         components: {
@@ -80,7 +97,18 @@
                 showProductModal: false,
                 chosenProduct: [],
                 products: [],
-                active: ''
+                active: 'bg-brand-yellow shadow-lg',
+                non_active: 'bg-gray-300 hover:bg-gray-200',
+                types: [
+                    {
+                        id: 1,
+                        title: 'Астана'
+                    },
+                    {
+                        id: 2,
+                        title: 'Алматы'
+                    }
+                ],
             }
         },
         mounted() {
@@ -88,17 +116,24 @@
         },
         computed: {
             ...mapState(['cart']),
+            ...mapGetters({city: 'getCity'}),
             count() {
                 return this.$store.getters.getItemCount(this.data.id)
             },
             isSunday() {
                 return new Date().getDay() === 6
             },
-            cantBuy() {
-                return new Date().getHours() >= 20 || new Date().getHours() < 10
+            cantBuyAstana() {
+                return new Date().getHours() >= 18 || new Date().getHours() < 10
+            },
+            cantBuyAlmaty() {
+                return new Date().getHours() >= 21 || new Date().getHours() < 10
             }
         },
         methods: {
+            setCity(val) {
+                this.$store.dispatch('setCity', val)
+            },
             isInCart(id){
                 return this.$store.getters.hasItem(id)
             },

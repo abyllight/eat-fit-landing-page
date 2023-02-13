@@ -131,15 +131,19 @@
                 </div>
                 <div class="mt-5">
                     <a
-                        :href="isEleven || isSunday ? '#' : link"
-                        :disabled="isEleven || isSunday"
-                        :class="[ isEleven || isSunday ? disabled : activeButton ]"
+                        :href="(cantBuyAstana && city === 1) || (cantBuyAlmaty && city === 2) || isSunday ? '#' : link"
+                        :disabled="(cantBuyAstana && city === 1) || (cantBuyAlmaty && city === 2) || isSunday"
+                        :class="[ (cantBuyAstana && city === 1) || (cantBuyAlmaty && city === 2) || isSunday ? disabled : activeButton ]"
                         class="w-full text-xs uppercase font-semibold py-3 rounded shadow focus:outline-none focus:shadow-outline inline-flex items-center justify-center"
                     >
                         <span>Оформить заказ на завтра</span>
                     </a>
-                    <p v-if="isEleven" class="mt-2 text-sm italic font-medium text-red-500">
-                        Прием заказов осуществляется только c 10:00 до 18:00
+                    <p v-if="cantBuyAstana && city === 1" class="mt-2 text-sm italic font-medium text-red-500">
+                        Прием заказов по Астане осуществляется только c 10:00 до 18:00
+                    </p>
+
+                    <p v-if="cantBuyAlmaty && city === 2" class="mt-2 text-sm italic font-medium text-red-500">
+                        Прием заказов по Астане осуществляется только c 10:00 до 21:00
                     </p>
                 </div>
             </div>
@@ -175,7 +179,7 @@
 }
 </style>
 <script>
-    import {mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
     export default {
         name: "Cart",
         data(){
@@ -194,18 +198,19 @@
         },
         computed: {
             ...mapState(['cart', 'cutlery']),
+            ...mapGetters({city: 'getCity'}),
             total() {
                 return this.$store.getters.getTotal
             },
-            isEleven() {
-                return new Date().getHours() >= 20 || new Date().getHours() < 10
+            cantBuyAstana() {
+                return new Date().getHours() >= 18 || new Date().getHours() < 10
+            },
+            cantBuyAlmaty() {
+                return new Date().getHours() >= 21 || new Date().getHours() < 10
             },
             isSunday() {
                 return new Date().getDay() === 6
             }
-        },
-        created() {
-            console.log(this.cutlery)
         },
         methods: {
             increment(id){

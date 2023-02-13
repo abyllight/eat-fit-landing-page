@@ -56,11 +56,12 @@
                         <label for="address" class="block text-sm font-medium">Город</label>
                         <select
                             id="address"
-                            v-model="city_id"
-                            :disabled="isEleven || isSunday"
+                            :disabled="isSunday"
+                            @change="setCity"
                             class="mt-1 p-2.5 border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm border-gray-300 rounded-md"
                         >
                             <option
+                                :selected="city === c.id"
                                 v-for="c in cities"
                                 :key="c.id"
                                 :value="c.id"
@@ -159,8 +160,12 @@
                     >
                         Заказать
                     </button>
-                    <p v-if="isEleven" class="mt-2 text-sm italic font-medium">
-                        Прием заказов осуществляется только c 10:00 до 18:00
+                    <p v-if="cantBuyAstana && city === 1" class="mt-2 text-sm italic font-medium">
+                        Прием заказов по Астане осуществляется только c 10:00 до 18:00
+                    </p>
+
+                    <p v-if="cantBuyAlmaty && city === 2" class="mt-2 text-sm italic font-medium">
+                        Прием заказов по Алмате осуществляется только c 10:00 до 21:00
                     </p>
                 </div>
             </div>
@@ -246,7 +251,7 @@
 </style>
 
 <script>
-    import {mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
     import {TheMask} from 'vue-the-mask'
     import { required, minLength } from 'vuelidate/lib/validators'
     import SuccessModal from "./SuccessModal";
@@ -299,12 +304,12 @@
                         id: 2,
                         name: 'Алматы'
                     }
-                ],
-                city_id: 1
+                ]
             }
         },
         computed: {
             ...mapState(['cart', 'user', 'cutlery']),
+            ...mapGetters({city: 'getCity'}),
             total() {
                 return this.$store.getters.getTotal
             },
@@ -312,7 +317,7 @@
                 return this.$store.getters.getWholesale
             },
             isEleven() {
-                return new Date().getHours() >= 20 || new Date().getHours() < 10
+                return (this.cantBuyAlmaty && this.city === 2) || (this.cantBuyAstana && this.city === 1)
             },
             isSunday() {
                 return new Date().getDay() === 6
@@ -322,7 +327,13 @@
             },
             totalPrice() {
                 return this.payment === 'cashless' ? this.wholesale : this.total
-            }
+            },
+            cantBuyAstana() {
+                return new Date().getHours() >= 18 || new Date().getHours() < 10
+            },
+            cantBuyAlmaty() {
+                return new Date().getHours() >= 21 || new Date().getHours() < 10
+            },
         },
         mounted() {
             const user = this.user;
@@ -345,6 +356,9 @@
             }
         },
         methods: {
+            setCity(val) {
+                this.$store.dispatch('setCity', parseInt(val.target.value))
+            },
             checkout() {
                 this.$v.$touch()
 
@@ -396,7 +410,7 @@
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 axios.post('/checkout', {
                     name: this.name,
-                    city_id: this.city_id,
+                    city_id: this.city,
                     phone: this.phone,
                     address: this.address,
                     time: this.intervals[this.time].time,

@@ -2,6 +2,7 @@ let cart = window.localStorage.getItem('cart');
 let cutlery = window.localStorage.getItem('cutlery');
 let totalCount = window.localStorage.getItem('totalCount');
 let user = window.localStorage.getItem('go_user');
+let city = window.localStorage.getItem('go_city');
 
 let store = {
     state: {
@@ -17,7 +18,8 @@ let store = {
         user: user ? JSON.parse(user) : {},
         totalCount: totalCount ?? 0,
         total: 0,
-        wholesale: 0
+        wholesale: 0,
+        city: city ? JSON.parse(city) : 1
     },
     getters: {
         getTotal: state => {
@@ -39,7 +41,10 @@ let store = {
         },
         hasItem: state => id => {
             return state.cart.some(product => product.id === id)
-        }
+        },
+        getCity: state => {
+            return state.city
+        },
     },
     mutations: {
         PUSH(state, item){
@@ -107,6 +112,10 @@ let store = {
         SAVE_USER(state, item) {
             state.user = item
             window.localStorage.setItem('go_user', JSON.stringify(state.user));
+        },
+        SET_CITY(state, val) {
+            state.city = val
+            window.localStorage.setItem('go_city', JSON.stringify(state.city));
         }
     },
     actions: {
@@ -159,6 +168,9 @@ let store = {
             commit('CLEAR_CUTLERY')
             commit('SAVE_CUTLERY')
         },
+        setCity({commit}, val) {
+            commit('SET_CITY', val)
+        }
     }
 };
 
