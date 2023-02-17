@@ -266,18 +266,36 @@ import {mapGetters, mapState} from "vuex";
         },
         data(){
             return {
-                intervals: [
+                intervalsAstana: [
                     {
                         id: 0,
-                        time: '07.00-08.00'
+                        time: '06.30-07.30'
                     },
                     {
                         id: 1,
-                        time: '08.00-09.00'
+                        time: '07.30-08.30'
                     },
                     {
                         id: 2,
-                        time: '09.00-10.00'
+                        time: '08.30-09.30'
+                    }
+                ],
+                intervalsAlmaty: [
+                    {
+                        id: 0,
+                        time: '06.30-07.30'
+                    },
+                    {
+                        id: 1,
+                        time: '07.30-08.30'
+                    },
+                    {
+                        id: 2,
+                        time: '08.30-09.30'
+                    },
+                    {
+                        id: 3,
+                        time: '09.30-10.00'
                     }
                 ],
                 time: 100,
@@ -334,6 +352,9 @@ import {mapGetters, mapState} from "vuex";
             cantBuyAlmaty() {
                 return new Date().getHours() >= 21 || new Date().getHours() < 10
             },
+            intervals() {
+                return this.city === 1 ? this.intervalsAstana : this.intervalsAlmaty
+            }
         },
         mounted() {
             const user = this.user;

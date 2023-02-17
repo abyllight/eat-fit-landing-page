@@ -67,7 +67,7 @@
     <footer id="footer" class="bg-gray-900 w-full">
         <div class="px-3 py-5 max-w-6xl mx-auto flex flex-col items-center justify-center">
             <a href="/files/oferta.docx" class="text-white font-semibold mb-4 hover:text-brand-green cursor-pointer">Публичная оферта</a>
-            <p class="text-white text-xs font-semibold">© Все права защищены. EAT&FIT, 2015-2021</p>
+            <p class="text-white text-xs font-semibold">© Все права защищены. EAT&FIT, 2015-2023</p>
         </div>
     </footer>
     <script src="{{ mix('js/app.js') }}"></script>
@@ -82,6 +82,28 @@
             var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
             var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
         })(window, document, 'script', 'cloud.roistat.com', '30d2ed73195218197354a5214b1e2373');
+    </script>
+
+    <script type="text/javascript">
+
+        (function() {
+            var p = [];
+            function _h(){p.forEach(function(a){window.ringostatAnalytics.sendPayload(a.type,a.payload)})};
+            function _i(a,b){"loaded"===a.readyState||"completed"===a.readyState?b():setTimeout(function(){_i(a,b)},100)};
+            function _c(c,d,a,b){window.ringostatAnalytics||(window.ringostatAnalytics=1,b=c.getElementsByTagName("script")[0],a=c.createElement("script"),a.async=!0,a.src=d,a.onload=_h,_i(a,_h),b.parentNode.insertBefore(a,b))};
+            return function (t) {
+                if(!0===t.get("ringostatTracker")) return;
+                var _o = t.get("sendHitTask");
+
+                t.set("ringostatTracker", true);
+                _c(document, 'https://script.ringostat.com/v4/3f/3faf1c1f890e944e665b0de80cd4390425ba9b08.js');
+
+                t.set('sendHitTask', function (m) {
+                    _o(m);
+                    "object"===typeof window.ringostatAnalytics?window.ringostatAnalytics.sendPayload(m.get("hitType"), m.get("hitPayload")):p.push({type:m.get("hitType"),payload:m.get("hitPayload")});
+                });
+            }
+        })()
     </script>
 
     <script type="text/javascript">

@@ -61,14 +61,14 @@
             <div class="flex flex-col md:flex-row lg:w-3/4 lg:mx-auto justify-around mb-5">
                 <div class="flex-col items-center md:w-72 mb-6">
                     <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">5+</span>
+                        <span class="text-brand-green font-medium text-5xl mr-3">7+</span>
                         <p class="font-semibold leading-tight text-lg">лет <br> на рынке</p>
                     </div>
                     <p class="text-sm">Удерживаем лидерские позиции, <br>и задаем темп рынку</p>
                 </div>
                 <div class="flex-col items-center md:w-72">
                     <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">8000+</span>
+                        <span class="text-brand-green font-medium text-5xl mr-3">9000+</span>
                         <p class="font-semibold leading-tight text-lg">довольных <br> клиентов</p>
                     </div>
                     <p class="text-sm">Столько людей мы накормили за все время работы</p>
