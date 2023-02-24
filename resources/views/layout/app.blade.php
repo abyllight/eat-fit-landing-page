@@ -85,28 +85,6 @@
     </script>
 
     <script type="text/javascript">
-
-        (function() {
-            var p = [];
-            function _h(){p.forEach(function(a){window.ringostatAnalytics.sendPayload(a.type,a.payload)})};
-            function _i(a,b){"loaded"===a.readyState||"completed"===a.readyState?b():setTimeout(function(){_i(a,b)},100)};
-            function _c(c,d,a,b){window.ringostatAnalytics||(window.ringostatAnalytics=1,b=c.getElementsByTagName("script")[0],a=c.createElement("script"),a.async=!0,a.src=d,a.onload=_h,_i(a,_h),b.parentNode.insertBefore(a,b))};
-            return function (t) {
-                if(!0===t.get("ringostatTracker")) return;
-                var _o = t.get("sendHitTask");
-
-                t.set("ringostatTracker", true);
-                _c(document, 'https://script.ringostat.com/v4/3f/3faf1c1f890e944e665b0de80cd4390425ba9b08.js');
-
-                t.set('sendHitTask', function (m) {
-                    _o(m);
-                    "object"===typeof window.ringostatAnalytics?window.ringostatAnalytics.sendPayload(m.get("hitType"), m.get("hitPayload")):p.push({type:m.get("hitType"),payload:m.get("hitPayload")});
-                });
-            }
-        })()
-    </script>
-
-    <script type="text/javascript">
         (function(d, w, s) {
             var widgetHash = 'w0rqbbf9jrhblm0kays4', ctw = d.createElement(s); ctw.type = 'text/javascript'; ctw.async = true;
             ctw.src = '//widgets.binotel.com/calltracking/widgets/'+ widgetHash +'.js';
