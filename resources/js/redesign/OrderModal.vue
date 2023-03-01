@@ -337,12 +337,12 @@ export default {
     computed: {
         total(){
             if(this.day === '2'){
-                this.discount = this.data.iPrice * 0.7
-                return this.data.iPrice * 0.7 * this.day
-            }else if (this.day > 2 && this.day < 24){
+                this.discount = this.data.iPrice * 0.6
+                return this.data.iPrice * 0.6 * this.day
+            }else if (this.day > 2 && this.day < 21){
                 this.discount = this.data.iPrice
                 return this.day * this.data.iPrice
-            }else if(this.day >= 24 && this.day < 36){
+            }else if(this.day >= 21 && this.day < 28){
                 this.discount = this.data.iPrice - 500
                 return this.day * (this.data.iPrice - 500)
             }else{
