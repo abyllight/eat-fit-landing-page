@@ -3,6 +3,10 @@ let cutlery = window.localStorage.getItem('cutlery');
 let totalCount = window.localStorage.getItem('totalCount');
 let user = window.localStorage.getItem('go_user');
 let city = window.localStorage.getItem('go_city');
+let ad = window.localStorage.getItem('e_ad');
+if (!ad) {
+    ad = 0
+}
 
 let store = {
     state: {
@@ -19,7 +23,8 @@ let store = {
         totalCount: totalCount ?? 0,
         total: 0,
         wholesale: 0,
-        city: city ? JSON.parse(city) : 1
+        city: city ? JSON.parse(city) : 1,
+        ad: ad
     },
     getters: {
         getTotal: state => {
@@ -44,6 +49,9 @@ let store = {
         },
         getCity: state => {
             return state.city
+        },
+        getAd: state => {
+            return state.ad
         },
     },
     mutations: {
@@ -116,6 +124,10 @@ let store = {
         SET_CITY(state, val) {
             state.city = val
             window.localStorage.setItem('go_city', JSON.stringify(state.city));
+        },
+        SET_AD(state, val) {
+            state.ad = val
+            window.localStorage.setItem('e_ad', JSON.stringify(state.ad));
         }
     },
     actions: {
@@ -170,6 +182,9 @@ let store = {
         },
         setCity({commit}, val) {
             commit('SET_CITY', val)
+        },
+        setAd({commit}, val) {
+            commit('SET_AD', val)
         }
     }
 };

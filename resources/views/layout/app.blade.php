@@ -59,6 +59,10 @@
         <navbar></navbar>
     </section>
 
+    <section id="ad">
+        <ad></ad>
+    </section>
+
     <main class="flex-grow">
         @yield('content')
     </main>

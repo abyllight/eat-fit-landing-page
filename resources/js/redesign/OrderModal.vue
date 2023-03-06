@@ -151,20 +151,15 @@
                                 </div>
                                 <p class="text-sm font-medium text-lime-700 bg-gray-200" :class="{'text-red-600': !promoStatus, 'p-3': promoMsg}">{{promoMsg}}</p>
                                 <label class="block text-gray-500 font-semibold flex mt-4">
-                                    <input
-                                        v-model="isChecked"
-                                        class="mr-2 leading-tight w-5 h-5 cursor-pointer"
-                                        type="checkbox"
-                                    >
-                                    <span class="text-tiny -mt-1">
-                                            Я даю согласие на обработку своих данных и их использование
-                                        </span>
+                                    <p class="text-tiny -mt-1">
+                                        Нажимая на кнопку, я подтверждаю своё
+                                        согласие на обработку персональных данных
+                                        в соответствии с <a href="/files/oferta.docx" class="text-brand-green">Политикой конфиденциальности</a>
+                                    </p>
                                 </label>
                                 <div class="flex items-center mt-6">
                                     <button
-                                        class="mx-auto bg-brand-dark-green font-bold py-2.5 px-4 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
-                                        :disabled="!isChecked || this.name.length <= 1 || !isValid"
-                                        :class="[ !isChecked || this.name.length <= 1 || !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green cursor-pointer opacity-100']"
+                                        class="mx-auto bg-brand-dark-green hover:bg-brand-green cursor-pointer font-bold py-2.5 px-4 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
                                     >
                                         Оставить заявку
                                     </button>
@@ -366,7 +361,7 @@ export default {
                 return 'дней';
             }
         },
-        isPhoneValid(){
+        isPhoneValid() {
             let reg = /\d+/g;
             let result = [];
             result = this.rawVal.match(reg);
@@ -437,7 +432,8 @@ export default {
             return null;
         },
         formSubmit() {
-            if (!this.isChecked || this.name.length <= 1 || !this.isValid) return
+
+            if (this.name.length <= 1 || !this.isValid) return
 
             this.$emit('close')
             this.isLoading = true
