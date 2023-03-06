@@ -49,17 +49,15 @@
                                    placeholder="Адрес" v-model.trim="$v.address.$model" :class="{ 'border-red-500': $v.address.$error }">
                             <p v-if="$v.address.$error" class="text-red-500 text-xs italic mt-1">Укажите адрес</p>
                             <label class="block text-gray-500 font-bold flex mt-1">
-                                <input class="mr-2 leading-tight w-25 h-25" type="checkbox" v-model="isChecked">
-                                <span class="text-xs -mt-1">
-                                    Я даю согласие на обработку своих данных и их использование
-                                </span>
+                                <p class="text-tiny -mt-1">
+                                    Нажимая на кнопку, я подтверждаю своё
+                                    согласие на обработку персональных данных
+                                    в соответствии с <a href="/files/oferta.docx" class="text-brand-green">Политикой конфиденциальности</a>
+                                </p>
                             </label>
                         </div>
                         <div class="flex items-center">
-                            <button class="mx-auto bg-brand-green text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline"
-                                    :disabled="!isChecked || this.name.length <= 1 || this.address.length <= 1 || !isValid"
-                                    :class="[ !isChecked || this.name.length <= 1 || this.address.length <= 1|| !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green-hover cursor-pointer opacity-100']"
-                            >
+                            <button class="mx-auto bg-brand-green hover:bg-brand-green-hover cursor-pointer text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline">
                                 Отправить заказ
                             </button>
                         </div>
@@ -131,6 +129,8 @@
                 if (this.count > 1) this.count--
             },
             formSubmit(){
+                if (this.name.length <= 1 || this.address.length <= 1 || !this.isValid) return
+
                 const self = this;
 
                 axios.post('/', {
