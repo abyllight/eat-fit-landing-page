@@ -29,7 +29,7 @@
                         <div class="flex flex-col md:flex-row justify-center lg:justify-start items-center mb-4">
                             <img src="/img/icons/whatsapp.svg" class="w-6 h-6 mb-2 md:mr-2 md:mb-0" alt="Whatsapp">
                             <a class="text-sm uppercase"
-                               href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. Меня зовут "
+                               href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                                target="_blank"
                                onclick="ym(56810422,'reachGoal','whatsapp'); return true;"
                             >

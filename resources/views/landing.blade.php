@@ -21,7 +21,7 @@
                         Попробовать
                     </a>
                     <p class="ml-4 text-white">
-                        со скидкой 30%
+                        со скидкой 40%
                     </p>
                 </div>
             </div>
@@ -373,7 +373,7 @@
 
                     <div class="flex">
                         <a
-                            href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. Меня зовут "
+                            href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                             target="_blank"
                             onclick="ym(56810422,'reachGoal','whatsapp'); return true;"
                             class="mr-10 w-1/2">
