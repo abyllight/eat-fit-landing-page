@@ -128,6 +128,9 @@ let store = {
         SET_AD(state, val) {
             state.ad = val
             window.localStorage.setItem('e_ad', JSON.stringify(state.ad));
+        },
+        SET_CUTLERY_PRICE(state) {
+            state.cutlery.price = 100
         }
     },
     actions: {
@@ -185,6 +188,9 @@ let store = {
         },
         setAd({commit}, val) {
             commit('SET_AD', val)
+        },
+        setCutleryPrice({commit}) {
+            commit('SET_CUTLERY_PRICE')
         }
     }
 };

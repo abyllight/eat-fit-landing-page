@@ -161,6 +161,11 @@ export default {
                 self.$store.dispatch('setAd', 1)
             }, 30000)
         }
-    },
+
+        let cutlery = this.$store.state.cutlery
+        if (cutlery.price === 50) {
+            this.$store.dispatch('setCutleryPrice')
+        }
+    }
 }
 </script>
