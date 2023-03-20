@@ -15,9 +15,9 @@ let store = {
             id: 0,
             title: 'Приборы',
             image: '/products/tools.jpg',
-            price: 50,
+            price: 100,
             q: 1,
-            total: 50
+            total: 100
         },
         user: user ? JSON.parse(user) : {},
         totalCount: totalCount ?? 0,
@@ -112,9 +112,9 @@ let store = {
                 id: 0,
                 title: 'Приборы',
                 image: '/products/tools.jpg',
-                price: 50,
+                price: 100,
                 q: 1,
-                total: 50
+                total: 100
             }
         },
         SAVE_USER(state, item) {
