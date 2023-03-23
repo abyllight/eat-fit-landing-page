@@ -8,10 +8,16 @@ if (!ad) {
     ad = 0
 }
 
+if (cutlery) {
+    cutlery = JSON.parse(cutlery)
+    cutlery.price = 100
+    cutlery.total = cutlery.q * 100
+}
+
 let store = {
     state: {
         cart: cart ? JSON.parse(cart) : [],
-        cutlery: cutlery ? JSON.parse(cutlery) : {
+        cutlery: cutlery ? cutlery : {
             id: 0,
             title: 'Приборы',
             image: '/products/tools.jpg',
@@ -131,6 +137,7 @@ let store = {
         },
         SET_CUTLERY_PRICE(state) {
             state.cutlery.price = 100
+            state.cutlery.total = state.cutlery.q * 100
         }
     },
     actions: {

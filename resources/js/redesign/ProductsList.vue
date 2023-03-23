@@ -33,7 +33,7 @@
 
                     <p
                         @click="showModal(product)"
-                        class="leading-tight text-center md:text-left cursor-pointer font-medium text-sm md:text-base line-clamp-2 h-9 md:h-11 lg:h-12 mb-2">
+                        class="leading-tight text-center md:text-left cursor-pointer font-medium text-sm md:text-base h-9 md:h-11 lg:h-14 mb-2">
                         {{ product.title }}
                     </p>
 
