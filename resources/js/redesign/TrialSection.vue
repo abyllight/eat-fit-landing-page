@@ -26,6 +26,7 @@
                         <div>
                             <select
                                 v-model="city_id"
+                                :aria-details="city_id"
                                 class="w-full rounded-2xl bg-white px-5 py-3 mb-4 text-sm focus:outline-none focus:shadow-outline"
                             >
                                 <option
@@ -253,9 +254,11 @@
                     ga: ga
                 };
 
-                axios.post('/', data).
+                this.isLoading = false
+                window.location.href = '/thanks'
+
+                /*axios.post('/', data).
                 then(function (response) {
-                    console.log(response)
                     self.isLoading = false
                     if (response.data === true){
                         window.location.href = '/thanks'
@@ -265,7 +268,7 @@
                 }).
                 catch(function(error){
                     console.log(error);
-                });
+                });*/
             },
             checkPromo() {
                 if (this.promo === '') return

@@ -82,7 +82,7 @@
                                     <span class="text-brand-dark-green font-semibold">{{ day }} {{ dayTxt }}</span>
                                 </div>
 
-                                <input type="range" v-model="day" min="1" max="36">
+                                <input type="range" v-model="day" min="1" max="36" :aria-details="day">
                             </div>
                         </div>
 
@@ -94,6 +94,7 @@
                                 <div class="mb-3">
                                     <select
                                         v-model="city_id"
+                                        :aria-details="city_id"
                                         class="focus:outline-none focus:ring focus:border-blue-300 block w-full shadow border border-gray-300 rounded-md text-base px-3 py-2.5"
                                     >
                                         <option
@@ -463,20 +464,23 @@ export default {
                 utm: params,
                 ga: ga
             };
+            this.isLoading = false
+            this.closeModal()
+            window.location.href = '/thanks'
 
-            axios.post('/', data).
-            then(function (response) {
-                self.isLoading = false
-                self.closeModal()
-                if (response.data === true){
-                    window.location.href = '/thanks'
-                }else{
-                    self.$emit('showFail')
-                }
-            }).
-            catch(function(error){
-                console.log(error);
-            });
+            /*axios.post('/', data).
+                then(function (response) {
+                    self.isLoading = false
+                    self.closeModal()
+                    if (response.data === true){
+                        window.location.href = '/thanks'
+                    }else{
+                        self.$emit('showFail')
+                    }
+                }).
+                catch(function(error){
+                    console.log(error);
+                });*/
         },
         closeModal(){
             this.day = 24
