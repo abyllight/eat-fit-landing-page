@@ -464,11 +464,11 @@ export default {
                 utm: params,
                 ga: ga
             };
-            this.isLoading = false
+            /*this.isLoading = false
             this.closeModal()
-            window.location.href = '/thanks'
+            window.location.href = '/thanks'*/
 
-            /*axios.post('/', data).
+            axios.post('/', data).
                 then(function (response) {
                     self.isLoading = false
                     self.closeModal()
@@ -480,7 +480,7 @@ export default {
                 }).
                 catch(function(error){
                     console.log(error);
-                });*/
+                });
         },
         closeModal(){
             this.day = 24
