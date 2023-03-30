@@ -504,7 +504,7 @@ class OrderController extends Controller
             $lead['price'] = $wholesale + $cutlery['total'];
 
             if ($card_type === 'card') {
-                $lead->addCustomField(321139, $total + $cutlery['total']); //Фактический оплачено
+                $lead->addCustomField(321139, $total); //Фактический оплачено
                 $lead->addCustomField(869811, '969831'); //Оплачено картой на сайте
             }elseif ($card_type === 'kaspi_pay') {
                 $lead->addCustomField(869811, '968303'); //kaspi pay
@@ -529,7 +529,7 @@ class OrderController extends Controller
                 }
             }
 
-            $lead->addCustomField(456321, $card_type === 'cashless' ? $wholesale + $cutlery['total'] : $total + $cutlery['total']); //Стоимость курса
+            $lead->addCustomField(456321, $card_type === 'cashless' ? $wholesale + $cutlery['total'] : $total); //Стоимость курса
             $lead->addCustomField(478771, $phone); //Телефон для звонков
             $lead->addCustomField(478763, $address); //Адрес
             $lead->addCustomField(478765, $address); //Адрес доп

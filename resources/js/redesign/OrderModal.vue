@@ -83,6 +83,7 @@
                                 </div>
 
                                 <input type="range" v-model="day" min="1" max="36" :aria-details="day">
+                                <span id="rangeValue" class="hidden">{{day}}</span>
                             </div>
                         </div>
 
@@ -105,6 +106,7 @@
                                             {{c.name}}
                                         </option>
                                     </select>
+                                    <span id="cityValue" class="hidden">{{city_id}}</span>
                                 </div>
                                 <div class="mb-3">
                                     <input

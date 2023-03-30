@@ -37,6 +37,7 @@
                                     {{c.name}}
                                 </option>
                             </select>
+                            <span id="cityValueTrial" class="hidden">{{city_id}}</span>
                             <input
                                 v-model="name"
                                 type="text"
