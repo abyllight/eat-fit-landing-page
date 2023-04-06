@@ -7,24 +7,24 @@
                       :paginationColor="'#222222'"
             >
                 <slide v-for="sample in samples" :key="sample.id" class="">
-                    <div class="flex flex-col md:flex-row md:items-center max-w-3xl mx-auto">
+                    <div class="flex flex-col justify-around md:flex-row md:items-center max-w-5xl mx-auto">
                         <img
                             :src="sample.img"
                             :alt="sample.type"
-                            class="w-auto h-80 object-cover object-center md:w-64 md:h-auto shadow-md rounded mb-3 cursor-pointer">
-                        <div class="md:ml-10">
+                            class="w-auto object-cover md:w-1/2 object-center shadow-md rounded mb-3 cursor-pointer">
+                        <div class="md:ml-10 md:w-1/2">
                             <div class="text-brand-dark-green inline-block text-xs uppercase font-medium mb-3">{{ sample.type }}</div>
 
                             <div v-for="content in sample.contents" class="mb-4">
-                                <div class="mb-5 flex items-center cursor-pointer">
-                                    <p class="text-xl font-medium leading-tight mr-3" @click="showIngredients(sample.id, content.id)">{{ content.title }}</p>
+                                <div class="mb-2 flex items-center cursor-pointer">
+                                    <p class="text-lg font-medium leading-tight mr-3" @click="showIngredients(sample.id, content.id)">{{ content.title }}</p>
                                     <div v-show="sample.contents.length > 1">
                                         <img :src="content.isVisible === true ? '/img/icons/down-chevron.svg' : '/img/icons/right-chevron.svg'" class="w-4 h-3" alt="Whatsapp">
                                     </div>
                                 </div>
 
                                 <div v-show="sample.contents.length === 1 || content.isVisible">
-                                    <p class="font-light leading-tight mb-8 text-sm">{{ content.ingredients }}</p>
+                                    <p class="font-light leading-tight mb-5 text-sm">{{ content.ingredients }}</p>
                                     <div class="flex">
                                         <div class="mr-12">
                                             <span class="text-brand-dark-green text-xl md:text-2xl">{{ content.b }} г</span>
