@@ -255,10 +255,10 @@
                     ga: ga
                 };
 
-                /*this.isLoading = false
-                window.location.href = '/thanks'*/
+                this.isLoading = false
+                window.location.href = '/thanks'
 
-                axios.post('/', data).
+                /*axios.post('/', data).
                 then(function (response) {
                     self.isLoading = false
                     if (response.data === true){
@@ -269,7 +269,7 @@
                 }).
                 catch(function(error){
                     console.log(error);
-                });
+                });*/
             },
             checkPromo() {
                 if (this.promo === '') return
