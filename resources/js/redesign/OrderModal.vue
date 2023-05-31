@@ -63,16 +63,16 @@
                             <div class="flex items-center justify-between">
                                 <p>Цена за день:</p>
                                 <div class="font-semibold text-lg">
-                                    <span :class="[(day === '2' || day >= 21) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
-                                    <span v-show="day === '2' || day >= 21" class="ml-2 text-pink-800">{{ discount }}тг</span>
+                                    <span :class="[(day === '2' || day > 27) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ data.iPrice }}тг</span>
+                                    <span v-show="day === '2' || day > 27" class="ml-2 text-pink-800">{{ discount }}тг</span>
                                 </div>
                             </div>
 
                             <div class="flex items-center justify-between">
                                 <p>Итого:</p>
                                 <div class="font-semibold text-lg">
-                                    <span :class="[(day === '2' || day >= 21) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
-                                    <span v-show="day === '2' || day >= 21" class="ml-2 text-pink-800">{{ total }}тг</span>
+                                    <span :class="[(day === '2' || day > 27) ? 'text-gray-600 line-through' : 'text-brand-dark-green']">{{ day * data.iPrice }}тг</span>
+                                    <span v-show="day === '2' || day > 27" class="ml-2 text-pink-800">{{ total }}тг</span>
                                 </div>
                             </div>
 
@@ -303,7 +303,7 @@ export default {
     },
     data: function () {
         return{
-            day: 24,
+            day: 21,
             discount: 0,
             name: '',
             phone: '',
@@ -333,19 +333,16 @@ export default {
         }
     },
     computed: {
-        total(){
+        total() {
             if(this.day === '2'){
                 this.discount = this.data.iPrice * 0.6
                 return this.data.iPrice * 0.6 * this.day
-            }else if (this.day > 2 && this.day < 21){
+            }else if (this.day > 2 && this.day <= 27){
                 this.discount = this.data.iPrice
                 return this.day * this.data.iPrice
-            }else if(this.day >= 21 && this.day < 28){
+            }else {
                 this.discount = this.data.iPrice - 1000
                 return this.day * (this.data.iPrice - 1000)
-            }else{
-                this.discount = this.data.iPrice - 1500
-                return this.day * (this.data.iPrice - 1500)
             }
         },
         dayTxt(){
@@ -485,7 +482,7 @@ export default {
                 });*/
         },
         closeModal(){
-            this.day = 24
+            this.day = 21
             this.isChecked = false
             this.$emit('close')
         },
