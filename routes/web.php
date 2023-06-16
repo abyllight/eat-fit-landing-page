@@ -21,7 +21,7 @@ Route::view('/thanks', 'thankyou');
 
 Route::view('/detox', 'detox');
 
-Route::post('/', 'OrderController@placeOrder');
+//Route::post('/', 'OrderController@placeOrder');
 
 //Route::post('/cart', 'OrderController@placeCartOrder');
 

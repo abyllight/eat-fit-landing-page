@@ -456,6 +456,12 @@ class OrderController extends Controller
 
     public function eatFitGo(Request $request): JsonResponse
     {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required'
+        ]);
+
         $name = $request->name ?? '';
         $city_id = $request->city_id ?? 1;
         $address = $request->address ?? '';
