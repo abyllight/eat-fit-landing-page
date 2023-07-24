@@ -25,7 +25,7 @@
                     <div class="mb-3 relative">
                         <img
                             :src="'/storage/' + product.image"
-                            class="rounded-lg mx-auto shadow-md object-cover object-center cursor-pointer transform transition duration-100 hover:scale-105"
+                            class="rounded-lg mx-auto shadow-md object-cover object-center cursor-pointer h-40 w-full transform transition duration-100 hover:scale-105"
                             @click="showModal(product)">
                         <div v-if="isSunday || cantBuy" class="absolute top-0 rounded-lg opacity-50 w-full h-full bg-gray-200 z-10">
                         </div>
