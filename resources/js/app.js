@@ -11,6 +11,7 @@ Vue.use(Vuelidate);
 Vue.use(Vuex);
 
 Vue.component('navbar', require('./redesign/Navbar.vue').default);
+Vue.component('hero', require('./redesign/HeroSection.vue').default);
 Vue.component('ad', require('./redesign/Ad.vue').default);
 Vue.component('program', require('./redesign/Program.vue').default);
 Vue.component('calculator', require('./redesign/CalculatorModal.vue').default)

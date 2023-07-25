@@ -5,7 +5,7 @@
                 <img src="/img/banner.png" class="mx-auto">
             </div>
 
-            <img @click="closeAd" src="/img/icons/close.svg" class="w-10 cursor-pointer absolute z-50 top-0 -right-10"/>
+            <img @click="closeAd" src="/img/icons/close.svg" class="w-10 cursor-pointer absolute z-50 top-0 right-0"/>
         </div>
     </div>
 </template>

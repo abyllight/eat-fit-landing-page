@@ -1,55 +1,8 @@
 @extends('layout.app')
 @section('content')
     <!-- Hero section -->
-    <section id="hero" class="w-full bg-hero-lg bg-cover bg-center relative">
-        <div class="max-w-6xl mx-auto px-4 relative z-20 flex flex-col justify-center">
-            <div class="py-32 lg:pb-40 xl:pb-56">
-                <div class="md:w-1/2 text-white mb-12">
-                    <h1 class="font-bold text-3xl lg:text-4xl leading-tight mb-5">
-                        Станьте стройным и продуктивным c 5-разовым
-                        <span class="text-brand-green">здоровым питанием</span>
-                    </h1>
-                    <p class="text-base">
-                        Мы закупим отборные продукты, составим сбалансированное меню, приготовим и доставим к Вашему столу
-                    </p>
-                </div>
-
-                <div
-                    class="flex items-center text-xs font-semibold uppercase">
-                    <a href="#trial"
-                       class="px-10 py-3 md:py-4 rounded-lg shadow tracking-wider outline-none focus:outline-none bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
-                        Попробовать
-                    </a>
-                    <p class="ml-4 text-white">
-                        со скидкой 40%
-                    </p>
-                </div>
-            </div>
-            <div class="mb-1 flex lg:absolute bottom-0 mb-8 text-white text-xs">
-                <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start w-56">
-                    <img src="/img/icons/time.png" alt="Методы приготовления" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
-                    <p class="md:mb-1">
-                        Сэкономим <br> ваше время
-                    </p>
-                </div>
-                <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start w-56">
-                    <img src="/img/icons/tech.png" alt="24 стран" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
-                    <p class="md:mb-1">
-                        Приведем <br> в форму
-                    </p>
-                </div>
-
-                <div class="flex flex-col md:flex-row justify-end md:items-center md:justify-start">
-                    <img src="/img/icons/health.png" alt="24 стран" class="mr-3 mb-4 md:mb-0 w-10 h-auto">
-                    <p class="text-xs md:mb-1">
-                        Улучшим <br> здоровье
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="w-full h-full absolute top-0 bg-black z-0 opacity-25">
-        </div>
+    <section id="hero">
+        <hero></hero>
     </section>
 
     <!-- About section -->
@@ -397,6 +350,10 @@
 
 @endsection
 @section('js')
+    new Vue({
+    el: '#hero'
+    });
+
     new Vue({
     el: '#programs'
     });

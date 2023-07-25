@@ -27,6 +27,11 @@ module.exports = {
             backgroundImage: theme => ({
                 'hero-sm': "url('/img/hero-sm.jpg')",
                 'hero-lg': "url('/img/hero-lg.jpg')",
+                'slide1': "url('/img/slide/bg1.png')",
+                'slide2': "url('/img/slide/bg2.png')",
+                'slide3': "url('/img/slide/bg3.png')",
+                'slide4': "url('/img/slide/bg4.png')",
+                'slide5': "url('/img/slide/bg5.png')",
                 'trial-sm': "url('/img/hero-sm.jpg')",
                 'trial-lg': "url('/img/trial-lg.jpg')",
                 'team-1': "url('/img/team/1.jpg')",
@@ -50,6 +55,8 @@ module.exports = {
                 '80': '20rem',
                 '88': '22rem',
                 '90': '24rem',
+                '99': '38rem',
+                '100': '42rem',
             },
             width: {
                 '72': '18rem',
