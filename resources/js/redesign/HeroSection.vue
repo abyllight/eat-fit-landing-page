@@ -229,6 +229,8 @@ export default{
                     prev.classList.remove('-translate-x-full')
                     prev.classList.add('translate-x-0')
                 }else {
+                    clearInterval(this.timer)
+
                     let slides = document.getElementsByClassName('slidex')
                     for (let i = 0; i < slides.length - 1; i++) {
                         slides[i].classList.remove('translate-x-full')
@@ -236,10 +238,12 @@ export default{
                     }
                     slides[slides.length - 1].classList.remove('translate-x-full')
                     slides[slides.length - 1].classList.add('translate-x-0')
+
+                    this.autoPlay()
                 }
             }
         },
-        next(){
+        next() {
             let active = document.querySelector('.slidex.translate-x-0')
             if (active) {
                 let next = active.nextElementSibling;
@@ -249,6 +253,8 @@ export default{
                     next.classList.remove('translate-x-full')
                     next.classList.add('translate-x-0')
                 }else {
+                    clearInterval(this.timer)
+
                     let slides = document.getElementsByClassName('slidex')
                     for (let i = 1; i < slides.length; i++) {
                         slides[i].classList.remove('-translate-x-full')
@@ -256,6 +262,8 @@ export default{
                     }
                     slides[0].classList.remove('-translate-x-full')
                     slides[0].classList.add('translate-x-0')
+
+                    this.autoPlay()
                 }
             }
         }
