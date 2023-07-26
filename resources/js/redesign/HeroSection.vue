@@ -217,7 +217,7 @@ export default{
         autoPlay() {
             this.timer = setInterval(() => {
                 this.next()
-            },4500)
+            },6500)
         },
         prev() {
             let active = document.querySelector('.slidex.translate-x-0')
