@@ -326,13 +326,13 @@
 
                     <div class="flex">
                         <a
-                            href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
+                            href="https://wa.me/77766906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                             target="_blank"
                             onclick="ym(56810422,'reachGoal','whatsapp'); return true;"
                             class="mr-10 w-1/2">
                             <img src="/img/icons/whatsapp.svg" class="w-5 h-5 mb-2" alt="Whatsapp">
                             <p class="font-semibold">Whatsapp</p>
-                            <p class="text-xs">+7 (700) 090 6090</p>
+                            <p class="text-xs">+7 (776) 690 6090</p>
                         </a>
                         <a
                             href="http://instagram.com/eat.and.fit/"
