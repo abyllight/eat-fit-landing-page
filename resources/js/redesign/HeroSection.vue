@@ -2,7 +2,7 @@
     <div class="w-full relative overflow-hidden h-99 flex items-center">
         <div>
             <div class="slidex absolute inset-0 translate-x-0 transition-all ease-in-out duration-1000 transform">
-                <div class="bg-hero-lg bg-cover bg-center relative h-99 w-full">
+                <div class="bg-hero-sm md:bg-hero-lg bg-cover bg-center relative h-99 w-full">
                     <div class="max-w-6xl mx-auto px-8 md:px-4 relative z-20 flex flex-col justify-center">
                         <div class="py-32 lg:pb-40">
                             <div class="md:w-1/2 text-white mb-12">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
-                <div class="bg-slide4 bg-cover bg-center relative h-99 w-full">
+                <div class="bg-slide4sm md:bg-slide4 bg-cover bg-center relative h-99 w-full">
                     <div class="max-w-6xl mx-auto px-8 md:px-4 relative z-20 flex flex-col justify-center">
                         <div class="py-32 lg:pb-40 xl:pb-56">
                             <div class="md:w-1/2 text-white mb-12">
@@ -84,7 +84,7 @@
             </div>
 
             <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
-                <div class="bg-slide3 bg-cover bg-center relative h-99 w-full">
+                <div class="bg-slide3sm md:bg-slide3 bg-cover bg-center relative h-99 w-full">
                     <div class="max-w-6xl mx-auto px-8 md:px-4 relative z-20 flex flex-col justify-center">
                         <div class="py-32 lg:pb-40 xl:pb-56">
                             <div class="md:w-2/3 text-white mb-12">
@@ -115,7 +115,7 @@
             </div>
 
             <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
-                <div class="bg-slide2 bg-cover bg-center relative h-99 w-full">
+                <div class="bg-slide2sm md:bg-slide2 bg-cover bg-center relative h-99 w-full">
                     <div class="max-w-6xl mx-auto px-8 md:px-4 relative z-20 flex flex-col justify-center">
                         <div class="py-32 lg:pb-40 xl:pb-56">
                             <div class="md:w-1/2 text-white mb-12">
@@ -144,7 +144,7 @@
             </div>
 
             <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
-                <div class="bg-slide5 bg-cover bg-center relative h-99 w-full">
+                <div class="bg-slide1sm md:bg-slide5 bg-cover bg-center relative h-99 w-full">
                     <div class="max-w-6xl mx-auto px-8 md:px-4 relative z-20 flex flex-col justify-center">
                         <div class="py-32 lg:pb-40 xl:pb-56">
                             <div class="md:w-1/2 text-white mb-12">
@@ -167,7 +167,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full h-full absolute top-0 bg-black z-0 opacity-25"></div>
+                    <div class="w-full h-full absolute top-0 bg-black z-0 opacity-30"></div>
                 </div>
             </div>
         </div>
@@ -222,6 +222,8 @@ export default{
         prev() {
             let active = document.querySelector('.slidex.translate-x-0')
             if (active) {
+                clearInterval(this.timer)
+
                 let prev = active.previousElementSibling;
                 active.classList.remove('translate-x-0')
                 active.classList.add('translate-x-full')
@@ -229,8 +231,6 @@ export default{
                     prev.classList.remove('-translate-x-full')
                     prev.classList.add('translate-x-0')
                 }else {
-                    clearInterval(this.timer)
-
                     let slides = document.getElementsByClassName('slidex')
                     for (let i = 0; i < slides.length - 1; i++) {
                         slides[i].classList.remove('translate-x-full')
@@ -238,14 +238,16 @@ export default{
                     }
                     slides[slides.length - 1].classList.remove('translate-x-full')
                     slides[slides.length - 1].classList.add('translate-x-0')
-
-                    this.autoPlay()
                 }
+
+                this.autoPlay()
             }
         },
         next() {
             let active = document.querySelector('.slidex.translate-x-0')
             if (active) {
+                clearInterval(this.timer)
+
                 let next = active.nextElementSibling;
                 active.classList.remove('translate-x-0')
                 active.classList.add('-translate-x-full')
@@ -253,8 +255,6 @@ export default{
                     next.classList.remove('translate-x-full')
                     next.classList.add('translate-x-0')
                 }else {
-                    clearInterval(this.timer)
-
                     let slides = document.getElementsByClassName('slidex')
                     for (let i = 1; i < slides.length; i++) {
                         slides[i].classList.remove('-translate-x-full')
@@ -262,9 +262,9 @@ export default{
                     }
                     slides[0].classList.remove('-translate-x-full')
                     slides[0].classList.add('translate-x-0')
-
-                    this.autoPlay()
                 }
+
+                this.autoPlay()
             }
         }
     }
