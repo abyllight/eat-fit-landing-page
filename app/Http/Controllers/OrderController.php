@@ -206,6 +206,8 @@ class OrderController extends Controller
             $name = $name . ' Индивидуальное меню';
         } else if ($request['isTrial']) {
             $name = $name . ' Пробный день';
+        } else if($request['isDaily']) {
+            $name = $name . ' Daily';
         } else {
             $size = [
                 'id' => 327953, //Size
@@ -314,7 +316,7 @@ class OrderController extends Controller
             $leads['add'][0]['tags'][] = $request->promo;
         }
 
-        if (!$request->isPersonal && !$request->has('isTrial')) {
+        if (!$request->isPersonal && !$request->has('isTrial') && !$request->has('isDaily')) {
             $leads['add'][0]['price'] = $request->discount;
         }
 

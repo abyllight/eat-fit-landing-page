@@ -222,14 +222,19 @@
         <program></program>
     </section>
 
+    <!-- Section sample -->
+    <section id="sample" class="py-16">
+        <sample-menu></sample-menu>
+    </section>
+
     <!-- Section trial -->
     <section id="trial" class="py-20 w-full bg-trial-lg bg-cover bg-no-repeat bg-center">
         <trial></trial>
     </section>
 
-    <!-- Section sample -->
-    <section id="sample" class="py-16 bg-brand-blue-light">
-        <sample-menu></sample-menu>
+    <!-- Section daily -->
+    <section id="daily" class="py-16">
+        <daily></daily>
     </section>
 
     <!-- Section detox -->
@@ -326,13 +331,13 @@
 
                     <div class="flex">
                         <a
-                            href="https://wa.me/77766906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
+                            href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                             target="_blank"
                             onclick="ym(56810422,'reachGoal','whatsapp'); return true;"
                             class="mr-10 w-1/2">
                             <img src="/img/icons/whatsapp.svg" class="w-5 h-5 mb-2" alt="Whatsapp">
                             <p class="font-semibold">Whatsapp</p>
-                            <p class="text-xs">+7 (776) 690 6090</p>
+                            <p class="text-xs">+7 (700) 090 6090</p>
                         </a>
                         <a
                             href="http://instagram.com/eat.and.fit/"
@@ -364,6 +369,10 @@
 
     new Vue({
     el: '#trial'
+    });
+
+    new Vue({
+    el: '#daily'
     });
 
     new Vue({

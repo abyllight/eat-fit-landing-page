@@ -16,6 +16,7 @@ Vue.component('ad', require('./redesign/Ad.vue').default);
 Vue.component('program', require('./redesign/Program.vue').default);
 Vue.component('calculator', require('./redesign/CalculatorModal.vue').default)
 Vue.component('trial', require('./redesign/TrialSection.vue').default);
+Vue.component('daily', require('./redesign/Daily.vue').default);
 Vue.component('instagram', require('./redesign/Instagram.vue').default);
 Vue.component('faq', require('./redesign/Faq.vue').default);
 Vue.component('detox', require('./redesign/Detox.vue').default);
