@@ -131,9 +131,9 @@
 
                             <div
                                 class="flex items-center text-xs font-semibold uppercase">
-                                <a href="#trial"
+                                <a href="#daily"
                                    class="px-10 py-3 md:py-4 rounded-lg shadow tracking-wider outline-none focus:outline-none bg-gradient-to-b from-gr-yellow-start to-gr-yellow-end hover:from-brand-yellow-hover">
-                                    связаться с менеджером
+                                    Попробовать
                                 </a>
                             </div>
                         </div>

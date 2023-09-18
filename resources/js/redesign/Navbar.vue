@@ -1,6 +1,6 @@
 <template>
     <div class="fixed w-full z-30 top-0 bg-brand-blue">
-        <div class="py-2 max-w-6xl mx-auto px-5">
+        <div class="py-2 max-w-7xl mx-auto px-5">
             <div class="flex items-center justify-between">
                 <button
                     type="button"
@@ -123,6 +123,11 @@ export default {
                     id: 2,
                     name: 'Пример меню',
                     link: '/#sample'
+                },
+                {
+                    id: 8,
+                    name: 'Daily',
+                    link: '/#daily'
                 },
                 {
                     id: 3,
