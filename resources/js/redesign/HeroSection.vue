@@ -59,7 +59,7 @@
                         <div class="py-32 lg:pb-40 xl:pb-56">
                             <div class="md:w-1/2 text-white mb-12">
                                 <h1 class="font-bold text-3xl lg:text-4xl leading-tight mb-5">
-                                    Подготовьтесь к отпуску<br class="hidden lg:block"/>
+                                    Экспресс снижение веса<br class="hidden lg:block"/>
                                     <span class="text-brand-green">за 15 дней</span> с EAT&FIT
                                 </h1>
                                 <p class="text-xl mb-4">3 дня детокса + 9 питания + 3 дня детокса</p>
