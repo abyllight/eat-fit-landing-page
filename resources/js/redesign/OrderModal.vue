@@ -153,7 +153,7 @@
                                     </div>
                                 </div>
                                 <p class="text-sm font-medium text-lime-700 bg-gray-200" :class="{'text-red-600': !promoStatus, 'p-3': promoMsg}">{{promoMsg}}</p>
-                                <label class="block text-gray-500 font-semibold flex mt-4">
+                                <label class="text-gray-500 font-semibold flex mt-4">
                                     <p class="text-tiny -mt-1">
                                         Нажимая на кнопку, я подтверждаю своё
                                         согласие на обработку персональных данных
@@ -162,7 +162,9 @@
                                 </label>
                                 <div class="flex items-center mt-6">
                                     <button
-                                        class="mx-auto bg-brand-dark-green hover:bg-brand-green cursor-pointer font-bold py-2.5 px-4 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
+                                        class="mx-auto bg-brand-dark-green py-2.5 px-4 text-xs uppercase font-semibold text-white rounded shadow focus:outline-none focus:shadow-outline"
+                                        :disabled="this.name.length <= 1 || !isValid"
+                                        :class="[this.name.length <= 1 || !isValid ? 'cursor-not-allowed opacity-50' : 'hover:bg-brand-green cursor-pointer opacity-100']"
                                     >
                                         Оставить заявку
                                     </button>
@@ -432,7 +434,6 @@ export default {
             return null;
         },
         formSubmit() {
-
             if (this.name.length <= 1 || !this.isValid) return
 
             this.$emit('close')
@@ -463,11 +464,8 @@ export default {
                 utm: params,
                 ga: ga
             };
-            this.isLoading = false
-            this.closeModal()
-            window.location.href = '/thanks'
 
-            /*axios.post('/', data).
+            axios.post('/', data).
                 then(function (response) {
                     self.isLoading = false
                     self.closeModal()
@@ -479,11 +477,10 @@ export default {
                 }).
                 catch(function(error){
                     console.log(error);
-                });*/
+                });
         },
         closeModal(){
             this.day = 21
-            this.isChecked = false
             this.$emit('close')
         },
         checkPromo() {

@@ -255,21 +255,18 @@
                     ga: ga
                 };
 
-                this.isLoading = false
-                window.location.href = '/thanks'
-
-                /*axios.post('/', data).
-                then(function (response) {
-                    self.isLoading = false
-                    if (response.data === true){
-                        window.location.href = '/thanks'
-                    }else{
-                        self.showFail = true
-                    }
-                }).
-                catch(function(error){
-                    console.log(error);
-                });*/
+                axios.post('/', data).
+                    then(function (response) {
+                        self.isLoading = false
+                        if (response.data === true){
+                            window.location.href = '/thanks'
+                        }else{
+                            self.showFail = true
+                        }
+                    }).
+                    catch(function(error){
+                        console.log(error);
+                    });
             },
             checkPromo() {
                 if (this.promo === '') return
