@@ -317,7 +317,7 @@
                             class="mr-10 w-1/2">
                             <img src="/img/icons/phone-black.svg" class="w-5 h-5 mb-2" alt="Телефон">
                             <p class="font-semibold text">Телефон</p>
-                            <p class="text-xs">+7 (700) 090 6090</p>
+                            <p class="text-xs">+7 (700) 090 60 90</p>
                         </a>
                         <a
                             href="mailto:eat.and.fit@mail.ru"
@@ -337,7 +337,7 @@
                             class="mr-10 w-1/2">
                             <img src="/img/icons/whatsapp.svg" class="w-5 h-5 mb-2" alt="Whatsapp">
                             <p class="font-semibold">Whatsapp</p>
-                            <p class="text-xs">+7 (700) 090 6090</p>
+                            <p class="text-xs">+7 (700) 090 60 90</p>
                         </a>
                         <a
                             href="http://instagram.com/eat.and.fit/"
