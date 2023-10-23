@@ -118,17 +118,6 @@
                     <div id="payment" class="mt-4 space-y-4">
                         <div class="flex items-center">
                             <input
-                                id="card"
-                                v-model="payment"
-                                value="card"
-                                type="radio"
-                                class="focus:ring-yellow-300 h-4 w-4 text-yellow-300 border-gray-300" />
-                            <label for="card" class="ml-3 block text-sm text-gray-700">
-                                Оплата картой на сайте
-                            </label>
-                        </div>
-                        <div class="flex items-center">
-                            <input
                                 id="kaspi_pay"
                                 v-model="payment"
                                 value="kaspi_pay"
@@ -252,7 +241,6 @@
 
 <script>
 import {mapGetters, mapState} from "vuex";
-    import {TheMask} from 'vue-the-mask'
     import { required, minLength } from 'vuelidate/lib/validators'
     import SuccessModal from "./SuccessModal";
     import FailModal from "./FailModal";
@@ -260,7 +248,6 @@ import {mapGetters, mapState} from "vuex";
     export default {
         name: "Checkout",
         components:{
-            TheMask,
             SuccessModal,
             FailModal
         },
@@ -306,7 +293,7 @@ import {mapGetters, mapState} from "vuex";
                 phone: '',
                 address: '',
                 promocode: '',
-                payment: 'card',
+                payment: 'kaspi_pay',
                 disabled: 'cursor-not-allowed opacity-50 bg-gray-300',
                 activeButton: 'cursor-pointer opacity-100 bg-yellow-300 hover:bg-yellow-400',
                 activeButtonTime: 'cursor-pointer opacity-100 hover:bg-yellow-400',
