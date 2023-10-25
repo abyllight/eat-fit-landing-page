@@ -241,6 +241,7 @@
 
 <script>
 import {mapGetters, mapState} from "vuex";
+import {TheMask} from 'vue-the-mask'
     import { required, minLength } from 'vuelidate/lib/validators'
     import SuccessModal from "./SuccessModal";
     import FailModal from "./FailModal";
@@ -248,6 +249,7 @@ import {mapGetters, mapState} from "vuex";
     export default {
         name: "Checkout",
         components:{
+            TheMask,
             SuccessModal,
             FailModal
         },
@@ -435,7 +437,7 @@ import {mapGetters, mapState} from "vuex";
                     self.$store.dispatch('clearCart');
                     self.$store.dispatch('clearCutlery');
                     self.loading = false
-                    self.isLoading = false
+                    window.location.href = '/go'
                 }).
                 catch(function(error){
                     self.showFail = true

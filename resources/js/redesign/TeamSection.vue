@@ -7,7 +7,7 @@
               <div class="flex flex-wrap justify-center">
                   <div v-for="image in images"
                        :key="image.id"
-                       class="w-64 h-[400px] m-3 relative cursor-pointer">
+                       class="w-72 h-[400px] m-3 relative">
                       <img :src="image.src" alt="Команда Eat&Fit" class="object-cover object-center rounded-xl w-full h-full">
                       <div class="opacity-100 xl:opacity-0 xl:hover:opacity-100">
                           <div class="w-full h-full absolute bg-black opacity-25 xl:opacity-50 top-0 rounded-xl">
@@ -52,12 +52,6 @@ export default {
                     src: '/img/team/alima.jpg',
                     title: 'Алима – Руководитель отдела маркетинга',
                     description: 'Приручает тренды и знает как сделать,чтобы реклама пришлась Вам по душе :)'
-                },
-                {
-                    id: 2,
-                    src: '/img/team/3.jpg',
-                    title: 'Виталий – Отдел логистики и доставки',
-                    description: 'Знает город лучше, чем 2GIS: все его закоулки и кратчайшие пути'
                 },
                 {
                     id: 3,
