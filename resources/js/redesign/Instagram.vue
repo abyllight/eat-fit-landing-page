@@ -53,7 +53,7 @@
                         url: 'https://www.instagram.com/p/BpecZFTgY79/?igshid=1dxifgttdg5e6',
                         imageUrl: 'img/instagram/r5.PNG.jpg'
                     },
-                    {
+                    /*{
                         id: 5,
                         url: 'https://www.instagram.com/p/BlpgrKznUke/?igshid=y6u7at9lbmg8',
                         imageUrl: 'img/instagram/r6.PNG.jpg'
@@ -72,7 +72,7 @@
                         id: 8,
                         url: 'https://www.instagram.com/p/BarIEKkFppP/?igshid=12q0zykr0dapx',
                         imageUrl: 'img/instagram/r9.PNG.jpg'
-                    },
+                    },*/
                 ]
             }
         },

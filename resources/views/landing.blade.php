@@ -238,7 +238,7 @@
     </section>
 
     <!-- Section detox -->
-    <section id="detox" class="py-16">
+<!--    <section id="detox" class="py-16">
         <h1 class="text-xl lg:text-2xl text-center font-semibold mb-8 lg:mb-16 px-4">
             Детокс
         </h1>
@@ -267,7 +267,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
 
     <!-- Section reviews -->
     <section id="reviews" class="py-16">
