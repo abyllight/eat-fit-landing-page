@@ -155,6 +155,10 @@ class OrderController extends Controller
 
     public function placeOrder(Request $request): JsonResponse
     {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required|min:17'
+        ]);
 
         $auth = $this->amo_auth();
 
@@ -460,7 +464,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|min:17',
             'address' => 'required'
         ]);
 

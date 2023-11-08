@@ -88,7 +88,7 @@
                         </div>
 
                         <div>
-                            <form @submit.prevent="formSubmit" onsubmit="ym(56810422,'reachGoal','generatedlead')">
+                            <form @submit.prevent="formSubmit">
                                 <h4 class="text-base font-semibold mb-4">
                                     Данные для консультации
                                 </h4>
@@ -116,7 +116,7 @@
                                         v-model.trim="$v.name.$model"
                                         :class="{ 'border-red-500 focus:border-red-500': $v.name.$error }"/>
                                     <p
-                                        v-if="$v.name.$error"
+                                        v-if="$v.name.$error || errors.name"
                                         class="text-red-500 text-xs italic mt-1"
                                     >
                                         Укажите имя
@@ -131,7 +131,7 @@
                                         mask="\+\7 (111) 111-1111"
                                         @input="rawVal = arguments[1]"
                                         :class="{ 'border-red-500 focus:border-red-500': !isPhoneValid }"/>
-                                    <p v-if="!isPhoneValid" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
+                                    <p v-if="!isPhoneValid || errors.phone" class="text-red-500 text-xs italic mt-1">Заполните телефон</p>
                                 </div>
                                 <div class="mb-2.5 relative">
                                     <input
@@ -331,7 +331,8 @@ export default {
             promoMsg: '',
             promoStatus: false,
             promoType: 0,
-            promoVal: null
+            promoVal: null,
+            errors: {}
         }
     },
     computed: {
@@ -436,7 +437,6 @@ export default {
         formSubmit() {
             if (this.name.length <= 1 || !this.isValid) return
 
-            this.$emit('close')
             this.isLoading = true
             let self = this;
 
@@ -475,12 +475,24 @@ export default {
                         self.$emit('showFail')
                     }
                 }).
-                catch(function(error){
-                    console.log(error);
+                catch(function(error) {
+                    self.isLoading = false
+                    if (error.response.status === 422) {
+                        self.errors = error.response.data.errors
+                    }else {
+                        self.$emit('showFail')
+                    }
                 });
         },
         closeModal(){
             this.day = 21
+            this.name = ''
+            this.phone = ''
+            this.promo = ''
+            this.promoVal = null
+            this.promoMsg = ''
+            this.promoType = 0
+            this.promoStatus = false
             this.$emit('close')
         },
         checkPromo() {

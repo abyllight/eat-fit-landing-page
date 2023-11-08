@@ -44,18 +44,25 @@
                                 class="w-full rounded-2xl bg-white px-5 py-3 mb-4 text-sm focus:outline-none focus:shadow-outline"
                                 placeholder="Ваше имя"
                                 required
+                                :class="{ 'border-red-500 focus:border-red-500': errors.name }"
                             />
+                            <p
+                                v-if="errors.name"
+                                class="text-red-500 text-xs italic -mt-3"
+                            >
+                                Укажите имя
+                            </p>
                             <masked-input
                                 v-model="phone"
                                 mask="\+\7 (111) 111-1111"
                                 @input="rawVal = arguments[1]"
                                 type="tel"
                                 class="w-full rounded-2xl bg-white px-5 py-3 border text-sm focus:outline-none focus:shadow-outline"
-                                :class="{ 'border-red-500': !isPhoneValid || !isValid }"
+                                :class="{ 'border-red-500': !isPhoneValid || !isValid || errors.phone }"
                                 placeholder="Ваш телефон"
                             />
 
-                            <p v-if="!isPhoneValid || !isValid" class="text-red-500 text-xs italic mt-2">Заполните телефон</p>
+                            <p v-if="!isPhoneValid || !isValid || errors.phone" class="text-red-500 text-xs italic mt-2">Заполните телефон</p>
 
                             <div class="mb-3 mt-4 relative">
                                 <input
@@ -165,7 +172,8 @@
                         name: 'Алматы'
                     }
                 ],
-                city_id: 1
+                city_id: 1,
+                errors: {}
             }
         },
         methods: {
@@ -265,7 +273,12 @@
                         }
                     }).
                     catch(function(error){
-                        console.log(error);
+                        self.isLoading = false
+                        if (error.response.status === 422) {
+                            self.errors = error.response.data.errors
+                        }else {
+                            self.showFail = true
+                        }
                     });
             },
             checkPromo() {
