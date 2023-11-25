@@ -125,11 +125,6 @@ export default {
                     link: '/#sample'
                 },
                 {
-                    id: 8,
-                    name: 'Daily',
-                    link: '/#daily'
-                },
-                {
                     id: 3,
                     name: 'EatFitGo',
                     link: 'go'

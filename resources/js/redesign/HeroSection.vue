@@ -66,6 +66,9 @@
                                 <p class="text-base">
                                     Специальная программа для парней и девушек, которые хотят быстро прийти в свою идеальную форму
                                 </p>
+                                <p class="text-base mt-1">
+                                    Доставка проходит в течение 15 дней без перерыва, чтобы вы могли достигнуть максимальных результатов вместе с нами
+                                </p>
                             </div>
 
                             <div
@@ -113,7 +116,7 @@
                 </div>
             </div>
 
-            <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
+<!--            <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
                 <div class="bg-slide2sm md:bg-slide2 bg-cover bg-center relative h-99 w-full">
                     <div class="max-w-6xl mx-auto px-8 md:px-4 relative z-20 flex flex-col justify-center">
                         <div class="py-32 lg:pb-40 xl:pb-56">
@@ -140,7 +143,7 @@
 
                     <div class="w-full h-full absolute top-0 bg-black z-0 opacity-25"></div>
                 </div>
-            </div>
+            </div>-->
 
             <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
                 <div class="bg-slide1sm md:bg-slide5 bg-cover bg-center relative h-99 w-full">

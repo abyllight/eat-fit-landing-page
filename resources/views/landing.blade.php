@@ -233,9 +233,9 @@
     </section>
 
     <!-- Section daily -->
-    <section id="daily" class="py-16">
+<!--    <section id="daily" class="py-16">
         <daily></daily>
-    </section>
+    </section>-->
 
     <!-- Section detox -->
 <!--    <section id="detox" class="py-16">
@@ -369,10 +369,6 @@
 
     new Vue({
     el: '#trial'
-    });
-
-    new Vue({
-    el: '#daily'
     });
 
     new Vue({
