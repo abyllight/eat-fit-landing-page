@@ -150,12 +150,10 @@
                         Заказать
                     </button>
                     <p v-if="cantBuyAstana && city === 1" class="mt-2 text-sm italic font-medium">
-                        Прием заказов по Астане осуществляется только c 10:00 до 18:00
-                    </p>
+                        Дорогие друзья, прием заявок возобновится 7го января                    </p>
 
                     <p v-if="cantBuyAlmaty && city === 2" class="mt-2 text-sm italic font-medium">
-                        Прием заказов по Алмате осуществляется только c 10:00 до 21:00
-                    </p>
+                        Дорогие друзья, прием заявок возобновится 7го января                    </p>
                 </div>
             </div>
             <div class="md:-ml-16 lg:ml-0 lg:w-1/3">
@@ -201,8 +199,7 @@
                 </div>
             </div>
             <div v-if="isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
-                К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
-            </div>
+                Дорогие друзья, прием заявок возобновится 7го января            </div>
         </div>
         <success-modal :showSuccess="showSuccess" @close="showSuccess=false"></success-modal>
         <fail-modal :showFail="showFail" @close="showFail=false"></fail-modal>
@@ -336,10 +333,10 @@ import {TheMask} from 'vue-the-mask'
                 return this.payment === 'cashless' ? this.wholesale : this.total
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return new Date().getDate() >= 29 || new Date().getDate() < 7
             },
             cantBuyAlmaty() {
-                return new Date().getHours() >= 21 || new Date().getHours() < 10
+                return new Date().getDate() >= 29 || new Date().getDate() < 7
             },
             intervals() {
                 return this.city === 1 ? this.intervalsAstana : this.intervalsAlmaty

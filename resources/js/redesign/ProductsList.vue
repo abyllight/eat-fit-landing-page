@@ -69,16 +69,13 @@
                 </div>
             </div>
             <div v-if="isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
-                К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
-            </div>
+                Дорогие друзья, прием заявок возобновится 7го января            </div>
 
             <div v-if="city === 1 && cantBuyAstana && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
-                Прием заказов по Астане осуществляется только c 10:00 до 18:00
-            </div>
+                Дорогие друзья, прием заявок возобновится 7го января            </div>
 
             <div v-if="city === 2 && cantBuyAlmaty && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
-                Прием заказов по Алмате осуществляется только c 10:00 до 21:00
-            </div>
+                Дорогие друзья, прием заявок возобновится 7го января            </div>
         </div>
 
         <product-modal :show = "showProductModal" :data = "products.length > 0 ? chosenProduct : []"  @close="showProductModal = false"></product-modal>
@@ -124,10 +121,10 @@
                 return new Date().getDay() === 6
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return new Date().getDate() >= 29 || new Date().getDate() < 7
             },
             cantBuyAlmaty() {
-                return new Date().getHours() >= 21 || new Date().getHours() < 10
+                return new Date().getDate() >= 29 || new Date().getDate() < 7
             }
         },
         methods: {

@@ -139,18 +139,15 @@
                         <span>Оформить заказ на завтра</span>
                     </a>
                     <p v-if="cantBuyAstana && city === 1" class="mt-2 text-sm italic font-medium text-red-500">
-                        Прием заказов по Астане осуществляется только c 10:00 до 18:00
-                    </p>
+                        Дорогие друзья, прием заявок возобновится 7го января                    </p>
 
                     <p v-if="cantBuyAlmaty && city === 2" class="mt-2 text-sm italic font-medium text-red-500">
-                        Прием заказов по Астане осуществляется только c 10:00 до 21:00
-                    </p>
+                        Дорогие друзья, прием заявок возобновится 7го января                    </p>
                 </div>
             </div>
         </div>
         <div v-if="isSunday" class="max-w-md mx-auto bg-gray-800 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
-            К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
-        </div>
+            Дорогие друзья, прием заявок возобновится 7го января        </div>
     </div>
 </template>
 <style scoped>
@@ -203,10 +200,10 @@ import {mapGetters, mapState} from "vuex";
                 return this.$store.getters.getTotal
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return new Date().getDate() >= 29 || new Date().getDate() < 7
             },
             cantBuyAlmaty() {
-                return new Date().getHours() >= 21 || new Date().getHours() < 10
+                return new Date().getDate() >= 29 || new Date().getDate() < 7
             },
             isSunday() {
                 return new Date().getDay() === 6
