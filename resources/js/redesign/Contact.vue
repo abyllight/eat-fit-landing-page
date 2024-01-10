@@ -20,20 +20,20 @@
                             <img src="/img/icons/phone-black.svg" class="w-6 h-6 mb-2 md:mr-2 md:mb-0" alt="Телефон">
                             <a
                                 class="text-sm uppercase"
-                                href="tel:+77000906090"
+                                href="tel:+77766906090"
                                 onclick="yaCounter56810422.reachGoal('clicknumber'); return true;"
                             >
-                                +7 (700) 090 6090
+                                +7 (776) 690 6090
                             </a>
                         </div>
                         <div class="flex flex-col md:flex-row justify-center lg:justify-start items-center mb-4">
                             <img src="/img/icons/whatsapp.svg" class="w-6 h-6 mb-2 md:mr-2 md:mb-0" alt="Whatsapp">
                             <a class="text-sm uppercase"
-                               href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
+                               href="https://wa.me/77766906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                                target="_blank"
                                onclick="ym(56810422,'reachGoal','whatsapp'); return true;"
                             >
-                                +7 (700) 090 6090
+                                +7 (776) 690 6090
                             </a>
                         </div>
                         <div class="flex flex-col md:flex-row justify-center lg:justify-start items-center">

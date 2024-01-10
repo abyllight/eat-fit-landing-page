@@ -38,9 +38,9 @@
                         <img class="h-8" src="/img/icons/whatsapp.svg" alt="Whatsapp">
                     </a>
                     <a
-                        href="tel:+77000906090"
+                        href="tel:+77766906090"
                         class="text-white text-lg font-medium hidden ml-4 xl:block">
-                        +7 (700) 090 6090
+                        +7 (776) 690 6090
                     </a>
                     <a href="/cart" class="hidden xl:block ml-4">
                         <div class="relative w-10">
