@@ -33,7 +33,7 @@
 
                 <div class="flex items-center">
                     <a
-                        href="https://wa.me/77000906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
+                        href="https://wa.me/77766906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                         target="_blank">
                         <img class="h-8" src="/img/icons/whatsapp.svg" alt="Whatsapp">
                     </a>

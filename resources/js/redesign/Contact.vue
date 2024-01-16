@@ -21,7 +21,6 @@
                             <a
                                 class="text-sm uppercase"
                                 href="tel:+77766906090"
-                                onclick="yaCounter56810422.reachGoal('clicknumber'); return true;"
                             >
                                 +7 (776) 690 6090
                             </a>
@@ -31,7 +30,6 @@
                             <a class="text-sm uppercase"
                                href="https://wa.me/77766906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                                target="_blank"
-                               onclick="ym(56810422,'reachGoal','whatsapp'); return true;"
                             >
                                 +7 (776) 690 6090
                             </a>
