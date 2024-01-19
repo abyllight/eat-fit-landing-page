@@ -145,7 +145,7 @@
                 </div>
             </div>-->
 
-            <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
+<!--            <div class="slidex absolute inset-0 translate-x-full transition-all ease-in-out duration-1000 transform">
                 <div class="bg-slide1sm md:bg-slide5 bg-cover bg-center relative h-99 w-full">
                     <div class="max-w-6xl mx-auto px-8 md:px-4 relative z-20 flex flex-col justify-center">
                         <div class="py-32 lg:pb-40 xl:pb-56">
@@ -171,7 +171,7 @@
 
                     <div class="w-full h-full absolute top-0 bg-black z-0 opacity-30"></div>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <div
