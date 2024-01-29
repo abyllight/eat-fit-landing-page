@@ -299,7 +299,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center justify-center">
                 <div class="hidden md:block w-1/2">
-                    <img src="/img/team3.jpg" class="w-full rounded-lg shadow-xl">
+                    <img src="/img/teamlast.jpg" class="w-full rounded-lg shadow-xl">
                 </div>
                 <div class="bg-brand-blue-light rounded-lg shadow p-8 lg:px-16 md:ml-8">
                     <a
