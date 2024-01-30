@@ -141,7 +141,7 @@ export default {
                 },
                 {
                     id: 6,
-                    name: 'FAQ',
+                    name: 'Частые вопросы',
                     link: '/#faq'
                 },
                 {
