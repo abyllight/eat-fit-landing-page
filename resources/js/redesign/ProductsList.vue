@@ -124,7 +124,7 @@
                 return new Date().getDay() === 6
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return new Date().getHours() >= 19 || new Date().getHours() < 10
             },
             cantBuyAlmaty() {
                 return new Date().getHours() >= 21 || new Date().getHours() < 10
