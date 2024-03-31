@@ -4,7 +4,8 @@
             <h1 class="text-xl lg:text-2xl text-center font-semibold mb-1">EatFitGo</h1>
             <p class="text-center mb-1">Полезные блюда с доставкой по Астане и Алмате</p>
             <p class="text-xs text-center">(*Время работы по Астане с 10:00 до 18:00)</p>
-            <p class="text-xs text-center mb-4">(*Время работы по Алмате с 10:00 до 21:00)</p>
+            <p class="text-xs text-center">(*Время работы по Алмате с 10:00 до 21:00)</p>
+            <p class="text-xs text-center mb-4">*Минимальная сумма заказа для наших партнеров 10 000 тенге</p>
 
             <div class="max-w-sm mx-auto flex justify-center mb-8">
                 <button v-for="type in types"

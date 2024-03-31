@@ -143,19 +143,25 @@
                 <div class="flex flex-col md:flex-row">
                     <button
                         @click="checkout"
-                        class="w-full md:w-auto mr-4 text-xs uppercase font-semibold px-8 py-3 rounded shadow focus:outline-none focus:shadow-outline text-center"
-                        :disabled="isEleven || isSunday"
-                        :class="[ isEleven || isSunday ? disabled : activeButton ]"
+                        class="w-full md:w-auto mr-4 text-xs uppercase font-semibold px-8 py-3 h-10 rounded shadow focus:outline-none focus:shadow-outline text-center"
+                        :disabled="isEleven || isSunday || cantBuyByPrice"
+                        :class="[ isEleven || isSunday || cantBuyByPrice ? disabled : activeButton ]"
                     >
                         Заказать
                     </button>
-                    <p v-if="cantBuyAstana && city === 1" class="mt-2 text-sm italic font-medium">
-                        Прием заказов по Астане осуществляется только c 10:00 до 18:00
-                    </p>
+                    <div>
+                        <p v-if="cantBuyAstana && city === 1" class="mt-2 text-sm italic font-medium text-red-500">
+                            Прием заказов по Астане осуществляется только c 10:00 до 18:00
+                        </p>
 
-                    <p v-if="cantBuyAlmaty && city === 2" class="mt-2 text-sm italic font-medium">
-                        Прием заказов по Алмате осуществляется только c 10:00 до 21:00
-                    </p>
+                        <p v-if="cantBuyAlmaty && city === 2" class="mt-2 text-sm italic font-medium text-red-500">
+                            Прием заказов по Алмате осуществляется только c 10:00 до 21:00
+                        </p>
+
+                        <p v-if="cantBuyByPrice && city === 1" class="mt-2 text-sm italic font-medium text-red-500">
+                            Минимальная сумма заказа для наших партнеров 10 000 тенге
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="md:-ml-16 lg:ml-0 lg:w-1/3">
@@ -328,6 +334,9 @@ import {TheMask} from 'vue-the-mask'
             },
             isSunday() {
                 return new Date().getDay() === 6
+            },
+            cantBuyByPrice() {
+                return this.wholesale < 10000 && this.payment === 'cashless'
             },
             delivery() {
                 return this.payment === 'cashless' ? 0 : this.delivery_fee
