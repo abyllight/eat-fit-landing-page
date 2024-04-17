@@ -116,7 +116,7 @@ export default {
                 },
                 {
                     id: 1,
-                    name: 'Программы',
+                    name: 'Цены',
                     link: '/#programs'
                 },
                 {

@@ -1,7 +1,7 @@
 <template>
  <div>
       <div class="max-w-6xl mx-auto px-4">
-          <h1 class="text-xl lg:text-2xl text-center font-semibold mb-4">Программы и цены</h1>
+          <h1 class="text-xl lg:text-2xl text-center font-semibold mb-4">Цены</h1>
           <h4 class="max-w-lg mx-auto text-center mb-8">Стоимость рационов зависит от калорийности, <br>количества дней и линейки меню</h4>
             <div class="max-w-sm mx-auto flex justify-center mb-2">
                 <button v-for="type in types"

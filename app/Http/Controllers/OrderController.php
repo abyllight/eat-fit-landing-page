@@ -157,6 +157,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'city_id' => 'required|not_in:0',
             'phone' => 'required|min:17'
         ]);
 

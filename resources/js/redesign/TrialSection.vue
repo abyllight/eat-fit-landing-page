@@ -7,7 +7,7 @@
                         <br>чем <span class="text-brand-yellow">100 раз услышать</span>
                     </h2>
                     <p class="md:text-lg">
-                        Оставьте заявку на заказ пробных рационов здорового питания <br class="hidden md:block lg:hidden"> <span class="text-brand-green">за 9900 тг.</span>
+                        Оставьте заявку на заказ пробных рационов здорового питания <br class="hidden md:block lg:hidden"> <span class="text-brand-green">за 12 900 тг.</span>
                     </p>
                 </div>
             </div>
@@ -27,8 +27,15 @@
                             <select
                                 v-model="city_id"
                                 :aria-details="city_id"
-                                class="w-full rounded-2xl bg-white px-5 py-3 mb-4 text-sm focus:outline-none focus:shadow-outline"
+                                class="w-full rounded-2xl bg-white px-5 py-3 mb-4 text-sm focus:outline-none focus:shadow-outline border"
+                                :class="{ 'border-red-500 focus:border-red-500': errors.city_id }"
                             >
+                                <option
+                                    key="0"
+                                    value="0"
+                                >
+                                    Выберите город
+                                </option>
                                 <option
                                     v-for="c in cities"
                                     :key="c.id"
@@ -37,7 +44,12 @@
                                     {{c.name}}
                                 </option>
                             </select>
-                            <span id="cityValueTrial" class="hidden">{{city_id}}</span>
+                            <p
+                                v-if="errors.city_id"
+                                class="text-red-500 text-xs italic -mt-3"
+                            >
+                                Выберите город
+                            </p>
                             <input
                                 v-model="name"
                                 type="text"
@@ -172,7 +184,7 @@
                         name: 'Алматы'
                     }
                 ],
-                city_id: 1,
+                city_id: 0,
                 errors: {}
             }
         },

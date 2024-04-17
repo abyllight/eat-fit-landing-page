@@ -10,7 +10,7 @@
                     <div class="">
                         <div class="flex flex-col md:flex-row justify-center lg:justify-start items-center mb-4">
                             <img src="/img/icons/2gis.png" class="w-6 h-6 mb-2 md:mr-2 md:mb-0" alt="Адрес 2gis">
-                            <a class="text-sm uppercase" href="https://2gis.kz/nur_sultan/firm/70000001028666491?m=71.4883%2C51.166058%2F16&snow" target="_blank">Нур-Султан, ул. Жансугурова, 14/1а</a>
+                            <a class="text-sm uppercase" href="https://2gis.kz/nur_sultan/firm/70000001028666491?m=71.4883%2C51.166058%2F16&snow" target="_blank">Астана, ул. Жансугурова, 14/1а</a>
                         </div>
                         <div class="flex flex-col md:flex-row justify-center lg:justify-start items-center mb-4">
                             <img src="/img/icons/email-24px.svg" class="w-6 h-6 mb-2 md:mr-2 md:mb-0" alt="Почта">

@@ -5,45 +5,53 @@
         <hero></hero>
     </section>
 
-    <!-- About section -->
-    <section id="about" class="py-16">
-        <h1 class="text-xl lg:text-2xl text-center font-semibold mb-8 lg:mb-12">
-            О компании в цифрах
+    <!-- Steps section -->
+    <section id="steps" class="py-16 bg-brand-blue-light">
+        <h1 class="text-xl lg:text-2xl text-center font-semibold mb-8 lg:mb-16 px-4">
+            4 шага к вашей стройности и продуктивности
         </h1>
+
         <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row lg:w-3/4 lg:mx-auto justify-around mb-5">
-                <div class="flex-col items-center md:w-72 mb-6">
-                    <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">8+</span>
-                        <p class="font-semibold leading-tight text-lg">лет <br> на рынке</p>
-                    </div>
-                    <p class="text-sm">Удерживаем лидерские позиции, <br>и задаем темп рынку</p>
+            <div class="flex flex-col justify-center md:flex-row">
+                <div class="flex flex-col text-center items-center mb-8 w-full">
+                    <img src="/img/icons/step1.png" class="w-16 mx-auto mb-2" alt="Шаг 1">
+                    <p class="text-sm">
+                        Вы оставляете заявку
+                    </p>
                 </div>
-                <div class="flex-col items-center md:w-72">
-                    <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">10000+</span>
-                        <p class="font-semibold leading-tight text-lg">довольных <br> клиентов</p>
-                    </div>
-                    <p class="text-sm">Столько людей мы накормили за все время работы</p>
+
+                <div class="flex flex-col text-center items-center mb-8 w-full">
+                    <img src="/img/icons/step2.png" class="w-12 mx-auto mb-3" alt="Шаг 2">
+                    <p class="text-sm">
+                        Созваниваемся и подбираем <br> программу питания
+                    </p>
                 </div>
-            </div>
-            <div class="lg:w-3/4 lg:mx-auto flex flex-col md:flex-row justify-around">
-                <div class="flex-col items-center md:w-72 mb-5">
-                    <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">4.8</span>
-                        <p class="font-semibold leading-tight text-lg">рейтинг</p>
-                    </div>
-                    <p class="text-sm">Согласно отзывам Google и 2GIS</p>
+
+                <div class="flex flex-col text-center items-center mb-8 w-full">
+                    <img src="/img/icons/step3.png" class="w-12 mx-auto mb-3" alt="Шаг 3">
+                    <p class="text-sm">
+                        Мы готовим ночью и утром доставляем свежим
+                    </p>
                 </div>
-                <div class="flex-col items-center md:w-72">
-                    <div class="flex justify-content-center items-center">
-                        <span class="text-brand-green font-medium text-5xl mr-3">300+</span>
-                        <p class="font-semibold leading-tight text-lg">ежедневных <br> доставок</p>
-                    </div>
-                    <p class="text-sm">Более 20 пунктуальных курьеров ежедневно доставляют здоровое питание</p>
+
+                <div class="flex flex-col text-center items-center mb-8 w-full">
+                    <img src="/img/icons/step4.png" class="w-12 mx-auto mb-3" alt="Шаг 4">
+                    <p class="text-sm">
+                        Вы легко достигаете <br> своей цели
+                    </p>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs" class="py-16">
+        <program></program>
+    </section>
+
+    <!-- Section sample -->
+    <section id="sample" class="py-16">
+        <sample-menu></sample-menu>
     </section>
 
     <!-- Features section -->
@@ -99,6 +107,52 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- About section -->
+    <section id="about" class="py-16">
+        <h1 class="text-xl lg:text-2xl text-center font-semibold mb-8 lg:mb-12">
+            О компании в цифрах
+        </h1>
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row lg:w-3/4 lg:mx-auto justify-around mb-5">
+                <div class="flex-col items-center md:w-72 mb-6">
+                    <div class="flex justify-content-center items-center">
+                        <span class="text-brand-green font-medium text-5xl mr-3">8+</span>
+                        <p class="font-semibold leading-tight text-lg">лет <br> на рынке</p>
+                    </div>
+                    <p class="text-sm">Удерживаем лидерские позиции, <br>и задаем темп рынку</p>
+                </div>
+                <div class="flex-col items-center md:w-72">
+                    <div class="flex justify-content-center items-center">
+                        <span class="text-brand-green font-medium text-5xl mr-3">10000+</span>
+                        <p class="font-semibold leading-tight text-lg">довольных <br> клиентов</p>
+                    </div>
+                    <p class="text-sm">Столько людей мы накормили за все время работы</p>
+                </div>
+            </div>
+            <div class="lg:w-3/4 lg:mx-auto flex flex-col md:flex-row justify-around">
+                <div class="flex-col items-center md:w-72 mb-5">
+                    <div class="flex justify-content-center items-center">
+                        <span class="text-brand-green font-medium text-5xl mr-3">4.8</span>
+                        <p class="font-semibold leading-tight text-lg">рейтинг</p>
+                    </div>
+                    <p class="text-sm">Согласно отзывам Google и 2GIS</p>
+                </div>
+                <div class="flex-col items-center md:w-72">
+                    <div class="flex justify-content-center items-center">
+                        <span class="text-brand-green font-medium text-5xl mr-3">300+</span>
+                        <p class="font-semibold leading-tight text-lg">ежедневных <br> доставок</p>
+                    </div>
+                    <p class="text-sm">Более 20 пунктуальных курьеров ежедневно доставляют здоровое питание</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section trial -->
+    <section id="trial" class="py-20 w-full bg-trial-lg bg-cover bg-no-repeat bg-center">
+        <trial></trial>
     </section>
 
     <!-- Service section -->
@@ -178,60 +232,6 @@
         </div>
     </section>
 
-    <!-- Steps section -->
-    <section id="steps" class="py-16 bg-brand-blue-light">
-        <h1 class="text-xl lg:text-2xl text-center font-semibold mb-8 lg:mb-16 px-4">
-            4 шага к вашей стройности и продуктивности
-        </h1>
-
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-col justify-center md:flex-row">
-                <div class="flex flex-col text-center items-center mb-8 w-full">
-                    <img src="/img/icons/step1.png" class="w-16 mx-auto mb-2" alt="Шаг 1">
-                    <p class="text-sm">
-                        Вы оставляете заявку
-                    </p>
-                </div>
-
-                <div class="flex flex-col text-center items-center mb-8 w-full">
-                    <img src="/img/icons/step2.png" class="w-12 mx-auto mb-3" alt="Шаг 2">
-                    <p class="text-sm">
-                        Созваниваемся и подбираем <br> программу питания
-                    </p>
-                </div>
-
-                <div class="flex flex-col text-center items-center mb-8 w-full">
-                    <img src="/img/icons/step3.png" class="w-12 mx-auto mb-3" alt="Шаг 3">
-                    <p class="text-sm">
-                        Мы готовим ночью и утром доставляем свежим
-                    </p>
-                </div>
-
-                <div class="flex flex-col text-center items-center mb-8 w-full">
-                    <img src="/img/icons/step4.png" class="w-12 mx-auto mb-3" alt="Шаг 4">
-                    <p class="text-sm">
-                        Вы легко достигаете <br> своей цели
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programs -->
-    <section id="programs" class="py-16">
-        <program></program>
-    </section>
-
-    <!-- Section sample -->
-    <section id="sample" class="py-16">
-        <sample-menu></sample-menu>
-    </section>
-
-    <!-- Section trial -->
-    <section id="trial" class="py-20 w-full bg-trial-lg bg-cover bg-no-repeat bg-center">
-        <trial></trial>
-    </section>
-
     <!-- Section daily -->
 <!--    <section id="daily" class="py-16">
         <daily></daily>
@@ -298,23 +298,37 @@
 
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center justify-center">
-                <div class="hidden md:block w-1/2">
+                <div class="hidden md:block w-2/3">
                     <img src="/img/teamlast.jpg" class="w-full rounded-lg shadow-xl">
                 </div>
                 <div class="bg-brand-blue-light rounded-lg shadow p-8 lg:px-16 md:ml-8">
-                    <a
-                        href="https://2gis.kz/nur_sultan/firm/70000001028666491?m=71.4883%2C51.166058%2F16"
-                        target="_blank"
-                        class="mb-8">
-                        <img src="/img/icons/2gis.png" class="w-5 h-5 mb-2 md:mr-2" alt="Адрес 2gis">
-                        <p class="font-semibold">Адрес</p>
-                        <p class="text-xs">Нур-Султан, ул. Жансугурулы, 14/1а</p>
-                    </a>
+
+                    <div class="flex mt-8 mb-8">
+                        <a
+                            href="https://2gis.kz/nur_sultan/firm/70000001028666491?m=71.4883%2C51.166058%2F16"
+                            target="_blank"
+                            class="mr-4 w-1/2"
+                        >
+                            <img src="/img/icons/2gis.png" class="w-5 h-5 mb-2 md:mr-2" alt="Адрес 2gis">
+                            <p class="font-semibold">Астана</p>
+                            <p class="text-xs">ул. Жансугурулы, 14/1а</p>
+                        </a>
+                        <a
+                            href="https://go.2gis.com/3eeqe"
+                            target="_blank"
+                            class="w-1/2"
+                        >
+                            <img src="/img/icons/2gis.png" class="w-5 h-5 mb-2 md:mr-2" alt="Адрес 2gis">
+                            <p class="font-semibold">Алматы</p>
+                            <p class="text-xs">Атлетическая деревня, Микрорайон Нуркент, 5/11</p>
+                        </a>
+                    </div>
+
                     <div class="flex mt-8 mb-8">
                         <a
                             href="tel:+77766906090"
                             onclick="yaCounter56810422.reachGoal('clicknumber'); return true;"
-                            class="mr-10 w-1/2">
+                            class="mr-4 w-1/2">
                             <img src="/img/icons/phone-black.svg" class="w-5 h-5 mb-2" alt="Телефон">
                             <p class="font-semibold text">Телефон</p>
                             <p class="text-xs">+7 (776) 690 60 90</p>
@@ -334,7 +348,7 @@
                             href="https://wa.me/77766906090?text=Здравствуйте, проконсультируйте меня пожалуйста. "
                             target="_blank"
                             onclick="ym(56810422,'reachGoal','whatsapp'); return true;"
-                            class="mr-10 w-1/2">
+                            class="mr-4 w-1/2">
                             <img src="/img/icons/whatsapp.svg" class="w-5 h-5 mb-2" alt="Whatsapp">
                             <p class="font-semibold">Whatsapp</p>
                             <p class="text-xs">+7 (776) 690 60 90</p>
