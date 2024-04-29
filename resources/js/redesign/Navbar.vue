@@ -153,14 +153,14 @@ export default {
         }
     },
     mounted() {
-        /*let ad = this.$store.state.ad
+        let ad = this.$store.state.ad
         let self = this
 
-        if (ad === 0) {
+        if (ad !== '2') {
             setTimeout(function () {
                 self.$store.dispatch('setAd', 1)
-            }, 30000)
-        }*/
+            }, 3000)
+        }
 
         let cutlery = this.$store.state.cutlery
         if (cutlery.price === 50) {

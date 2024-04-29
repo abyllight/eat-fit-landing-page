@@ -17,6 +17,8 @@ use App\Product;
 
 Route::view('/', 'landing');
 
+Route::view('/almaty', 'almaty');
+
 Route::view('/thanks', 'thankyou');
 
 Route::view('/detox', 'detox');

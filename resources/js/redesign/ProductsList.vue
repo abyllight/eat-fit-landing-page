@@ -2,10 +2,10 @@
     <div class="py-24">
         <div class="max-w-2xl mx-auto px-2 relative">
             <h1 class="text-xl lg:text-2xl text-center font-semibold mb-1">EatFitGo</h1>
-            <p class="text-center mb-1">Полезные блюда с доставкой по Астане и Алмате</p>
-            <p class="text-xs text-center">(*Время работы по Астане с 10:00 до 18:00)</p>
-            <p class="text-xs text-center">(*Время работы по Алмате с 10:00 до 21:00)</p>
-            <p class="text-xs text-center mb-4">*Минимальная сумма заказа для наших партнеров 10 000 тенге</p>
+            <p class="text-center">Полезные блюда с доставкой по Астане и Алмате</p>
+            <p class="text-xs text-center mb-5">*Минимальная сумма заказа для наших партнеров 10 000 тенге</p>
+
+            <img src="/img/eatfitgohero2.jpg" class="rounded h-40 md:h-64 lg:h-80 w-full object-cover object-center mb-10" alt="image"/>
 
             <div class="max-w-sm mx-auto flex justify-center mb-8">
                 <button v-for="type in types"
