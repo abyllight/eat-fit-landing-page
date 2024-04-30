@@ -156,10 +156,10 @@ export default {
         let ad = this.$store.state.ad
         let self = this
 
-        if (ad !== '2') {
+        if (ad !== '3') {
             setTimeout(function () {
                 self.$store.dispatch('setAd', 1)
-            }, 3000)
+            }, 30000)
         }
 
         let cutlery = this.$store.state.cutlery

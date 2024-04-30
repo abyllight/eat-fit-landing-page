@@ -15,7 +15,7 @@ export default {
     name: "Ad",
     methods: {
         closeAd() {
-            this.$store.dispatch('setAd', 2)
+            this.$store.dispatch('setAd', 3)
         }
     }
 }
