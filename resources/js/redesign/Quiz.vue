@@ -1,135 +1,259 @@
 <template>
-    <div id="#sample" class="bg-gray-200 py-12">
-        <div class="max-w-6xl mx-auto px-3">
-            <h3 class="text-center font-bold text-3xl mb-12 leading-tight">Проверь себя</h3>
-            <div class="max-w-xl bg-white rounded shadow-md mx-auto px-5 py-8">
-                <div v-show="!hide_start_button" class="text-center">
-                    <p class="font-semibold text-gray-800 text-lg mb-6">{{ questions.length * 5 }} вопросов</p>
-                    <p class="mb-10 text-gray-900">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                    </p>
-                    <button @click="hide_start_button = false" class="w-32 px-5 py-3 rounded bg-pink-700 hover:bg-pink-800 focus:outline-none text-sm text-white uppercase font-semibold">
-                        Начать
+    <div class="relative">
+        <div class="flex items-center justify-center mx-auto mt-24 bg-gray-100 border rounded max-w-md w-full p-6">
+            <div v-if="!hasResult">
+                <h3 class="text-lg text-center font-semibold mb-8">
+                    Параметры тела
+                </h3>
+
+                <div class="flex justify-center mb-6">
+                    <button v-for="type in types"
+                            :key="type.id"
+                            @click.stop="activeType=type.id"
+                            class="px-5 py-3 rounded outline-none focus:outline-none text-xs font-medium"
+                            :class="[type.id === activeType ? active : non_active, type.id === 0 ? 'mr-2 md:mr-3' : '']"
+                    >
+                        {{ type.title }}
                     </button>
                 </div>
 
-                <div v-show="hide_start_button" class="text-center">
-                    <p class="font-semibold text-gray-800 text-lg mb-3">{{index+1}}/{{ questions.length * 5 }}</p>
-                    <div class="text-lg text-black font-medium max-w-md mx-auto leading-tight mb-8">{{ questions[index].question }}</div>
-                    <div v-for="variant in questions[index].variants">
-                        <div class="border-t py-3 px-5 flex items-start cursor-pointer"
-                             :class="[{'border-b': variant.id === 3}, answered && choice === variant.id && choice === questions[index].correct_answer ? 'bg-green-200' : answered && choice === variant.id && choice !== questions[index].correct_answer ? 'bg-red-200' : '']"
-                             @click="!answered ? check(variant.id) : ''">
+                <form>
+                    <div class="flex flex-col md:flex-row md:justify-between text-xs">
+                        <select class="px-5 py-3 rounded bg-white mb-4 md:mb-0" v-model="age" :class="!checkAge ? errorStyle : ''">
+                            <option value="0">Возраст</option>
+                            <option v-for="i in 90" :value="i + 15">{{i + 15}}</option>
+                        </select>
 
-                            <img
-                                :src="!answered ? '/img/icons/dry-clean.svg' : answered && variant.id === questions[index].correct_answer ? '/img/icons/checked.svg' : '/img/icons/close_3.svg'"
-                                 class="mr-4">
+                        <select class="px-5 py-3 rounded mb-4 md:mb-0" v-model="weight" :class="!checkWeight ? errorStyle : ''">
+                            <option value="0">Вес</option>
+                            <option v-for="i in 100" :value="i + 40">{{i + 40}} кг</option>
+                        </select>
 
-                            <div>
-                                <p class="text-left text-lg"
-                                   :class="[answered && variant.id === questions[index].correct_answer ? 'text-green-700' : answered && variant.id !== questions[index].correct_answer ? 'text-red-700' : '']">{{variant.text }}</p>
-                                <p v-if="answered && choice === variant.id"
-                                   class="text-left text-sm mt-2"> {{ questions[index].answer }} </p>
+                        <select class="px-5 py-3 rounded" v-model="height" :class="!checkHeight ? errorStyle : ''">
+                            <option value="0">Рост</option>
+                            <option v-for="i in 150" :value="i + 100">{{i + 100}} см</option>
+                        </select>
+                    </div>
+                    <p v-show="!checkAge || !checkWeight || !checkHeight" class="text-xs text-red-600 mt-2">Выберите значение</p>
+                    <div class="mt-4">
+                        <p class="text-base font-medium mb-3">Уровень активности:</p>
+                        <select class="px-5 py-3 rounded text-xs" v-model="activity" :class="!checkActivity ? errorStyle : ''">
+                            <option value="0">Выберите активность</option>
+                            <option value="1">1 - почти нет активности</option>
+                            <option value="2">2 - умеренные нагрузки</option>
+                            <option value="3">3 - тренировки 3-5 раз в неделю</option>
+                            <option value="4">4 - интенсивные нагрузки</option>
+                            <option value="5">5 - профессиональные спортсмены</option>
+                        </select>
+                    </div>
+                    <p v-show="!checkActivity" class="text-xs text-red-600 mt-2">Выберите значение</p>
+                    <div class="mb-8 mt-4">
+                        <p class="text-base font-medium mb-3">Ваша цель:</p>
+                        <div class="flex justify-between gap-x-4">
+                            <div v-for="aim in aims"
+                                 :key="aim.id"
+                                 @click.stop="activeAim=aim.id"
+                                 class="px-2 md:px-5 py-3 rounded focus:outline-none text-xs font-medium cursor-pointer"
+                                 :class="[aim.id === activeAim ? active : non_active]"
+                            >
+                                {{ aim.title }}
                             </div>
-
                         </div>
                     </div>
 
+                    <div class="flex justify-center">
+                        <button
+                            type="submit"
+                            @click.prevent="calculate"
+                            class="px-8 py-3 rounded focus:outline-none text-xs font-semibold bg-brand-yellow hover:bg-brand-yellow-active shadow-lg">
+                            Рассчитать
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div v-else>
+                <h3 class="text-lg text-center leading-6 font-bold mb-4">
+                    Рекомендация рациона
+                </h3>
+                <p class="text-sm md:text-base mb-6">
+                    Необходимая норма калорий и нутриентный состав
+                    дневного рациона для достижения цели: <span class="font-semibold">{{ data.kcal }} ккал</span>
+                </p>
+
+                <div class="bg-white flex justify-around text-center rounded-lg max-w-sm mx-auto py-6 mb-4">
+                    <div>
+                        <span class="font-semibold">{{data.protein ? data.protein.weight : ''}} гр</span>
+                        <p class="text-sm">Белки</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold">{{data.protein ? data.fat.weight : ''}} гр</span>
+                        <p class="text-sm">Жиры</p>
+                    </div>
+                    <div>
+                        <span class="font-semibold">{{data.protein ? data.carbohydrate.weight : ''}} гр</span>
+                        <p class="text-sm">Углеводы</p>
+                    </div>
+                </div>
+
+                <p class="text-center mb-1">Рекомендуемая программа питания:</p>
+                <p class="text-lg font-semibold text-center mx-auto mb-8">{{ data.title }} ({{ data.kcal }} ккал)</p>
+                <div class="text-center">
                     <button
-                        v-if="answered"
-                        class="w-56 mt-10 px-5 py-3 rounded bg-pink-700 hover:bg-pink-800 focus:outline-none text-sm text-white uppercase font-semibold"
-                        @click="next()">
-                        Следующий вопрос
+                        @click="hasResult=false"
+                        class="px-8 py-3 mb-4 md:mb-0 md:mr-4 w-full md:w-auto rounded focus:outline-none text-xs font-semibold border border-brand-yellow hover:border-brand-yellow-active shadow">
+                        Рассчитать заново
+                    </button>
+                    <button
+                        @click="showProgram"
+                        class="px-8 py-3 rounded focus:outline-none w-full md:w-auto text-xs font-semibold bg-brand-yellow hover:bg-brand-yellow-active shadow">
+                        Заказать
                     </button>
                 </div>
             </div>
         </div>
+
+        <order-modal :isVisible = "isVisible"
+                     :data = "data"
+                     :isPersonal = "false"
+                     @close="isVisible=false"
+                     @showSuccess="showSuccess = true"
+                     @showFail="showFail = true">
+        </order-modal>
     </div>
 </template>
-
-<style>
+<style scoped>
+select{
+    font-weight: 500;
+}
+option{
+    font-weight: 500;
+}
 </style>
-
 <script>
-import { Carousel, Slide } from 'vue-carousel'
+import progs from '../data';
+import OrderModal from "./OrderModal";
 export default {
-    name: 'quiz',
+    name: 'Quiz',
+    props: ['isCalcVisible'],
     components: {
-        Carousel,
-        Slide
+        OrderModal
     },
     data(){
         return{
-            hide_start_button: true,
-            index: 0,
-            answered: false,
-            choice: 0,
-            questions: [
+            types: [
                 {
-                    id:0,
-                    question: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout?',
-                    answer: 'answer',
-                    correct_answer: 2,
-                    variants: [
-                        {
-                            id:0,
-                            text: 'Variant 1.1'
-                        },
-                        {
-                            id:1,
-                            text: 'Variant 1.2'
-                        },
-                        {
-                            id:2,
-                            text: 'Variant 1.3'
-                        },
-                        {
-                            id:3,
-                            text: 'Variant 1.4'
-                        }
-                    ]
+                    id: 0,
+                    title: 'Женщина'
                 },
                 {
-                    id:0,
-                    question: 'Question 2?',
-                    answer: 'answer',
-                    correct_answer: 0,
-                    variants: [
-                        {
-                            id:0,
-                            text: 'Variant 2.1'
-                        },
-                        {
-                            id:1,
-                            text: 'Variant 2.2'
-                        },
-                        {
-                            id:2,
-                            text: 'Variant 2.3'
-                        },
-                        {
-                            id:3,
-                            text: 'Variant 2.4'
-                        }
-                    ]
+                    id: 1,
+                    title: 'Мужчина'
                 }
-            ]
+            ],
+            data: [],
+            aims: [
+                {
+                    id: 0,
+                    title: 'Снижение веса'
+                },
+                {
+                    id: 1,
+                    title: 'Баланс'
+                },
+                {
+                    id: 2,
+                    title: 'Набор массы'
+                }
+            ],
+            activeType: 0,
+            activeAim: 0,
+            activity: 0,
+            errorStyle: 'border border-red-600',
+            age: 0,
+            height: 0,
+            weight: 0,
+            hasAge: true,
+            hasActivity: true,
+            hasHeight: true,
+            hasWeight: true,
+            active: 'bg-brand-yellow shadow-lg',
+            non_active: 'bg-white hover:bg-gray-300',
+            programs: progs,
+            hasResult: false,
+            isVisible: false
         }
     },
     methods: {
-        check(v_id) {
-
-            this.answered = true
-            this.choice = v_id
-            if (v_id === this.questions[this.index].correct_answer) {
-                console.log('correct')
-            }else {
-                console.log('incorrect')
-            }
+        closeModal(){
+            this.hasResult = false
+            this.age = 0
+            this.activeType = 0
+            this.activeAim = 0
+            this.height = 0
+            this.weight = 0
+            this.activity = 0
+            this.aim = 0
+            this.$emit('close')
         },
-        next() {
-            this.answered = false
-            this.index++
+        recalculate(){
+            this.hasResult = false
+            this.data = []
+        },
+        calculate() {
+            if (!this.validate()) return;
+
+            let result = 0;
+
+            switch (this.activeAim) {
+                case 0:
+                    result = this.activity <= 3 ? 0 : 1
+                    break;
+                default:
+                    result = this.activity <= 3 ? 1 : 2
+                    break;
+            }
+
+            result = this.activeType === 0 ? result + 1 : result
+
+            this.data = this.programs[this.activeType].data[result]
+
+            this.hasResult = true
+        },
+        showProgram(){
+            this.isVisible = true
+            this.closeModal()
+        },
+        validate() {
+
+            if (this.age === 0 || this.age === '0') {
+                this.hasAge = false
+            }
+            if (this.weight === 0 || this.weight === '0'){
+                this.hasWeight = false
+            }
+            if(this.height === 0 || this.height === '0') {
+                this.hasHeight = false
+            }
+            if (this.activity === 0 || this.activity === '0') {
+                this.hasActivity = false
+            }
+
+            return this.checkAge && this.checkActivity && this.checkHeight && this.checkWeight;
+        }
+    },
+    computed: {
+        checkAge() {
+            return this.hasAge || this.age > 0
+        },
+        checkHeight() {
+            return this.hasHeight || this.height > 0
+        },
+        checkWeight() {
+            return this.hasWeight || this.weight > 0
+        },
+        checkActivity() {
+            return this.hasActivity || this.activity > 0
         }
     }
 }

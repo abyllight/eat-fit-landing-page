@@ -25,6 +25,7 @@ Vue.component('product-list', require('./redesign/ProductsList.vue').default);
 Vue.component('cart', require('./redesign/Cart.vue').default);
 Vue.component('basket', require('./redesign/Basket.vue').default);
 Vue.component('checkout', require('./redesign/Checkout.vue').default);
+Vue.component('quiz', require('./redesign/Quiz.vue').default);
 
 new Vue({
     el: '#navbar',
