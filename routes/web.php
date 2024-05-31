@@ -31,6 +31,8 @@ Route::view('/go', 'page');
 
 Route::view('/cart', 'cart');
 
+Route::view('/quiz', 'quiz');
+
 Route::view('/checkout', 'checkout');
 
 Route::post('/checkout', [OrderController::class, 'eatFitGo']);
