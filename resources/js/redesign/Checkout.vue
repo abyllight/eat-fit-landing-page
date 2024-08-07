@@ -191,7 +191,7 @@
                 <div
                     v-for="item in cart"
                     class="border-b-2 py-3 flex items-center">
-                    <img :src="'/storage/' + item.image" class="rounded w-16">
+                    <img :src="'https://admin.eatandchill.kz' + item.image" class="rounded w-16">
                     <div class="pl-3 w-full">
                         <p class="text-base font-medium leading-tight">{{ item.title }}</p>
                         <p class="font-semibold text-red-400"> x{{ item.q }} </p>
@@ -199,7 +199,7 @@
                 </div>
                 <div
                     class="border-b-2 py-3 flex items-center">
-                    <img :src="'/storage/' + cutlery.image" class="rounded w-16">
+                    <img :src="'https://admin.eatandchill.kz' + cutlery.image" class="rounded w-16">
                     <div class="pl-3 w-full">
                         <p class="text-base font-medium leading-tight">{{ cutlery.title }}</p>
                         <p class="font-semibold text-red-400"> x{{ cutlery.q }} </p>
@@ -345,7 +345,7 @@ import {TheMask} from 'vue-the-mask'
                 return this.payment === 'cashless' ? this.wholesale : this.total
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 19 || new Date().getHours() < 10
+                return new Date().getHours() >= 18 || new Date().getHours() < 10
             },
             cantBuyAlmaty() {
                 return new Date().getHours() >= 21 || new Date().getHours() < 10
@@ -427,18 +427,25 @@ import {TheMask} from 'vue-the-mask'
                 this.isLoading = true;
                 let self = this;
                 let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                axios.post('/checkout', {
+                let items = this.cart.map(x => {
+                    return {
+                        productId: x.id,
+                        quantity: x.q
+                    }
+                })
+                axios.post('https://admin.eatandchill.kz/api/orders', {
                     name: this.name,
                     city_id: this.city,
-                    phone: this.phone,
+                    phone: this.uglifyPhone(this.phone),
                     address: this.address,
                     time: this.intervals[this.time].time,
-                    payment: this.payment,
-                    cart: this.cart,
+                    paymentType: this.payment === 'kaspi_pay' ? '1' : '2',
+                    items: items,
                     total: this.total,
                     wholesale: this.wholesale,
-                    delivery: this.delivery,
-                    cutlery: this.cutlery,
+                    deliveryCost: this.delivery,
+                    cutlery: this.cutlery.q,
+                    brand_id: 2,
                     _token: token
                 }).
                 then(function (response) {
@@ -454,6 +461,13 @@ import {TheMask} from 'vue-the-mask'
                     self.isLoading = false
                 });
             },
+            uglifyPhone(phone) {
+                if (phone) {
+                    return phone.replace(/\D/g, '')
+                }
+
+                return ''
+            }
         }
     }
 </script>
