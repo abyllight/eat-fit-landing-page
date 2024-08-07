@@ -23,7 +23,7 @@
                 <div
                     v-for="item in cart"
                     class="border-b-2 py-3 flex items-center">
-                    <img :src="'/storage/' + item.image" class="rounded w-24">
+                    <img :src="'https://admin.eatandchill.kz' + item.image" class="rounded w-24">
                     <div class="pl-3 w-full">
                         <div class="flex justify-between items-start">
                             <p class="text-base font-medium leading-tight">{{ item.title }}</p>
@@ -203,7 +203,7 @@ import {mapGetters, mapState} from "vuex";
                 return this.$store.getters.getTotal
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 19 || new Date().getHours() < 10
+                return new Date().getHours() >= 18 || new Date().getHours() < 10
             },
             cantBuyAlmaty() {
                 return new Date().getHours() >= 21 || new Date().getHours() < 10

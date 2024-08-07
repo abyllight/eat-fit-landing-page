@@ -7,7 +7,7 @@
                 </h3>
                 <VueSlickCarousel ref="slick" v-bind="settings">
                     <div>
-                        <img :src="'/storage/' + data.image" class="w-56 rounded mx-auto object-cover object-center">
+                        <img :src="'https://admin.eatandchill.kz' + data.image" class="w-56 rounded mx-auto object-cover object-center">
                     </div>
                     <div>
                         <div class="text-sm text-gray-800 mb-4 flex justify-between">
@@ -137,7 +137,7 @@
             addToCart(){
                 this.$store.dispatch('addToCart', {
                     id: this.data.id,
-                    title: this.data.title,
+                    title: this.data.name,
                     image: this.data.image,
                     weight: this.data.weight,
                     price: this.data.price,
