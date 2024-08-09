@@ -141,7 +141,7 @@
                     image: this.data.image,
                     weight: this.data.weight,
                     price: this.data.price,
-                    wholesale: this.data.wholesale,
+                    wholesale: this.data.wholesalePrice,
                     q: 1,
                     total: this.data.price
                 });
