@@ -73,11 +73,11 @@
                 К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
             </div>
 
-            <div v-if="city === 1 && cantBuyAstana && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
+            <div v-if="cantBuyAstana && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
                 Прием заказов по Астане осуществляется только c 10:00 до 18:00
             </div>
 
-            <div v-if="city === 2 && cantBuyAlmaty && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
+            <div v-if="cantBuyAlmaty && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
                 Прием заказов по Алмате осуществляется только c 10:00 до 21:00
             </div>
         </div>
@@ -125,10 +125,13 @@
                 return new Date().getDay() === 6
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return this.city === 1 && (new Date().getHours() >= 18 || new Date().getHours() < 10)
             },
             cantBuyAlmaty() {
-                return new Date().getHours() >= 21 || new Date().getHours() < 10
+                return this.city === 2 && (new Date().getHours() >= 21 || new Date().getHours() < 10)
+            },
+            cantBuy() {
+                return this.isSunday()
             }
         },
         methods: {
@@ -139,7 +142,7 @@
                 return this.$store.getters.hasItem(id)
             },
             showModal(product){
-                if (this.isSunday) return
+                if (this.isSunday || this.cantBuyAstana || this.cantBuyAlmaty) return
                 this.showProductModal = true
                 this.chosenProduct = product
             },

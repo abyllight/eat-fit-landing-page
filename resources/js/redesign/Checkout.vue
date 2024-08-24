@@ -150,11 +150,11 @@
                         Заказать
                     </button>
                     <div>
-                        <p v-if="cantBuyAstana && city === 1" class="mt-2 text-sm italic font-medium text-red-500">
+                        <p v-if="cantBuyAstana" class="mt-2 text-sm italic font-medium text-red-500">
                             Прием заказов по Астане осуществляется только c 10:00 до 18:00
                         </p>
 
-                        <p v-if="cantBuyAlmaty && city === 2" class="mt-2 text-sm italic font-medium text-red-500">
+                        <p v-if="cantBuyAlmaty" class="mt-2 text-sm italic font-medium text-red-500">
                             Прием заказов по Алмате осуществляется только c 10:00 до 21:00
                         </p>
 
@@ -210,7 +210,7 @@
                 К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
             </div>
         </div>
-        <success-modal :showSuccess="showSuccess" @close="showSuccess=false"></success-modal>
+        <success-modal :showSuccess="showSuccess" @close="closeSuccessModal"></success-modal>
         <fail-modal :showFail="showFail" @close="showFail=false"></fail-modal>
         <div v-if="isLoading" class="h-screen w-full bg-black opacity-75 fixed top-0 left-0 z-50 flex flex-col items-center justify-center">
             <div class="loader ease-linear rounded-full border-4 border-t-4 border-white h-16 w-16 mb-4"></div>
@@ -330,7 +330,7 @@ import {TheMask} from 'vue-the-mask'
                 return this.$store.getters.getWholesale
             },
             isEleven() {
-                return (this.cantBuyAlmaty && this.city === 2) || (this.cantBuyAstana && this.city === 1)
+                return this.cantBuyAlmaty || this.cantBuyAstana
             },
             isSunday() {
                 return new Date().getDay() === 6
@@ -345,10 +345,10 @@ import {TheMask} from 'vue-the-mask'
                 return this.payment === 'cashless' ? this.wholesale : this.total
             },
             cantBuyAstana() {
-                return new Date().getHours() >= 18 || new Date().getHours() < 10
+                return this.city === 1 && (new Date().getHours() >= 18 || new Date().getHours() < 10)
             },
             cantBuyAlmaty() {
-                return new Date().getHours() >= 21 || new Date().getHours() < 10
+                return this.city === 2 && (new Date().getHours() >= 21 || new Date().getHours() < 10)
             },
             intervals() {
                 return this.city === 1 ? this.intervalsAstana : this.intervalsAlmaty
@@ -453,7 +453,6 @@ import {TheMask} from 'vue-the-mask'
                     self.$store.dispatch('clearCart');
                     self.$store.dispatch('clearCutlery');
                     self.loading = false
-                    window.location.href = '/go'
                 }).
                 catch(function(error){
                     self.showFail = true
@@ -467,6 +466,10 @@ import {TheMask} from 'vue-the-mask'
                 }
 
                 return ''
+            },
+            closeSuccessModal() {
+                this.showSuccess = false
+                window.location.href = '/go'
             }
         }
     }
