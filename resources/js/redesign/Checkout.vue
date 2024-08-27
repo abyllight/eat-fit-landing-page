@@ -452,7 +452,7 @@ import {TheMask} from 'vue-the-mask'
                     self.showSuccess = true
                     self.$store.dispatch('clearCart');
                     self.$store.dispatch('clearCutlery');
-                    self.loading = false
+                    self.isLoading = false
                 }).
                 catch(function(error){
                     self.showFail = true
