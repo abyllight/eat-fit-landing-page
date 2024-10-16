@@ -344,8 +344,8 @@ export default {
                 this.discount = this.data.iPrice - 1000
                 return this.day * (this.data.iPrice - 1000)
             }else {
-                this.discount = this.data.iPrice - 2000
-                return this.day * (this.data.iPrice - 2000)
+                this.discount = this.data.iPrice - 1500
+                return this.day * (this.data.iPrice - 1500)
             }
         },
         dayTxt(){
