@@ -17,8 +17,8 @@
                 </button>
 
                 <div class="flex items-center">
-                    <a href="/#">
-                        <img class="h-10 w-10 lg:mr-5" src="/img/logo.png" alt="Logo">
+                    <a href="/#" class="text-white cursor-pointer font-bold text-2xl mr-5">
+                        Eat&Fit
                     </a>
 
                     <nav class="hidden xl:block">
