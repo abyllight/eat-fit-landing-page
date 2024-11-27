@@ -27,7 +27,7 @@
                                 <p class="-mb-1">{{ data.fat }}</p>
                                 <p class="font-semibold">Жиры</p>
                             </div>
-                            <div v-if="data.carbohydrate">
+                            <div v-if="data.carb">
                                 <p class="-mb-1">{{ data.carb }}</p>
                                 <p class="font-semibold">Углеводы</p>
                             </div>

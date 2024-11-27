@@ -36,11 +36,11 @@
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '2077902815918822');
+        fbq('init', '473263288614999');
         fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-                   src="https://www.facebook.com/tr?id=2077902815918822&ev=PageView&noscript=1"
+                   src="https://www.facebook.com/tr?id=473263288614999&ev=PageView&noscript=1"
         /></noscript>
     <!-- End Meta Pixel Code -->
 
@@ -79,38 +79,5 @@
         @section('js')
         @show
     </script>
-<!--    <script>
-        (function(w, d, s, h, id) {
-            w.roistatProjectId = id; w.roistatHost = h;
-            var p = d.location.protocol == "https:" ? "https://" : "http://";
-            var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init?referrer="+encodeURIComponent(d.location.href);
-            var js = d.createElement(s); js.charset="UTF-8"; js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
-        })(window, document, 'script', 'cloud.roistat.com', '30d2ed73195218197354a5214b1e2373');
-    </script>-->
-
-<!--    <script type="text/javascript">
-        (function(d, w, s) {
-            var widgetHash = 'w0rqbbf9jrhblm0kays4', ctw = d.createElement(s); ctw.type = 'text/javascript'; ctw.async = true;
-            ctw.src = '//widgets.binotel.com/calltracking/widgets/'+ widgetHash +'.js';
-            var sn = d.getElementsByTagName(s)[0]; sn.parentNode.insertBefore(ctw, sn);
-        })(document, window, 'script');
-    </script>-->
-
-    <!-- Yandex.Metrika counter -->
-<!--    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(56810422, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-        });
-    </script>
-
-    <noscript><div><img src="https://mc.yandex.ru/watch/56810422" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
-    <!-- /Yandex.Metrika counter -->
 </body>
 </html>

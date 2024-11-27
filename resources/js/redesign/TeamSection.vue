@@ -4,7 +4,7 @@
               Наша команда
           </h1>
           <div class="max-w-6xl mx-auto flex justify-center mb-8">
-              <div class="flex flex-wrap justify-center">
+              <div class="flex flex-wrap">
                   <div v-for="image in images"
                        :key="image.id"
                        class="w-72 h-[400px] m-3 relative">
@@ -54,22 +54,10 @@ export default {
                     description: 'Приручает тренды и знает как сделать,чтобы реклама пришлась Вам по душе :)'
                 },
                 {
-                    id: 3,
-                    src: '/img/team/ksenia.jpg',
-                    title: 'Ксения – Руководитель отдела продаж',
-                    description: 'Любой менеджер из её команды найдет ключ к Вашему сердцу❤️'
-                },
-                {
                     id: 4,
                     src: '/img/team/marat.jpg',
                     title: 'Марат – Технолог',
                     description: 'Создает технологические карты для приготовления рационов, чтобы Вы получали необходимое количество белков, жиров и углеводов и оставались здоровыми, достигая своих целей вместе с нами'
-                },
-                {
-                    id: 5,
-                    src: '/img/team/6.jpg',
-                    title: 'Чингис – Шеф-повар',
-                    description: 'Знает все секретные рецепты Золотой орды и империи Чингисхана'
                 },
                 {
                     id: 6,
