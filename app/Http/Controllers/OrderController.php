@@ -209,9 +209,7 @@ class OrderController extends Controller
         $name = $request['name'];
         if ($request['isPersonal']) {
             $name = $name . ' Индивидуальное меню';
-        } else if ($request['isTrial']) {
-            $name = $name . ' Пробный день';
-        } else if($request['isDaily']) {
+        }  else if($request['isDaily']) {
             $name = $name . ' Daily';
         } else {
             $size = [

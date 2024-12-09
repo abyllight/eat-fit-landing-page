@@ -140,7 +140,8 @@
                     day: this.count,
                     address: this.address,
                     title: this.data.title,
-                    isPersonal: false
+                    isPersonal: false,
+                    city_id: 1
                 }).
                 then(function (response) {
                     self.$emit('close')
