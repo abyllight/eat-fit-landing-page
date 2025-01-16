@@ -110,9 +110,23 @@
                         title: 'Алматы'
                     }
                 ],
+                hour: null
             }
         },
         mounted() {
+            const timeZone = "+05:00";
+            const now = new Date();
+
+            const formatter = new Intl.DateTimeFormat("en-US", {
+                timeZone,
+                hour: "numeric",
+                minute: "numeric",
+                hour12: false,
+            });
+            this.hour = formatter.formatToParts(now)
+                .filter(part => part.type === "hour")
+                .map(part => parseInt(part.value, 10))[0];
+
             this.getProducts();
         },
         computed: {
@@ -125,10 +139,10 @@
                 return new Date().getDay() === 6
             },
             cantBuyAstana() {
-                return this.city === 1 && (new Date().getHours() >= 18 || new Date().getHours() < 10)
+                return this.city === 1 && (this.hour >= 18 || this.hour < 10)
             },
             cantBuyAlmaty() {
-                return this.city === 2 && (new Date().getHours() >= 21 || new Date().getHours() < 10)
+                return this.city === 2 && (this.hour >= 21 || this.hour < 10)
             },
             cantBuy() {
                 return this.isSunday()

@@ -300,6 +300,7 @@ import {TheMask} from 'vue-the-mask'
                 name: '',
                 phone: '',
                 address: '',
+                hour: null,
                 promocode: '',
                 payment: 'kaspi_pay',
                 disabled: 'cursor-not-allowed opacity-50 bg-gray-300',
@@ -345,16 +346,29 @@ import {TheMask} from 'vue-the-mask'
                 return this.payment === 'cashless' ? this.wholesale : this.total
             },
             cantBuyAstana() {
-                return this.city === 1 && (new Date().getHours() >= 18 || new Date().getHours() < 10)
+                return this.city === 1 && (this.hour >= 18 || this.hour < 10)
             },
             cantBuyAlmaty() {
-                return this.city === 2 && (new Date().getHours() >= 21 || new Date().getHours() < 10)
+                return this.city === 2 && (this.hour >= 21 || this.hour < 10)
             },
             intervals() {
                 return this.city === 1 ? this.intervalsAstana : this.intervalsAlmaty
             }
         },
         mounted() {
+            const timeZone = "+05:00";
+            const now = new Date();
+
+            const formatter = new Intl.DateTimeFormat("en-US", {
+                timeZone,
+                hour: "numeric",
+                minute: "numeric",
+                hour12: false,
+            });
+            this.hour = formatter.formatToParts(now)
+                .filter(part => part.type === "hour")
+                .map(part => parseInt(part.value, 10))[0];
+
             const user = this.user;
             if(user) {
                 this.name = user.name
