@@ -98,7 +98,7 @@
                                     на <span class="text-brand-green">3 дня</span> за
                                 </h1>
                                 <p class="text-xl">
-                                    18 000 ₸ вместо 21 000 ₸
+                                    19 500 ₸ вместо 22 500 ₸
                                 </p>
                             </div>
 
