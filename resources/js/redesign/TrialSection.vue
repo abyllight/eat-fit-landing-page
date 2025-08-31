@@ -7,7 +7,7 @@
                         <br>чем <span class="text-brand-yellow">100 раз услышать</span>
                     </h2>
                     <p class="md:text-lg">
-                        Оставьте заявку на заказ пробных рационов здорового питания <br class="hidden md:block lg:hidden"> <span class="text-brand-green">за 12 900 тг.</span>
+                        Оставьте заявку на заказ пробных рационов здорового питания <br class="hidden md:block lg:hidden"> <span class="text-brand-green">за 13 900 тг.</span>
                     </p>
                 </div>
             </div>
