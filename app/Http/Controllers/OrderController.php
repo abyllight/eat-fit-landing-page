@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
@@ -161,215 +161,188 @@ class OrderController extends Controller
             'phone' => 'required|min:17'
         ]);
 
-        $auth = $this->amo_auth();
+        $tags = ['Заявка с сайта'];
 
-        if (!$auth['status']) {
-            return response()->json(false);
+        // Set lead name
+        $name = $request->name;
+        if ($request->isPersonal) {
+            $name .= ' Индивидуальное меню';
+        } elseif ($request->isDaily) {
+            $name .= ' Daily';
         }
 
-        $subdomain = env('AMO_SUBDOMAIN', '');
 
-        $leads['add'] = [
-            [
-                'price' => 0,
-                'name' => '',
-                'status_id' => 28039639, //Тег присвоен
-                'pipeline_id' => 1783882, //Первичные продажи
-                'tags' => ['Заявка с сайта'],
-                'custom_fields' => [
-                    [
-                        'id' => 478771, //Телефон
-                        'values' => [
-                            [
-                                'value' => $request['phone']
-                            ],
-                        ],
-                    ],
-                    [
-                        'id' => 320995, //Источник
-                        'values' => [
-                            [
-                                'id' => 766689,
-                                'value' => 'Сайт',
-                            ]
-                        ],
-                    ],
-                    [
-                        'id' => 868945, //cid
-                        'values' => [
-                            [
-                                'value' => $request['ga'],
-                            ]
-                        ],
-                    ],
-                ]
-            ]
-        ];
-
-        $name = $request['name'];
-        if ($request['isPersonal']) {
-            $name = $name . ' Индивидуальное меню';
-        }  else if($request['isDaily']) {
-            $name = $name . ' Daily';
-        } else {
-            $size = [
-                'id' => 327953, //Size
-            ];
-            switch ($request->title) {
-                case 'XS': //XS
-                    $size['values'][0]['value'] = '678741';
-                    break;
-                case 'S': //S
-                    $size['values'][0]['value'] = '678743';
-                    break;
-                case 'M': //M
-                    $size['values'][0]['value'] = '678745';
-                    break;
-                case 'L': //L
-                    $size['values'][0]['value'] = '678747';
-                    break;
-                case 'XL': //XL
-                    $size['values'][0]['value'] = '678749';
-                    break;
-            }
-
-            $leads['add'][0]['custom_fields'][] = $size;
-
-            $type = [
-                'id' => 321197, //Type
-                'values' => [
-                    [
-                        'value' => '678649'
-                    ]
-                ]
-            ];
-
-            $leads['add'][0]['custom_fields'][] = $type;
-
-            $day = [
-                'id' => 321235, //course
-                'values' => [
-                    [
-                        'value' => $request->day
-                    ]
-                ]
-            ];
-
-            $leads['add'][0]['custom_fields'][] = $day;
-
-            $course_price = [
-                'id' => 456321, //стоимость курса,
-                'values' => [
-                    [
-                        'value' => $request->total
-                    ]
-                ]
-            ];
-
-            $leads['add'][0]['custom_fields'][] = $course_price;
-        }
-
-        $city = [
-            'id' => 881669, //City
-            'values' => [
+        // Build lead payload (v4 format)
+        $leadPayload = [
+            'name'        => $name,
+            'price'       => 0,
+            'status_id'   => 28039639, //Тег присвоен
+            'pipeline_id' => 1783882,  //Первичные продажи
+            '_embedded'   => [
+                'tags' => array_map(function($tag){ return ['name' => $tag]; }, $tags),
+            ],
+            'custom_fields_values' => [
                 [
-                    'value' => $request->city_id === 1 ? '977019' : '977021'
-                ]
-            ]
+                    'field_id' => 478771, //Телефон
+                    'values'   => [['value' => $request->phone]],
+                ],
+                [
+                    'field_id' => 320995, //Источник
+                    'values'   => [['enum_id' => 766689, 'value' => 'Сайт']],
+                ],
+                [
+                    'field_id' => 868945, //cid
+                    'values'   => [['value' => $request->ga]],
+                ],
+                [
+                    'field_id' => 881669, //City
+                    'values'   => [['enum_id' => $request->city_id === 1 ? 977019 : 977021]],
+                ],
+            ],
         ];
 
-        $leads['add'][0]['custom_fields'][] = $city;
+        // Size, Type, Course, Price
+        if (!$request->isPersonal && !$request->isDaily) {
+            $sizeFieldId = 327953; //Size
+            $typeFieldId = 321197; //Type
+            $dayFieldId  = 321235; //Course
+            $priceFieldId = 456321; //Стоимость курса
 
-        if ($request->has('promoStatus') && $request->promoStatus === true) {
-
-            if (($request->promoType === 0 || $request->promoType === 1) && $request->has('total')
-                && !$request->has('isTrial') && !$request->isPersonal) {
-
-                $skidka = null;
-
-                if ($request->promoType === 0) {
-                    $skidka = $request->total * $request->promoVal / 100;
+            if (!empty($request->title)) {
+                switch ($request->title) {
+                    case 'XS':
+                        $sizeEnum = 678741;
+                        break;
+                    case 'S':
+                        $sizeEnum = 678743;
+                        break;
+                    case 'M':
+                        $sizeEnum = 678745;
+                        break;
+                    case 'L':
+                        $sizeEnum = 678747;
+                        break;
+                    case 'XL':
+                        $sizeEnum = 678749;
+                        break;
+                    default:
+                        $sizeEnum = null;
                 }
-
-                if ($request->promoType === 1) {
-                    $skidka = $request->promoVal;
-                }
-
-                if ($skidka) {
-                    $leads['add'][0]['custom_fields'][] = [
-                        'id' => 479179, //сумма скидки,
-                        'values' => [
-                            [
-                                'value' => $skidka
-                            ]
-                        ]
+                if ($sizeEnum) {
+                    $leadPayload['custom_fields_values'][] = [
+                        'field_id' => $sizeFieldId,
+                        'values'   => [['enum_id' => $sizeEnum]],
                     ];
                 }
             }
 
-            $leads['add'][0]['custom_fields'][] = [
-                'id' => 321259, //комм менеджер,
-                'values' => [
-                    [
-                        'value' => $request->promoMsg
-                    ]
-                ]
+            $leadPayload['custom_fields_values'][] = [
+                'field_id' => $typeFieldId,
+                'values'   => [['enum_id' => 678649]],
             ];
 
-            $leads['add'][0]['tags'][] = $request->promo;
-        }
-
-        if (!$request->isPersonal && !$request->has('isTrial') && !$request->has('isDaily')) {
-            $leads['add'][0]['price'] = $request->discount;
-        }
-
-        $leads['add'][0]['name'] = $name;
-
-        $leads = $this->getUtm($request, $leads);
-
-        $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/leads';
-
-        $order = $this->doCurl($link, 'POST', $leads);
-
-        $embedded = json_decode($order['data'], true);
-
-        if (array_key_exists('_embedded', $embedded)) {
-            $lead_id = $embedded['_embedded']['items'][0]['id'];
-
-            $add_contact['add'] = [
-                [
-                    'name' => $request['name'],
-                    'leads_id' => [
-                        $lead_id
-                    ],
-                    'custom_fields' => [
-                        [
-                            'id' => 306229,
-                            'name' => $request['name'],
-                            'type_id' => 8,
-                            'code' => 'PHONE',
-                            'values' => [
-                                [
-                                    'value' => $request['phone'],
-                                    'enum' => '635201'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+            $leadPayload['custom_fields_values'][] = [
+                'field_id' => $dayFieldId,
+                'values'   => [['value' => (string)$request->day]],
             ];
 
-            $link = 'https://' . $subdomain . '.amocrm.ru/api/v2/contacts';
-            $this->doCurl($link, 'POST', $add_contact);
+            $leadPayload['custom_fields_values'][] = [
+                'field_id' => $priceFieldId,
+                'values'   => [['value' => (string)$request->total]],
+            ];
+
+            $leadPayload['price'] = $request->discount;
         }
 
-        $code = (int) $order['code'];
+        // Promo
+        if ($request->promoStatus === true) {
+            $skidka = null;
+            if ($request->promoType === 0) {
+                $skidka = $request->total * $request->promoVal / 100;
+            }
+            if ($request->promoType === 1) {
+                $skidka = $request->promoVal;
+            }
+            if ($skidka) {
+                $leadPayload['custom_fields_values'][] = [
+                    'field_id' => 479179, //сумма скидки
+                    'values'   => [['value' => (string)$skidka]],
+                ];
+            }
 
-        if($code == 200 || $code == 204){
-            return response()->json(true);
-        }else{
+            $leadPayload['custom_fields_values'][] = [
+                'field_id' => 321259, //комм менеджер
+                'values'   => [['value' => $request->promoMsg]],
+            ];
+
+            $leadPayload['_embedded']['tags'][] = ['name' => $request->promo];
+        }
+
+        // Save lead
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . env('AMO_ADMIN_LONG_TOKEN'),
+        ])->post("https://eatandfitkz.amocrm.ru/api/v4/leads", [$leadPayload]);
+
+        if ($response->failed()) {
+            return response()->json([
+                'status' => false,
+                'msg'    => 'Lead creation failed',
+                'errors' => $response->json(),
+            ]);
+        }
+
+        $lead = $response->json()['_embedded']['leads'][0] ?? null;
+        if (!$lead) {
             return response()->json(false);
         }
+
+        $lead_id = $lead['id'];
+
+        // Create contact and link to lead
+        $contactPayload = [
+            'name' => $request->name,
+            'custom_fields_values' => [
+                [
+                    'field_code' => 'PHONE',
+                    'values'   => [['value' => $request->phone, 'enum_code' => 'MOB']],
+                ]
+            ],
+            '_embedded' => [
+                'leads' => [
+                    ['id' => $lead_id]
+                ]
+            ]
+        ];
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . env('AMO_ADMIN_LONG_TOKEN'),
+        ])->post("https://eatandfitkz.amocrm.ru/api/v4/contacts", [$contactPayload]);
+
+        if ($response->failed()) {
+            return response()->json([
+                'status' => false,
+                'msg'    => 'Contact creation failed',
+                'errors' => $response->json(),
+            ]);
+        }
+
+        $contactId = $response->json()['_embedded']['contacts'][0]['id'];
+
+        if ($contactId) {
+            $linkPayload = [
+                [
+                    'to_entity_id' => $contactId,
+                    'to_entity_type' => 'contacts',
+                ],
+            ];
+
+            Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('AMO_ADMIN_LONG_TOKEN'),
+                'Content-Type'  => 'application/json',
+            ])->post("https://eatandfitkz.amocrm.ru/api/v4/leads/{$lead_id}/link", $linkPayload);
+        }
+
+        return response()->json(true);
     }
 
     public function placeCartOrder(Request $request){
@@ -503,64 +476,154 @@ class OrderController extends Controller
         //882671 1. Хэшбраун с яйцом
         //882673 2. Клаб сэндвич с курицей
 
-
         try {
-            $amo = new \AmoCRM\Client(env('AMO_SUBDOMAIN'), env('AMO_LOGIN'), env('AMO_HASH'));
-
-            $lead = $amo->lead;
-            $lead['name'] = $name;
-            $lead['status_id'] = 40592377; //Заказ поступил
-            $lead['pipeline_id'] = 4359841; //EatFitGo
-            $lead['tags'] = 'Заявка с сайта';
-            $lead['price'] = $wholesale + $cutlery['total'];
+            $accessToken = env('AMO_ADMIN_LONG_TOKEN');
+            $baseUrl     = rtrim(env('AMOCRM_BASE_URL'), '/');
+            $customFields = [];
 
             if ($card_type === 'card') {
-                $lead->addCustomField(321139, $total); //Фактический оплачено
-                $lead->addCustomField(869811, '969831'); //Оплачено картой на сайте
-            }elseif ($card_type === 'kaspi_pay') {
-                $lead->addCustomField(869811, '968303'); //kaspi pay
-            }else{
-                $lead->addCustomField(869811, '968307'); //Расчетный счет
+                $customFields[] = [
+                    'field_id' => 321139, // Фактический оплачено
+                    'values'   => [['value' => $total]],
+                ];
+                $customFields[] = [
+                    'field_id' => 869811, // Оплата тип
+                    'values'   => [['value' => '969831']], // Оплачено картой на сайте
+                ];
+            } elseif ($card_type === 'kaspi_pay') {
+                $customFields[] = [
+                    'field_id' => 869811,
+                    'values'   => [['value' => '968303']], // kaspi pay
+                ];
+            } else {
+                $customFields[] = [
+                    'field_id' => 869811,
+                    'values'   => [['value' => '968307']], // Расчетный счет
+                ];
             }
 
             if ($cart) {
+                $products = '';
                 foreach ($cart as $item) {
                     $product = Product::find($item['id']);
 
                     if ($product) {
-                        $lead->addCustomField($product->amo_id, $item['q']); //Адрес
+                        $customFields[] = [
+                            'field_id' => $product->amo_id,
+                            'values'   => [['value' => $item['q']]],
+                        ];
                     }
 
                     $q = $item['q'];
                     $price = $card_type === 'cashless' ? $product->wholesale : $product->price;
-                    $products .= $item['title'] . ' - ' . $q . ' x ' . $price;
+                    $products .= $item['title'] . " - {$q} x {$price}";
                     if (end($cart) !== $item) {
-                        $products .= ', '.PHP_EOL;
+                        $products .= ', ' . PHP_EOL;
                     }
                 }
             }
 
-            $lead->addCustomField(456321, $card_type === 'cashless' ? $wholesale + $cutlery['total'] : $total); //Стоимость курса
-            $lead->addCustomField(478771, $phone); //Телефон для звонков
-            $lead->addCustomField(478763, $address); //Адрес
-            $lead->addCustomField(478765, $address); //Адрес доп
-            $lead->addCustomField(373971, $request->time); //Время доставки
-            $lead->addCustomField(478705, $request->time); //Время доставки доп
-            $lead->addCustomField(321277, $products); //Комм. кухня
-            $lead->addCustomField(327953,  '929511'); //Size
-            $lead->addCustomField(321197,  '833911'); //Type
-            $lead->addCustomField(881669, $city_id === 1 ? '977019' : '977021'); //City
+            $customFields[] = [
+                'field_id' => 456321, // Стоимость курса
+                'values'   => [['value' => $card_type === 'cashless' ? $wholesale + $cutlery['total'] : $total]],
+            ];
+            $customFields[] = [
+                'field_id' => 478771, // Телефон для звонков
+                'values'   => [['value' => $phone]],
+            ];
+            $customFields[] = [
+                'field_id' => 478763, // Адрес
+                'values'   => [['value' => $address]],
+            ];
+            $customFields[] = [
+                'field_id' => 478765, // Адрес доп
+                'values'   => [['value' => $address]],
+            ];
+            $customFields[] = [
+                'field_id' => 373971, // Время доставки
+                'values'   => [['value' => $request->time]],
+            ];
+            $customFields[] = [
+                'field_id' => 478705, // Время доставки доп
+                'values'   => [['value' => $request->time]],
+            ];
+            $customFields[] = [
+                'field_id' => 321277, // Комм. кухня
+                'values'   => [['value' => $products]],
+            ];
+            $customFields[] = [
+                'field_id' => 327953, // Size
+                'values'   => [['value' => '929511']],
+            ];
+            $customFields[] = [
+                'field_id' => 321197, // Type
+                'values'   => [['value' => '833911']],
+            ];
+            $customFields[] = [
+                'field_id' => 881669, // City
+                'values'   => [['value' => $city_id === 1 ? '977019' : '977021']],
+            ];
 
-            $id = $lead->apiAdd();
+            $leadPayload = [
+                [
+                    'name'         => $name,
+                    'status_id'    => 40592377,
+                    'pipeline_id'  => 4359841,
+                    'price'        => $wholesale + $cutlery['total'],
+                    'tags'         => [['name' => 'Заявка с сайта']],
+                    'custom_fields_values' => $customFields,
+                ]
+            ];
 
-            $contact = $amo->contact;
-            $contact['name'] = $name;
-            $contact->setLinkedLeadsId($id);
-            $contact->addCustomField(306229, [
-                [$phone, '635201']
-            ]);
+            $leadResponse = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $accessToken,
+                'Content-Type'  => 'application/json',
+            ])->post("{$baseUrl}/api/v4/leads", $leadPayload);
 
-            $contact->apiAdd();
+            $leadData = $leadResponse->json();
+            $leadId   = $leadData['_embedded']['leads'][0]['id'] ?? null;
+
+            if ($leadId) {
+                $contactPayload = [
+                    [
+                        'name' => $name,
+                        'custom_fields_values' => [
+                            [
+                                'field_id' => 306229, // Phone field
+                                'values'   => [
+                                    ['value' => $phone, 'enum_id' => 635201] // мобильный
+                                ],
+                            ]
+                        ],
+                        '_embedded' => [
+                            'leads' => [
+                                ['id' => $leadId]
+                            ]
+                        ]
+                    ]
+                ];
+
+                $contactResponse = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $accessToken,
+                    'Content-Type'  => 'application/json',
+                ])->post("{$baseUrl}/api/v4/contacts", $contactPayload);
+
+                $contactId = $contactResponse->json()['_embedded']['contacts'][0]['id'];
+
+                if ($contactId) {
+                    $linkPayload = [
+                        [
+                            'to_entity_id' => $contactId,
+                            'to_entity_type' => 'contacts',
+                        ],
+                    ];
+
+                    Http::withHeaders([
+                        'Authorization' => 'Bearer ' . $accessToken,
+                        'Content-Type'  => 'application/json',
+                    ])->post("{$baseUrl}/api/v4/leads/{$leadId}/link", $linkPayload);
+                }
+            }
 
             return response()->json('Success');
         }catch (\AmoCRM\Exception $e) {
