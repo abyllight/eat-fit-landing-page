@@ -70,15 +70,15 @@
                 </div>
             </div>
             <div v-if="isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-8 z-50 rounded inset-x-3">
-                Команда EAT&FIT на Новогодних каникулах до 8го января. Оформить заявки можно 7го января и 8го утром мы доставим ваш заказ 🎄
+                К сожалению, доставка на воскресенье не осуществляется. Но это временно ;)
             </div>
 
             <div v-if="cantBuyAstana && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
-                Команда EAT&FIT на Новогодних каникулах до 8го января. Оформить заявки можно 7го января и 8го утром мы доставим ваш заказ 🎄
+                Прием заказов по Астане осуществляется только c 10:00 до 18:00
             </div>
 
             <div v-if="cantBuyAlmaty && !isSunday" class="max-w-md mx-auto bg-yellow-500 text-white text-sm py-4 px-4 shadow fixed bottom-6 lg:bottom-32 z-50 rounded inset-x-3">
-                Команда EAT&FIT на Новогодних каникулах до 8го января. Оформить заявки можно 7го января и 8го утром мы доставим ваш заказ 🎄
+                Прием заказов по Алмате осуществляется только c 10:00 до 21:00
             </div>
         </div>
 
@@ -139,10 +139,10 @@
                 return new Date().getDay() === 6
             },
             cantBuyAstana() {
-                return new Date().getDate() >= 26 || new Date().getDate() < 7
+                return this.city === 1 && (this.hour >= 18 || this.hour < 10)
             },
             cantBuyAlmaty() {
-                return new Date().getDate() >= 26 || new Date().getDate() < 7
+                return this.city === 2 && (this.hour >= 21 || this.hour < 10)
             },
             cantBuy() {
                 return this.isSunday()
