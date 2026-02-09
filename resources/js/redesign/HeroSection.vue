@@ -22,7 +22,7 @@
                                     Попробовать
                                 </a>
                                 <p class="ml-4 text-white">
-                                    за 13 900 тг.
+                                    за 14 900 тг.
                                 </p>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                     на <span class="text-brand-green">3 дня</span> за
                                 </h1>
                                 <p class="text-xl">
-                                    21 000 ₸ вместо 24 000 ₸
+                                    24 000 ₸ вместо 27 000 ₸
                                 </p>
                             </div>
 
