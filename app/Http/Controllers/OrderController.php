@@ -169,6 +169,8 @@ class OrderController extends Controller
             $name .= ' Индивидуальное меню';
         } elseif ($request->isDaily) {
             $name .= ' Daily';
+        }elseif ($request->isTrial) {
+            $name .= ' Пробный день';
         }
 
 
@@ -202,7 +204,7 @@ class OrderController extends Controller
         ];
 
         // Size, Type, Course, Price
-        if (!$request->isPersonal && !$request->isDaily) {
+        if (!$request->isPersonal && !$request->isDaily && !$request->isTrial) {
             $sizeFieldId = 327953; //Size
             $typeFieldId = 321197; //Type
             $dayFieldId  = 321235; //Course
@@ -251,7 +253,7 @@ class OrderController extends Controller
                 'values'   => [['value' => (string)$request->total]],
             ];
 
-            $leadPayload['price'] = $request->discount;
+            $leadPayload['price'] = $request->discount ?? 0;
         }
 
         // Promo
